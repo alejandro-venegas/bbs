@@ -6,7 +6,6 @@ import { AdministrarComponent } from './administrar/administrar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'reportes', pathMatch: 'full' },
-  { path: 'graficos', component: GraficosComponent },
   { path: 'administrar', component: AdministrarComponent }
 ];
 
