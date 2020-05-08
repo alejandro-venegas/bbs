@@ -1,0 +1,17 @@
+nav {
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    width: 100%;
+    background-color: #0A1E38;
+    height: 100%;
+    color: #FFFFF8;
+}
+
+.title-container {
+    border-bottom: 1px solid #FFFFF8;
+    margin: 1rem 1rem
+}
+.title {
+    text-align: center;
+}
