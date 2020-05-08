@@ -6,15 +6,24 @@
   grid-template-columns: 15rem auto;
   grid-template-rows: 6rem auto;
   grid-template-areas:
-    "nav header"
-    "nav main";
+    'nav header'
+    'nav main';
 }
 app-header {
   grid-area: header;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
 }
 app-left-nav {
   grid-area: nav;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
 }
 main {
   grid-area: main;
+  align-self: stretch;
+  justify-self: stretch;
+  margin: 4rem;
+  background-color: var(--blue);
+  border-radius: 1rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
+  padding: 3rem;
 }
