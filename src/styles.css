@@ -11,6 +11,10 @@ body {
 * {
   font-family: sans-serif;
 }
+a {
+  text-decoration: none;
+  color: #fffff8;
+}
 
 .main-container {
   display: flex;
@@ -22,10 +26,14 @@ body {
   padding: 0;
   list-style: none;
   justify-content: space-between;
-  border-bottom: 1px solid #fffff8;
+  border-bottom: 3px solid #fffff8;
 }
 
 .main-container-list-link {
   padding: 1rem 0;
   display: inline-block;
+}
+.main-container-list-link-active {
+  margin-bottom: -3px;
+  border-bottom: 3px solid var(--yellow);
 }

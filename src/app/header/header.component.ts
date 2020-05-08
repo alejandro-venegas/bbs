@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  title: string;
+  constructor(private headerService: HeaderService) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(data => console.log(data));
+    this.headerService.titleSubject.subscribe(value => (this.title = value));
   }
 }

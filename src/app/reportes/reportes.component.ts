@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HeaderService } from '../header/header.service';
 
 @Component({
   selector: 'app-reportes',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
-
-  constructor() { }
+  constructor(private headerService: HeaderService) {}
 
   ngOnInit(): void {
+    this.headerService.titleSubject.next('Nuevo Reporte');
   }
-
 }

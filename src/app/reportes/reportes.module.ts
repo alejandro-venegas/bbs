@@ -5,6 +5,7 @@ import { IncidenteComponent } from './incidente/incidente.component';
 import { CasiIncidenteComponent } from './casi-incidente/casi-incidente.component';
 import { BbsComponent } from './bbs/bbs.component';
 import { CondicionesInsegurasComponent } from './condiciones-inseguras/condiciones-inseguras.component';
+import { ReportesRoutingModule } from './reportes-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { CondicionesInsegurasComponent } from './condiciones-inseguras/condicion
     BbsComponent,
     CondicionesInsegurasComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReportesRoutingModule],
   exports: [
     ReportesComponent,
     IncidenteComponent,
