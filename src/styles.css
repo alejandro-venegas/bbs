@@ -1,13 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-:root{
-    --yellow: #F9A11B;
-    --blue: #0A1E38;
+:root {
+  --yellow: #f9a11b;
+  --blue: #0a1e38;
 }
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
-*{
-    font-family: sans-serif;
+* {
+  font-family: sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-flow: column;
+  color: #fffff8;
+}
+.main-container-list {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+  border-bottom: 1px solid #fffff8;
+}
+
+.main-container-list-link {
+  padding: 1rem 0;
+  display: inline-block;
 }

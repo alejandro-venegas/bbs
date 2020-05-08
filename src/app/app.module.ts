@@ -4,26 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReportesComponent } from './reportes/reportes.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left-nav/left-nav.component';
-import { GraficosComponent } from './graficos/graficos.component';
-import { AdministrarComponent } from './administrar/administrar.component';
+import { ReportesModule } from './reportes/reportes.module';
+import { AdministrarModule } from './administrar/administrar.module';
+import { GraficosModule } from './graficos/graficos.module';
 @NgModule({
-  declarations: [
-    AppComponent,
-    ReportesComponent,
-    HeaderComponent,
-    LeftNavComponent,
-    GraficosComponent,
-    AdministrarComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, LeftNavComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReportesModule,
+    AdministrarModule,
+    GraficosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
