@@ -6,15 +6,15 @@
   grid-template-columns: 15rem auto;
   grid-template-rows: 6rem auto;
   grid-template-areas:
-  'nav header'
-  'nav router';
+    "nav header"
+    "nav main";
 }
-app-header{
+app-header {
   grid-area: header;
 }
-app-left-nav{
+app-left-nav {
   grid-area: nav;
 }
-router-outlet{
-  grid-area: router;
+main {
+  grid-area: main;
 }

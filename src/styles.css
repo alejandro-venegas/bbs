@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root{
+    --yellow: #F9A11B;
+    --blue: #0A1E38;
+}
 body{
     margin: 0;
 }

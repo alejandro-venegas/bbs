@@ -1,10 +1,31 @@
 <nav>
-    <div class="title-container">
-        <h1 class="title">Sistema BBS</h1>
-    </div>
-    <ul>
-        <li><a>Nuevos Reportes</a></li>
-        <li><a>Graficos</a></li>
-        <li><a>Administrar</a></li>
-    </ul>
+  <div class="title-container">
+    <h1 class="title">Sistema BBS</h1>
+  </div>
+  <ul class="nav-list">
+    <li class="nav-list-item">
+      <a
+        [routerLink]="['/reportes']"
+        class="nav-list-item-link"
+        routerLinkActive="nav-list-item-link-active"
+        >Reportes</a
+      >
+    </li>
+    <li class="nav-list-item">
+      <a
+        class="nav-list-item-link"
+        [routerLink]="['/graficos']"
+        routerLinkActive="nav-list-item-active"
+        >Graficos</a
+      >
+    </li>
+    <li class="nav-list-item">
+      <a
+        class="nav-list-item-link"
+        [routerLink]="['/administrar']"
+        routerLinkActive="nav-list-item-active"
+        >Administrar</a
+      >
+    </li>
+  </ul>
 </nav>
