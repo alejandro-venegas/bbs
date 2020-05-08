@@ -5,8 +5,7 @@ import { GraficosComponent } from './graficos/graficos.component';
 import { AdministrarComponent } from './administrar/administrar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'reportes', pathMatch: 'full' },
-  { path: 'administrar', component: AdministrarComponent }
+  { path: '', redirectTo: 'reportes', pathMatch: 'full' }
 ];
 
 @NgModule({
