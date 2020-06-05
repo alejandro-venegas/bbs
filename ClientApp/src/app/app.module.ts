@@ -9,15 +9,18 @@ import { LeftNavComponent } from './left-nav/left-nav.component';
 import { ReportesModule } from './reportes/reportes.module';
 import { AdministrarModule } from './administrar/administrar.module';
 import { GraficosModule } from './graficos/graficos.module';
+import { RolesPerfilesComponent } from './roles-perfiles/roles-perfiles.component';
+import { RolesPerfilesModule } from './roles-perfiles/roles-perfiles.module';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LeftNavComponent],
+  declarations: [AppComponent, HeaderComponent, LeftNavComponent, RolesPerfilesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReportesModule,
     AdministrarModule,
-    GraficosModule
+    GraficosModule,
+    RolesPerfilesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
