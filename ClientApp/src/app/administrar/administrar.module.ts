@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
+import { PerfilesComponent } from './perfiles/perfiles.component';
+import { RolesComponent } from './roles/roles.component';
 import { CommonModule } from '@angular/common';
-import { AdministrarComponent } from './administrar.component';
-import { FormulariosComponent } from './formularios/formularios.component';
 import { AdministrarRoutingModule } from './administrar-routing.module';
 
 @NgModule({
-  declarations: [
-    AdministrarComponent,
-    FormulariosComponent
-  ],
-  imports: [CommonModule, AdministrarRoutingModule],
-  exports: [
-    AdministrarComponent,
-    FormulariosComponent
-  ]
+    declarations: [PerfilesComponent, RolesComponent],
+    imports: [CommonModule, AdministrarRoutingModule],
+    exports: [PerfilesComponent, RolesComponent],
 })
-export class AdministrarModule {}
+export class AdministrarModule{}

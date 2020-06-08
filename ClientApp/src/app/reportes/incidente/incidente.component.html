@@ -1,1 +1,110 @@
-<p>incidente works!</p>
+<form class="content-container">
+  <div class="form-grid">
+    <div class="input-group">
+      <label for="fecha">Fecha:</label>
+      <input
+        id="fecha"
+        readonly
+        placeholder="Fecha"
+        [matDatepicker]="picker"
+        (click)="picker.open()"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="input-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Nombre" />
+    </div>
+    <div class="input-group">
+      <label>Genero:</label>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button [checked]="true" value="M"
+          >Masculino</mat-radio-button
+        >
+        <mat-radio-button value="F">Femenino</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="input-group">
+      <label for="proceso">Proceso:</label>
+      <select id="proceso">
+        <option value="" disabled>Seleccione un proceso</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="turno">Turno:</label>
+      <select id="turno">
+        <option value="" disabled selected>Seleccione un turno</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="areaDeTrabajo">Area de trabajo:</label>
+      <select id="areaDeTrabajo">
+        <option value="" disabled selected>Area de trabajo</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="supervisor">Supervisor:</label>
+      <select id="supervisor">
+        <option value="" disabled selected>Seleccione un supervisor</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="porcentajeDeJornada">% de Jornada:</label>
+      <select id="porcentajeDeJornada">
+        <option value="" disabled selected>% de Jornada</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="tipoDeEfecto">Tipo de Efecto:</label>
+      <select id="tipoDeEfecto">
+        <option value="" disabled selected>Tipo de Efecto</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="clasificacion">Clasificacion:</label>
+      <select id="clasificacion">
+        <option value="" disabled selected>Clasificacion</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label>Actividad:</label>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button [checked]="true" [value]="true"
+          >Rutinaria
+        </mat-radio-button>
+        <mat-radio-button [value]="false">No rutinaria</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="input-group">
+      <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
+      <select id="nivelDeRiesgo">
+        <option value="" disabled selected>Nivel de Riesgo</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="causaBasica">Causa basica:</label>
+      <select id="causaBasica">
+        <option value="" disabled selected>Causa basica</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="causaInmediata">Causa Inmediata:</label>
+      <select id="causaInmediata">
+        <option value="" disabled selected>Causa Inmediatada</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="parteDelCuerpo">Parte del Cuerpo:</label>
+      <select id="parteDelCuerpo">
+        <option value="" disabled selected>Parte del cueroi</option>
+      </select>
+    </div>
+    <div class="input-group text-area">
+      <label for="descripcion">Descripcion de lo sucedido</label>
+      <textarea name="" id="descripcion"></textarea>
+    </div>
+  </div>
+  <div class="button-group">
+    <button class="save-button">GUARDAR</button>
+  </div>
+</form>

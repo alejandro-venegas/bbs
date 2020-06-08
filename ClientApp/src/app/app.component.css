@@ -3,7 +3,7 @@
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 15rem auto;
+  grid-template-columns: 18rem auto;
   grid-template-rows: 6rem auto;
   grid-template-areas:
     'nav header'
@@ -26,4 +26,6 @@ main {
   border-radius: 1rem;
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
 }

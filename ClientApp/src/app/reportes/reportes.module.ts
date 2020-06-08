@@ -6,6 +6,11 @@ import { CasiIncidenteComponent } from './casi-incidente/casi-incidente.componen
 import { BbsComponent } from './bbs/bbs.component';
 import { CondicionesInsegurasComponent } from './condiciones-inseguras/condiciones-inseguras.component';
 import { ReportesRoutingModule } from './reportes-routing.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,15 +18,23 @@ import { ReportesRoutingModule } from './reportes-routing.module';
     IncidenteComponent,
     CasiIncidenteComponent,
     BbsComponent,
-    CondicionesInsegurasComponent
+    CondicionesInsegurasComponent,
   ],
-  imports: [CommonModule, ReportesRoutingModule],
+  imports: [
+    CommonModule,
+    ReportesRoutingModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+  ],
   exports: [
     ReportesComponent,
     IncidenteComponent,
     CasiIncidenteComponent,
     BbsComponent,
-    CondicionesInsegurasComponent
-  ]
+    CondicionesInsegurasComponent,
+  ],
 })
 export class ReportesModule {}

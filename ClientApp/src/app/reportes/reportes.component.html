@@ -1,39 +1,48 @@
 <div class="main-container">
-  <nav>
-    <ul class="main-container-list">
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="incidente"
-          routerLinkActive=" main-container-list-link-active"
-          >Incidente</a
-        >
-      </li>
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="casi-incidente"
-          routerLinkActive=" main-container-list-link-active"
-          >Casi Incidente</a
-        >
-      </li>
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="bbs"
-          routerLinkActive=" main-container-list-link-active"
-          >BBS</a
-        >
-      </li>
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="condiciones-inseguras"
-          routerLinkActive=" main-container-list-link-active"
-          >Condiciones Inseguras</a
-        >
-      </li>
-    </ul>
+  <nav mat-tab-nav-bar class="sub-nav-menu">
+    <a
+      mat-tab-link
+      [routerLink]="['incidente']"
+      routerLinkActive
+      disableRipple
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      INCIDENTE
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['casi-incidente']"
+      routerLinkActive
+      disableRipple
+      #rlb="routerLinkActive"
+      [active]="rlb.isActive"
+    >
+      CASI INCIDENTE
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['bbs']"
+      routerLinkActive
+      disableRipple
+      #rlc="routerLinkActive"
+      [active]="rlc.isActive"
+    >
+      BBS
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['condiciones-inseguras']"
+      routerLinkActive
+      disableRipple
+      #rld="routerLinkActive"
+      [active]="rld.isActive"
+    >
+      CONDICIONES INSEGURAS
+    </a>
   </nav>
-  <router-outlet></router-outlet>
+
+  <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

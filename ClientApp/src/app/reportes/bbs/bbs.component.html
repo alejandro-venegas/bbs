@@ -1,1 +1,70 @@
-<p>bbs works!</p>
+<form class="content-container">
+  <div class="form-grid">
+    <div class="input-group">
+      <label for="fecha">Fecha:</label>
+      <input
+        id="fecha"
+        readonly
+        placeholder="Fecha"
+        [matDatepicker]="picker"
+        (click)="picker.open()"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="input-group">
+      <label for="observador">Observador:</label>
+      <input type="text" id="observador" placeholder="Observador" />
+    </div>
+
+    <div class="input-group">
+      <label for="comportamiento">Comportamiento detectado:</label>
+      <select id="comportamiento">
+        <option value="" disabled>Seleccione un comportamiento</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="area">Area:</label>
+      <select id="area">
+        <option value="" disabled selected>Seleccione un area</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="areaDeTrabajo">Proceso:</label>
+      <select id="areaDeTrabajo">
+        <option value="" disabled selected>Seleccione un proceso</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Comportamiento:</label>
+      <mat-radio-group aria-label="Select an option">
+        <div class="mat-radio-column">
+          <mat-radio-button [checked]="true" value="paradise"
+            >Paradise
+          </mat-radio-button>
+          <mat-radio-button value="contratista">Contratista </mat-radio-button>
+          <mat-radio-button value="tercerizado">Tercerizado </mat-radio-button>
+        </div>
+        <div class="mat-radio-column">
+          <mat-radio-button value="visitante">Visitante</mat-radio-button>
+          <mat-radio-button value="transportista"
+            >Transportista</mat-radio-button
+          >
+        </div>
+      </mat-radio-group>
+    </div>
+
+    <div class="input-group">
+      <label>Comportamiento:</label>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button [checked]="true" [value]="true"
+          >Seguro</mat-radio-button
+        >
+        <mat-radio-button [value]="false">Inseguro</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div class="button-group">
+    <button class="save-button">GUARDAR</button>
+  </div>
+</form>

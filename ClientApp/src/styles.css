@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 :root {
   --yellow: #f9a11b;
   --blue: #0a1e38;
+  --white: #fffff8;
 }
 body {
   margin: 0;
@@ -10,6 +11,8 @@ body {
 
 * {
   font-family: sans-serif;
+  outline: none;
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;
@@ -20,20 +23,151 @@ a {
   display: flex;
   flex-flow: column;
   color: #fffff8;
-}
-.main-container-list {
-  display: flex;
-  padding: 0;
-  list-style: none;
-  justify-content: space-between;
-  border-bottom: 3px solid #fffff8;
+  height: 100%;
 }
 
-.main-container-list-link {
-  padding: 1rem 0;
-  display: inline-block;
+.sub-nav-menu {
+  margin-bottom: 2rem;
 }
-.main-container-list-link-active {
-  margin-bottom: -3px;
-  border-bottom: 3px solid var(--yellow);
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: var(--yellow);
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--yellow);
+}
+.mat-radio-outer-circle {
+  border-color: var(--white);
+}
+.mat-tab-label,
+.mat-tab-link {
+  color: var(--white);
+  opacity: 1 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  overflow: unset !important;
+}
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: var(--yellow);
+}
+.mat-ink-bar {
+  margin-bottom: -2px;
+  transition: 700ms cubic-bezier(0.35, 0, 0.25, 1) !important;
+}
+.mat-tab-nav-bar,
+.mat-tab-header {
+  border-bottom: 2px solid rgba(255, 255, 248, 0.3);
+  overflow: visible !important;
+}
+.mat-tab-link-container {
+  overflow: visible !important;
+}
+.mat-calendar-body-selected {
+  background-color: var(--yellow);
+  color: #fff;
+}
+mat-radio-button {
+  margin: 0 1rem;
+}
+.content-container {
+  height: 10px;
+  min-height: -moz-available; /* WebKit-based browsers will ignore this. */
+  min-height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  min-height: fill-available;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+.content-container::-webkit-scrollbar {
+  display: none;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  column-gap: 3rem;
+  row-gap: 2rem;
+  align-self: stretch;
+  justify-content: center;
+  align-items: center;
+}
+.save-button {
+  justify-self: center;
+  align-self: center;
+  background-color: var(--yellow);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  border: none;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+.text-area {
+  grid-column: span 2;
+}
+.flex-fill-available {
+  flex: 1;
+}
+input:not([type='radio']) {
+  height: 2.3rem;
+  border-radius: 1.3rem;
+  border: none;
+  padding: 0.1rem 1rem;
+  background-color: rgba(255, 255, 248, 0.3);
+  color: var(--white);
+}
+label {
+  margin: 0 0 1rem 0;
+}
+textarea {
+  height: 5rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 248, 0.3);
+  border: none;
+}
+select {
+  height: 2.3rem;
+  padding: 0.1rem 1rem;
+  background-color: rgba(255, 255, 248, 0.3);
+  border-radius: 1.3rem;
+  border: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+router-outlet + * {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.route-animation {
+  flex: 1;
+  display: flex;
+  transition: height 1s;
+  overflow: hidden;
+}
+.ng-animating {
+  flex: 1;
+  height: 100%;
 }

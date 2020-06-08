@@ -7,22 +7,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left-nav/left-nav.component';
 import { ReportesModule } from './reportes/reportes.module';
-import { AdministrarModule } from './administrar/administrar.module';
+import { MantenimientoModule } from './mantenimiento/mantenimiento.module';
 import { GraficosModule } from './graficos/graficos.module';
-import { RolesPerfilesComponent } from './roles-perfiles/roles-perfiles.component';
-import { RolesPerfilesModule } from './roles-perfiles/roles-perfiles.module';
+import { AdministrarComponent } from './administrar/administrar.component';
+import { AdministrarModule } from './administrar/administrar.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LeftNavComponent, RolesPerfilesComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    LeftNavComponent,
+    AdministrarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReportesModule,
-    AdministrarModule,
+    MantenimientoModule,
     GraficosModule,
-    RolesPerfilesModule
+    AdministrarModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

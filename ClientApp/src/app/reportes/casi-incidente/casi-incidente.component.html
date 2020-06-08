@@ -1,1 +1,78 @@
-<p>casi-incidente works!</p>
+<form class="content-container">
+  <div class="form-grid">
+    <div class="input-group">
+      <label for="fecha">Fecha:</label>
+      <input
+        id="fecha"
+        readonly
+        placeholder="Fecha"
+        [matDatepicker]="picker"
+        (click)="picker.open()"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="input-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Nombre" />
+    </div>
+    <div class="input-group">
+      <label>Genero:</label>
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button [checked]="true" value="M"
+          >Masculino</mat-radio-button
+        >
+        <mat-radio-button value="F">Femenino</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="input-group">
+      <label for="proceso">Proceso:</label>
+      <select id="proceso">
+        <option value="" disabled>Seleccione un proceso</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="turno">Turno:</label>
+      <select id="turno">
+        <option value="" disabled selected>Seleccione un turno</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="areaDeTrabajo">Area de trabajo:</label>
+      <select id="areaDeTrabajo">
+        <option value="" disabled selected>Area de trabajo</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="supervisor">Supervisor:</label>
+      <select id="supervisor">
+        <option value="" disabled selected>Seleccione un supervisor</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="casualidad">Casualidad:</label>
+      <select id="casualidad">
+        <option value="" disabled selected>Casualidad</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
+      <select id="nivelDeRiesgo">
+        <option value="" disabled selected>Nivel de Riesgo</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="porcentajeDeJornada">% de Jornada:</label>
+      <select id="porcentajeDeJornada">
+        <option value="" disabled selected>% de Jornada</option>
+      </select>
+    </div>
+
+    <div class="input-group text-area">
+      <label for="descripcion">Descripcion de lo sucedido</label>
+      <textarea name="" id="descripcion"></textarea>
+    </div>
+  </div>
+  <div class="button-group">
+    <button class="save-button">GUARDAR</button>
+  </div>
+</form>

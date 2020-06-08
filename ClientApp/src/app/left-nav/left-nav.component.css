@@ -9,11 +9,17 @@ nav {
 }
 
 .title-container {
-  border-bottom: 1px solid #fffff8;
-  margin: 1rem 1rem;
+  margin: 1rem 1rem 2rem 1rem;
 }
 .title {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.subtitle{
+  text-align: center;
+  color: var(--yellow);
+  margin-top: 0.5rem;
 }
 
 .nav-list {
@@ -22,6 +28,7 @@ nav {
   display: flex;
   flex-flow: column;
   align-items: center;
+  margin-bottom: 2rem;
 }
 .nav-list-item {
   width: 100%;
@@ -38,4 +45,10 @@ nav {
 
 .nav-list-item-link-active {
   background-color: #f9a11b;
+}
+.nav-divider{
+  width: 80%;
+  border-width: 0;
+  height: 0.1rem;
+  background-color: rgba(255, 255, 255, 0.51);
 }

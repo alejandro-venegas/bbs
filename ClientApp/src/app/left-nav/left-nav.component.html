@@ -1,6 +1,7 @@
 <nav>
   <div class="title-container">
     <h1 class="title">Sistema BBS</h1>
+    <h6 class="subtitle">PARADISE INGREDIENTS</h6>
   </div>
   <ul class="nav-list">
     <li class="nav-list-item">
@@ -22,18 +23,19 @@
     <li class="nav-list-item">
       <a
         class="nav-list-item-link"
-        [routerLink]="['/roles-perfiles']"
-        routerLinkActive="nav-list-item-link-active"
-        >Roles y Perfiles</a
-      >
-    </li>
-    <li class="nav-list-item">
-      <a
-        class="nav-list-item-link"
         [routerLink]="['/administrar']"
         routerLinkActive="nav-list-item-link-active"
         >Administrar</a
       >
     </li>
+    <li class="nav-list-item">
+      <a
+        class="nav-list-item-link"
+        [routerLink]="['/mantenimiento']"
+        routerLinkActive="nav-list-item-link-active"
+        >Mantenimiento</a
+      >
+    </li>
   </ul>
+  <hr class="nav-divider" />
 </nav>

@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormulariosComponent } from './formularios/formularios.component';
 import { AdministrarComponent } from './administrar.component';
+import { RolesComponent } from './roles/roles.component';
+import { PerfilesComponent } from './perfiles/perfiles.component';
+import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
-  {
-    path: 'administrar',
-    component: AdministrarComponent,
-    children: [
-      {
-        path: 'formularios',
-        component: FormulariosComponent
-      }
-    ]
-  }
-];
+    {
+        path: 'administrar',
+        component: AdministrarComponent,
+        children: [
+            {
+                path: 'roles',
+                component: RolesComponent,
+            },
+            {
+                path: 'perfiles',
+                component: PerfilesComponent
+            }
+        ]
+    }
+]
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class AdministrarRoutingModule {}
+export class AdministrarRoutingModule{}

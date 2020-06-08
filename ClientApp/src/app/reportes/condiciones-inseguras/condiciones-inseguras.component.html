@@ -1,1 +1,52 @@
-<p>condiciones-inseguras works!</p>
+<form class="content-container">
+  <div class="form-grid">
+    <div class="input-group">
+      <label for="fecha">Fecha:</label>
+      <input
+        id="fecha"
+        readonly
+        placeholder="Fecha"
+        [matDatepicker]="picker"
+        (click)="picker.open()"
+      />
+      <mat-datepicker #picker></mat-datepicker>
+    </div>
+    <div class="input-group">
+      <label for="supervisor">Supervisor:</label>
+      <select id="supervisor">
+        <option value="" disabled selected>Seleccione un supervisor</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="proceso">Proceso:</label>
+      <select id="proceso">
+        <option value="" disabled>Seleccione un proceso</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="areaDeTrabajo">Area de trabajo:</label>
+      <select id="areaDeTrabajo">
+        <option value="" disabled selected>Area de trabajo</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
+      <select id="nivelDeRiesgo">
+        <option value="" disabled selected>Nivel de Riesgo</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="indicadorDeRiesgo">Indicador de riesgo:</label>
+      <select id="indicadorDeRiesgo">
+        <option value="" disabled selected
+          >Seleccione un indicador de riesgo</option
+        >
+      </select>
+    </div>
+  </div>
+  <div class="button-group">
+    <button class="save-button">GUARDAR</button>
+  </div>
+</form>

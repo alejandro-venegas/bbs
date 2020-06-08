@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../header/header.service';
+import {HeaderService} from "../header/header.service";
 
 @Component({
-  selector: 'app-administrar',
+  selector: 'app-roles-perfiles',
   templateUrl: './administrar.component.html',
   styleUrls: ['./administrar.component.css']
 })
 export class AdministrarComponent implements OnInit {
-  constructor(private headerService: HeaderService) {}
+
+  constructor(private headerService: HeaderService) { }
 
   ngOnInit(): void {
     this.headerService.titleSubject.next('Administrar');
   }
+
 }

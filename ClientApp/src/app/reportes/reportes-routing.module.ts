@@ -11,18 +11,27 @@ const routes: Routes = [
     path: 'reportes',
     component: ReportesComponent,
     children: [
-      { path: 'incidente', component: IncidenteComponent },
-      { path: 'casi-incidente', component: CasiIncidenteComponent },
-      { path: 'bbs', component: BbsComponent },
+      {
+        path: 'incidente',
+        component: IncidenteComponent,
+        data: { number: 'f' },
+      },
+      {
+        path: 'casi-incidente',
+        component: CasiIncidenteComponent,
+        data: { number: '2' },
+      },
+      { path: 'bbs', component: BbsComponent, data: { number: '3' } },
       {
         path: 'condiciones-inseguras',
-        component: CondicionesInsegurasComponent
-      }
-    ]
-  }
+        component: CondicionesInsegurasComponent,
+        data: { number: 'l' },
+      },
+    ],
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ReportesRoutingModule {}
