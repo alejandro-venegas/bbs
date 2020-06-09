@@ -1,15 +1,18 @@
 <div class="main-container">
-  <nav>
-    <ul class="main-container-list">
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="formularios"
-          routerLinkActive=" main-container-list-link-active"
-          >Formularios</a
-        >
-      </li>
-    </ul>
+  <nav mat-tab-nav-bar class="sub-nav-menu">
+    <a
+      mat-tab-link
+      [routerLink]="['formularios']"
+      routerLinkActive
+      disableRipple
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      FORMULARIOS
+    </a>
   </nav>
-  <router-outlet></router-outlet>
+
+  <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

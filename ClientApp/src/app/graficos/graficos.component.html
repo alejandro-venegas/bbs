@@ -1,23 +1,28 @@
 <div class="main-container">
-  <nav>
-    <ul class="main-container-list">
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="filtros"
-          routerLinkActive=" main-container-list-link-active"
-          >Filtros</a
-        >
-      </li>
-      <li>
-        <a
-          class="main-container-list-link"
-          routerLink="resultado"
-          routerLinkActive=" main-container-list-link-active"
-          >Graficos</a
-        >
-      </li>
-    </ul>
+  <nav mat-tab-nav-bar class="sub-nav-menu">
+    <a
+      mat-tab-link
+      [routerLink]="['filtros']"
+      routerLinkActive
+      disableRipple
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      FILTROS
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['resultado']"
+      routerLinkActive
+      disableRipple
+      #rlb="routerLinkActive"
+      [active]="rlb.isActive"
+    >
+      GRAFICOS
+    </a>
   </nav>
-  <router-outlet></router-outlet>
+
+  <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

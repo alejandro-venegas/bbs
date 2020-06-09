@@ -1,24 +1,28 @@
 <div class="main-container">
-    <nav>
-      <ul class="main-container-list">
-        <li>
-          <a
-            class="main-container-list-link"
-            routerLink="perfiles"
-            routerLinkActive=" main-container-list-link-active"
-            >Perfiles</a
-          >
-        </li>
-        <li>
-          <a
-            class="main-container-list-link"
-            routerLink="roles"
-            routerLinkActive=" main-container-list-link-active"
-            >Roles</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <router-outlet></router-outlet>
+  <nav mat-tab-nav-bar class="sub-nav-menu">
+    <a
+      mat-tab-link
+      [routerLink]="['roles']"
+      routerLinkActive
+      disableRipple
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      ROLES
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['perfiles']"
+      routerLinkActive
+      disableRipple
+      #rlb="routerLinkActive"
+      [active]="rlb.isActive"
+    >
+      PERFILES
+    </a>
+  </nav>
+
+  <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
-  
+</div>

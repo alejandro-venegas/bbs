@@ -9,13 +9,20 @@ const routes: Routes = [
     path: 'graficos',
     component: GraficosComponent,
     children: [
-      { path: 'filtros', component: FiltrosComponent },
-      { path: 'resultado', component: ResultadosComponent }
-    ]
-  }
+      { path: 'filtros', component: FiltrosComponent, data: { number: 'sf' } },
+      {
+        path: 'resultado',
+        component: ResultadosComponent,
+        data: { number: 'sl' },
+      },
+    ],
+    data: {
+      module: '2',
+    },
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class GraficosRoutingModule {}

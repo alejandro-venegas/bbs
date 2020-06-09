@@ -14,20 +14,21 @@ const routes: Routes = [
       {
         path: 'incidente',
         component: IncidenteComponent,
-        data: { number: 'f' },
+        data: { number: 'sf' },
       },
       {
         path: 'casi-incidente',
         component: CasiIncidenteComponent,
-        data: { number: '2' },
+        data: { number: 's2' },
       },
-      { path: 'bbs', component: BbsComponent, data: { number: '3' } },
+      { path: 'bbs', component: BbsComponent, data: { number: 's3' } },
       {
         path: 'condiciones-inseguras',
         component: CondicionesInsegurasComponent,
-        data: { number: 'l' },
+        data: { number: 'sl' },
       },
     ],
+    data: { module: 'f' },
   },
 ];
 @NgModule({

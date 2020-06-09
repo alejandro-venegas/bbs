@@ -9,13 +9,17 @@ const routes: Routes = [
     children: [
       {
         path: 'formularios',
-        component: FormulariosComponent
-      }
-    ]
-  }
+        component: FormulariosComponent,
+        data: { number: 's1' },
+      },
+    ],
+    data: {
+      module: 'l',
+    },
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class MantenimientoRoutingModule {}

@@ -3,16 +3,11 @@ import { CommonModule } from '@angular/common';
 import { MantenimientoComponent } from './mantenimiento.component';
 import { FormulariosComponent } from './formularios/formularios.component';
 import { MantenimientoRoutingModule } from './mantenimiento-routing.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [
-    MantenimientoComponent,
-    FormulariosComponent
-  ],
-  imports: [CommonModule, MantenimientoRoutingModule],
-  exports: [
-    MantenimientoComponent,
-    FormulariosComponent
-  ]
+  declarations: [MantenimientoComponent, FormulariosComponent],
+  imports: [CommonModule, MantenimientoRoutingModule, MatTabsModule],
+  exports: [MantenimientoComponent, FormulariosComponent],
 })
 export class MantenimientoModule {}

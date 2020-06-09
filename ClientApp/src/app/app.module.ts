@@ -12,7 +12,7 @@ import { GraficosModule } from './graficos/graficos.module';
 import { AdministrarComponent } from './administrar/administrar.component';
 import { AdministrarModule } from './administrar/administrar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +29,7 @@ import { MatRadioModule } from '@angular/material/radio';
     GraficosModule,
     AdministrarModule,
     BrowserAnimationsModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
