@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header/header.service';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { slider } from '../animations';
 
 @Component({
@@ -10,9 +10,14 @@ import { slider } from '../animations';
   animations: [slider],
 })
 export class GraficosComponent implements OnInit {
-  constructor(private headerService: HeaderService) {}
+  constructor(
+    private headerService: HeaderService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.router.navigate(['filtros'], { relativeTo: this.route });
     this.headerService.titleSubject.next('Graficos');
   }
   prepareRoute(outlet: RouterOutlet) {

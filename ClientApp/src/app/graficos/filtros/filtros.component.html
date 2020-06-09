@@ -1,1 +1,35 @@
-<p>filtros works!</p>
+<form class="content-container">
+  <div class="grafico-radio-buttons">
+    <label>Seleccione el grafico que desea ver</label>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button [checked]="true" value="incidente"
+        >Incidente</mat-radio-button
+      >
+      <mat-radio-button value="F">Casi incidente</mat-radio-button>
+      <mat-radio-button value="F">BBS</mat-radio-button>
+      <mat-radio-button value="F">Condiciones inseguras</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <label>Seleccione las opciones que desea ver en el grafico:</label>
+  <div class="form-grid">
+    <mat-checkbox>Proceso</mat-checkbox>
+    <mat-checkbox>Supervisor</mat-checkbox>
+    <mat-checkbox>Porcentaje de Jornada</mat-checkbox>
+    <mat-checkbox>Nivel de Riesgo</mat-checkbox>
+    <mat-checkbox>Dia</mat-checkbox>
+    <mat-checkbox>Mes</mat-checkbox>
+    <mat-checkbox>Semana</mat-checkbox>
+    <mat-checkbox>Area de Trabajo</mat-checkbox>
+    <mat-checkbox>Genero</mat-checkbox>
+    <mat-checkbox>Tipo de efecto</mat-checkbox>
+    <mat-checkbox>Clasificacion</mat-checkbox>
+    <mat-checkbox>Turno</mat-checkbox>
+    <mat-checkbox>Parte afectada</mat-checkbox>
+    <mat-checkbox>Causa basica</mat-checkbox>
+    <mat-checkbox>Causa inmediata</mat-checkbox>
+  </div>
+  <div class="button-group">
+    <button class="save-button">VER GRAFICO</button>
+  </div>
+</form>

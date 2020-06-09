@@ -7,6 +7,7 @@ import { ResultadosComponent } from './resultados/resultados.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [GraficosComponent, FiltrosComponent, ResultadosComponent],
@@ -16,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatRadioModule,
     MatTabsModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
   ],
   exports: [GraficosComponent, FiltrosComponent, ResultadosComponent],
 })
