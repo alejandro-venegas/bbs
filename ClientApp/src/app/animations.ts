@@ -7,7 +7,9 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-
+export const rowAnimation = trigger('rowAnimation', [
+  transition('* => void', [animate('0ms', style({ display: 'none' }))]),
+]);
 export const slider = trigger('routeAnimations', [
   // 'f' stands for first and 'l' for last
   transition('void => *', []),
@@ -98,7 +100,7 @@ function transformTo({ x = 100, y = 0 }) {
         ':leave',
         [
           animate(
-            '600ms ease-out',
+            '800ms ease-out',
             style({ transform: `translate(${x}%, ${y}%) ` })
           ),
         ],
@@ -106,7 +108,7 @@ function transformTo({ x = 100, y = 0 }) {
       ),
       query(
         ':enter',
-        [animate('600ms ease-out', style({ transform: `translate(0, 0)` }))],
+        [animate('800ms ease-out', style({ transform: `translate(0, 0)` }))],
         optional
       ),
     ]),

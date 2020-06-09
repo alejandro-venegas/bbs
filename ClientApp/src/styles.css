@@ -78,7 +78,71 @@ a {
 .mat-checkbox-frame {
   border-color: var(--white);
 }
-
+.mat-table {
+  border: 1px solid var(--yellow);
+  border-radius: 1rem;
+  background-color: transparent !important;
+  border-collapse: unset;
+  overflow: hidden;
+}
+tr.mat-header-row {
+  background-color: var(--yellow);
+}
+th.mat-header-cell {
+  font-size: 1.3rem;
+}
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+th.mat-header-cell {
+  font-size: 1.3rem;
+}
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  text-align: right !important;
+}
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  border-color: var(--yellow);
+}
+tr:last-of-type > td.mat-cell {
+  border: none;
+}
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 3rem !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: var(--white);
+}
+.mat-select-arrow {
+  color: var(--white);
+}
+.mat-select-value-text {
+  color: var(--white);
+}
+.mat-paginator-icon {
+  color: var(--yellow);
+}
+mat-paginator {
+  background-color: transparent !important;
+  color: var(--white) !important;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5em;
+}
 mat-radio-button {
   margin: 0 1rem;
 }
@@ -178,4 +242,9 @@ router-outlet + * {
 .ng-animating {
   flex: 1;
   height: 100%;
+  width: 100%;
+}
+.icon {
+  width: 2.3rem;
+  height: auto;
 }
