@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { rowAnimation } from '../../animations';
+import { MatDialog } from '@angular/material/dialog';
+import { NuevoRolDialogComponent } from '../nuevo-rol-dialog/nuevo-rol-dialog.component';
 
 @Component({
   selector: 'app-roles',
@@ -22,9 +24,15 @@ export class RolesComponent implements OnInit {
     { nombre: 'Colaborador' },
   ]);
   displayedColumns: string[] = ['nombre', 'accion'];
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  onNewRole() {
+    this.dialog.open(NuevoRolDialogComponent, {
+      minWidth: '35vw',
+    });
   }
 }

@@ -1,0 +1,8 @@
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: lightgrey;
+}

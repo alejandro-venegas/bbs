@@ -1,0 +1,32 @@
+<div class="dialog-content">
+  <form>
+    <div class="dialog-header">
+      <h1 class="dialog-title">AGREGAR NUEVO ROL</h1>
+      <div mat-dialog-close class="close-icon">X</div>
+    </div>
+    <div class="dialog-main">
+      <div class="input-group">
+        <label for="nombreDelRol">Nombre del Rol:</label>
+        <input
+          type="text"
+          id="nombreDelRol"
+          placeholder="Ingrese un nombre para el rol"
+        />
+      </div>
+      <br />
+      <br />
+      <div class="input-group">
+        <label>Que permisos tendra este rol?</label>
+        <div class="checkboxes">
+          <mat-checkbox>Crear Reportes</mat-checkbox>
+          <mat-checkbox>Ver Graficos</mat-checkbox>
+          <mat-checkbox>Administrar</mat-checkbox>
+          <mat-checkbox>Dar mantenimiento</mat-checkbox>
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="save-button save-button--green">AGREGAR</button>
+      </div>
+    </div>
+  </form>
+</div>

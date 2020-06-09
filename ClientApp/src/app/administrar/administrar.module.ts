@@ -7,9 +7,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NuevoRolDialogComponent } from './nuevo-rol-dialog/nuevo-rol-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
-  declarations: [PerfilesComponent, RolesComponent],
+  declarations: [PerfilesComponent, RolesComponent, NuevoRolDialogComponent],
   imports: [
     CommonModule,
     AdministrarRoutingModule,
@@ -17,6 +21,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   exports: [PerfilesComponent, RolesComponent],
 })
