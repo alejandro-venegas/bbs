@@ -1,0 +1,12 @@
+<div class="dialog-content">
+  <div class="dialog-header">
+    <h1 class="dialog-title">{{ data.title }}</h1>
+    <div mat-dialog-close class="close-icon">X</div>
+  </div>
+  <div class="dialog-main">
+    {{ data.content }}
+    <div class="button-group">
+      <button class="save-button" (click)="onDelete()">ELIMINAR</button>
+    </div>
+  </div>
+</div>

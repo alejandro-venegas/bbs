@@ -6,3 +6,7 @@
 ::ng-deep .mat-checkbox-frame {
   border-color: lightgrey;
 }
+
+label {
+  margin: 1rem 0;
+}

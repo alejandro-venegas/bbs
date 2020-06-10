@@ -9,14 +9,17 @@ nav {
 }
 
 .title-container {
-  margin: 1rem 1rem 2rem 1rem;
+  margin: 2rem 1rem 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .title {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
-.subtitle{
+.subtitle {
   text-align: center;
   color: var(--yellow);
   margin-top: 0.5rem;
@@ -46,9 +49,13 @@ nav {
 .nav-list-item-link-active {
   background-color: #f9a11b;
 }
-.nav-divider{
+.nav-divider {
   width: 80%;
   border-width: 0;
   height: 0.1rem;
   background-color: rgba(255, 255, 255, 0.51);
+}
+.logo {
+  width: 90%;
+  height: auto;
 }

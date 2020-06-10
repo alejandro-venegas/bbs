@@ -10,7 +10,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NuevoRolDialogComponent } from './nuevo-rol-dialog/nuevo-rol-dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PerfilesComponent, RolesComponent, NuevoRolDialogComponent],
@@ -22,7 +23,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   exports: [PerfilesComponent, RolesComponent],
 })

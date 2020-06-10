@@ -182,6 +182,7 @@ mat-radio-button {
   border-radius: 2rem;
   border: none;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 .save-button--green {
@@ -241,7 +242,7 @@ router-outlet + * {
 .button-group {
   display: flex;
   justify-content: flex-end;
-  margin-top: 1rem;
+  margin-top: auto;
 }
 
 .route-animation {
@@ -258,6 +259,7 @@ router-outlet + * {
 .icon {
   width: 2.3rem;
   height: auto;
+  cursor: pointer;
 }
 .dialog-content {
   display: flex;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { verticalSlider } from './animations';
+import { TestServiceService } from './test-service.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,11 @@ import { verticalSlider } from './animations';
 })
 export class AppComponent implements OnInit {
   title = 'ClientApp';
-  constructor() {}
+  constructor(private testService: TestServiceService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.testService.getTestValues();
+  }
 
   prepareRoute(outlet: RouterOutlet) {
     return (
