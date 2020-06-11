@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: 'formularios',
         component: FormulariosComponent,
-        data: { number: 's1' },
+        data: { number: 'sf' },
       },
     ],
     data: {

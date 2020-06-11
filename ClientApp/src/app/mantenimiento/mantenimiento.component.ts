@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header/header.service';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { slider } from '../animations';
 
 @Component({
@@ -10,14 +10,19 @@ import { slider } from '../animations';
   animations: [slider],
 })
 export class MantenimientoComponent implements OnInit {
-  constructor(private headerService: HeaderService) {}
+  constructor(
+    private headerService: HeaderService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.headerService.titleSubject.next('Mantenimiento');
+    this.router.navigate(['formularios'], { relativeTo: this.route });
   }
   prepareRoute(outlet: RouterOutlet) {
     return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData['module']
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData['number']
     );
   }
 }

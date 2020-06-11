@@ -53,6 +53,7 @@ export class RolesComponent implements OnInit {
 
   getRoles() {
     this.rolesService.getRoles().subscribe((res) => {
+      console.log(res);
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
     });

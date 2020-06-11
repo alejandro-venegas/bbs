@@ -283,4 +283,5 @@ router-outlet + * {
 }
 .close-icon {
   margin-left: auto;
+  cursor: pointer;
 }

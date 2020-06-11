@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using bbs.Models;
+using Microsoft.EntityFrameworkCore;
 namespace bbs_project
 {
     public class Startup
@@ -20,7 +21,12 @@ namespace bbs_project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SBBSContext>(options =>
+                 options.UseSqlServer("Server=localhost;Database=SBBS;User Id=sa;Password=Ale7894561230;"));
             services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

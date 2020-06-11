@@ -26,12 +26,14 @@
       <br />
       <br />
       <div class="input-group">
-        <label>Que permisos tendra este rol?</label>
+        <label>Vistas del rol:</label>
         <div class="checkboxes">
-          <mat-checkbox>Crear Reportes</mat-checkbox>
-          <mat-checkbox>Ver Graficos</mat-checkbox>
-          <mat-checkbox>Administrar</mat-checkbox>
-          <mat-checkbox>Dar mantenimiento</mat-checkbox>
+          <mat-checkbox
+            *ngFor="let vista of vistasArray"
+            (change)="onSelectVista(vista.id, $event.checked)"
+            [checked]="isViewSelected(vista.id)"
+            >{{ vista.nombreVista }}</mat-checkbox
+          >
         </div>
       </div>
       <div class="button-group">
