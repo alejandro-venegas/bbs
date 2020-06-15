@@ -31,7 +31,7 @@ export const rowAnimation = trigger('rowAnimation', [
 ]);
 export const slider = trigger('routeAnimations', [
   // 'f' stands for first and 'l' for last
-  transition('void => *', []),
+  // transition('void => *', []),
   transition(
     (fromState, toState) => fromState && fromState === 'sf',
     slideTo('left')
@@ -52,7 +52,7 @@ export const slider = trigger('routeAnimations', [
 ]);
 export const verticalSlider = trigger('routeAnimations', [
   // 'f' stands for first and 'l' for last
-  transition('void => *', []),
+  // transition('void => *', []),
   transition('f => *', transformTo({ x: 0, y: 100 })),
   transition('l => *', transformTo({ x: 0, y: -100 })),
   transition('* => f', transformTo({ x: 0, y: -100 })),
@@ -131,5 +131,8 @@ function transformTo({ x = 100, y = 0 }) {
         optional
       ),
     ]),
+    query('router-outlet ~ *', [style({}), animate(1, style({}))], {
+      optional: true,
+    }),
   ];
 }

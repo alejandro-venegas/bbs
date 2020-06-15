@@ -37,7 +37,9 @@
         </div>
       </div>
       <div class="button-group">
-        <button class="save-button save-button--green">AGREGAR</button>
+        <button class="save-button save-button--green">
+          {{ isEdit ? 'GUARDAR' : 'AGREGAR' }}
+        </button>
       </div>
     </div>
   </form>

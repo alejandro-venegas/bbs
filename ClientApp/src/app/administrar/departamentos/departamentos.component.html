@@ -1,0 +1,55 @@
+<div class="content-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Departamento</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+      </ng-container>
+      <ng-container matColumnDef="gerente">
+        <th mat-header-cell *matHeaderCellDef>Gerente</th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.gerente
+              ? element.gerente?.nombre + ' ' + element.gerente?.apellido
+              : 'N/A'
+          }}
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef>Accion</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            (click)="onUpdateDepartamento(element)"
+            src="assets/images/icons/edit.png"
+            class="icon"
+          />
+          <img
+            (click)="onDeleteDepartamento(element)"
+            src="assets/images/icons/delete.png"
+            class="icon"
+          />
+        </td>
+      </ng-container>
+
+      <tr mat-header-row @rowAnimation *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        @rowAnimation
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+  <div class="button-group">
+    <button type="button" (click)="onAgregar()" class="save-button">
+      AGREGAR
+    </button>
+  </div>
+</div>

@@ -20,6 +20,26 @@
     >
       PERFILES
     </a>
+    <a
+      mat-tab-link
+      [routerLink]="['colaboradores']"
+      routerLinkActive
+      disableRipple
+      #rlc="routerLinkActive"
+      [active]="rlc.isActive"
+    >
+      COLABORADORES
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['departamentos']"
+      routerLinkActive
+      disableRipple
+      #rld="routerLinkActive"
+      [active]="rld.isActive"
+    >
+      DEPARTAMENTOS
+    </a>
   </nav>
 
   <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">

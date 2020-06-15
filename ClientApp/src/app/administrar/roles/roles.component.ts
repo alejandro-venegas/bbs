@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { rowAnimation } from '../../animations';
 import { MatDialog } from '@angular/material/dialog';
-import { NuevoRolDialogComponent } from '../nuevo-rol-dialog/nuevo-rol-dialog.component';
+import { NuevoRolDialogComponent } from './nuevo-rol-dialog/nuevo-rol-dialog.component';
 import { RolesService } from './roles.service';
-import { Rol } from './rol.model';
+import { Rol } from '../../shared/models/rol.model';
 import { EliminarDialogComponent } from '../../shared/dialogs/eliminar-dialog/eliminar-dialog.component';
 
 @Component({

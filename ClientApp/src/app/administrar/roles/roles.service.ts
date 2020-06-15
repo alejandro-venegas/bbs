@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Rol } from './rol.model';
+import { Rol } from '../../shared/models/rol.model';
 @Injectable({
   providedIn: 'root',
 })
 export class RolesService {
-  base_url = environment.base_url;
+  private base_url = environment.base_url;
   constructor(private http: HttpClient) {}
 
   getRoles() {

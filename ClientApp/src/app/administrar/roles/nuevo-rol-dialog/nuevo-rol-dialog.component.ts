@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { RolesService } from '../roles/roles.service';
+import { RolesService } from '../roles.service';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { VistasService } from '../roles/vistas.service';
+import { VistasService } from '../vistas.service';
 
 @Component({
   selector: 'app-nuevo-rol-dialog',

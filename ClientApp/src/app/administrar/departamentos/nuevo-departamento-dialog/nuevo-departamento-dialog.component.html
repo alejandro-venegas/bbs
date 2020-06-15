@@ -1,0 +1,38 @@
+<div class="dialog-content">
+  <div class="dialog-header">
+    <h1 class="dialog-title">AGREGAR NUEVO ROL</h1>
+    <div mat-dialog-close class="close-icon">X</div>
+  </div>
+  <form [formGroup]="departamentoForm" (ngSubmit)="submitForm()">
+    <div class="dialog-main">
+      <div class="input-group">
+        <label for="nombreDelDepartamento">Nombre del Departamento:</label>
+        <input
+          type="text"
+          id="nombreDelDepartamento"
+          formControlName="nombre"
+          placeholder="Ingrese un nombre"
+        />
+      </div>
+      <div class="input-group">
+        <label for="gerente">Gerente:</label>
+        <select id="gerente" formControlName="gerenteId">
+          <option value="" disabled selected>Nivel de Riesgo</option>
+          <option
+            [value]="colaborador.id"
+            *ngFor="let colaborador of colaboradores"
+            >{{ colaborador.nombre }} {{ colaborador.apellido }}</option
+          >
+        </select>
+      </div>
+      <br />
+      <br />
+
+      <div class="button-group">
+        <button class="save-button save-button--green">
+          {{ isEdit ? 'GUARDAR' : 'AGREGAR' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
