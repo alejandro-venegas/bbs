@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Observado
     {
         public Observado()
         {
-            CasiIncidente = new HashSet<CasiIncidente>();
-            Incidente = new HashSet<Incidente>();
+            // CasiIncidente = new HashSet<CasiIncidente>();
+            // Incidente = new HashSet<Incidente>();
         }
 
-        public int ObservadoId { get; set; }
-        public string NombreObservado { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
 
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
-        public virtual ICollection<Incidente> Incidente { get; set; }
+        // public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
+        // public virtual ICollection<Incidente> Incidente { get; set; }
     }
 }

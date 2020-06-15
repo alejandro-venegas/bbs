@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Usuario
     {
@@ -15,6 +15,7 @@ namespace SBBS.Models
         public int ColaboradorId { get; set; }
 
         public virtual Colaborador Colaborador { get; set; }
+        public virtual Rol Rol { get; set; }
         public virtual ICollection<Bitacora> Bitacora { get; set; }
     }
 }

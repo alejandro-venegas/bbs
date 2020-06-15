@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class CondicionesInseguras
     {

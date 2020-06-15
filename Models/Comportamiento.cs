@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Comportamiento
     {
         public Comportamiento()
         {
-            Bbs = new HashSet<Bbs>();
+            // Bbs = new HashSet<Bbs>();
         }
 
-        public int ComportamientoId { get; set; }
-        public string Comportamiento1 { get; set; }
-        public string DescripcionComportamiento { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion{ get; set; }
 
-        public virtual ICollection<Bbs> Bbs { get; set; }
+        // public virtual ICollection<Bbs> Bbs { get; set; }
     }
 }

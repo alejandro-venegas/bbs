@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class TipoObservado
     {
         public TipoObservado()
         {
-            Bbs = new HashSet<Bbs>();
+            // Bbs = new HashSet<Bbs>();
         }
 
-        public int TipoObservadoId { get; set; }
-        public string TipoObservado1 { get; set; }
+        public int Id { get; set; }
+        [Column(TypeName = "varchar(75)")]
+        [Required]
+        public string Nombre { get; set; }
 
-        public virtual ICollection<Bbs> Bbs { get; set; }
+        // public virtual ICollection<Bbs> Bbs { get; set; }
     }
 }

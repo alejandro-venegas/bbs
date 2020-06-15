@@ -10,14 +10,14 @@
         <input
           type="text"
           id="nombreDelRol"
-          formControlName="nombreRol"
+          formControlName="nombre"
           placeholder="Ingrese un nombre para el rol"
         />
       </div>
       <div class="input-group">
         <label for="descripcion">Descripcion del Rol:</label>
         <input
-          formControlName="descripcionRol"
+          formControlName="descripcion"
           type="text"
           id="descripcion"
           placeholder="Ingrese un nombre para el rol"
@@ -32,7 +32,7 @@
             *ngFor="let vista of vistasArray"
             (change)="onSelectVista(vista.id, $event.checked)"
             [checked]="isViewSelected(vista.id)"
-            >{{ vista.nombreVista }}</mat-checkbox
+            >{{ vista.nombre }}</mat-checkbox
           >
         </div>
       </div>

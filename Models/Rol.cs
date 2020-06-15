@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bbs.Models
 {
@@ -8,8 +10,8 @@ namespace bbs.Models
        
 
         public int Id { get; set; }
-        public string NombreRol { get; set; }
-        public string DescripcionRol { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion{ get; set; }
         public virtual ICollection<RolVista> RolVistas {get; set;}
     }
 }

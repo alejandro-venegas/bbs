@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Incidente
     {
-        public int IncidenteId { get; set; }
+        public int Id { get; set; }
         public DateTime FechaIncidente { get; set; }
         public int AreaId { get; set; }
         public int ProcesoId { get; set; }
@@ -21,7 +21,7 @@ namespace SBBS.Models
         public int CausaBasicaId { get; set; }
         public int CausaInmediataId { get; set; }
         public int ParteId { get; set; }
-        public string DescripcionIncidente { get; set; }
+        public string Descripcion { get; set; }
 
         public virtual Actividad Actividad { get; set; }
         public virtual Area Area { get; set; }

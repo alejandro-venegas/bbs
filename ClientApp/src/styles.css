@@ -140,6 +140,19 @@ td.mat-footer-cell:last-of-type {
 .mat-dialog-container {
   border-radius: 1rem !important;
 }
+.mat-tree {
+  background-color: transparent;
+}
+.mat-icon-button i,
+.mat-icon-button .mat-icon {
+  color: var(--yellow);
+}
+.mat-tree-node {
+  color: white;
+}
+.mat-button-ripple.mat-ripple {
+  color: var(--yellow);
+}
 mat-paginator {
   background-color: transparent !important;
   color: var(--white) !important;
@@ -255,6 +268,9 @@ router-outlet + * {
   flex: 1;
   height: 100%;
   width: 100%;
+}
+.ng-animating .hide {
+  height: 0;
 }
 .icon {
   width: 2.3rem;

@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Genero
     {
         public Genero()
         {
-            Incidente = new HashSet<Incidente>();
+            // Incidente = new HashSet<Incidente>();
         }
 
-        public int GeneroId { get; set; }
-        public string Genero1 { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
 
-        public virtual ICollection<Incidente> Incidente { get; set; }
+        // public virtual ICollection<Incidente> Incidente { get; set; }
     }
 }

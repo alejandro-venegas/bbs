@@ -13,8 +13,8 @@ export class NuevoRolDialogComponent implements OnInit {
   isEdit = false;
   vistasArray: any = [];
   rolForm = this.fb.group({
-    nombreRol: [''],
-    descripcionRol: [''],
+    nombre: [''],
+    descripcion: [''],
   });
   vistas: any = [];
 
@@ -31,8 +31,8 @@ export class NuevoRolDialogComponent implements OnInit {
       this.isEdit = true;
       this.vistas = this.data.rol.rolVistas.map((rolVista) => rolVista.vistaId);
       this.rolForm.setValue({
-        nombreRol: this.data.rol.nombreRol,
-        descripcionRol: this.data.rol.descripcionRol,
+        nombre: this.data.rol.nombre,
+        descripcion: this.data.rol.descripcion,
       });
     }
     this.getVistas();

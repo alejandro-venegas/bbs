@@ -6,15 +6,28 @@ import { MantenimientoRoutingModule } from './mantenimiento-routing.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { AutofocusDirective } from '../shared/directives/autofocus.directive';
 
 @NgModule({
-  declarations: [MantenimientoComponent, FormulariosComponent],
+  declarations: [
+    MantenimientoComponent,
+    FormulariosComponent,
+    AutofocusDirective,
+  ],
   imports: [
     CommonModule,
     MantenimientoRoutingModule,
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatCheckboxModule,
+    MatTreeModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [MantenimientoComponent, FormulariosComponent],
 })

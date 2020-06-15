@@ -1,18 +1,20 @@
-﻿using System;
+﻿// using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class FactorRiesgo
     {
         public FactorRiesgo()
         {
-            CondicionesInseguras = new HashSet<CondicionesInseguras>();
+            // CondicionesInseguras = new HashSet<CondicionesInseguras>();
         }
 
-        public int FactorRiesgoId { get; set; }
-        public string FactorRiesgo1 { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
 
-        public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
+        // public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
     }
 }

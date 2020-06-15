@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using bbs.Models;
 using bbs.DTOs;
@@ -33,8 +30,8 @@ namespace bbs.Controllers
         [HttpPost("new")]
         public async Task<IActionResult> InsertRol(RolToInsert rolToInsert){
             Rol rol = new Rol();
-            rol.NombreRol = rolToInsert.NombreRol;
-            rol.DescripcionRol = rolToInsert.DescripcionRol;
+            rol.Nombre = rolToInsert.Nombre;
+            rol.Descripcion = rolToInsert.Descripcion;
             foreach(int vistaId in rolToInsert.Vistas)
             {
                 RolVista rolVista = new RolVista();
@@ -61,8 +58,8 @@ namespace bbs.Controllers
             List<RolVista> newRolVistas = new List<RolVista>();
             if (result != null)
             {
-                result.NombreRol = updatedRol.NombreRol;
-                result.DescripcionRol = updatedRol.DescripcionRol;
+                result.Nombre = updatedRol.Nombre;
+                result.Descripcion = updatedRol.Descripcion;
                 foreach(int vistaId in updatedRol.Vistas){
                     var vista = await _context.Vistas.FirstOrDefaultAsync( x => x.Id == vistaId);
 

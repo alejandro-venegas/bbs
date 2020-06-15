@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Turno
     {
-        public Turno()
-        {
-            CasiIncidente = new HashSet<CasiIncidente>();
-            Incidente = new HashSet<Incidente>();
-        }
+        public Turno(){}
 
-        public int TurnoId { get; set; }
-        public string Turno1 { get; set; }
+      
 
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
-        public virtual ICollection<Incidente> Incidente { get; set; }
+        public int Id { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Nombre { get; set; }
+
+   
     }
 }

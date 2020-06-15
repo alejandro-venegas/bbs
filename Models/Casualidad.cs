@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Casualidad
     {
         public Casualidad()
         {
-            CasiIncidente = new HashSet<CasiIncidente>();
+            // CasiIncidente = new HashSet<CasiIncidente>();
         }
 
-        public int CasualidadId { get; set; }
-        public string Casualidad1 { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
 
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
+        // public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Jornada
     {
         public Jornada()
         {
-            CasiIncidente = new HashSet<CasiIncidente>();
-            Incidente = new HashSet<Incidente>();
+
         }
 
-        public int JornadaId { get; set; }
-        public string Jornada1 { get; set; }
+        public int Id { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        
+        public string Nombre { get; set; }
 
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
-        public virtual ICollection<Incidente> Incidente { get; set; }
     }
 }

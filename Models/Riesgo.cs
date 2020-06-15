@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-
-namespace SBBS.Models
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+namespace bbs.Models
 {
     public partial class Riesgo
     {
         public Riesgo()
         {
-            CasiIncidente = new HashSet<CasiIncidente>();
-            Incidente = new HashSet<Incidente>();
+   
         }
 
-        public int RiegoId { get; set; }
-        public string Riesgo1 { get; set; }
+        public int Id { get; set; }
 
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
-        public virtual ICollection<Incidente> Incidente { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+ 
+        public string Nombre { get; set; }
+
+
     }
 }

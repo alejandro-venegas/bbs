@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public partial class Departamento
     {
         public Departamento()
         {
-            Bbs = new HashSet<Bbs>();
-            CasiIncidente = new HashSet<CasiIncidente>();
-            Colaborador = new HashSet<Colaborador>();
-            CondicionesInseguras = new HashSet<CondicionesInseguras>();
-            Incidente = new HashSet<Incidente>();
+            // Bbs = new HashSet<Bbs>();
+            // CasiIncidente = new HashSet<CasiIncidente>();
+            Colaboradores = new HashSet<Colaborador>();
+            // CondicionesInseguras = new HashSet<CondicionesInseguras>();
+            // Incidente = new HashSet<Incidente>();
         }
 
-        public int DepartamentoId { get; set; }
-        public string NombreDepartamento { get; set; }
-        public int ColaboradorId { get; set; }
-
-        public virtual Colaborador ColaboradorNavigation { get; set; }
-        public virtual ICollection<Bbs> Bbs { get; set; }
-        public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
-        public virtual ICollection<Colaborador> Colaborador { get; set; }
-        public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
-        public virtual ICollection<Incidente> Incidente { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public int? GerenteId { get; set; }
+        public virtual Colaborador Gerente{get;set;}
+    //     public virtual Colaborador ColaboradorNavigation { get; set; }
+    //     public virtual ICollection<Bbs> Bbs { get; set; }
+    //     public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
+        public virtual ICollection<Colaborador> Colaboradores { get; set; }
+    //     public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
+    //     public virtual ICollection<Incidente> Incidente { get; set; }
     }
 }

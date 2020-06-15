@@ -3,10 +3,29 @@ import {
   animateChild,
   group,
   query,
+  state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
+
+export const treeAnimation = trigger('treeAnimation', [
+  state(
+    'hide',
+    style({
+      height: 0,
+    })
+  ),
+  state(
+    'show',
+    style({
+      height: '*',
+    })
+  ),
+  state('*', style({ display: 'none' })),
+  transition('* => *', [animate('600ms cubic-bezier(0.25, 0.8, 0.25, 1)')]),
+]);
+
 export const rowAnimation = trigger('rowAnimation', [
   transition('* => void', [animate('0ms', style({ display: 'none' }))]),
 ]);

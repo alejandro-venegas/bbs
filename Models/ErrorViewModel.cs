@@ -1,6 +1,6 @@
 using System;
 
-namespace SBBS.Models
+namespace bbs.Models
 {
     public class ErrorViewModel
     {
