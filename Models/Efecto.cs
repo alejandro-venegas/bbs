@@ -9,7 +9,7 @@ namespace bbs.Models
     {
         public Efecto()
         {
-            // Incidente = new HashSet<Incidente>();
+            Incidentes = new HashSet<Incidente>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace bbs.Models
         [Required]
         public string Nombre { get; set; }
 
-        // public virtual ICollection<Incidente> Incidente { get; set; }
+        public virtual ICollection<Incidente> Incidentes { get; set; }
     }
 }

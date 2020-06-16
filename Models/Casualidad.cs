@@ -7,12 +7,12 @@ namespace bbs.Models
     {
         public Casualidad()
         {
-            // CasiIncidente = new HashSet<CasiIncidente>();
+            CasiIncidentes = new HashSet<CasiIncidente>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        // public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
+        public virtual ICollection<CasiIncidente> CasiIncidentes { get; set; }
     }
 }

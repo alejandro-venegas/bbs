@@ -8,10 +8,10 @@ namespace bbs.Models
     {
         public Proceso()
         {
-            // Bbs = new HashSet<Bbs>();
-            // CasiIncidente = new HashSet<CasiIncidente>();
+            Bbss = new HashSet<Bbs>();
+            CasiIncidentes = new HashSet<CasiIncidente>();
             // CondicionesInseguras = new HashSet<CondicionesInseguras>();
-            // Incidente = new HashSet<Incidente>();
+            Incidentes = new HashSet<Incidente>();
         }
 
         public int Id { get; set; }
@@ -20,9 +20,9 @@ namespace bbs.Models
         [Required]
         public string Nombre { get; set; }
 
-        // public virtual ICollection<Bbs> Bbs { get; set; }
-        // public virtual ICollection<CasiIncidente> CasiIncidente { get; set; }
+        public virtual ICollection<Bbs> Bbss { get; set; }
+        public virtual ICollection<CasiIncidente> CasiIncidentes { get; set; }
         // public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
-        // public virtual ICollection<Incidente> Incidente { get; set; }
+        public virtual ICollection<Incidente> Incidentes { get; set; }
     }
 }

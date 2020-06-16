@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bbs.Models;
 
 namespace bbs_project.Migrations
 {
     [DbContext(typeof(SBBSContext))]
-    partial class SBBSContextModelSnapshot : ModelSnapshot
+    [Migration("20200616221523_CasiIncidenteAddGenero2")]
+    partial class CasiIncidenteAddGenero2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,51 +50,6 @@ namespace bbs_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Areas");
-                });
-
-            modelBuilder.Entity("bbs.Models.Bbs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AreaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ComportamientoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FechaBbs")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ObservadorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProcesoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoComportamientoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoObservadoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("ComportamientoId");
-
-                    b.HasIndex("ObservadorId");
-
-                    b.HasIndex("ProcesoId");
-
-                    b.HasIndex("TipoComportamientoId");
-
-                    b.HasIndex("TipoObservadoId");
-
-                    b.ToTable("Bbss");
                 });
 
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>
@@ -647,45 +604,6 @@ namespace bbs_project.Migrations
                             Id = 4,
                             Nombre = "Mantenimiento"
                         });
-                });
-
-            modelBuilder.Entity("bbs.Models.Bbs", b =>
-                {
-                    b.HasOne("bbs.Models.Area", "Area")
-                        .WithMany("Bbss")
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.Comportamiento", "Comportamiento")
-                        .WithMany("Bbss")
-                        .HasForeignKey("ComportamientoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.Colaborador", "Observador")
-                        .WithMany("Bbss")
-                        .HasForeignKey("ObservadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.Proceso", "Proceso")
-                        .WithMany("Bbss")
-                        .HasForeignKey("ProcesoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.TipoComportamiento", "TipoComportamiento")
-                        .WithMany("Bbss")
-                        .HasForeignKey("TipoComportamientoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.TipoObservado", "TipoObservado")
-                        .WithMany("Bbss")
-                        .HasForeignKey("TipoObservadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>

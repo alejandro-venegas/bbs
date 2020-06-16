@@ -7,7 +7,10 @@ namespace bbs.Models
 {
     public partial class Turno
     {
-        public Turno(){}
+        public Turno(){
+            Incidentes = new HashSet<Incidente>();
+            CasiIncidentes = new HashSet<CasiIncidente>();
+        }
 
       
 
@@ -15,6 +18,8 @@ namespace bbs.Models
         [Column(TypeName = "varchar(50)")]
         [Required]
         public string Nombre { get; set; }
+        public virtual ICollection<Incidente> Incidentes { get; set; }
+        public virtual ICollection<CasiIncidente> CasiIncidentes { get; set; }
 
    
     }

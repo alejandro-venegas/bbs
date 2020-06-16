@@ -9,7 +9,7 @@ namespace bbs.Models
     {
         public TipoObservado()
         {
-            // Bbs = new HashSet<Bbs>();
+            Bbss = new HashSet<Bbs>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace bbs.Models
         [Required]
         public string Nombre { get; set; }
 
-        // public virtual ICollection<Bbs> Bbs { get; set; }
+        public virtual ICollection<Bbs> Bbss { get; set; }
     }
 }

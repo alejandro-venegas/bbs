@@ -7,13 +7,13 @@ namespace bbs.Models
     {
         public Comportamiento()
         {
-            // Bbs = new HashSet<Bbs>();
+            Bbss = new HashSet<Bbs>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion{ get; set; }
 
-        // public virtual ICollection<Bbs> Bbs { get; set; }
+        public virtual ICollection<Bbs> Bbss { get; set; }
     }
 }

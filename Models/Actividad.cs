@@ -8,7 +8,7 @@ namespace bbs.Models
     {
         public Actividad()
         {
-            // Incidente = new HashSet<Incidente>();
+            Incidentes = new HashSet<Incidente>();
         }
 
         
@@ -16,6 +16,6 @@ namespace bbs.Models
        
         public string Nombre { get; set; }
 
-        // public virtual ICollection<Incidente> Incidente { get; set; }
+        public virtual ICollection<Incidente> Incidentes { get; set; }
     }
 }
