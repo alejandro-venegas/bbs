@@ -16,8 +16,8 @@
       </div>
       <div class="input-group">
         <label for="gerente">Gerente:</label>
-        <select id="gerente" formControlName="gerenteId">
-          <option value="" disabled selected>Nivel de Riesgo</option>
+        <select class="dialog-select" id="gerente" formControlName="gerenteId">
+          <option value="" disabled selected>Seleccione un gerente</option>
           <option
             [value]="colaborador.id"
             *ngFor="let colaborador of colaboradores"

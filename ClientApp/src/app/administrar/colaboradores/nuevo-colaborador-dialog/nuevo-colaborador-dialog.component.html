@@ -34,7 +34,11 @@
       </div>
       <div class="input-group">
         <label for="departamento">Departamento:</label>
-        <select id="departamento" formControlName="departamentoId">
+        <select
+          class="dialog-select"
+          id="departamento"
+          formControlName="departamentoId"
+        >
           <option value="" disabled selected>Escoja un Departamento</option>
           <option
             [value]="departamento.id"

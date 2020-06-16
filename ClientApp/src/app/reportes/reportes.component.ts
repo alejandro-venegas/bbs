@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HeaderService } from '../header/header.service';
 import { slider } from '../animations';
@@ -10,8 +10,6 @@ import { slider } from '../animations';
   animations: [slider],
 })
 export class ReportesComponent implements OnInit {
-  isRight = false;
-
   constructor(
     private headerService: HeaderService,
     private router: Router,

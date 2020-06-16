@@ -1,4 +1,8 @@
-<form class="content-container">
+<form
+  class="content-container"
+  [formGroup]="casiIncidenteForm"
+  (ngSubmit)="submitForm()"
+>
   <div class="form-grid">
     <div class="input-group">
       <label for="fecha">Fecha:</label>
@@ -6,70 +10,114 @@
         id="fecha"
         readonly
         placeholder="Fecha"
+        formControlName="fechaCasiIncidente"
         [matDatepicker]="picker"
         (click)="picker.open()"
       />
       <mat-datepicker #picker></mat-datepicker>
     </div>
     <div class="input-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" placeholder="Nombre" />
+      <label for="observado">Nombre:</label>
+      <input
+        type="text"
+        id="observado"
+        placeholder="Nombre"
+        formControlName="observado"
+      />
     </div>
     <div class="input-group">
       <label>Genero:</label>
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button [checked]="true" value="M"
-          >Masculino</mat-radio-button
+      <mat-radio-group aria-label="Select an option" formControlName="generoId">
+        <mat-radio-button
+          *ngFor="let opcion of opciones?.generos; let i = index"
+          [value]="opcion.optionId"
+          >{{ opcion.nombre }}</mat-radio-button
         >
-        <mat-radio-button value="F">Femenino</mat-radio-button>
       </mat-radio-group>
     </div>
     <div class="input-group">
       <label for="proceso">Proceso:</label>
-      <select id="proceso">
-        <option value="" disabled>Seleccione un proceso</option>
+      <select id="proceso" formControlName="procesoId">
+        <option value="" disabled selected>Seleccione un proceso</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.procesos"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="turno">Turno:</label>
-      <select id="turno">
+      <select id="turno" formControlName="turnoId">
         <option value="" disabled selected>Seleccione un turno</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.turnos"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="areaDeTrabajo">Area de trabajo:</label>
-      <select id="areaDeTrabajo">
+      <select id="areaDeTrabajo" formControlName="areaId">
         <option value="" disabled selected>Area de trabajo</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.areas"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="supervisor">Supervisor:</label>
-      <select id="supervisor">
+      <select id="supervisor" formControlName="supervisorId">
         <option value="" disabled selected>Seleccione un supervisor</option>
+        <option [value]="gerente.id" *ngFor="let gerente of gerentes"
+          >{{ gerente.nombre }} {{ gerente.apellido }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="casualidad">Casualidad:</label>
-      <select id="casualidad">
+      <select id="casualidad" formControlName="casualidadId">
         <option value="" disabled selected>Casualidad</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.casualidades"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
-      <select id="nivelDeRiesgo">
+      <select id="nivelDeRiesgo" formControlName="riesgoId">
         <option value="" disabled selected>Nivel de Riesgo</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.riesgos"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
-      <label for="porcentajeDeJornada">% de Jornada:</label>
-      <select id="porcentajeDeJornada">
-        <option value="" disabled selected>% de Jornada</option>
+      <label for="porcentajeDeJornada">Jornada:</label>
+      <select id="porcentajeDeJornada" formControlName="jornadaId">
+        <option value="" disabled selected>Jornada</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.jornadas"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
 
     <div class="input-group text-area">
       <label for="descripcion">Descripcion de lo sucedido</label>
-      <textarea name="" id="descripcion"></textarea>
+      <textarea
+        name=""
+        id="descripcion"
+        formControlName="descripcion"
+      ></textarea>
     </div>
   </div>
   <div class="button-group">

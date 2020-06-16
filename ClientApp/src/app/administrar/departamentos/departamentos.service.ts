@@ -20,6 +20,10 @@ export class DepartamentosService {
     });
   }
 
+  getGerentes() {
+    return this.http.get<Colaborador[]>(this.baseUrl + '/gerentes');
+  }
+
   updateDepartamento(departamento: Departamento) {
     return this.http.post<any>(this.baseUrl + '/update', departamento, {
       observe: 'response',

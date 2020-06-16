@@ -26,4 +26,91 @@ export class FormulariosService {
       }
     );
   }
+
+  categorizeOptions(allOptions: SelectNode[]) {
+    const optionsByGroup = {
+      actividades: [],
+      areas: [],
+      casualidades: [],
+      causaBasicas: [],
+      causaInmediatas: [],
+      clasificaciones: [],
+      comportamientos: [],
+      efectos: [],
+      factorRiesgos: [],
+      generos: [],
+      indicadorRiesgos: [],
+      jornadas: [],
+      observados: [],
+      parteCuerpos: [],
+      procesos: [],
+      riesgos: [],
+      tipoComportamientos: [],
+      tipoObservados: [],
+      turnos: [],
+    };
+    for (const opcion of allOptions) {
+      switch (parseInt(opcion.selectId)) {
+        case 1:
+          optionsByGroup.actividades.push(opcion);
+          break;
+        case 2:
+          optionsByGroup.areas.push(opcion);
+          break;
+        case 3:
+          optionsByGroup.casualidades.push(opcion);
+          break;
+        case 4:
+          optionsByGroup.causaBasicas.push(opcion);
+          break;
+        case 5:
+          optionsByGroup.causaInmediatas.push(opcion);
+          break;
+        case 6:
+          optionsByGroup.clasificaciones.push(opcion);
+          break;
+        case 7:
+          optionsByGroup.comportamientos.push(opcion);
+          break;
+        case 8:
+          optionsByGroup.efectos.push(opcion);
+          break;
+        case 9:
+          optionsByGroup.factorRiesgos.push(opcion);
+          break;
+        case 10:
+          optionsByGroup.generos.push(opcion);
+          break;
+        case 11:
+          optionsByGroup.indicadorRiesgos.push(opcion);
+          break;
+        case 12:
+          optionsByGroup.jornadas.push(opcion);
+          break;
+        case 13:
+          optionsByGroup.observados.push(opcion);
+          break;
+        case 14:
+          optionsByGroup.parteCuerpos.push(opcion);
+          break;
+        case 15:
+          optionsByGroup.procesos.push(opcion);
+          break;
+        case 16:
+          optionsByGroup.riesgos.push(opcion);
+          break;
+        case 17:
+          optionsByGroup.tipoComportamientos.push(opcion);
+          break;
+        case 18:
+          optionsByGroup.tipoObservados.push(opcion);
+          break;
+        case 19:
+          optionsByGroup.turnos.push(opcion);
+          break;
+      }
+    }
+
+    return optionsByGroup;
+  }
 }

@@ -57,6 +57,7 @@
             #itemInput
             appAutofocus
             (focusOut)="remove(node)"
+            (keydown.enter)="onAgregarNewItem(itemInput.value, node)"
           />
           <button
             mat-icon-button
