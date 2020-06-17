@@ -44,6 +44,8 @@ namespace bbs.Models
         public virtual DbSet<Incidente> Incidentes{get;set;}
         public virtual DbSet<CasiIncidente> CasiIncidentes{get;set;}
         public virtual DbSet<Bbs> Bbss{get;set;}
+
+        public virtual DbSet<CondicionInsegura> CondicionInseguras {get;set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
          {      
 
@@ -188,7 +190,27 @@ namespace bbs.Models
              .HasOne(b => b.TipoComportamiento)
              .WithMany( o => o.Bbss)
              .HasForeignKey(bbs => bbs.TipoComportamientoId);
-   
+            
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(c => c.Area)
+            .WithMany(a => a.CondicionInseguras)
+            .HasForeignKey( c => c.AreaId);
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(c => c.Proceso)
+            .WithMany(a => a.CondicionInseguras)
+            .HasForeignKey( c => c.ProcesoId);
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(c => c.FactorRiesgo)
+            .WithMany(a => a.CondicionInseguras)
+            .HasForeignKey( c => c.FactorRiesgoId);
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(c => c.IndicadorRiesgo)
+            .WithMany(a => a.CondicionInseguras)
+            .HasForeignKey( c => c.IndicadorRiesgoId);
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(c => c.Supervisor)
+            .WithMany(a => a.CondicionInseguras)
+            .HasForeignKey( c => c.SupervisorId);
             
             modelBuilder.Seed();
 

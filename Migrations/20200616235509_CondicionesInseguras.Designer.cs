@@ -10,8 +10,8 @@ using bbs.Models;
 namespace bbs_project.Migrations
 {
     [DbContext(typeof(SBBSContext))]
-    [Migration("20200616215535_CasiIncidente")]
-    partial class CasiIncidente
+    [Migration("20200616235509_CondicionesInseguras")]
+    partial class CondicionesInseguras
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,51 @@ namespace bbs_project.Migrations
                     b.ToTable("Areas");
                 });
 
+            modelBuilder.Entity("bbs.Models.Bbs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ComportamientoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FechaBbs")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ObservadorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcesoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoComportamientoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TipoObservadoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
+
+                    b.HasIndex("ComportamientoId");
+
+                    b.HasIndex("ObservadorId");
+
+                    b.HasIndex("ProcesoId");
+
+                    b.HasIndex("TipoComportamientoId");
+
+                    b.HasIndex("TipoObservadoId");
+
+                    b.ToTable("Bbss");
+                });
+
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>
                 {
                     b.Property<int>("Id")
@@ -65,11 +110,14 @@ namespace bbs_project.Migrations
                     b.Property<int>("CasualidadId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DescripcionCasiIncidente")
+                    b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaCasiIncidente")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GeneroId")
+                        .HasColumnType("int");
 
                     b.Property<int>("JornadaId")
                         .HasColumnType("int");
@@ -94,6 +142,8 @@ namespace bbs_project.Migrations
                     b.HasIndex("AreaId");
 
                     b.HasIndex("CasualidadId");
+
+                    b.HasIndex("GeneroId");
 
                     b.HasIndex("JornadaId");
 
@@ -210,6 +260,46 @@ namespace bbs_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Comportamientos");
+                });
+
+            modelBuilder.Entity("bbs.Models.CondicionInsegura", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FactorRiesgoId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaCondicion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IndicadorRiesgoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcesoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupervisorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
+
+                    b.HasIndex("FactorRiesgoId");
+
+                    b.HasIndex("IndicadorRiesgoId");
+
+                    b.HasIndex("ProcesoId");
+
+                    b.HasIndex("SupervisorId");
+
+                    b.ToTable("CondicionInseguras");
                 });
 
             modelBuilder.Entity("bbs.Models.Departamento", b =>
@@ -601,6 +691,45 @@ namespace bbs_project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("bbs.Models.Bbs", b =>
+                {
+                    b.HasOne("bbs.Models.Area", "Area")
+                        .WithMany("Bbss")
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Comportamiento", "Comportamiento")
+                        .WithMany("Bbss")
+                        .HasForeignKey("ComportamientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Colaborador", "Observador")
+                        .WithMany("Bbss")
+                        .HasForeignKey("ObservadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Proceso", "Proceso")
+                        .WithMany("Bbss")
+                        .HasForeignKey("ProcesoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.TipoComportamiento", "TipoComportamiento")
+                        .WithMany("Bbss")
+                        .HasForeignKey("TipoComportamientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.TipoObservado", "TipoObservado")
+                        .WithMany("Bbss")
+                        .HasForeignKey("TipoObservadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>
                 {
                     b.HasOne("bbs.Models.Area", "Area")
@@ -612,6 +741,12 @@ namespace bbs_project.Migrations
                     b.HasOne("bbs.Models.Casualidad", "Casualidad")
                         .WithMany("CasiIncidentes")
                         .HasForeignKey("CasualidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Genero", "Genero")
+                        .WithMany("CasiIncidentes")
+                        .HasForeignKey("GeneroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -652,6 +787,39 @@ namespace bbs_project.Migrations
                         .WithMany("Colaboradores")
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.SetNull);
+                });
+
+            modelBuilder.Entity("bbs.Models.CondicionInsegura", b =>
+                {
+                    b.HasOne("bbs.Models.Area", "Area")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.FactorRiesgo", "FactorRiesgo")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("FactorRiesgoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.IndicadorRiesgo", "IndicadorRiesgo")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("IndicadorRiesgoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Proceso", "Proceso")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("ProcesoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Colaborador", "Supervisor")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("SupervisorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("bbs.Models.Departamento", b =>

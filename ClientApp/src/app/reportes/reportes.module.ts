@@ -12,6 +12,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListaComponent } from './lista/lista.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CasiIncidenteComponent,
     BbsComponent,
     CondicionesInsegurasComponent,
+    ListaComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     ReportesComponent,

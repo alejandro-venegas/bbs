@@ -18,7 +18,7 @@ export class ReportesComponent implements OnInit {
 
   ngOnInit(): void {
     this.headerService.titleSubject.next('Nuevo Reporte');
-    this.router.navigate(['incidente'], { relativeTo: this.activatedRoute });
+    this.router.navigate(['lista'], { relativeTo: this.activatedRoute });
   }
   prepareRoute(outlet: RouterOutlet) {
     return (

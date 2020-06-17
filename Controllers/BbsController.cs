@@ -18,7 +18,7 @@ namespace bbs.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> GetBbs(){
-            var bbss = await _context.Bbss.ToListAsync();
+            var bbss = await _context.Bbss.Include(b => b.Area).ToListAsync();
             return Ok(bbss);
         }
 

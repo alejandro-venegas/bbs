@@ -30,4 +30,25 @@ export class ReportesService {
       observe: 'response',
     });
   }
+
+  guardarCondicionInsegura(condicionInsegura: any) {
+    return this.http.post(
+      this.baseUrl + 'condicioninseguras/new',
+      condicionInsegura,
+      { observe: 'response' }
+    );
+  }
+
+  getIncidentes() {
+    return this.http.get<any[]>(this.baseUrl + 'incidentes');
+  }
+  getCasiIncidentes() {
+    return this.http.get<any[]>(this.baseUrl + 'casiincidentes');
+  }
+  getBbss() {
+    return this.http.get<any[]>(this.baseUrl + 'bbs');
+  }
+  getCondicionesInseguras() {
+    return this.http.get<any[]>(this.baseUrl + 'condicioninseguras');
+  }
 }

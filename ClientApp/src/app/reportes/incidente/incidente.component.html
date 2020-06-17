@@ -29,7 +29,7 @@
       <label>Genero:</label>
       <mat-radio-group aria-label="Select an option" formControlName="generoId">
         <mat-radio-button
-          *ngFor="let opcion of opciones?.generos; let i = index"
+          *ngFor="let opcion of opciones?.generos"
           [value]="opcion.optionId"
           >{{ opcion.nombre }}</mat-radio-button
         >

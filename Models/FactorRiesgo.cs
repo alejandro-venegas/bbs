@@ -9,12 +9,12 @@ namespace bbs.Models
     {
         public FactorRiesgo()
         {
-            // CondicionesInseguras = new HashSet<CondicionesInseguras>();
+            CondicionInseguras = new HashSet<CondicionInsegura>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        // public virtual ICollection<CondicionesInseguras> CondicionesInseguras { get; set; }
+        public virtual ICollection<CondicionInsegura> CondicionInseguras { get; set; }
     }
 }

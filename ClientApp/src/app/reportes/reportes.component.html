@@ -3,6 +3,16 @@
     <nav mat-tab-nav-bar class="sub-nav-menu">
       <a
         mat-tab-link
+        [routerLink]="['lista']"
+        routerLinkActive
+        disableRipple
+        #rlaa="routerLinkActive"
+        [active]="rlaa.isActive"
+      >
+        LISTA
+      </a>
+      <a
+        mat-tab-link
         [routerLink]="['incidente']"
         routerLinkActive
         disableRipple

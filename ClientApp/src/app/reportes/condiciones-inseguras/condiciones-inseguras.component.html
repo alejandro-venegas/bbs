@@ -1,4 +1,8 @@
-<form class="content-container">
+<form
+  class="content-container"
+  [formGroup]="condicionInseguraForm"
+  (ngSubmit)="submitForm()"
+>
   <div class="form-grid">
     <div class="input-group">
       <label for="fecha">Fecha:</label>
@@ -6,6 +10,7 @@
         id="fecha"
         readonly
         placeholder="Fecha"
+        formControlName="fechaCondicion"
         [matDatepicker]="picker"
         (click)="picker.open()"
       />
@@ -13,35 +18,58 @@
     </div>
     <div class="input-group">
       <label for="supervisor">Supervisor:</label>
-      <select id="supervisor">
+      <select id="supervisor" formControlName="supervisorId">
         <option value="" disabled selected>Seleccione un supervisor</option>
+        <option [value]="gerente.id" *ngFor="let gerente of gerentes"
+          >{{ gerente.nombre }} {{ gerente.apellido }}</option
+        >
       </select>
     </div>
     <div class="input-group">
       <label for="proceso">Proceso:</label>
-      <select id="proceso">
-        <option value="" disabled>Seleccione un proceso</option>
+      <select id="proceso" formControlName="procesoId">
+        <option value="" disabled selected>Seleccione un proceso</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.procesos"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
 
     <div class="input-group">
       <label for="areaDeTrabajo">Area de trabajo:</label>
-      <select id="areaDeTrabajo">
+      <select id="areaDeTrabajo" formControlName="areaId">
         <option value="" disabled selected>Area de trabajo</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.areas"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
 
     <div class="input-group">
-      <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
-      <select id="nivelDeRiesgo">
-        <option value="" disabled selected>Nivel de Riesgo</option>
+      <label for="nivelDeRiesgo">Indicador de riesgo:</label>
+      <select id="nivelDeRiesgo" formControlName="indicadorRiesgoId">
+        <option value="" disabled selected>Seleccione un Indicador</option>
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.indicadorRiesgos"
+          >{{ opcion.nombre }}</option
+        >
       </select>
     </div>
     <div class="input-group">
-      <label for="indicadorDeRiesgo">Indicador de riesgo:</label>
-      <select id="indicadorDeRiesgo">
+      <label for="indicadorDeRiesgo">Factor de riesgo:</label>
+      <select id="indicadorDeRiesgo" formControlName="factorRiesgoId">
         <option value="" disabled selected
           >Seleccione un indicador de riesgo</option
+        >
+        <option
+          [value]="opcion.optionId"
+          *ngFor="let opcion of opciones?.factorRiesgos"
+          >{{ opcion.nombre }}</option
         >
       </select>
     </div>

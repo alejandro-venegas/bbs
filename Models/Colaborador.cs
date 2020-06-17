@@ -9,6 +9,7 @@ namespace bbs.Models
         {
             Incidentes = new HashSet<Incidente>();
             CasiIncidentes = new HashSet<CasiIncidente>();
+            CondicionInseguras = new HashSet<CondicionInsegura>();
             Bbss = new HashSet<Bbs>();
             // Usuario = new HashSet<Usuario>();
         }
@@ -24,6 +25,7 @@ namespace bbs.Models
         // public virtual ICollection<Usuario> Usuario { get; set; }
         public virtual ICollection<Incidente> Incidentes { get; set; }
         public virtual ICollection<CasiIncidente> CasiIncidentes { get; set; }
+        public virtual ICollection<CondicionInsegura> CondicionInseguras { get; set; }
         public virtual ICollection<Bbs> Bbss { get; set; }
     }
 }

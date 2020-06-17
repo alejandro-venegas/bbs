@@ -19,7 +19,7 @@ namespace bbs.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetIncidentes(){
-            var incidentes = await _context.Incidentes.ToListAsync();
+            var incidentes = await _context.Incidentes.Include(c => c.Area).ToListAsync();
             return Ok(incidentes);
         }
 
