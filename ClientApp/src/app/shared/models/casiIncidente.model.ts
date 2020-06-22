@@ -2,7 +2,7 @@ import { SelectNode } from '../../mantenimiento/formularios/tree-datasource';
 
 export class CasiIncidente {
   public id: number;
-  public fechaCasiIncidente: Date;
+  public fecha: Date;
   public areaId: number;
   public procesoId: number;
   public observado;
@@ -25,7 +25,7 @@ export class CasiIncidente {
 
   constructor(
     id: number,
-    fechaCasiIncidente: Date,
+    fecha: Date,
     areaId: number,
     procesoId: number,
     observado,
@@ -46,7 +46,7 @@ export class CasiIncidente {
     genero?: SelectNode
   ) {
     this.id = id;
-    this.fechaCasiIncidente = fechaCasiIncidente;
+    this.fecha = fecha;
     this.areaId = areaId;
     this.procesoId = procesoId;
     this.observado = observado;

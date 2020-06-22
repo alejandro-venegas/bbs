@@ -2,6 +2,8 @@ mat-radio-group {
   display: flex;
   margin-top: 1rem;
   flex-wrap: wrap;
+  flex-direction: row;
+  max-width: none;
 }
 mat-radio-group > * {
   flex: 1;

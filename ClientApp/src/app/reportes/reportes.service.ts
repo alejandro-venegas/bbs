@@ -18,11 +18,25 @@ export class ReportesService {
       observe: 'response',
     });
   }
+  updateIncidente(incidente: Incidente) {
+    return this.http.post(this.baseUrl + 'incidentes/update', incidente, {
+      observe: 'response',
+    });
+  }
 
   guardarCasiIncidente(casiIncidente: CasiIncidente) {
     return this.http.post(this.baseUrl + 'casiincidentes/new', casiIncidente, {
       observe: 'response',
     });
+  }
+  updateCasiIncidente(casiIncidente: CasiIncidente) {
+    return this.http.post(
+      this.baseUrl + 'casiincidentes/update',
+      casiIncidente,
+      {
+        observe: 'response',
+      }
+    );
   }
 
   guardarBbs(bbs: Bbs) {
@@ -44,12 +58,29 @@ export class ReportesService {
       { observe: 'response' }
     );
   }
+  updateCondicionInsegura(condicionInsegura: any) {
+    return this.http.post(
+      this.baseUrl + 'condicioninseguras/update',
+      condicionInsegura,
+      {
+        observe: 'response',
+      }
+    );
+  }
 
   getIncidentes() {
     return this.http.get<any[]>(this.baseUrl + 'incidentes');
   }
+  getIncidente(id: number) {
+    return this.http.get<Incidente>(this.baseUrl + 'incidentes?id=' + id);
+  }
   getCasiIncidentes() {
     return this.http.get<any[]>(this.baseUrl + 'casiincidentes');
+  }
+  getCasiIncidente(id: number) {
+    return this.http.get<CasiIncidente>(
+      this.baseUrl + 'casiincidentes?id=' + id
+    );
   }
   getBbs(id: number) {
     return this.http.get<Bbs>(this.baseUrl + 'bbs?id=' + id);
@@ -59,5 +90,29 @@ export class ReportesService {
   }
   getCondicionesInseguras() {
     return this.http.get<any[]>(this.baseUrl + 'condicioninseguras');
+  }
+  getCondicionInsegura(id: number) {
+    return this.http.get<any>(this.baseUrl + 'condicioninseguras?id=' + id);
+  }
+
+  deleteBbs(id: number) {
+    return this.http.delete(this.baseUrl + 'bbs?id=' + id, {
+      observe: 'response',
+    });
+  }
+  deleteIncidente(id: number) {
+    return this.http.delete(this.baseUrl + 'incidentes?id=' + id, {
+      observe: 'response',
+    });
+  }
+  deleteCasiIncidente(id: number) {
+    return this.http.delete(this.baseUrl + 'casiincidentes?id=' + id, {
+      observe: 'response',
+    });
+  }
+  deleteCondicionInsegura(id: number) {
+    return this.http.delete(this.baseUrl + 'condicioninseguras?id=' + id, {
+      observe: 'response',
+    });
   }
 }

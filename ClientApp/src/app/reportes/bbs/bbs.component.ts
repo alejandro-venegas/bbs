@@ -5,8 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { ReportesService } from '../reportes.service';
 import { Colaborador } from '../../shared/models/colaborador.model';
 import { ColaboradoresService } from '../../shared/services/colaboradores.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import DateTimeFormat = Intl.DateTimeFormat;
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bbs',
@@ -18,7 +17,7 @@ export class BbsComponent implements OnInit {
   colaboradores: Colaborador[] = [];
   id: number;
   bbsForm = this.fb.group({
-    fechaBbs: [''],
+    fecha: [''],
     areaId: [''],
     observadorId: [''],
     procesoId: [''],
@@ -39,6 +38,11 @@ export class BbsComponent implements OnInit {
     this.getOpcionesSelect();
     this.getGerentes();
     this.id = this.route.snapshot.queryParams.id;
+    if (this.id) {
+      this.reportesService.getBbs(this.id).subscribe((res) => {
+        this.bbsForm.patchValue(res[0]);
+      });
+    }
   }
 
   getGerentes() {
@@ -68,13 +72,6 @@ export class BbsComponent implements OnInit {
   getOpcionesSelect() {
     this.formulariosService.getSelectOptions().subscribe((res) => {
       this.opciones = this.formulariosService.categorizeOptions(res);
-      if (this.id) {
-        this.reportesService.getBbs(this.id).subscribe((res) => {
-          console.log(res);
-
-          this.bbsForm.patchValue(res[0]);
-        });
-      }
     });
   }
 }

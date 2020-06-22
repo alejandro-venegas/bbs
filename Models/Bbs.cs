@@ -6,7 +6,7 @@ namespace bbs.Models
     public partial class Bbs
     {
         public int Id { get; set; }
-        public string FechaBbs { get; set; }
+        public string Fecha { get; set; }
         public int ObservadorId { get; set; }
         public int AreaId { get; set; }
         public int ProcesoId { get; set; }

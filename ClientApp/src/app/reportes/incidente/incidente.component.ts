@@ -4,6 +4,7 @@ import { DepartamentosService } from '../../administrar/departamentos/departamen
 import { Colaborador } from '../../shared/models/colaborador.model';
 import { FormBuilder } from '@angular/forms';
 import { ReportesService } from '../reportes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-incidente',
@@ -12,9 +13,10 @@ import { ReportesService } from '../reportes.service';
 })
 export class IncidenteComponent implements OnInit {
   opciones: any;
+  id: number;
   gerentes: Colaborador[] = [];
   incidenteForm = this.fb.group({
-    fechaIncidente: [''],
+    fecha: [''],
     areaId: [''],
     procesoId: [''],
     observado: [''],
@@ -35,11 +37,19 @@ export class IncidenteComponent implements OnInit {
     private formulariosService: FormulariosService,
     private departamentosService: DepartamentosService,
     private fb: FormBuilder,
-    private reportesService: ReportesService
+    private reportesService: ReportesService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.getOpcionesSelect();
     this.getGerentes();
+    this.id = this.route.snapshot.queryParams.id;
+    if (this.id) {
+      this.reportesService.getIncidente(this.id).subscribe((res) => {
+        this.incidenteForm.patchValue(res[0]);
+      });
+    }
   }
 
   getGerentes() {
@@ -50,10 +60,20 @@ export class IncidenteComponent implements OnInit {
 
   submitForm() {
     const value = this.incidenteForm.value;
-    console.log(value);
-    this.reportesService
-      .guardarIncidente(value)
-      .subscribe((res) => console.log(res));
+    if (this.id) {
+      value.id = this.id;
+      this.reportesService.updateIncidente(value).subscribe((res) => {
+        if (res.status === 202) {
+          this.router.navigate(['../lista'], { relativeTo: this.route });
+        }
+      });
+    } else {
+      this.reportesService.guardarIncidente(value).subscribe((res) => {
+        if (res.status === 200) {
+          this.router.navigate(['../lista'], { relativeTo: this.route });
+        }
+      });
+    }
   }
 
   getOpcionesSelect() {

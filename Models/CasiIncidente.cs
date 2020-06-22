@@ -6,7 +6,7 @@ namespace bbs.Models
     public partial class CasiIncidente
     {
         public int Id { get; set; }
-        public DateTime FechaCasiIncidente { get; set; }
+        public DateTime Fecha{ get; set; }
         public int AreaId { get; set; }
         public int ProcesoId { get; set; }
         public String Observado { get; set; }

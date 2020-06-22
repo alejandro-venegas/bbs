@@ -6,7 +6,7 @@ namespace bbs.Models
     public partial class CondicionInsegura
     {
         public int Id { get; set; }
-        public DateTime FechaCondicion { get; set; }
+        public DateTime Fecha{ get; set; }
         public int AreaId { get; set; }
         public int ProcesoId { get; set; }
         public int FactorRiesgoId { get; set; }

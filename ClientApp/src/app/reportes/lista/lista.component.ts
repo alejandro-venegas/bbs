@@ -80,13 +80,6 @@ export class ListaComponent implements OnInit {
               }
               this.reportes = [...this.reportes, ...resCondicionesInseguras];
 
-              for (const reporte of this.reportes) {
-                reporte.fecha =
-                  reporte.fechaCondicion ||
-                  reporte.fechaBbs ||
-                  reporte.fechaCasiIncidente ||
-                  reporte.fechaIncidente;
-              }
               this.reportes.sort(
                 (a, b) => -Date.parse(a.fecha) + Date.parse(b.fecha)
               );
@@ -95,5 +88,38 @@ export class ListaComponent implements OnInit {
         });
       });
     });
+  }
+
+  onDeleteReporte(id: number, tipo: string) {
+    switch (tipo) {
+      case 'BBS':
+        this.reportesService.deleteBbs(id).subscribe((res) => {
+          if (res.status === 202) {
+            this.getReportes();
+          }
+        });
+        break;
+      case 'Incidente':
+        this.reportesService.deleteIncidente(id).subscribe((res) => {
+          if (res.status === 202) {
+            this.getReportes();
+          }
+        });
+        break;
+      case 'Casi Incidente':
+        this.reportesService.deleteCasiIncidente(id).subscribe((res) => {
+          if (res.status === 202) {
+            this.getReportes();
+          }
+        });
+        break;
+      case 'Condicion Insegura':
+        this.reportesService.deleteCondicionInsegura(id).subscribe((res) => {
+          if (res.status === 202) {
+            this.getReportes();
+          }
+        });
+        break;
+    }
   }
 }

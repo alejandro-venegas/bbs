@@ -47,7 +47,7 @@ namespace bbs.Controllers
                 bbsObj.TipoComportamientoId = bbs.TipoComportamientoId;
                 bbsObj.AreaId = bbs.AreaId;
                 bbsObj.ComportamientoId = bbs.ComportamientoId;
-                bbsObj.FechaBbs = bbs.FechaBbs;
+                bbsObj.Fecha = bbs.Fecha;
                 bbsObj.TipoObservadoId = bbs.TipoObservadoId;
                 _context.Bbss.Update(bbsObj);
                 await _context.SaveChangesAsync();
@@ -56,6 +56,15 @@ namespace bbs.Controllers
             }
             return StatusCode(400);
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteBbs(int id){
+            Bbs bbs = new Bbs();
+            bbs.Id = id;
+            _context.Bbss.Remove(bbs);
+            await _context.SaveChangesAsync();
+            return StatusCode(202);
+        }
         
     }
+    
 }

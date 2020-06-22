@@ -1,6 +1,6 @@
 export class Bbs {
   id: number;
-  fechaBbs: Date;
+  fecha: Date;
   areaId: number;
   observadorId: number;
   descripcion: number;
@@ -10,7 +10,7 @@ export class Bbs {
 
   constructor(
     id: number,
-    fechaBbs: Date,
+    fecha: Date,
     areaId: number,
     observadorId: number,
     descripcion: number,
@@ -20,7 +20,7 @@ export class Bbs {
     tipoComportamientoId: number
   ) {
     this.id = id;
-    this.fechaBbs = fechaBbs;
+    this.fecha = fecha;
     this.areaId = areaId;
     this.observadorId = observadorId;
     this.descripcion = descripcion;
