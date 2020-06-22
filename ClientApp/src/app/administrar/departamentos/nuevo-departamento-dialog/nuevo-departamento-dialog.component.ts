@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ColaboradoresService } from '../../../shared/services/colaboradores.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DepartamentosService } from '../departamentos.service';
@@ -14,8 +14,8 @@ export class NuevoDepartamentoDialogComponent implements OnInit {
   isEdit = false;
   colaboradores: Colaborador[] = [];
   departamentoForm = this.fb.group({
-    nombre: [''],
-    gerenteId: [''],
+    nombre: ['', Validators.required],
+    gerenteId: ['', Validators.required],
   });
   constructor(
     private fb: FormBuilder,
@@ -38,26 +38,37 @@ export class NuevoDepartamentoDialogComponent implements OnInit {
     this.getColaboradores();
   }
 
+  get nombre() {
+    return this.departamentoForm.get('nombre');
+  }
+  get gerenteId() {
+    return this.departamentoForm.get('gerenteId');
+  }
+
   getColaboradores() {
     this.colaboradoresService.getColaboradores().subscribe((res) => {
       this.colaboradores = res;
     });
   }
   submitForm() {
-    const value = this.departamentoForm.value;
-    if (this.isEdit) {
-      value.id = this.data.departamento.id;
-      this.departamentosService.updateDepartamento(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.dialogRef.close(true);
-        }
-      });
+    if (this.departamentoForm.valid) {
+      const value = this.departamentoForm.value;
+      if (this.isEdit) {
+        value.id = this.data.departamento.id;
+        this.departamentosService.updateDepartamento(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.dialogRef.close(true);
+          }
+        });
+      } else {
+        this.departamentosService.postDepartamento(value).subscribe((res) => {
+          if (res.status === 201) {
+            this.dialogRef.close(true);
+          }
+        });
+      }
     } else {
-      this.departamentosService.postDepartamento(value).subscribe((res) => {
-        if (res.status === 201) {
-          this.dialogRef.close(true);
-        }
-      });
+      this.departamentoForm.markAllAsTouched();
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { RolesService } from '../roles.service';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { VistasService } from '../vistas.service';
 
@@ -13,8 +13,8 @@ export class NuevoRolDialogComponent implements OnInit {
   isEdit = false;
   vistasArray: any = [];
   rolForm = this.fb.group({
-    nombre: [''],
-    descripcion: [''],
+    nombre: ['', Validators.required],
+    descripcion: ['', Validators.required],
   });
   vistas: any = [];
 
@@ -25,6 +25,13 @@ export class NuevoRolDialogComponent implements OnInit {
     private vistasService: VistasService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+  get nombre() {
+    return this.rolForm.get('nombre');
+  }
+
+  get descripcion() {
+    return this.rolForm.get('descripcion');
+  }
 
   ngOnInit() {
     if (this.data && this.data.rol) {
@@ -52,21 +59,26 @@ export class NuevoRolDialogComponent implements OnInit {
   }
 
   submitForm() {
-    const value = this.rolForm.value;
-    value.vistas = this.vistas;
-    if (this.isEdit) {
-      value.id = this.data.rol && this.data.rol.id;
-      this.rolesService.updateRole(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.dialogRef.close(true);
-        }
-      });
+    if (this.rolForm.valid) {
+      const value = this.rolForm.value;
+
+      value.vistas = this.vistas;
+      if (this.isEdit) {
+        value.id = this.data.rol && this.data.rol.id;
+        this.rolesService.updateRole(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.dialogRef.close(true);
+          }
+        });
+      } else {
+        this.rolesService.postRole(value).subscribe((res) => {
+          if (res.status === 201) {
+            this.dialogRef.close(true);
+          }
+        });
+      }
     } else {
-      this.rolesService.postRole(value).subscribe((res) => {
-        if (res.status === 201) {
-          this.dialogRef.close(true);
-        }
-      });
+      this.rolForm.markAllAsTouched();
     }
   }
 

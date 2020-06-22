@@ -4,13 +4,14 @@
   --yellow: #f9a11b;
   --blue: #0a1e38;
   --white: #fffff8;
+  --red: #e00707;
 }
 body {
   margin: 0;
 }
 
 * {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   outline: none;
   box-sizing: border-box;
 }
@@ -226,6 +227,17 @@ mat-radio-group {
   border: none;
   cursor: pointer;
   margin-top: 1rem;
+}
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border: var(--red) 0.1rem solid;
+}
+
+span.invalid-message {
+  color: var(--red);
+  font-size: 0.7rem;
+  margin-left: 1rem;
 }
 
 .save-button--green {

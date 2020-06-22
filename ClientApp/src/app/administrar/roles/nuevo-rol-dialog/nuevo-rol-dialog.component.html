@@ -13,6 +13,9 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre para el rol"
         />
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
+          >Ingrese un nombre</span
+        >
       </div>
       <div class="input-group">
         <label for="descripcion">Descripcion del Rol:</label>
@@ -22,6 +25,11 @@
           id="descripcion"
           placeholder="Ingrese un nombre para el rol"
         />
+        <span
+          *ngIf="descripcion.touched && descripcion.invalid"
+          class="invalid-message"
+          >Ingrese una descripción</span
+        >
       </div>
       <br />
       <br />

@@ -13,6 +13,9 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre"
         />
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
+          >Ingrese un nombre</span
+        >
       </div>
       <div class="input-group">
         <label for="gerente">Gerente:</label>
@@ -24,6 +27,11 @@
             >{{ colaborador.nombre }} {{ colaborador.apellido }}</option
           >
         </select>
+        <span
+          *ngIf="gerenteId.touched && gerenteId.invalid"
+          class="invalid-message"
+          >Seleccione un gerente</span
+        >
       </div>
       <br />
       <br />

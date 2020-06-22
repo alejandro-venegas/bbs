@@ -13,6 +13,9 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre"
         />
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
+          >Ingrese un nombre</span
+        >
       </div>
       <div class="input-group">
         <label for="apellido">Apellido del Colaborador:</label>
@@ -22,6 +25,11 @@
           id="apellido"
           placeholder="Ingrese un apellido"
         />
+        <span
+          *ngIf="apellido.touched && apellido.invalid"
+          class="invalid-message"
+          >Ingrese un apellido</span
+        >
       </div>
       <div class="input-group">
         <label for="puesto">Puesto del Colaborador:</label>
@@ -31,6 +39,9 @@
           id="puesto"
           placeholder="Ingrese el puesto del colaborador"
         />
+        <span *ngIf="puesto.touched && puesto.invalid" class="invalid-message"
+          >Ingrese un puesto</span
+        >
       </div>
       <div class="input-group">
         <label for="departamento">Departamento:</label>

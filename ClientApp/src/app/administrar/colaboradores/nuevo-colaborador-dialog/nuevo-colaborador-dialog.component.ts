@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ColaboradoresService } from '../../../shared/services/colaboradores.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Departamento } from '../../../shared/models/departamento.model';
@@ -14,9 +14,9 @@ export class NuevoColaboradorDialogComponent implements OnInit {
   isEdit = false;
   departamentos: Departamento[] = [];
   colaboradorForm = this.fb.group({
-    nombre: [''],
-    apellido: [''],
-    puesto: [''],
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    puesto: ['', Validators.required],
     departamentoId: [''],
   });
   constructor(
@@ -26,6 +26,18 @@ export class NuevoColaboradorDialogComponent implements OnInit {
     private departamentosService: DepartamentosService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  get nombre() {
+    return this.colaboradorForm.get('nombre');
+  }
+
+  get apellido() {
+    return this.colaboradorForm.get('apellido');
+  }
+
+  get puesto() {
+    return this.colaboradorForm.get('puesto');
+  }
 
   ngOnInit(): void {
     this.getDepartamentos();
@@ -51,20 +63,23 @@ export class NuevoColaboradorDialogComponent implements OnInit {
 
   submitForm() {
     const value = this.colaboradorForm.value;
-
-    if (this.isEdit) {
-      value.id = this.data.colaborador.id;
-      this.colaboradoresService.updateColaborador(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.dialogRef.close(true);
-        }
-      });
+    if (this.colaboradorForm.valid) {
+      if (this.isEdit) {
+        value.id = this.data.colaborador.id;
+        this.colaboradoresService.updateColaborador(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.dialogRef.close(true);
+          }
+        });
+      } else {
+        this.colaboradoresService.postColaborador(value).subscribe((res) => {
+          if (res.status === 201) {
+            this.dialogRef.close(true);
+          }
+        });
+      }
     } else {
-      this.colaboradoresService.postColaborador(value).subscribe((res) => {
-        if (res.status === 201) {
-          this.dialogRef.close(true);
-        }
-      });
+      this.colaboradorForm.markAllAsTouched();
     }
   }
 }

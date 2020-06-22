@@ -64,7 +64,7 @@ export class RolesComponent implements OnInit {
         minWidth: '35vw',
         data: {
           title: 'ELIMINAR ROL',
-          content: `Desea eliminar el rol ${rol.nombreRol}?`,
+          content: `Desea eliminar el rol ${rol.nombre}?`,
         },
       })
       .afterClosed()
