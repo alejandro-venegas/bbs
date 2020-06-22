@@ -16,8 +16,17 @@ namespace bbs.Controllers
         {
             _context = context;
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBbs(int id){
+            var bbs = await _context.Bbss.SingleOrDefaultAsync( bbs => bbs.Id == id);
+            if(bbs != null){
+                return Ok(bbs);
+            }
+            return StatusCode(400);
+        }
         [HttpGet]
-        public async Task<IActionResult> GetBbs(){
+        public async Task<IActionResult> GetBbss(){
             var bbss = await _context.Bbss.Include(b => b.Area).ToListAsync();
             return Ok(bbss);
         }
@@ -27,6 +36,25 @@ namespace bbs.Controllers
             await _context.Bbss.AddAsync(bbs);
             await _context.SaveChangesAsync();
             return StatusCode(201);
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateBbs(Bbs bbs){
+            var bbsObj = await _context.Bbss.SingleOrDefaultAsync(b => b.Id == bbs.Id);
+            if( bbsObj != null){
+                bbsObj.ObservadorId = bbs.ObservadorId;
+                bbsObj.ProcesoId = bbs.ProcesoId;
+                bbsObj.TipoComportamientoId = bbs.TipoComportamientoId;
+                bbsObj.AreaId = bbs.AreaId;
+                bbsObj.ComportamientoId = bbs.ComportamientoId;
+                bbsObj.FechaBbs = bbs.FechaBbs;
+                bbsObj.TipoObservadoId = bbs.TipoObservadoId;
+                _context.Bbss.Update(bbsObj);
+                await _context.SaveChangesAsync();
+
+                return StatusCode(202);
+            }
+            return StatusCode(400);
         }
         
     }

@@ -31,6 +31,12 @@ export class ReportesService {
     });
   }
 
+  updateBbs(bbs: Bbs) {
+    return this.http.post(this.baseUrl + 'bbs/update', bbs, {
+      observe: 'response',
+    });
+  }
+
   guardarCondicionInsegura(condicionInsegura: any) {
     return this.http.post(
       this.baseUrl + 'condicioninseguras/new',
@@ -44,6 +50,9 @@ export class ReportesService {
   }
   getCasiIncidentes() {
     return this.http.get<any[]>(this.baseUrl + 'casiincidentes');
+  }
+  getBbs(id: number) {
+    return this.http.get<Bbs>(this.baseUrl + 'bbs?id=' + id);
   }
   getBbss() {
     return this.http.get<any[]>(this.baseUrl + 'bbs');

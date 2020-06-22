@@ -48,7 +48,11 @@ export const slider = trigger('routeAnimations', [
     slideTo('left')
   ),
   transition('s2 => s3', slideTo('left')),
+  transition('s2 => s4', slideTo('left')),
   transition('s3 => s2', slideTo('right')),
+  transition('s3 => s4', slideTo('left')),
+  transition('s4 => s3', slideTo('right')),
+  transition('s4 => s2', slideTo('right')),
 ]);
 export const verticalSlider = trigger('routeAnimations', [
   // 'f' stands for first and 'l' for last

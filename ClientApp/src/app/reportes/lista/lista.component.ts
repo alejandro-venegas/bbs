@@ -3,6 +3,7 @@ import { rowAnimation } from '../../animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ReportesService } from '../reportes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -15,7 +16,11 @@ export class ListaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
 
-  constructor(private reportesService: ReportesService) {}
+  constructor(
+    private reportesService: ReportesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   displayedColumns: string[] = [
     'fecha',
     'tipo',
@@ -26,6 +31,28 @@ export class ListaComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.getReportes();
+  }
+
+  onEditarReporte(id: number, tipo: string) {
+    let route: string;
+    switch (tipo) {
+      case 'BBS':
+        route = 'bbs';
+        break;
+      case 'Casi Incidente':
+        route = 'casi-incidente';
+        break;
+      case 'Incidente':
+        route = 'incidente';
+        break;
+      case 'Condicion Insegura':
+        route = 'condiciones-inseguras';
+        break;
+    }
+    this.router.navigate(['../' + route], {
+      queryParams: { id },
+      relativeTo: this.route,
+    });
   }
 
   getReportes() {
