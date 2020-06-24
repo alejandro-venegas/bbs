@@ -14,9 +14,9 @@ export class NuevoColaboradorDialogComponent implements OnInit {
   isEdit = false;
   departamentos: Departamento[] = [];
   colaboradorForm = this.fb.group({
-    nombre: ['', Validators.required],
-    apellido: ['', Validators.required],
-    puesto: ['', Validators.required],
+    nombre: ['', [Validators.required, Validators.maxLength(25)]],
+    apellido: ['', [Validators.required, Validators.maxLength(50)]],
+    puesto: ['', [Validators.required, Validators.maxLength(35)]],
     departamentoId: [''],
   });
   constructor(

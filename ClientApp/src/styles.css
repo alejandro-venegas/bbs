@@ -163,7 +163,7 @@ table {
   border-radius: 5em;
 }
 mat-radio-button {
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 }
 .mat-tab-header {
   overflow: visible !important;
@@ -181,7 +181,7 @@ mat-radio-button {
 mat-radio-group {
   display: grid;
   grid-template-columns: repeat(auto-fill, 6rem);
-  column-gap: 1rem;
+  column-gap: 2rem;
   row-gap: 1rem;
   align-self: stretch;
   justify-content: center;

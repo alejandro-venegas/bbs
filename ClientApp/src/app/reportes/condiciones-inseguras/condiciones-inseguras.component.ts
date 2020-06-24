@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Colaborador } from '../../shared/models/colaborador.model';
 import { FormulariosService } from '../../shared/services/formularios.service';
 import { DepartamentosService } from '../../administrar/departamentos/departamentos.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ReportesService } from '../reportes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,12 +16,12 @@ export class CondicionesInsegurasComponent implements OnInit {
   opciones: any;
   gerentes: Colaborador[] = [];
   condicionInseguraForm = this.fb.group({
-    fecha: [''],
-    supervisorId: [''],
-    procesoId: [''],
-    areaId: [''],
-    indicadorRiesgoId: [''],
-    factorRiesgoId: [''],
+    fecha: ['', Validators.required],
+    supervisorId: ['', Validators.required],
+    procesoId: ['', Validators.required],
+    areaId: ['', Validators.required],
+    indicadorRiesgoId: ['', Validators.required],
+    factorRiesgoId: ['', Validators.required],
   });
   constructor(
     private formulariosService: FormulariosService,
@@ -32,13 +32,32 @@ export class CondicionesInsegurasComponent implements OnInit {
     private router: Router
   ) {}
 
+  get fecha() {
+    return this.condicionInseguraForm.get('fecha');
+  }
+  get supervisorId() {
+    return this.condicionInseguraForm.get('supervisorId');
+  }
+  get procesoId() {
+    return this.condicionInseguraForm.get('procesoId');
+  }
+  get areaId() {
+    return this.condicionInseguraForm.get('areaId');
+  }
+  get indicadorRiesgoId() {
+    return this.condicionInseguraForm.get('indicadorRiesgoId');
+  }
+  get factorRiesgoId() {
+    return this.condicionInseguraForm.get('factorRiesgoId');
+  }
+
   ngOnInit(): void {
     this.getOpcionesSelect();
     this.getColaboradores();
     this.id = this.route.snapshot.queryParams.id;
     if (this.id) {
       this.reportesService.getCondicionInsegura(this.id).subscribe((res) => {
-        this.condicionInseguraForm.patchValue(res[0]);
+        this.condicionInseguraForm.patchValue(res);
       });
     }
   }
@@ -50,20 +69,26 @@ export class CondicionesInsegurasComponent implements OnInit {
   }
 
   submitForm() {
-    const value = this.condicionInseguraForm.value;
-    if (this.id) {
-      value.id = this.id;
-      this.reportesService.updateCondicionInsegura(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+    if (this.condicionInseguraForm.valid) {
+      const value = this.condicionInseguraForm.value;
+      if (this.id) {
+        value.id = this.id;
+        this.reportesService.updateCondicionInsegura(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.router.navigate(['../lista'], { relativeTo: this.route });
+          }
+        });
+      } else {
+        this.reportesService
+          .guardarCondicionInsegura(value)
+          .subscribe((res) => {
+            if (res.status === 201) {
+              this.router.navigate(['../lista'], { relativeTo: this.route });
+            }
+          });
+      }
     } else {
-      this.reportesService.guardarCondicionInsegura(value).subscribe((res) => {
-        if (res.status === 200) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+      this.condicionInseguraForm.markAllAsTouched();
     }
   }
 

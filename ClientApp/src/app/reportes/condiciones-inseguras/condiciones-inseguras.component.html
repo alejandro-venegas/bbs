@@ -15,6 +15,9 @@
         (click)="picker.open()"
       />
       <mat-datepicker #picker></mat-datepicker>
+      <span class="invalid-message" *ngIf="fecha.invalid && fecha.touched"
+        >Ingrese una fecha</span
+      >
     </div>
     <div class="input-group">
       <label for="supervisor">Supervisor:</label>
@@ -24,6 +27,11 @@
           >{{ gerente.nombre }} {{ gerente.apellido }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="supervisorId.invalid && supervisorId.touched"
+        >Seleccione un supervisor</span
+      >
     </div>
     <div class="input-group">
       <label for="proceso">Proceso:</label>
@@ -35,18 +43,26 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="procesoId.invalid && procesoId.touched"
+        >Seleccione un proceso</span
+      >
     </div>
 
     <div class="input-group">
       <label for="areaDeTrabajo">Area de trabajo:</label>
       <select id="areaDeTrabajo" formControlName="areaId">
-        <option value="" disabled selected>Area de trabajo</option>
+        <option value="" disabled selected>Área de trabajo</option>
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span class="invalid-message" *ngIf="areaId.invalid && areaId.touched"
+        >Seleccione un área de trabajo</span
+      >
     </div>
 
     <div class="input-group">
@@ -59,6 +75,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="indicadorRiesgoId.invalid && indicadorRiesgoId.touched"
+        >Seleccione un indicador de Riesgo</span
+      >
     </div>
     <div class="input-group">
       <label for="indicadorDeRiesgo">Factor de riesgo:</label>
@@ -72,6 +93,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="factorRiesgoId.invalid && factorRiesgoId.touched"
+        >Seleccione un factor de riesgo</span
+      >
     </div>
   </div>
   <div class="button-group">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormulariosService } from '../../shared/services/formularios.service';
 import { DepartamentosService } from '../../administrar/departamentos/departamentos.service';
 import { Colaborador } from '../../shared/models/colaborador.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ReportesService } from '../reportes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,22 +16,22 @@ export class IncidenteComponent implements OnInit {
   id: number;
   gerentes: Colaborador[] = [];
   incidenteForm = this.fb.group({
-    fecha: [''],
-    areaId: [''],
-    procesoId: [''],
-    observado: [''],
-    generoId: [''],
-    turnoId: [''],
-    jornadaId: [''],
-    efectoId: [''],
-    clasificacionId: [''],
-    causaBasicaId: [''],
-    causaInmediataId: [''],
-    parteCuerpoId: [''],
-    actividadId: [''],
+    fecha: ['', Validators.required],
+    areaId: ['', Validators.required],
+    procesoId: ['', Validators.required],
+    observado: ['', Validators.required],
+    generoId: ['', Validators.required],
+    turnoId: ['', Validators.required],
+    jornadaId: ['', Validators.required],
+    efectoId: ['', Validators.required],
+    clasificacionId: ['', Validators.required],
+    causaBasicaId: ['', Validators.required],
+    causaInmediataId: ['', Validators.required],
+    parteCuerpoId: ['', Validators.required],
+    actividadId: ['', Validators.required],
     descripcion: [''],
-    supervisorId: [''],
-    riesgoId: [''],
+    supervisorId: ['', Validators.required],
+    riesgoId: ['', Validators.required],
   });
   constructor(
     private formulariosService: FormulariosService,
@@ -41,13 +41,62 @@ export class IncidenteComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
+  get fecha() {
+    return this.incidenteForm.get('fecha');
+  }
+  get areaId() {
+    return this.incidenteForm.get('areaId');
+  }
+  get procesoId() {
+    return this.incidenteForm.get('procesoId');
+  }
+  get observado() {
+    return this.incidenteForm.get('observado');
+  }
+  get generoId() {
+    return this.incidenteForm.get('generoId');
+  }
+  get turnoId() {
+    return this.incidenteForm.get('turnoId');
+  }
+  get jornadaId() {
+    return this.incidenteForm.get('jornadaId');
+  }
+  get efectoId() {
+    return this.incidenteForm.get('efectoId');
+  }
+  get clasificacionId() {
+    return this.incidenteForm.get('clasificacionId');
+  }
+  get causaBasicaId() {
+    return this.incidenteForm.get('causaBasicaId');
+  }
+  get causaInmediataId() {
+    return this.incidenteForm.get('causaInmediataId');
+  }
+  get parteCuerpoId() {
+    return this.incidenteForm.get('parteCuerpoId');
+  }
+  get actividadId() {
+    return this.incidenteForm.get('actividadId');
+  }
+  get descripcion() {
+    return this.incidenteForm.get('descripcion');
+  }
+  get supervisorId() {
+    return this.incidenteForm.get('supervisorId');
+  }
+  get riesgoId() {
+    return this.incidenteForm.get('riesgoId');
+  }
+
   ngOnInit(): void {
     this.getOpcionesSelect();
     this.getGerentes();
     this.id = this.route.snapshot.queryParams.id;
     if (this.id) {
       this.reportesService.getIncidente(this.id).subscribe((res) => {
-        this.incidenteForm.patchValue(res[0]);
+        this.incidenteForm.patchValue(res);
       });
     }
   }
@@ -59,20 +108,25 @@ export class IncidenteComponent implements OnInit {
   }
 
   submitForm() {
-    const value = this.incidenteForm.value;
-    if (this.id) {
-      value.id = this.id;
-      this.reportesService.updateIncidente(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+    if (this.incidenteForm.valid) {
+      const value = this.incidenteForm.value;
+
+      if (this.id) {
+        value.id = this.id;
+        this.reportesService.updateIncidente(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.router.navigate(['../lista'], { relativeTo: this.route });
+          }
+        });
+      } else {
+        this.reportesService.guardarIncidente(value).subscribe((res) => {
+          if (res.status === 201) {
+            this.router.navigate(['../lista'], { relativeTo: this.route });
+          }
+        });
+      }
     } else {
-      this.reportesService.guardarIncidente(value).subscribe((res) => {
-        if (res.status === 200) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+      this.incidenteForm.markAllAsTouched();
     }
   }
 

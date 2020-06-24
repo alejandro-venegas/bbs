@@ -72,18 +72,16 @@ export class ReportesService {
     return this.http.get<any[]>(this.baseUrl + 'incidentes');
   }
   getIncidente(id: number) {
-    return this.http.get<Incidente>(this.baseUrl + 'incidentes?id=' + id);
+    return this.http.get<Incidente>(this.baseUrl + 'incidentes/' + id);
   }
   getCasiIncidentes() {
     return this.http.get<any[]>(this.baseUrl + 'casiincidentes');
   }
   getCasiIncidente(id: number) {
-    return this.http.get<CasiIncidente>(
-      this.baseUrl + 'casiincidentes?id=' + id
-    );
+    return this.http.get<CasiIncidente>(this.baseUrl + 'casiincidentes/' + id);
   }
   getBbs(id: number) {
-    return this.http.get<Bbs>(this.baseUrl + 'bbs?id=' + id);
+    return this.http.get<Bbs>(this.baseUrl + 'bbs/' + id);
   }
   getBbss() {
     return this.http.get<any[]>(this.baseUrl + 'bbs');
@@ -92,7 +90,7 @@ export class ReportesService {
     return this.http.get<any[]>(this.baseUrl + 'condicioninseguras');
   }
   getCondicionInsegura(id: number) {
-    return this.http.get<any>(this.baseUrl + 'condicioninseguras?id=' + id);
+    return this.http.get<any>(this.baseUrl + 'condicioninseguras/' + id);
   }
 
   deleteBbs(id: number) {

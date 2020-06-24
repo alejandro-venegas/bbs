@@ -13,9 +13,12 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre"
         />
-        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
-          >Ingrese un nombre</span
-        >
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message">
+          <div *ngIf="nombre.errors.required">Ingrese un nombre</div>
+          <div *ngIf="nombre.errors.maxlength">
+            Solo se permite un máximo de 35 caracteres
+          </div>
+        </span>
       </div>
       <div class="input-group">
         <label for="gerente">Gerente:</label>

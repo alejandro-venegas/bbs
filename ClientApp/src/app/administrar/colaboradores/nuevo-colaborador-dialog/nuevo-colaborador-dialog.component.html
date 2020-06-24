@@ -13,9 +13,12 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre"
         />
-        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
-          >Ingrese un nombre</span
-        >
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message">
+          <div *ngIf="nombre.errors.required">Ingrese un nombre</div>
+          <div *ngIf="nombre.errors.maxlength">
+            Solo se permite un máximo de 25 caracteres
+          </div>
+        </span>
       </div>
       <div class="input-group">
         <label for="apellido">Apellido del Colaborador:</label>
@@ -28,8 +31,12 @@
         <span
           *ngIf="apellido.touched && apellido.invalid"
           class="invalid-message"
-          >Ingrese un apellido</span
         >
+          <div *ngIf="apellido.errors.required">Ingrese un apellido</div>
+          <div *ngIf="apellido.errors.maxlength">
+            Solo se permite un máximo de 50 caracteres
+          </div>
+        </span>
       </div>
       <div class="input-group">
         <label for="puesto">Puesto del Colaborador:</label>
@@ -39,9 +46,12 @@
           id="puesto"
           placeholder="Ingrese el puesto del colaborador"
         />
-        <span *ngIf="puesto.touched && puesto.invalid" class="invalid-message"
-          >Ingrese un puesto</span
-        >
+        <span *ngIf="puesto.touched && puesto.invalid" class="invalid-message">
+          <div *ngIf="puesto.errors.required">Ingrese un puesto</div>
+          <div *ngIf="puesto.errors.maxlength">
+            Solo se permite un máximo de 35 caracteres
+          </div>
+        </span>
       </div>
       <div class="input-group">
         <label for="departamento">Departamento:</label>

@@ -13,8 +13,8 @@ export class NuevoRolDialogComponent implements OnInit {
   isEdit = false;
   vistasArray: any = [];
   rolForm = this.fb.group({
-    nombre: ['', Validators.required],
-    descripcion: ['', Validators.required],
+    nombre: ['', [Validators.required, Validators.maxLength(30)]],
+    descripcion: ['', [Validators.required, Validators.maxLength(50)]],
   });
   vistas: any = [];
 

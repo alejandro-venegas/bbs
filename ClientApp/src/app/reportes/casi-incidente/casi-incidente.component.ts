@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Colaborador } from '../../shared/models/colaborador.model';
 import { FormulariosService } from '../../shared/services/formularios.service';
 import { DepartamentosService } from '../../administrar/departamentos/departamentos.service';
@@ -16,17 +16,17 @@ export class CasiIncidenteComponent implements OnInit {
   opciones: any;
   gerentes: Colaborador[] = [];
   casiIncidenteForm = this.fb.group({
-    fecha: [''],
-    areaId: [''],
-    procesoId: [''],
-    observado: [''],
-    casualidadId: [''],
-    turnoId: [''],
-    jornadaId: [''],
-    generoId: [''],
+    fecha: ['', Validators.required],
+    areaId: ['', Validators.required],
+    procesoId: ['', Validators.required],
+    observado: ['', Validators.required],
+    casualidadId: ['', Validators.required],
+    turnoId: ['', Validators.required],
+    jornadaId: ['', Validators.required],
+    generoId: ['', Validators.required],
     descripcion: [''],
-    supervisorId: [''],
-    riesgoId: [''],
+    supervisorId: ['', Validators.required],
+    riesgoId: ['', Validators.required],
   });
   constructor(
     private formulariosService: FormulariosService,
@@ -36,6 +36,40 @@ export class CasiIncidenteComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {}
+  get fecha() {
+    return this.casiIncidenteForm.get('fecha');
+  }
+  get areaId() {
+    return this.casiIncidenteForm.get('areaId');
+  }
+  get procesoId() {
+    return this.casiIncidenteForm.get('procesoId');
+  }
+  get observado() {
+    return this.casiIncidenteForm.get('observado');
+  }
+  get generoId() {
+    return this.casiIncidenteForm.get('generoId');
+  }
+  get turnoId() {
+    return this.casiIncidenteForm.get('turnoId');
+  }
+  get jornadaId() {
+    return this.casiIncidenteForm.get('jornadaId');
+  }
+  get casualidadId() {
+    return this.casiIncidenteForm.get('casualidadId');
+  }
+
+  get descripcion() {
+    return this.casiIncidenteForm.get('descripcion');
+  }
+  get supervisorId() {
+    return this.casiIncidenteForm.get('supervisorId');
+  }
+  get riesgoId() {
+    return this.casiIncidenteForm.get('riesgoId');
+  }
 
   ngOnInit(): void {
     this.getOpcionesSelect();
@@ -43,7 +77,7 @@ export class CasiIncidenteComponent implements OnInit {
     this.id = this.route.snapshot.queryParams.id;
     if (this.id) {
       this.reportesService.getCasiIncidente(this.id).subscribe((res) => {
-        this.casiIncidenteForm.patchValue(res[0]);
+        this.casiIncidenteForm.patchValue(res);
       });
     }
   }
@@ -55,20 +89,24 @@ export class CasiIncidenteComponent implements OnInit {
   }
 
   submitForm() {
-    const value = this.casiIncidenteForm.value;
-    if (this.id) {
-      value.id = this.id;
-      this.reportesService.updateCasiIncidente(value).subscribe((res) => {
-        if (res.status === 202) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+    if (this.casiIncidenteForm.valid) {
+      const value = this.casiIncidenteForm.value;
+      if (this.id) {
+        value.id = this.id;
+        this.reportesService.updateCasiIncidente(value).subscribe((res) => {
+          if (res.status === 202) {
+            this.router.navigate(['../lista'], { relativeTo: this.route });
+          }
+        });
+      } else {
+        this.reportesService.guardarCasiIncidente(value).subscribe((res) => {
+          if (res.status === 201) {
+            this.router.navigate(['../lista'], { relativeTo: this.route });
+          }
+        });
+      }
     } else {
-      this.reportesService.guardarCasiIncidente(value).subscribe((res) => {
-        if (res.status === 200) {
-          this.router.navigate(['../lista'], { relativeTo: this.route });
-        }
-      });
+      this.casiIncidenteForm.markAllAsTouched();
     }
   }
 

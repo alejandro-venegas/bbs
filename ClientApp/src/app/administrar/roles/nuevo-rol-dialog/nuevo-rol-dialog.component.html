@@ -13,12 +13,15 @@
           formControlName="nombre"
           placeholder="Ingrese un nombre para el rol"
         />
-        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message"
-          >Ingrese un nombre</span
-        >
+        <span *ngIf="nombre.touched && nombre.invalid" class="invalid-message">
+          <div *ngIf="nombre.errors.required">Ingrese un nombre</div>
+          <div *ngIf="nombre.errors.maxlength">
+            Solo se permite un máximo de 30 caracteres
+          </div>
+        </span>
       </div>
       <div class="input-group">
-        <label for="descripcion">Descripcion del Rol:</label>
+        <label for="descripcion">Descripción del Rol:</label>
         <input
           formControlName="descripcion"
           type="text"
@@ -28,8 +31,12 @@
         <span
           *ngIf="descripcion.touched && descripcion.invalid"
           class="invalid-message"
-          >Ingrese una descripción</span
         >
+          <div *ngIf="descripcion.errors.required">Ingrese una descripción</div>
+          <div *ngIf="descripcion.errors.maxlength">
+            Solo se permite un máximo de 50 caracteres
+          </div>
+        </span>
       </div>
       <br />
       <br />

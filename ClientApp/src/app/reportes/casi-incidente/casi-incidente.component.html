@@ -15,6 +15,9 @@
         (click)="picker.open()"
       />
       <mat-datepicker #picker></mat-datepicker>
+      <span class="invalid-message" *ngIf="fecha.touched && fecha.invalid"
+        >Ingrese una fecha</span
+      >
     </div>
     <div class="input-group">
       <label for="observado">Nombre:</label>
@@ -24,6 +27,11 @@
         placeholder="Nombre"
         formControlName="observado"
       />
+      <span
+        class="invalid-message"
+        *ngIf="observado.touched && observado.invalid"
+        >Ingrese un nombre</span
+      >
     </div>
     <div class="input-group">
       <label>Genero:</label>
@@ -34,6 +42,9 @@
           >{{ opcion.nombre }}</mat-radio-button
         >
       </mat-radio-group>
+      <span class="invalid-message" *ngIf="generoId.touched && generoId.invalid"
+        >Seleccione un genero</span
+      >
     </div>
     <div class="input-group">
       <label for="proceso">Proceso:</label>
@@ -45,6 +56,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="procesoId.touched && procesoId.invalid"
+        >Seleccione un proceso</span
+      >
     </div>
     <div class="input-group">
       <label for="turno">Turno:</label>
@@ -56,6 +72,9 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span class="invalid-message" *ngIf="turnoId.touched && turnoId.invalid"
+        >Seleccione un turno</span
+      >
     </div>
     <div class="input-group">
       <label for="areaDeTrabajo">Area de trabajo:</label>
@@ -67,6 +86,9 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span class="invalid-message" *ngIf="areaId.touched && areaId.invalid"
+        >Seleccione un area de trabajo</span
+      >
     </div>
     <div class="input-group">
       <label for="supervisor">Supervisor:</label>
@@ -76,6 +98,11 @@
           >{{ gerente.nombre }} {{ gerente.apellido }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="supervisorId.touched && supervisorId.invalid"
+        >Seleccione un supervisor</span
+      >
     </div>
     <div class="input-group">
       <label for="casualidad">Casualidad:</label>
@@ -87,6 +114,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="casualidadId.touched && casualidadId.invalid"
+        >Seleccione una casualidad</span
+      >
     </div>
     <div class="input-group">
       <label for="nivelDeRiesgo">Nivel de Riesgo:</label>
@@ -98,6 +130,9 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span class="invalid-message" *ngIf="riesgoId.touched && riesgoId.invalid"
+        >Seleccione un nivel de riesgo</span
+      >
     </div>
     <div class="input-group">
       <label for="porcentajeDeJornada">Jornada:</label>
@@ -109,6 +144,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="jornadaId.touched && jornadaId.invalid"
+        >Seleccione una jornada</span
+      >
     </div>
 
     <div class="input-group text-area">

@@ -7,7 +7,7 @@ import { BbsComponent } from './bbs/bbs.component';
 import { CondicionesInsegurasComponent } from './condiciones-inseguras/condiciones-inseguras.component';
 import { ReportesRoutingModule } from './reportes-routing.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,5 +44,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BbsComponent,
     CondicionesInsegurasComponent,
   ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export class ReportesModule {}

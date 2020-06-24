@@ -11,6 +11,9 @@
         (click)="picker.open()"
       />
       <mat-datepicker #picker></mat-datepicker>
+      <span class="invalid-message" *ngIf="fecha.invalid && fecha.touched"
+        >Ingrese una fecha</span
+      >
     </div>
     <div class="input-group">
       <label for="observador">Observador:</label>
@@ -22,6 +25,11 @@
           >{{ colaborador.nombre }} {{ colaborador.apellido }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="observadorId.invalid && observadorId.touched"
+        >Ingrese una fecha</span
+      >
     </div>
 
     <div class="input-group">
@@ -34,6 +42,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="comportamientoId.invalid && comportamientoId.touched"
+        >Seleccione un comportamiento</span
+      >
     </div>
     <div class="input-group">
       <label for="area">Area:</label>
@@ -45,6 +58,9 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span class="invalid-message" *ngIf="areaId.invalid && areaId.touched"
+        >Seleccione un área</span
+      >
     </div>
     <div class="input-group">
       <label for="proceso">Proceso:</label>
@@ -56,6 +72,11 @@
           >{{ opcion.nombre }}</option
         >
       </select>
+      <span
+        class="invalid-message"
+        *ngIf="procesoId.invalid && procesoId.touched"
+        >Seleccione un proceso</span
+      >
     </div>
 
     <div class="input-group">
@@ -70,6 +91,11 @@
           >{{ opcion.nombre }}</mat-radio-button
         >
       </mat-radio-group>
+      <span
+        class="invalid-message"
+        *ngIf="tipoObservadoId.invalid && tipoObservadoId.touched"
+        >Seleccione un tipo de observado</span
+      >
     </div>
 
     <div class="input-group">
@@ -84,6 +110,11 @@
           >{{ opcion.nombre }}</mat-radio-button
         >
       </mat-radio-group>
+      <span
+        class="invalid-message"
+        *ngIf="tipoComportamientoId.invalid && tipoComportamientoId.touched"
+        >Seleccione un tipo de comportamiento</span
+      >
     </div>
   </div>
   <div class="button-group">
