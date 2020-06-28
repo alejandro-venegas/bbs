@@ -30,8 +30,14 @@
       <span
         class="invalid-message"
         *ngIf="observado.touched && observado.invalid"
-        >Ingrese un nombre</span
       >
+        <ng-template [ngIf]="observado.errors.required"
+          >Ingrese un nombre</ng-template
+        >
+        <ng-template [ngIf]="observado.errors.maxlength"
+          >Solo se permiten 70 caracteres</ng-template
+        >
+      </span>
     </div>
     <div class="input-group">
       <label>Genero:</label>
@@ -240,6 +246,17 @@
         id="descripcion"
         formControlName="descripcion"
       ></textarea>
+      <span
+        class="invalid-message"
+        *ngIf="descripcion.touched && descripcion.invalid"
+      >
+        <ng-template [ngIf]="descripcion.errors.maxlength"
+          >Solo se permite un máximo de 100 caracteres</ng-template
+        >
+        <ng-template [ngIf]="descripcion.errors.required"
+          >Ingrese una descripción</ng-template
+        >
+      </span>
     </div>
   </div>
   <div class="button-group">

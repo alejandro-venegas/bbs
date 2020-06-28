@@ -19,7 +19,7 @@ export class IncidenteComponent implements OnInit {
     fecha: ['', Validators.required],
     areaId: ['', Validators.required],
     procesoId: ['', Validators.required],
-    observado: ['', Validators.required],
+    observado: ['', [Validators.required, Validators.maxLength(70)]],
     generoId: ['', Validators.required],
     turnoId: ['', Validators.required],
     jornadaId: ['', Validators.required],
@@ -29,7 +29,7 @@ export class IncidenteComponent implements OnInit {
     causaInmediataId: ['', Validators.required],
     parteCuerpoId: ['', Validators.required],
     actividadId: ['', Validators.required],
-    descripcion: [''],
+    descripcion: ['', [Validators.required, Validators.maxLength(100)]],
     supervisorId: ['', Validators.required],
     riesgoId: ['', Validators.required],
   });

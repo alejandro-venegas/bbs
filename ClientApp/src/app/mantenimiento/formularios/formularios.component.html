@@ -50,22 +50,29 @@
         *matTreeNodeDef="let node; when: hasNoContent"
         @rowAnimation
       >
-        <div class="mat-tree-node save-group">
-          <button mat-icon-button disabled></button>
-          <input
-            type="text"
-            #itemInput
-            appAutofocus
-            (focusOut)="remove(node)"
-            (keydown.enter)="onAgregarNewItem(itemInput.value, node)"
-          />
-          <button
-            mat-icon-button
-            (click)="onAgregarNewItem(itemInput.value, node)"
-            class="done-button"
+        <div class="input-group">
+          <div class="mat-tree-node save-group">
+            <button mat-icon-button disabled></button>
+
+            <input
+              type="text"
+              #itemInput
+              appAutofocus
+              (focusOut)="remove(node)"
+              (keydown.enter)="onAgregarNewItem(itemInput.value, node)"
+            />
+
+            <button
+              mat-icon-button
+              (click)="onAgregarNewItem(itemInput.value, node)"
+              class="done-button"
+            >
+              <mat-icon class="save-icon">done</mat-icon>
+            </button>
+          </div>
+          <span class="invalid-message" *ngIf="!isValid"
+            >Solo se permite un máximo de 75 caracteres</span
           >
-            <mat-icon class="save-icon">done</mat-icon>
-          </button>
         </div>
       </mat-nested-tree-node>
       <mat-nested-tree-node

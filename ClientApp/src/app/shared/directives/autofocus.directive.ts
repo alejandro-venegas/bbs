@@ -29,6 +29,8 @@ export class AutofocusDirective implements OnInit {
         event.relatedTarget.textContent.toLowerCase() !== 'done')
     ) {
       this.focusOut.emit();
+    } else {
+      this.el.nativeElement.focus();
     }
   }
 }

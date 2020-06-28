@@ -18,6 +18,7 @@ import { FormulariosService } from '../../shared/services/formularios.service';
   animations: [rowAnimation, treeAnimation],
 })
 export class FormulariosComponent implements OnInit {
+  isValid = true;
   TREE_DATA: SelectNode[] = [
     {
       nombre: 'Actividades',
@@ -142,6 +143,7 @@ export class FormulariosComponent implements OnInit {
     } else {
       this.dataSource.remove(node);
     }
+    this.isValid = true;
   }
 
   initializeData() {
@@ -158,21 +160,27 @@ export class FormulariosComponent implements OnInit {
   }
   onAgregarNewItem(nombre: string, node: SelectNode) {
     if (nombre) {
-      const parent = this.dataSource.data.find(
-        (parentNode) => parentNode.selectId == node.selectId
-      );
+      if (nombre.length <= 75) {
+        const parent = this.dataSource.data.find(
+          (parentNode) => parentNode.selectId == node.selectId
+        );
 
-      if (parent) {
-        this.formulariosService
-          .insertSelect({ nombre, selectId: node.selectId })
-          .subscribe((res) => {
-            if (res.status === 201) {
-              this.addNewItem(nombre, parent);
-            }
+        if (parent) {
+          this.formulariosService
+            .insertSelect({ nombre, selectId: node.selectId })
+            .subscribe((res) => {
+              if (res.status === 201) {
+                this.addNewItem(nombre, parent);
+              }
 
-            this.remove(node);
-          });
+              this.remove(node);
+            });
+        }
+      } else {
+        this.isValid = false;
       }
+    } else {
+      this.remove(node);
     }
   }
 }
