@@ -14,8 +14,8 @@ namespace bbs.Models
         }
 
         public int Id { get; set; }
-        [Column(TypeName = "varchar(50)")]
         [Required]
+        [Column(TypeName = "varchar(75)")]
         
         public string Nombre { get; set; }
         public virtual ICollection<Incidente> Incidentes { get; set; }

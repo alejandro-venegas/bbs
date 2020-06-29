@@ -236,7 +236,14 @@ namespace bbs.Models
             );
 
             modelBuilder.Entity<Rol>().HasData(
-                new Rol {Id = 1, Nombre = "Administrador"}
+                new Rol {Id = 1, Nombre = "Administrador", Descripcion = "Administrador del Sistema"}
+            );
+
+            modelBuilder.Entity<RolVista>().HasData(
+                new RolVista {RolId = 1, VistaId = 1},
+                new RolVista {RolId = 1, VistaId = 2},
+                new RolVista {RolId = 1, VistaId = 3},
+                new RolVista {RolId = 1, VistaId = 4}
             );
         }
 

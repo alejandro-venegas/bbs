@@ -10,7 +10,11 @@ namespace bbs.Models
        
 
         public int Id { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(30)")]
         public string Nombre { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(100)")]
         public string Descripcion{ get; set; }
         public virtual ICollection<RolVista> RolVistas {get; set;}
     }

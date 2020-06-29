@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace bbs.Models
 {
@@ -15,10 +17,17 @@ namespace bbs.Models
         }
 
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Puesto { get; set; }
         public int? DepartamentoId { get; set; }
+        [Column(TypeName = "varchar(25)")]
+        [Required]
+        public string Nombre { get; set; }
+        [Column(TypeName = "varchar(50)")]
+        [Required]
+        public string Apellido { get; set; }
+        [Column(TypeName = "varchar(35)")]
+        [Required]
+        public string Puesto { get; set; }
+        
         
 
         public virtual Departamento Departamento { get; set; }

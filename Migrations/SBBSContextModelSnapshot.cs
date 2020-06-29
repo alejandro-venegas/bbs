@@ -27,7 +27,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -63,8 +64,8 @@ namespace bbs_project.Migrations
                     b.Property<int>("ComportamientoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Fecha")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("ObservadorId")
                         .HasColumnType("int");
@@ -109,6 +110,7 @@ namespace bbs_project.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
@@ -121,6 +123,7 @@ namespace bbs_project.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Observado")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProcesoId")
@@ -164,7 +167,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -179,7 +183,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -194,7 +199,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -209,7 +215,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -224,16 +231,19 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int?>("DepartamentoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(25)");
 
                     b.Property<string>("Puesto")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(35)");
 
                     b.HasKey("Id");
 
@@ -249,11 +259,9 @@ namespace bbs_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -307,11 +315,12 @@ namespace bbs_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("GerenteId")
+                    b.Property<int>("GerenteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -344,7 +353,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -359,7 +369,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -389,7 +400,8 @@ namespace bbs_project.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("EfectoId")
                         .HasColumnType("int");
@@ -404,6 +416,7 @@ namespace bbs_project.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Observado")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ParteCuerpoId")
@@ -460,7 +473,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -476,7 +490,7 @@ namespace bbs_project.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -491,7 +505,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -506,7 +521,8 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 
@@ -556,10 +572,12 @@ namespace bbs_project.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("Id");
 
@@ -569,6 +587,7 @@ namespace bbs_project.Migrations
                         new
                         {
                             Id = 1,
+                            Descripcion = "Administrador del Sistema",
                             Nombre = "Administrador"
                         });
                 });
@@ -586,6 +605,28 @@ namespace bbs_project.Migrations
                     b.HasIndex("VistaId");
 
                     b.ToTable("RolVistas");
+
+                    b.HasData(
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = 1
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = 2
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = 3
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = 4
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.TipoComportamiento", b =>
@@ -629,7 +670,7 @@ namespace bbs_project.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(75)");
 
                     b.HasKey("Id");
 

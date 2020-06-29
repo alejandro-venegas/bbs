@@ -13,6 +13,8 @@ namespace bbs.Models
         }
 
         public int Id { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(75)")]
         public string Nombre { get; set; }
 
         public virtual ICollection<CondicionInsegura> CondicionInseguras { get; set; }
