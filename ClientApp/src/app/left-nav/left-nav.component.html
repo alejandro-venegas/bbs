@@ -1,38 +1,59 @@
 <nav>
-  <div class="title-container">
-    <img src="assets/images/logo.png" class="logo" />
+  <div class="title-container" (click)="onLogoClick()">
+    <img src="assets/images/logo.png" class="logo left-nav-transition" />
+    <mat-icon class="more-icon left-nav-transition">more_vert</mat-icon>
   </div>
   <ul class="nav-list">
     <li class="nav-list-item">
       <a
         [routerLink]="['/reportes']"
-        class="nav-list-item-link"
+        class="nav-list-item-link left-nav-transition"
         routerLinkActive="nav-list-item-link-active"
-        >Reportes</a
       >
+        <img
+          class="icon left-nav-transition"
+          src="assets/images/icons/reporte.svg"
+          alt=""
+        />
+        <div>Reportes</div>
+      </a>
     </li>
     <li class="nav-list-item">
       <a
-        class="nav-list-item-link"
+        class="nav-list-item-link left-nav-transition"
         [routerLink]="['/graficos']"
         routerLinkActive="nav-list-item-link-active"
-        >Graficos</a
+        ><img
+          src="assets/images/icons/graficos.svg"
+          class="icon left-nav-transition"
+          alt=""
+        />
+        <div>Gráficos</div></a
       >
     </li>
     <li class="nav-list-item">
       <a
-        class="nav-list-item-link"
+        class="nav-list-item-link left-nav-transition"
         [routerLink]="['/administrar']"
         routerLinkActive="nav-list-item-link-active"
-        >Administrar</a
+        ><img
+          src="assets/images/icons/administracion.svg"
+          class="icon left-nav-transition"
+          alt=""
+        />
+        <div>Administrar</div></a
       >
     </li>
     <li class="nav-list-item">
       <a
-        class="nav-list-item-link"
+        class="nav-list-item-link left-nav-transition"
         [routerLink]="['/mantenimiento']"
         routerLinkActive="nav-list-item-link-active"
-        >Mantenimiento</a
+        ><img
+          src="assets/images/icons/mantenimiento.svg"
+          class="icon left-nav-transition"
+          alt=""
+        />Mantenimiento</a
       >
     </li>
   </ul>

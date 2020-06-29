@@ -3,21 +3,54 @@
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 18rem auto;
+  grid-template-columns: auto auto;
   grid-template-rows: 6rem auto;
   grid-template-areas:
-    'nav header'
-    'nav main';
+    "nav header"
+    "nav main";
+}
+.layout app-left-nav {
+  width: 18rem;
+}
+
+.layout.small-left-nav app-left-nav {
+  width: 5rem;
+}
+.layout.small-left-nav app-header {
+  width: calc(100vw - 5rem);
+  justify-self: flex-start;
+}
+
+::ng-deep .layout.small-left-nav app-left-nav .nav-list-item-link {
+  border-radius: 100%;
+  width: 70%;
+}
+::ng-deep .layout.small-left-nav app-left-nav .logo {
+  opacity: 0;
+}
+::ng-deep .layout.small-left-nav app-left-nav .more-icon {
+  opacity: 1;
+  visibility: visible;
+}
+::ng-deep .layout.small-left-nav app-left-nav .icon {
+  margin: 0 0.85rem;
+}
+.layout.small-left-nav main {
+  width: calc(100vw - 5rem - 4rem - 4rem);
 }
 app-header {
   grid-area: header;
+  justify-self: flex-end;
+  width: calc(100vw - 18rem);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
 }
+
 app-left-nav {
   grid-area: nav;
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
 }
 main {
+  width: calc(100vw - 18rem - 4rem - 4rem);
   grid-area: main;
   align-self: stretch;
   justify-self: stretch;

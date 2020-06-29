@@ -11,8 +11,8 @@
         <td mat-cell *matCellDef="let element">
           {{
             element.gerente
-              ? element.gerente?.nombre + ' ' + element.gerente?.apellido
-              : 'N/A'
+              ? element.gerente?.nombre + " " + element.gerente?.apellido
+              : "N/A"
           }}
         </td>
       </ng-container>
@@ -23,12 +23,12 @@
         <td mat-cell *matCellDef="let element">
           <img
             (click)="onUpdateDepartamento(element)"
-            src="assets/images/icons/edit.png"
+            src="assets/images/icons/editar.svg"
             class="icon"
           />
           <img
             (click)="onDeleteDepartamento(element)"
-            src="assets/images/icons/delete.png"
+            src="assets/images/icons/eliminar.svg"
             class="icon"
           />
         </td>

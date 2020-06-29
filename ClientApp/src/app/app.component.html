@@ -1,7 +1,10 @@
-<div class="layout">
-  <app-header></app-header>
-  <app-left-nav></app-left-nav>
-  <main>
+<div class="layout" [ngClass]="{ 'small-left-nav': smallNav }">
+  <app-header class="left-nav-transition"></app-header>
+  <app-left-nav
+    class="left-nav-transition"
+    (toggleNav)="onNavToggledEvent()"
+  ></app-left-nav>
+  <main class="left-nav-transition">
     <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
