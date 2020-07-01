@@ -17,7 +17,7 @@ namespace bbs.Models
         }
 
         public int Id { get; set; }
-        public int GerenteId { get; set; }
+        public int? GerenteId { get; set; }
         [Column(TypeName = "varchar(75)")]
         [Required]
         public string Nombre { get; set; }

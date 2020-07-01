@@ -8,6 +8,10 @@
 .save-group .save-icon {
   color: #00af23;
 }
+
+.remove-icon {
+  color: var(--red);
+}
 ::ng-deep.done-button .mat-button-ripple.mat-ripple {
   color: #00af23;
 }
