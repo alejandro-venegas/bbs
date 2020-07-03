@@ -207,7 +207,7 @@ mat-radio-group {
 }
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 20rem);
+  grid-template-columns: repeat(auto-fill, 15rem);
   color: rgba(255, 255, 248, 0.5);
   column-gap: 3rem;
   row-gap: 2rem;
@@ -364,8 +364,60 @@ router-outlet + * {
   margin-left: auto;
   cursor: pointer;
 }
+.mobile-label {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 1rem;
+  }
 
-@media only screen and (max-width: 1200px) {
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+    min-height: unset;
+  }
+
+  tr.mat-row,
+  tr.mat-footer-row {
+    height: auto !important;
+  }
+
+  .mat-cell:first-of-type,
+  .mat-footer-cell:first-of-type,
+  .mat-header-cell:first-of-type {
+    padding-left: unset !important;
+  }
+
+  td.mat-cell {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none !important;
+    width: 100%;
+    padding: 0 !important;
+  }
+  tr.mat-row {
+    border-bottom: 1px solid var(--yellow);
+  }
+  tr.mat-row:last-of-type {
+    border-bottom: none;
+  }
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: 0 !important;
+  }
+
   .text-area {
     grid-column: span 1;
   }

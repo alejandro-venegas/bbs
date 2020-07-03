@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { verticalSlider } from "./animations";
 import { TestServiceService } from "./test-service.service";
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { ScreenService } from "./shared/services/screen.service";
 
 @Component({
   selector: "app-root",
@@ -12,10 +14,23 @@ import { TestServiceService } from "./test-service.service";
 export class AppComponent implements OnInit {
   title = "ClientApp";
   smallNav = false;
-  constructor(private testService: TestServiceService) {}
+  useSmallNav: boolean;
+  constructor(
+    private testService: TestServiceService,
+    private screenService: ScreenService
+  ) {}
 
   ngOnInit() {
     this.testService.getTestValues();
+    this.screenService.screenWidthSubject.subscribe((res) => {
+      this.useSmallNav = !(
+        res &&
+        res.breakpoints &&
+        res.breakpoints["(min-width: 1024px)"]
+      );
+      this.smallNav = this.useSmallNav;
+    });
+    this.screenService.initializeBreakPointsSubject();
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -25,6 +40,8 @@ export class AppComponent implements OnInit {
   }
 
   onNavToggledEvent() {
-    this.smallNav = !this.smallNav;
+    if (!this.useSmallNav) {
+      this.smallNav = !this.smallNav;
+    }
   }
 }
