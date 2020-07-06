@@ -1,34 +1,36 @@
-import { NgModule } from '@angular/core';
-import { AdministrarComponent } from './administrar.component';
-import { RolesComponent } from './roles/roles.component';
-import { PerfilesComponent } from './perfiles/perfiles.component';
-import { RouterModule, Routes } from '@angular/router';
-import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
-import { DepartamentosComponent } from './departamentos/departamentos.component';
+import { NgModule } from "@angular/core";
+import { AdministrarComponent } from "./administrar.component";
+import { RolesComponent } from "./roles/roles.component";
+import { PerfilesComponent } from "./perfiles/perfiles.component";
+import { RouterModule, Routes } from "@angular/router";
+import { ColaboradoresComponent } from "./colaboradores/colaboradores.component";
+import { DepartamentosComponent } from "./departamentos/departamentos.component";
+import { AuthGuard } from "../shared/guards/auth.guard";
 const routes: Routes = [
   {
-    path: 'administrar',
+    path: "administrar",
     component: AdministrarComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'roles',
+        path: "roles",
         component: RolesComponent,
-        data: { number: 'sf' },
+        data: { number: "sf" },
       },
       {
-        path: 'perfiles',
+        path: "perfiles",
         component: PerfilesComponent,
-        data: { number: 's2' },
+        data: { number: "s2" },
       },
       {
-        path: 'colaboradores',
+        path: "colaboradores",
         component: ColaboradoresComponent,
-        data: { number: 's3' },
+        data: { number: "s3" },
       },
       {
-        path: 'departamentos',
+        path: "departamentos",
         component: DepartamentosComponent,
-        data: { number: 'sl' },
+        data: { number: "sl" },
       },
     ],
     data: { module: 3 },

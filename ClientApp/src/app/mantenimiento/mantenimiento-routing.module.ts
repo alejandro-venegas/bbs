@@ -1,20 +1,22 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormulariosComponent } from './formularios/formularios.component';
-import { MantenimientoComponent } from './mantenimiento.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { FormulariosComponent } from "./formularios/formularios.component";
+import { MantenimientoComponent } from "./mantenimiento.component";
+import { AuthGuard } from "../shared/guards/auth.guard";
 const routes: Routes = [
   {
-    path: 'mantenimiento',
+    path: "mantenimiento",
     component: MantenimientoComponent,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: 'formularios',
+        path: "formularios",
         component: FormulariosComponent,
-        data: { number: 'sf' },
+        data: { number: "sf" },
       },
     ],
     data: {
-      module: 'l',
+      module: "l",
     },
   },
 ];

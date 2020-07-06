@@ -9,6 +9,7 @@
         [routerLink]="['/reportes']"
         class="nav-list-item-link left-nav-transition"
         routerLinkActive="nav-list-item-link-active"
+        *ngIf="isPermitted('reportes')"
       >
         <img
           class="icon left-nav-transition"
@@ -23,6 +24,7 @@
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/graficos']"
         routerLinkActive="nav-list-item-link-active"
+        *ngIf="isPermitted('graficos')"
         ><img
           src="assets/images/icons/graficos.svg"
           class="icon left-nav-transition"
@@ -36,6 +38,7 @@
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/administrar']"
         routerLinkActive="nav-list-item-link-active"
+        *ngIf="isPermitted('administrar')"
         ><img
           src="assets/images/icons/administracion.svg"
           class="icon left-nav-transition"
@@ -48,6 +51,7 @@
       <a
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/mantenimiento']"
+        *ngIf="isPermitted('mantenimiento')"
         routerLinkActive="nav-list-item-link-active"
         ><img
           src="assets/images/icons/mantenimiento.svg"

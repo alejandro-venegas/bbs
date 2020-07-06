@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { AuthService } from "../shared/services/auth.service";
 
 @Component({
   selector: "app-left-nav",
@@ -7,11 +8,30 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 })
 export class LeftNavComponent implements OnInit {
   @Output() toggleNav = new EventEmitter();
-  constructor() {}
+  permittedViews: any[] = [];
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserViews();
+  }
 
   onLogoClick() {
     this.toggleNav.emit();
+  }
+
+  getUserViews() {
+    this.authService.getCurrentUserRol().subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.permittedViews = res.rolVistas.map((rolVista) =>
+          rolVista.vista.nombre.toLowerCase()
+        );
+        console.log(this.permittedViews);
+      }
+    });
+  }
+
+  isPermitted(nombre: string) {
+    return this.permittedViews.find((value) => value === nombre);
   }
 }
