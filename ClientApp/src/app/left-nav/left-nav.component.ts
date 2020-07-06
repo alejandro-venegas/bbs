@@ -13,6 +13,7 @@ export class LeftNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserViews();
+    this.authService.rolChangedSubject.subscribe((res) => this.getUserViews());
   }
 
   onLogoClick() {

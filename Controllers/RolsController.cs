@@ -24,7 +24,10 @@ namespace bbs.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRol(int id){
-            var roles = await _context.Roles.FirstOrDefaultAsync( x => x.Id == id);
+            var roles = await _context.Roles.Include(rol => rol.RolVistas).ThenInclude(rolVista => rolVista.Vista).FirstOrDefaultAsync( x => x.Id == id);
+            if(roles == null){
+                return NotFound();
+            }
             return Ok(roles);
         }
         [HttpPost("new")]
@@ -46,7 +49,11 @@ namespace bbs.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRol(int id){
             Rol rol = new Rol();
+            if(id == 1){
+                return BadRequest();
+            }
             rol.Id = id;
+            
             _context.Roles.Remove(rol);
             await _context.SaveChangesAsync();
             return StatusCode(202);
