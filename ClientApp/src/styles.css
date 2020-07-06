@@ -5,6 +5,7 @@
   --blue: #0a1e38;
   --white: #fffff8;
   --red: #e00707;
+  --black: #212121;
 }
 body {
   margin: 0;
@@ -384,6 +385,7 @@ router-outlet + * {
     align-items: start;
     padding: 8px 24px;
     min-height: unset;
+    text-align: right;
   }
 
   tr.mat-row,

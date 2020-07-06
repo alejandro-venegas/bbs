@@ -9,14 +9,21 @@
         [routerLink]="['/reportes']"
         class="nav-list-item-link left-nav-transition"
         routerLinkActive="nav-list-item-link-active"
+        #reportes="routerLinkActive"
         *ngIf="isPermitted('reportes')"
       >
         <img
           class="icon left-nav-transition"
-          src="assets/images/icons/reporte.svg"
+          [src]="
+            reportes.isActive
+              ? 'assets/images/icons/reporte-active.svg'
+              : 'assets/images/icons/reporte.svg'
+          "
           alt=""
         />
-        <div>Reportes</div>
+        <div>
+          <div class="nav-list-item-text">Reportes</div>
+        </div>
       </a>
     </li>
     <li class="nav-list-item">
@@ -24,13 +31,20 @@
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/graficos']"
         routerLinkActive="nav-list-item-link-active"
+        #graficos="routerLinkActive"
         *ngIf="isPermitted('graficos')"
         ><img
-          src="assets/images/icons/graficos.svg"
+          [src]="
+            graficos.isActive
+              ? 'assets/images/icons/graficos-active.svg'
+              : 'assets/images/icons/graficos.svg'
+          "
           class="icon left-nav-transition"
           alt=""
         />
-        <div>Gráficos</div></a
+        <div>
+          <div class="nav-list-item-text">Gráficos</div>
+        </div></a
       >
     </li>
     <li class="nav-list-item">
@@ -38,13 +52,18 @@
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/administrar']"
         routerLinkActive="nav-list-item-link-active"
+        #administracion="routerLinkActive"
         *ngIf="isPermitted('administrar')"
         ><img
-          src="assets/images/icons/administracion.svg"
+          [src]="
+            administracion.isActive
+              ? 'assets/images/icons/administracion-active.svg'
+              : 'assets/images/icons/administracion.svg'
+          "
           class="icon left-nav-transition"
           alt=""
         />
-        <div>Administrar</div></a
+        <div class="nav-list-item-text">Administrar</div></a
       >
     </li>
     <li class="nav-list-item">
@@ -52,12 +71,17 @@
         class="nav-list-item-link left-nav-transition"
         [routerLink]="['/mantenimiento']"
         *ngIf="isPermitted('mantenimiento')"
+        #mantenimiento="routerLinkActive"
         routerLinkActive="nav-list-item-link-active"
         ><img
-          src="assets/images/icons/mantenimiento.svg"
+          [src]="
+            mantenimiento.isActive
+              ? 'assets/images/icons/mantenimiento-active.svg'
+              : 'assets/images/icons/mantenimiento.svg'
+          "
           class="icon left-nav-transition"
           alt=""
-        />Mantenimiento</a
+        /><span class="nav-list-item-text">Mantenimiento</span></a
       >
     </li>
   </ul>

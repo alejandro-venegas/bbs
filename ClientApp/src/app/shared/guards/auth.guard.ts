@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
           const permittedViews = res.rolVistas.map((rolVista) =>
             rolVista.vista.nombre.toLowerCase()
           );
-          if (permittedViews.find((view) => view === state.url.substr(1))) {
+          if (permittedViews.find((view) => view === state.url.split("/")[1])) {
             return true;
           }
         }

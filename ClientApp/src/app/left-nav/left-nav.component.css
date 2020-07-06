@@ -82,3 +82,45 @@ nav {
   opacity: 0;
   visibility: hidden;
 }
+@media (max-width: 600px) {
+  nav {
+    flex-flow: row;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .nav-list {
+    flex-flow: row;
+    margin: 0;
+    justify-content: space-evenly;
+    width: 80%;
+    background-color: var(--yellow);
+    height: 60%;
+    border-radius: 2rem;
+  }
+  .title-container {
+    display: none;
+  }
+  .nav-list-item-text {
+    display: none;
+  }
+  .nav-list-item-link {
+    margin: 0;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-list-item img {
+    margin: 0;
+  }
+  .nav-divider {
+    display: none;
+  }
+  .nav-list-item-link-active {
+    background-color: transparent;
+  }
+}
