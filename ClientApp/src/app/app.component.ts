@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       this.useSmallNav = !(
         res &&
         res.breakpoints &&
-        res.breakpoints["(min-width: 1024px)"]
+        res.breakpoints["(min-width: 1110px)"]
       );
       this.smallNav = this.useSmallNav;
     });

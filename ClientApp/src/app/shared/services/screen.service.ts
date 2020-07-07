@@ -12,8 +12,9 @@ export class ScreenService {
 
   initializeBreakPointsSubject() {
     this.breakpointObserver
-      .observe(["(min-width: 1024px)"])
+      .observe(["(min-width: 1110px)", "(max-width: 600px)"])
       .subscribe((res) => {
+        console.log(res);
         this.screenWidthSubject.next(res);
       });
   }

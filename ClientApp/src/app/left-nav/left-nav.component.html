@@ -15,7 +15,7 @@
         <img
           class="icon left-nav-transition"
           [src]="
-            reportes.isActive
+            reportes.isActive && isMobileScreen
               ? 'assets/images/icons/reporte-active.svg'
               : 'assets/images/icons/reporte.svg'
           "
@@ -35,7 +35,7 @@
         *ngIf="isPermitted('graficos')"
         ><img
           [src]="
-            graficos.isActive
+            graficos.isActive && isMobileScreen
               ? 'assets/images/icons/graficos-active.svg'
               : 'assets/images/icons/graficos.svg'
           "
@@ -56,7 +56,7 @@
         *ngIf="isPermitted('administrar')"
         ><img
           [src]="
-            administracion.isActive
+            administracion.isActive && isMobileScreen
               ? 'assets/images/icons/administracion-active.svg'
               : 'assets/images/icons/administracion.svg'
           "
@@ -75,7 +75,7 @@
         routerLinkActive="nav-list-item-link-active"
         ><img
           [src]="
-            mantenimiento.isActive
+            mantenimiento.isActive && isMobileScreen
               ? 'assets/images/icons/mantenimiento-active.svg'
               : 'assets/images/icons/mantenimiento.svg'
           "

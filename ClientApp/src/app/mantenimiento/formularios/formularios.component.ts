@@ -1,125 +1,130 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 
-import { rowAnimation, treeAnimation } from '../../animations';
+import { rowAnimation, treeAnimation } from "../../animations";
 
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { BehaviorSubject } from 'rxjs';
-import { SelectNode, TreeDataSource } from './tree-datasource';
-import { FormulariosService } from '../../shared/services/formularios.service';
+import { NestedTreeControl } from "@angular/cdk/tree";
+import { MatTreeNestedDataSource } from "@angular/material/tree";
+import { BehaviorSubject } from "rxjs";
+import { SelectNode, TreeDataSource } from "./tree-datasource";
+import { FormulariosService } from "../../shared/services/formularios.service";
+import { MatDialog } from "@angular/material/dialog";
+import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/eliminar-dialog.component";
 
 /**
  * @title Tree with nested nodes
  */
 @Component({
-  selector: 'app-formularios',
-  templateUrl: './formularios.component.html',
-  styleUrls: ['./formularios.component.css'],
+  selector: "app-formularios",
+  templateUrl: "./formularios.component.html",
+  styleUrls: ["./formularios.component.css"],
   animations: [rowAnimation, treeAnimation],
 })
 export class FormulariosComponent implements OnInit {
   isValid = true;
   TREE_DATA: SelectNode[] = [
     {
-      nombre: 'Actividades',
-      selectId: '1',
+      nombre: "Actividades",
+      selectId: "1",
       children: [],
     },
     {
-      nombre: 'Areas',
-      selectId: '2',
+      nombre: "Areas",
+      selectId: "2",
       children: [],
     },
     {
-      nombre: 'Casualidades',
-      selectId: '3',
+      nombre: "Casualidades",
+      selectId: "3",
       children: [],
     },
     {
-      nombre: 'Causas Basicas',
-      selectId: '4',
+      nombre: "Causas Basicas",
+      selectId: "4",
       children: [],
     },
     {
-      nombre: 'Causas Inmediatas',
-      selectId: '5',
+      nombre: "Causas Inmediatas",
+      selectId: "5",
       children: [],
     },
     {
-      nombre: 'Clasificaciones',
-      selectId: '6',
+      nombre: "Clasificaciones",
+      selectId: "6",
       children: [],
     },
     {
-      nombre: 'Comportamientos',
-      selectId: '7',
+      nombre: "Comportamientos",
+      selectId: "7",
       children: [],
     },
     {
-      nombre: 'Efectos',
-      selectId: '8',
+      nombre: "Efectos",
+      selectId: "8",
       children: [],
     },
     {
-      nombre: 'Factor Riesgo',
-      selectId: '9',
+      nombre: "Factor Riesgo",
+      selectId: "9",
       children: [],
     },
     {
-      nombre: 'Generos',
-      selectId: '10',
+      nombre: "Generos",
+      selectId: "10",
       children: [],
     },
     {
-      nombre: 'Indicadores de Riesgo',
-      selectId: '11',
+      nombre: "Indicadores de Riesgo",
+      selectId: "11",
       children: [],
     },
     {
-      nombre: 'Jornadas',
-      selectId: '12',
+      nombre: "Jornadas",
+      selectId: "12",
       children: [],
     },
     {
-      nombre: 'Observados',
-      selectId: '13',
+      nombre: "Observados",
+      selectId: "13",
       children: [],
     },
     {
-      nombre: 'Partes del cuerpo',
-      selectId: '14',
+      nombre: "Partes del cuerpo",
+      selectId: "14",
       children: [],
     },
     {
-      nombre: 'Procesos',
-      selectId: '15',
+      nombre: "Procesos",
+      selectId: "15",
       children: [],
     },
     {
-      nombre: 'Riesgos',
-      selectId: '16',
+      nombre: "Riesgos",
+      selectId: "16",
       children: [],
     },
     {
-      nombre: 'Tipos de Comportamiento',
-      selectId: '17',
+      nombre: "Tipos de Comportamiento",
+      selectId: "17",
       children: [],
     },
     {
-      nombre: 'Tipos de Observado',
-      selectId: '18',
+      nombre: "Tipos de Observado",
+      selectId: "18",
       children: [],
     },
     {
-      nombre: 'Turnos',
-      selectId: '19',
+      nombre: "Turnos",
+      selectId: "19",
       children: [],
     },
   ];
 
   treeControl = new NestedTreeControl<SelectNode>((node) => node.children);
   dataSource = new TreeDataSource(this.treeControl, []);
-  constructor(private formulariosService: FormulariosService) {}
+  constructor(
+    private formulariosService: FormulariosService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.initializeData();
@@ -135,11 +140,24 @@ export class FormulariosComponent implements OnInit {
   }
   remove(node: SelectNode) {
     if (node.nombre) {
-      this.formulariosService.deleteSelect(node).subscribe((res) => {
-        if (res.status === 202) {
-          this.dataSource.remove(node);
-        }
-      });
+      this.dialog
+        .open(EliminarDialogComponent, {
+          minWidth: "35vw",
+          data: {
+            title: "ELIMINAR COLABORADOR",
+            content: `¿Desea eliminar el colaborador ${node.nombre}?`,
+          },
+        })
+        .afterClosed()
+        .subscribe((res) => {
+          if (res) {
+            this.formulariosService.deleteSelect(node).subscribe((res) => {
+              if (res.status === 202) {
+                this.dataSource.remove(node);
+              }
+            });
+          }
+        });
     } else {
       this.dataSource.remove(node);
     }
