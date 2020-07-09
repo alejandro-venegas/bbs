@@ -12,24 +12,37 @@ const routes: Routes = [
   {
     path: "reportes",
     component: ReportesComponent,
-    canActivate: [AuthGuard],
+
     children: [
-      { path: "lista", component: ListaComponent, data: { number: "sf" } },
+      {
+        path: "lista",
+        component: ListaComponent,
+        data: { number: "sf" },
+        canActivate: [AuthGuard],
+      },
       {
         path: "incidente",
         component: IncidenteComponent,
         data: { number: "s2" },
+        canActivate: [AuthGuard],
       },
       {
         path: "casi-incidente",
         component: CasiIncidenteComponent,
         data: { number: "s3" },
+        canActivate: [AuthGuard],
       },
-      { path: "bbs", component: BbsComponent, data: { number: "s4" } },
+      {
+        path: "bbs",
+        component: BbsComponent,
+        data: { number: "s4" },
+        canActivate: [AuthGuard],
+      },
       {
         path: "condiciones-inseguras",
         component: CondicionesInsegurasComponent,
         data: { number: "sl" },
+        canActivate: [AuthGuard],
       },
     ],
     data: { module: "f" },

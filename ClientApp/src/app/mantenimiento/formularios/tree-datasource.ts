@@ -1,6 +1,6 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTreeNestedDataSource, MatTree } from '@angular/material/tree';
+import { NestedTreeControl } from "@angular/cdk/tree";
+import { Component, ViewChild, AfterViewInit } from "@angular/core";
+import { MatTreeNestedDataSource, MatTree } from "@angular/material/tree";
 
 /**
  * Food data with nested structure.
@@ -11,6 +11,7 @@ export interface SelectNode {
   selectId: string;
   optionId?: string;
   children?: SelectNode[];
+  editMode?: boolean;
 }
 
 export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
@@ -26,19 +27,29 @@ export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
   public add(node: SelectNode, parent: SelectNode) {
     // add dummy root so we only have to deal with `SelectNode`s
     const newTreeData = {
-      nombre: 'Dummy Root',
-      selectId: '',
+      nombre: "Dummy Root",
+      selectId: "",
       children: this.data,
     };
     this._add(node, parent, newTreeData);
     this.data = newTreeData.children;
   }
 
+  public updateNode(node: SelectNode) {
+    const newTreeData = {
+      nombre: "Dummy Root",
+      selectId: "",
+      children: this.data,
+    };
+    this._updateItem(node, newTreeData);
+    this.data = newTreeData.children;
+  }
+
   /** Remove node from tree */
   public remove(node: SelectNode) {
     const newTreeData = {
-      nombre: 'Dummy Root',
-      selectId: '',
+      nombre: "Dummy Root",
+      selectId: "",
       children: this.data,
     };
     this._remove(node, newTreeData);
@@ -64,6 +75,24 @@ export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
       return false;
     }
     return this.update(tree, this._add.bind(this, newNode, parent));
+  }
+
+  _updateItem(node: SelectNode, tree: SelectNode): boolean {
+    if (!tree.children) {
+      return false;
+    }
+    const i = tree.children.indexOf(node);
+    node.editMode = true;
+    if (i > -1) {
+      tree.children = [
+        ...tree.children.slice(0, i),
+        node,
+        ...tree.children.slice(i + 1),
+      ];
+      console.log(`found ${node.nombre}, removing it from`, tree);
+      return true;
+    }
+    return this.update(tree, this._updateItem.bind(this, node));
   }
 
   _remove(node: SelectNode, tree: SelectNode): boolean {

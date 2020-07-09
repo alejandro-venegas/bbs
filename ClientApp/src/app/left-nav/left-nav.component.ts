@@ -35,11 +35,9 @@ export class LeftNavComponent implements OnInit {
   getUserViews() {
     this.authService.getCurrentUserRol().subscribe((res) => {
       if (res) {
-        console.log(res);
-        this.permittedViews = res.rolVistas.map((rolVista) =>
-          rolVista.vista.nombre.toLowerCase()
+        this.permittedViews = res.rolVistas.map(
+          (rolVista) => rolVista.vista.url.split("/")[1]
         );
-        console.log(this.permittedViews);
       }
     });
   }

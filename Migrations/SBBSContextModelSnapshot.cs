@@ -588,7 +588,7 @@ namespace bbs_project.Migrations
                         {
                             Id = 1,
                             Descripcion = "Administrador del Sistema",
-                            Nombre = "Administrador"
+                            Nombre = "Superadministrador"
                         });
                 });
 
@@ -597,8 +597,11 @@ namespace bbs_project.Migrations
                     b.Property<int>("RolId")
                         .HasColumnType("int");
 
-                    b.Property<int>("VistaId")
-                        .HasColumnType("int");
+                    b.Property<byte>("VistaId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("Escritura")
+                        .HasColumnType("bit");
 
                     b.HasKey("RolId", "VistaId");
 
@@ -610,22 +613,68 @@ namespace bbs_project.Migrations
                         new
                         {
                             RolId = 1,
-                            VistaId = 1
+                            VistaId = (byte)1,
+                            Escritura = true
                         },
                         new
                         {
                             RolId = 1,
-                            VistaId = 2
+                            VistaId = (byte)2,
+                            Escritura = true
                         },
                         new
                         {
                             RolId = 1,
-                            VistaId = 3
+                            VistaId = (byte)3,
+                            Escritura = true
                         },
                         new
                         {
                             RolId = 1,
-                            VistaId = 4
+                            VistaId = (byte)4,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)5,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)6,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)7,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)8,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)9,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)10,
+                            Escritura = true
+                        },
+                        new
+                        {
+                            RolId = 1,
+                            VistaId = (byte)11,
+                            Escritura = true
                         });
                 });
 
@@ -694,14 +743,16 @@ namespace bbs_project.Migrations
 
             modelBuilder.Entity("bbs.Models.Vista", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<byte>("Id")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("varchar(75)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -710,23 +761,69 @@ namespace bbs_project.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Nombre = "Reportes"
+                            Id = (byte)1,
+                            Nombre = "Reportes",
+                            Url = "/reportes/lista"
                         },
                         new
                         {
-                            Id = 2,
-                            Nombre = "Graficos"
+                            Id = (byte)2,
+                            Nombre = "Incidente",
+                            Url = "/reportes/incidente"
                         },
                         new
                         {
-                            Id = 3,
-                            Nombre = "Administrar"
+                            Id = (byte)3,
+                            Nombre = "Casi Incidente",
+                            Url = "/reportes/casi-incidente"
                         },
                         new
                         {
-                            Id = 4,
-                            Nombre = "Mantenimiento"
+                            Id = (byte)4,
+                            Nombre = "BBS",
+                            Url = "/reportes/bbs"
+                        },
+                        new
+                        {
+                            Id = (byte)5,
+                            Nombre = "Condiciones Inseguras",
+                            Url = "/reportes/condiciones-inseguras"
+                        },
+                        new
+                        {
+                            Id = (byte)6,
+                            Nombre = "Gráficos",
+                            Url = "/graficos"
+                        },
+                        new
+                        {
+                            Id = (byte)7,
+                            Nombre = "Roles",
+                            Url = "/administrar/roles"
+                        },
+                        new
+                        {
+                            Id = (byte)8,
+                            Nombre = "Perfiles",
+                            Url = "/administrar/perfiles"
+                        },
+                        new
+                        {
+                            Id = (byte)9,
+                            Nombre = "Colaboradores",
+                            Url = "/administrar/colaboradores"
+                        },
+                        new
+                        {
+                            Id = (byte)10,
+                            Nombre = "Departamentos",
+                            Url = "/administrar/departamentos"
+                        },
+                        new
+                        {
+                            Id = (byte)11,
+                            Nombre = "Formularios",
+                            Url = "/mantenimiento/formularios"
                         });
                 });
 

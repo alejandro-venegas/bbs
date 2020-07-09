@@ -133,13 +133,20 @@ export class FormulariosComponent implements OnInit {
   hasChild = (_: number, node: SelectNode) => !!node.children;
   hasNoChild = (_: number, node: SelectNode) => !!!node.children;
   hasNoContent = (_: number, node: SelectNode) => !!!node.nombre;
+  isUpdate = (_: number, node: SelectNode) => node.editMode;
 
   addNewItem(nombre: string, parentNode: SelectNode) {
     this.treeControl.expand(parentNode);
     this.dataSource.add({ nombre, selectId: parentNode.selectId }, parentNode);
   }
+
+  updateItem(node: SelectNode) {
+    console.log(node);
+    this.dataSource.updateNode(node);
+  }
+
   remove(node: SelectNode) {
-    if (node.nombre) {
+    if (node.nombre && !node.editMode) {
       this.dialog
         .open(EliminarDialogComponent, {
           minWidth: "35vw",

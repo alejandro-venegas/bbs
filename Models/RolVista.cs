@@ -7,8 +7,9 @@ namespace bbs.Models
         [Required]
         public int RolId {get;set;}
         public Rol Rol {get;set;}
+        public bool Escritura{get;set;}
         [Required]
-        public int VistaId { get; set; }
+        public byte VistaId { get; set; }
         public Vista Vista {get;set;}
     }
 }

@@ -35,11 +35,12 @@ namespace bbs.Controllers
             Rol rol = new Rol();
             rol.Nombre = rolToInsert.Nombre;
             rol.Descripcion = rolToInsert.Descripcion;
-            foreach(int vistaId in rolToInsert.Vistas)
+            foreach(VistaDto vista in rolToInsert.Vistas)
             {
                 RolVista rolVista = new RolVista();
                 rolVista.Rol = rol;
-                rolVista.VistaId = vistaId;
+                rolVista.VistaId = vista.Id;
+                rolVista.Escritura = vista.Escritura;
                 await _context.RolVistas.AddAsync(rolVista);
             }
             await _context.Roles.AddAsync(rol);
@@ -67,14 +68,15 @@ namespace bbs.Controllers
             {
                 result.Nombre = updatedRol.Nombre;
                 result.Descripcion = updatedRol.Descripcion;
-                foreach(int vistaId in updatedRol.Vistas){
-                    var vista = await _context.Vistas.FirstOrDefaultAsync( x => x.Id == vistaId);
+                foreach(VistaDto vista in updatedRol.Vistas){
+                    
 
                     if(vista != null){
                         
                     newRolVistas.Add(new RolVista{
                          RolId = result.Id,
-                         VistaId = vista.Id
+                         VistaId = vista.Id,
+                         Escritura = vista.Escritura
                     });
                     }
                     

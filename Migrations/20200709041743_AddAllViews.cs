@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace bbs_project.Migrations
 {
-    public partial class AddValidatorsFix : Migration
+    public partial class AddAllViews : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -286,9 +286,9 @@ namespace bbs_project.Migrations
                 name: "Vistas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "varchar(75)", nullable: false)
+                    Id = table.Column<byte>(nullable: false),
+                    Nombre = table.Column<string>(type: "varchar(75)", nullable: false),
+                    Url = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -300,7 +300,8 @@ namespace bbs_project.Migrations
                 columns: table => new
                 {
                     RolId = table.Column<int>(nullable: false),
-                    VistaId = table.Column<int>(nullable: false)
+                    VistaId = table.Column<byte>(nullable: false),
+                    Escritura = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -614,28 +615,42 @@ namespace bbs_project.Migrations
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "Descripcion", "Nombre" },
-                values: new object[] { 1, "Administrador del Sistema", "Administrador" });
+                values: new object[] { 1, "Administrador del Sistema", "Superadministrador" });
 
             migrationBuilder.InsertData(
                 table: "Vistas",
-                columns: new[] { "Id", "Nombre" },
+                columns: new[] { "Id", "Nombre", "Url" },
                 values: new object[,]
                 {
-                    { 1, "Reportes" },
-                    { 2, "Graficos" },
-                    { 3, "Administrar" },
-                    { 4, "Mantenimiento" }
+                    { (byte)1, "Reportes", "/reportes/lista" },
+                    { (byte)2, "Incidente", "/reportes/incidente" },
+                    { (byte)3, "Casi Incidente", "/reportes/casi-incidente" },
+                    { (byte)4, "BBS", "/reportes/bbs" },
+                    { (byte)5, "Condiciones Inseguras", "/reportes/condiciones-inseguras" },
+                    { (byte)6, "Gráficos", "/graficos" },
+                    { (byte)7, "Roles", "/administrar/roles" },
+                    { (byte)8, "Perfiles", "/administrar/perfiles" },
+                    { (byte)9, "Colaboradores", "/administrar/colaboradores" },
+                    { (byte)10, "Departamentos", "/administrar/departamentos" },
+                    { (byte)11, "Formularios", "/mantenimiento/formularios" }
                 });
 
             migrationBuilder.InsertData(
                 table: "RolVistas",
-                columns: new[] { "RolId", "VistaId" },
+                columns: new[] { "RolId", "VistaId", "Escritura" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 1, 2 },
-                    { 1, 3 },
-                    { 1, 4 }
+                    { 1, (byte)1, true },
+                    { 1, (byte)2, true },
+                    { 1, (byte)3, true },
+                    { 1, (byte)4, true },
+                    { 1, (byte)5, true },
+                    { 1, (byte)6, true },
+                    { 1, (byte)7, true },
+                    { 1, (byte)8, true },
+                    { 1, (byte)9, true },
+                    { 1, (byte)10, true },
+                    { 1, (byte)11, true }
                 });
 
             migrationBuilder.CreateIndex(

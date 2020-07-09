@@ -111,114 +111,133 @@ namespace bbs.Controllers
                         Nombre= selectDto.Nombre
                     };
                     await _context.Actividades.AddAsync(actividad);
+                    await _context.SaveChangesAsync();
                     break;
                 case 2:
                     Area Area = new Area{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Areas.AddAsync(Area);
+                    await _context.SaveChangesAsync();
                     break;
                 case 3:
                     Casualidad Casualidad = new Casualidad{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Casualidades.AddAsync(Casualidad);
+                    await _context.SaveChangesAsync();
                     break;
                 case 4:
                     CausaBasica CausaBasica = new CausaBasica{
                         Nombre= selectDto.Nombre
                     };
                     await _context.CausaBasicas.AddAsync(CausaBasica);
+                    await _context.SaveChangesAsync();
                     break;
                 case 5:
                     CausaInmediata CausaInmediata = new CausaInmediata{
                         Nombre= selectDto.Nombre
                     };
                     await _context.CausaInmediatas.AddAsync(CausaInmediata);
+                    await _context.SaveChangesAsync();
                     break;
                 case 6:
                     Clasificacion Clasificacion = new Clasificacion{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Clasificaciones.AddAsync(Clasificacion);
+                    await _context.SaveChangesAsync();
                     break;
                 case 7:
                     Comportamiento Comportamiento = new Comportamiento{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Comportamientos.AddAsync(Comportamiento);
+                    await _context.SaveChangesAsync();
                     break;
                 case 8:
                     Efecto Efecto = new Efecto{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Efectos.AddAsync(Efecto);
+                    await _context.SaveChangesAsync();
                     break;
                 case 9:
                     FactorRiesgo FactorRiesgo = new FactorRiesgo{
                         Nombre= selectDto.Nombre
                     };
                     await _context.FactorRiesgos.AddAsync(FactorRiesgo);
+                    await _context.SaveChangesAsync();
                     break;
                 case 10:
                     Genero Genero = new Genero{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Generos.AddAsync(Genero);
+                    await _context.SaveChangesAsync();
                     break;
                 case 11:
                     IndicadorRiesgo IndicadorRiesgo = new IndicadorRiesgo{
                         Nombre= selectDto.Nombre
                     };
                     await _context.IndicadorRiesgos.AddAsync(IndicadorRiesgo);
+                    await _context.SaveChangesAsync();
                     break;
                 case 12:
                     Jornada Jornada = new Jornada{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Jornadas.AddAsync(Jornada);
+                    await _context.SaveChangesAsync();
                     break;
                 case 13:
                     Observado Observado = new Observado{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Observados.AddAsync(Observado);
+                    await _context.SaveChangesAsync();
                     break;
                 case 14:
                     ParteCuerpo ParteCuerpo = new ParteCuerpo{
                         Nombre= selectDto.Nombre
                     };
                     await _context.ParteCuerpos.AddAsync(ParteCuerpo);
+                    await _context.SaveChangesAsync();
                     break;
                 case 15:
                     Proceso Proceso = new Proceso{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Procesos.AddAsync(Proceso);
+                    await _context.SaveChangesAsync();
                     break;
                 case 16:
                     Riesgo Riesgo = new Riesgo{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Riesgos.AddAsync(Riesgo);
+                    await _context.SaveChangesAsync();
                     break;
                 case 17:
                     TipoComportamiento TipoComportamiento = new TipoComportamiento{
                         Nombre= selectDto.Nombre
                     };
                     await _context.TipoComportamientos.AddAsync(TipoComportamiento);
+                    await _context.SaveChangesAsync();
                     break;
                 case 18:
                     TipoObservado TipoObservado = new TipoObservado{
                         Nombre= selectDto.Nombre
                     };
                     await _context.TipoObservados.AddAsync(TipoObservado);
+                    await _context.SaveChangesAsync();
                     break;
                 case 19:
                     Turno Turno = new Turno{
                         Nombre= selectDto.Nombre
                     };
                     await _context.Turnos.AddAsync(Turno);
+                    await _context.SaveChangesAsync();
                     break;
 
                 
@@ -229,10 +248,8 @@ namespace bbs.Controllers
             if(notFound){
                 return StatusCode(400);
             }
-            else{
-                await _context.SaveChangesAsync();
                 return StatusCode(201);
-            }
+           
         }
 
         [HttpDelete]

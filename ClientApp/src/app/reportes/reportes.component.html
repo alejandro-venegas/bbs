@@ -3,54 +3,55 @@
     <nav mat-tab-nav-bar class="sub-nav-menu">
       <a
         mat-tab-link
-        [routerLink]="['lista']"
+        [routerLink]="[view.url]"
         routerLinkActive
         disableRipple
         #rlaa="routerLinkActive"
+        *ngFor="let view of permittedViews"
         [active]="rlaa.isActive"
       >
-        LISTA
+        {{ view.nombre | uppercase }}
       </a>
-      <a
-        mat-tab-link
-        [routerLink]="['incidente']"
-        routerLinkActive
-        disableRipple
-        #rla="routerLinkActive"
-        [active]="rla.isActive"
-      >
-        INCIDENTE
-      </a>
-      <a
-        mat-tab-link
-        [routerLink]="['casi-incidente']"
-        routerLinkActive
-        disableRipple
-        #rlb="routerLinkActive"
-        [active]="rlb.isActive"
-      >
-        CASI INCIDENTE
-      </a>
-      <a
-        mat-tab-link
-        [routerLink]="['bbs']"
-        routerLinkActive
-        disableRipple
-        #rlc="routerLinkActive"
-        [active]="rlc.isActive"
-      >
-        BBS
-      </a>
-      <a
-        mat-tab-link
-        [routerLink]="['condiciones-inseguras']"
-        routerLinkActive
-        disableRipple
-        #rld="routerLinkActive"
-        [active]="rld.isActive"
-      >
-        CONDICIONES INSEGURAS
-      </a>
+      <!--      <a-->
+      <!--        mat-tab-link-->
+      <!--        [routerLink]="['incidente']"-->
+      <!--        routerLinkActive-->
+      <!--        disableRipple-->
+      <!--        #rla="routerLinkActive"-->
+      <!--        [active]="rla.isActive"-->
+      <!--      >-->
+      <!--        INCIDENTE-->
+      <!--      </a>-->
+      <!--      <a-->
+      <!--        mat-tab-link-->
+      <!--        [routerLink]="['casi-incidente']"-->
+      <!--        routerLinkActive-->
+      <!--        disableRipple-->
+      <!--        #rlb="routerLinkActive"-->
+      <!--        [active]="rlb.isActive"-->
+      <!--      >-->
+      <!--        CASI INCIDENTE-->
+      <!--      </a>-->
+      <!--      <a-->
+      <!--        mat-tab-link-->
+      <!--        [routerLink]="['bbs']"-->
+      <!--        routerLinkActive-->
+      <!--        disableRipple-->
+      <!--        #rlc="routerLinkActive"-->
+      <!--        [active]="rlc.isActive"-->
+      <!--      >-->
+      <!--        BBS-->
+      <!--      </a>-->
+      <!--      <a-->
+      <!--        mat-tab-link-->
+      <!--        [routerLink]="['condiciones-inseguras']"-->
+      <!--        routerLinkActive-->
+      <!--        disableRipple-->
+      <!--        #rld="routerLinkActive"-->
+      <!--        [active]="rld.isActive"-->
+      <!--      >-->
+      <!--        CONDICIONES INSEGURAS-->
+      <!--      </a>-->
     </nav>
   </div>
 

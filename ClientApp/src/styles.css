@@ -211,6 +211,15 @@ mat-radio-group {
   background: rgba(255, 255, 255, 0.32);
   border-radius: 1rem;
 }
+mat-dialog-container::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.5rem;
+  height: 80%;
+}
+mat-dialog-container::-webkit-scrollbar-thumb {
+  background: var(--yellow);
+  border-radius: 1rem;
+}
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 15rem);
@@ -348,6 +357,8 @@ router-outlet + * {
 .dialog-content {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  max-height: 85vh;
 }
 .dialog-title {
   color: var(--yellow);

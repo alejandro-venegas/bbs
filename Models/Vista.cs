@@ -6,10 +6,13 @@ namespace bbs.Models
     public partial class Vista
     {
         
-        public int Id {get;set;}
+        public byte Id {get;set;}
         [Column(TypeName = "varchar(75)")]
         [Required]
         public string Nombre{get;set;}
+        [Column(TypeName = "varchar(100)")]
+        [Required]
+        public string Url{get;set;}
         public virtual ICollection<RolVista> RolVistas { get; set; }
     }
 }

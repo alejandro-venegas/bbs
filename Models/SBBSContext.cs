@@ -229,21 +229,36 @@ namespace bbs.Models
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Vista>().HasData(
-                new Vista{Id = 1,Nombre = "Reportes"},
-                new Vista{Id = 2,Nombre = "Graficos"},
-                new Vista{Id = 3,Nombre = "Administrar"},
-                new Vista{Id = 4,Nombre = "Mantenimiento"}
+                new Vista{Id = 1,Nombre = "Reportes", Url="/reportes/lista"},
+                new Vista{Id = 2,Nombre = "Incidente", Url="/reportes/incidente"},
+                new Vista{Id = 3,Nombre = "Casi Incidente", Url="/reportes/casi-incidente"},
+                new Vista{Id = 4,Nombre = "BBS", Url="/reportes/bbs"},
+                new Vista{Id = 5,Nombre = "Condiciones Inseguras", Url="/reportes/condiciones-inseguras"},
+                new Vista{Id = 6,Nombre = "Gráficos", Url="/graficos"},
+                new Vista{Id = 7,Nombre = "Roles", Url="/administrar/roles"},
+                new Vista{Id = 8,Nombre = "Perfiles", Url="/administrar/perfiles"},
+                new Vista{Id = 9,Nombre = "Colaboradores", Url="/administrar/colaboradores"},
+                new Vista{Id = 10,Nombre = "Departamentos", Url="/administrar/departamentos"},
+                new Vista{Id = 11,Nombre = "Formularios", Url="/mantenimiento/formularios"}
+
             );
 
             modelBuilder.Entity<Rol>().HasData(
-                new Rol {Id = 1, Nombre = "Administrador", Descripcion = "Administrador del Sistema"}
+                new Rol {Id = 1, Nombre = "Superadministrador", Descripcion = "Administrador del Sistema"}
             );
 
             modelBuilder.Entity<RolVista>().HasData(
-                new RolVista {RolId = 1, VistaId = 1},
-                new RolVista {RolId = 1, VistaId = 2},
-                new RolVista {RolId = 1, VistaId = 3},
-                new RolVista {RolId = 1, VistaId = 4}
+                new RolVista {RolId = 1, VistaId = 1, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 2, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 3, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 4, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 5, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 6, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 7, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 8, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 9, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 10, Escritura= true},
+                new RolVista {RolId = 1, VistaId = 11, Escritura= true}
             );
         }
 

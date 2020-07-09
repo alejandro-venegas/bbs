@@ -2,46 +2,16 @@
   <nav mat-tab-nav-bar class="sub-nav-menu">
     <a
       mat-tab-link
-      [routerLink]="['roles']"
+      [routerLink]="[view.url]"
       routerLinkActive
       disableRipple
+      *ngFor="let view of permittedViews"
       #rla="routerLinkActive"
       [active]="rla.isActive"
     >
-      ROLES
-    </a>
-    <a
-      mat-tab-link
-      [routerLink]="['perfiles']"
-      routerLinkActive
-      disableRipple
-      #rlb="routerLinkActive"
-      [active]="rlb.isActive"
-    >
-      PERFILES
-    </a>
-    <a
-      mat-tab-link
-      [routerLink]="['colaboradores']"
-      routerLinkActive
-      disableRipple
-      #rlc="routerLinkActive"
-      [active]="rlc.isActive"
-    >
-      COLABORADORES
-    </a>
-    <a
-      mat-tab-link
-      [routerLink]="['departamentos']"
-      routerLinkActive
-      disableRipple
-      #rld="routerLinkActive"
-      [active]="rld.isActive"
-    >
-      DEPARTAMENTOS
+      {{ view.nombre | uppercase }}
     </a>
   </nav>
-
   <div [@routeAnimations]="prepareRoute(outlet)" class="route-animation">
     <router-outlet #outlet="outlet"></router-outlet>
   </div>

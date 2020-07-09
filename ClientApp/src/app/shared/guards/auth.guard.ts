@@ -26,10 +26,9 @@ export class AuthGuard implements CanActivate {
     return this.authService.getCurrentUserRol().pipe(
       map((res) => {
         if (res) {
-          const permittedViews = res.rolVistas.map((rolVista) =>
-            rolVista.vista.nombre.toLowerCase()
-          );
-          if (permittedViews.find((view) => view === state.url.split("/")[1])) {
+          const permittedViews = res.rolVistas.map((value) => value.vista);
+
+          if (permittedViews.find((view) => view.url === state.url)) {
             return true;
           }
         }

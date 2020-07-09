@@ -10,26 +10,30 @@ const routes: Routes = [
   {
     path: "administrar",
     component: AdministrarComponent,
-    canActivate: [AuthGuard],
+
     children: [
       {
         path: "roles",
         component: RolesComponent,
+        canActivate: [AuthGuard],
         data: { number: "sf" },
       },
       {
         path: "perfiles",
         component: PerfilesComponent,
+        canActivate: [AuthGuard],
         data: { number: "s2" },
       },
       {
         path: "colaboradores",
         component: ColaboradoresComponent,
+        canActivate: [AuthGuard],
         data: { number: "s3" },
       },
       {
         path: "departamentos",
         component: DepartamentosComponent,
+        canActivate: [AuthGuard],
         data: { number: "sl" },
       },
     ],

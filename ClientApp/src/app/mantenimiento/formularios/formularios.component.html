@@ -44,11 +44,42 @@
         </div>
       </mat-nested-tree-node>
       <mat-nested-tree-node
+        *matTreeNodeDef="let node; when: isUpdate"
+        @rowAnimation
+      >
+        <div class="input-group">
+          <div class="mat-tree-node save-group">
+            <button mat-icon-button disabled></button>
+
+            <input
+              type="text"
+              #itemInput
+              [value]="node.nombre"
+              appAutofocus
+              (focusOut)="remove(node)"
+              (keydown.enter)="onAgregarNewItem(itemInput.value, node)"
+            />
+
+            <button
+              mat-icon-button
+              (click)="onAgregarNewItem(itemInput.value, node)"
+              class="done-button"
+            >
+              <mat-icon class="save-icon">done</mat-icon>
+            </button>
+          </div>
+          <span class="invalid-message" *ngIf="!isValid"
+            >Solo se permite un máximo de 75 caracteres</span
+          >
+        </div>
+      </mat-nested-tree-node>
+      <mat-nested-tree-node
         *matTreeNodeDef="let node; when: hasNoChild"
         @rowAnimation
       >
         <div class="mat-tree-node">
-          <button mat-icon-button disabled></button> {{ node.nombre }}
+          <button mat-icon-button disabled></button>
+          <div (dblclick)="updateItem(node)">{{ node.nombre }}</div>
           <button mat-icon-button (click)="remove(node)">
             <mat-icon class="remove-icon">remove</mat-icon>
           </button>

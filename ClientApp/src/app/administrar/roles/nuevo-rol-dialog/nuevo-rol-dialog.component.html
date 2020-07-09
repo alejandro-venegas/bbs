@@ -43,17 +43,31 @@
       <div class="input-group">
         <label>Vistas del rol:</label>
         <div class="checkboxes">
-          <mat-checkbox
-            *ngFor="let vista of vistasArray"
-            (change)="onSelectVista(vista.id, $event.checked)"
-            [checked]="isViewSelected(vista.id)"
-            >{{ vista.nombre }}</mat-checkbox
-          >
+          <div class="select-group" *ngFor="let vista of vistasArray">
+            {{ vista.nombre }}
+            <select (change)="onSelectVista($event.target.value)">
+              <option
+                [value]="jsonStr({ id: vista.id, borrar: true })"
+                [selected]="isSelected({ id: vista.id, borrar: true })"
+                >Nada</option
+              >
+              <option
+                [value]="jsonStr({ id: vista.id, escritura: false })"
+                [selected]="isSelected({ id: vista.id, escritura: false })"
+                >Leer</option
+              >
+              <option
+                [value]="jsonStr({ id: vista.id, escritura: true })"
+                [selected]="isSelected({ id: vista.id, escritura: true })"
+                >Editar</option
+              >
+            </select>
+          </div>
         </div>
       </div>
       <div class="button-group">
         <button class="save-button save-button--green">
-          {{ isEdit ? 'GUARDAR' : 'AGREGAR' }}
+          {{ isEdit ? "GUARDAR" : "AGREGAR" }}
         </button>
       </div>
     </div>

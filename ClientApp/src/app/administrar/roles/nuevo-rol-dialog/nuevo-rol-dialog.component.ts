@@ -1,20 +1,20 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { RolesService } from '../roles.service';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { VistasService } from '../vistas.service';
+import { Component, Inject, OnInit } from "@angular/core";
+import { RolesService } from "../roles.service";
+import { FormArray, FormBuilder, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { VistasService } from "../vistas.service";
 
 @Component({
-  selector: 'app-nuevo-rol-dialog',
-  templateUrl: './nuevo-rol-dialog.component.html',
-  styleUrls: ['./nuevo-rol-dialog.component.css'],
+  selector: "app-nuevo-rol-dialog",
+  templateUrl: "./nuevo-rol-dialog.component.html",
+  styleUrls: ["./nuevo-rol-dialog.component.css"],
 })
 export class NuevoRolDialogComponent implements OnInit {
   isEdit = false;
   vistasArray: any = [];
   rolForm = this.fb.group({
-    nombre: ['', [Validators.required, Validators.maxLength(30)]],
-    descripcion: ['', [Validators.required, Validators.maxLength(50)]],
+    nombre: ["", [Validators.required, Validators.maxLength(30)]],
+    descripcion: ["", [Validators.required, Validators.maxLength(50)]],
   });
   vistas: any = [];
 
@@ -26,17 +26,22 @@ export class NuevoRolDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   get nombre() {
-    return this.rolForm.get('nombre');
+    return this.rolForm.get("nombre");
   }
 
   get descripcion() {
-    return this.rolForm.get('descripcion');
+    return this.rolForm.get("descripcion");
   }
 
   ngOnInit() {
     if (this.data && this.data.rol) {
       this.isEdit = true;
-      this.vistas = this.data.rol.rolVistas.map((rolVista) => rolVista.vistaId);
+      this.vistas = this.data.rol.rolVistas.map((vista) => {
+        return {
+          id: vista.vistaId,
+          escritura: vista.escritura,
+        };
+      });
       this.rolForm.setValue({
         nombre: this.data.rol.nombre,
         descripcion: this.data.rol.descripcion,
@@ -45,8 +50,12 @@ export class NuevoRolDialogComponent implements OnInit {
     this.getVistas();
   }
 
-  isViewSelected(id: number): boolean {
-    if (this.vistas.find((vista) => vista === id)) {
+  isSelected(data: any): boolean {
+    const vistaValue = this.vistas.find(
+      (vista) => vista.id === data.id && vista.escritura === data.escritura
+    );
+
+    if (vistaValue) {
       return true;
     }
     return false;
@@ -82,11 +91,21 @@ export class NuevoRolDialogComponent implements OnInit {
     }
   }
 
-  onSelectVista(id: number, isChecked: boolean) {
-    if (isChecked) {
-      this.vistas.push(id);
+  onSelectVista(value: any) {
+    value = JSON.parse(value);
+    if (value.borrar) {
+      this.vistas = this.vistas.filter((vista) => vista.id !== value.id);
     } else {
-      this.vistas = this.vistas.filter((vista) => vista !== id);
+      const sameVista = this.vistas.find((vista) => vista.id === value.id);
+      if (sameVista) {
+        sameVista.escritura = value.escritura;
+      } else {
+        this.vistas.push(value);
+      }
     }
+  }
+
+  jsonStr(data: any) {
+    return JSON.stringify(data);
   }
 }
