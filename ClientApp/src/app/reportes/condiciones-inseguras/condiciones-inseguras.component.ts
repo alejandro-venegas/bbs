@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class CondicionesInsegurasComponent implements OnInit {
   editable: boolean;
+  maxDate: Date;
   id: number;
   opciones: any;
   gerentes: Colaborador[] = [];
@@ -53,6 +54,7 @@ export class CondicionesInsegurasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.route.data.subscribe((data) => {
       this.editable = data.permission;
     });

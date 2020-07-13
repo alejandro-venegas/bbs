@@ -17,6 +17,7 @@ export class BbsComponent implements OnInit {
   opciones: any;
   colaboradores: Colaborador[] = [];
   id: number;
+  maxDate: Date;
   bbsForm = this.fb.group({
     fecha: ["", Validators.required],
     areaId: ["", Validators.required],
@@ -58,6 +59,7 @@ export class BbsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.route.data.subscribe((data) => {
       this.editable = data.permission;
     });

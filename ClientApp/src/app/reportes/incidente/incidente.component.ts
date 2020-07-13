@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class IncidenteComponent implements OnInit {
   editable: boolean;
   opciones: any;
+  maxDate: Date;
   id: number;
   gerentes: Colaborador[] = [];
   incidenteForm = this.fb.group({
@@ -92,6 +93,7 @@ export class IncidenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.route.data.subscribe((data) => {
       this.editable = data.permission;
     });

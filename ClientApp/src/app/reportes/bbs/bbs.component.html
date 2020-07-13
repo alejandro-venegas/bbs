@@ -8,6 +8,7 @@
         placeholder="Fecha"
         formControlName="fecha"
         [matDatepicker]="picker"
+        [max]="maxDate"
         (click)="picker.open()"
       />
       <mat-datepicker #picker></mat-datepicker>

@@ -15,7 +15,7 @@ export class CasiIncidenteComponent implements OnInit {
   editable: boolean;
   id: number;
   opciones: any;
-
+  maxDate: Date;
   gerentes: Colaborador[] = [];
   casiIncidenteForm = this.fb.group({
     fecha: ["", Validators.required],
@@ -74,6 +74,7 @@ export class CasiIncidenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.maxDate = new Date();
     this.route.data.subscribe((data) => {
       this.editable = data.permission;
     });

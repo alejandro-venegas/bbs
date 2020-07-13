@@ -11,6 +11,7 @@
         readonly
         placeholder="Fecha"
         formControlName="fecha"
+        [max]="maxDate"
         [matDatepicker]="picker"
         (click)="picker.open()"
       />
