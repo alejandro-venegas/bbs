@@ -28,11 +28,13 @@
           <span class="mobile-label">Acción:</span>
           <div>
             <img
+              *ngIf="editable"
               (click)="onUpdateDepartamento(element)"
               src="assets/images/icons/editar.svg"
               class="icon"
             />
             <img
+              *ngIf="editable"
               (click)="onDeleteDepartamento(element)"
               src="assets/images/icons/eliminar.svg"
               class="icon"
@@ -55,7 +57,12 @@
     ></mat-paginator>
   </div>
   <div class="button-group">
-    <button type="button" (click)="onAgregar()" class="save-button">
+    <button
+      *ngIf="editable"
+      type="button"
+      (click)="onAgregar()"
+      class="save-button"
+    >
       AGREGAR
     </button>
   </div>

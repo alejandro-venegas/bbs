@@ -12,6 +12,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { AutofocusDirective } from "../shared/directives/autofocus.directive";
 import { CdkScrollableModule } from "@angular/cdk/scrolling";
+import { RoleResolver } from "../shared/resolvers/role-resolver.service";
 
 @NgModule({
   declarations: [
@@ -32,5 +33,6 @@ import { CdkScrollableModule } from "@angular/cdk/scrolling";
     CdkScrollableModule,
   ],
   exports: [MantenimientoComponent, FormulariosComponent],
+  providers: [RoleResolver],
 })
 export class MantenimientoModule {}

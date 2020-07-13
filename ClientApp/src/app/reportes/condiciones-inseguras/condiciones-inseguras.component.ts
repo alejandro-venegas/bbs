@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { Colaborador } from '../../shared/models/colaborador.model';
-import { FormulariosService } from '../../shared/services/formularios.service';
-import { DepartamentosService } from '../../administrar/departamentos/departamentos.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ReportesService } from '../reportes.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Colaborador } from "../../shared/models/colaborador.model";
+import { FormulariosService } from "../../shared/services/formularios.service";
+import { DepartamentosService } from "../../administrar/departamentos/departamentos.service";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ReportesService } from "../reportes.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: 'app-condiciones-inseguras',
-  templateUrl: './condiciones-inseguras.component.html',
-  styleUrls: ['./condiciones-inseguras.component.css'],
+  selector: "app-condiciones-inseguras",
+  templateUrl: "./condiciones-inseguras.component.html",
+  styleUrls: ["./condiciones-inseguras.component.css"],
 })
 export class CondicionesInsegurasComponent implements OnInit {
+  editable: boolean;
   id: number;
   opciones: any;
   gerentes: Colaborador[] = [];
   condicionInseguraForm = this.fb.group({
-    fecha: ['', Validators.required],
-    supervisorId: ['', Validators.required],
-    procesoId: ['', Validators.required],
-    areaId: ['', Validators.required],
-    indicadorRiesgoId: ['', Validators.required],
-    factorRiesgoId: ['', Validators.required],
+    fecha: ["", Validators.required],
+    supervisorId: ["", Validators.required],
+    procesoId: ["", Validators.required],
+    areaId: ["", Validators.required],
+    indicadorRiesgoId: ["", Validators.required],
+    factorRiesgoId: ["", Validators.required],
   });
   constructor(
     private formulariosService: FormulariosService,
@@ -33,25 +34,28 @@ export class CondicionesInsegurasComponent implements OnInit {
   ) {}
 
   get fecha() {
-    return this.condicionInseguraForm.get('fecha');
+    return this.condicionInseguraForm.get("fecha");
   }
   get supervisorId() {
-    return this.condicionInseguraForm.get('supervisorId');
+    return this.condicionInseguraForm.get("supervisorId");
   }
   get procesoId() {
-    return this.condicionInseguraForm.get('procesoId');
+    return this.condicionInseguraForm.get("procesoId");
   }
   get areaId() {
-    return this.condicionInseguraForm.get('areaId');
+    return this.condicionInseguraForm.get("areaId");
   }
   get indicadorRiesgoId() {
-    return this.condicionInseguraForm.get('indicadorRiesgoId');
+    return this.condicionInseguraForm.get("indicadorRiesgoId");
   }
   get factorRiesgoId() {
-    return this.condicionInseguraForm.get('factorRiesgoId');
+    return this.condicionInseguraForm.get("factorRiesgoId");
   }
 
   ngOnInit(): void {
+    this.route.data.subscribe((data) => {
+      this.editable = data.permission;
+    });
     this.getOpcionesSelect();
     this.getColaboradores();
     this.id = this.route.snapshot.queryParams.id;
@@ -75,7 +79,7 @@ export class CondicionesInsegurasComponent implements OnInit {
         value.id = this.id;
         this.reportesService.updateCondicionInsegura(value).subscribe((res) => {
           if (res.status === 202) {
-            this.router.navigate(['../lista'], { relativeTo: this.route });
+            this.router.navigate(["../lista"], { relativeTo: this.route });
           }
         });
       } else {
@@ -83,7 +87,7 @@ export class CondicionesInsegurasComponent implements OnInit {
           .guardarCondicionInsegura(value)
           .subscribe((res) => {
             if (res.status === 201) {
-              this.router.navigate(['../lista'], { relativeTo: this.route });
+              this.router.navigate(["../lista"], { relativeTo: this.route });
             }
           });
       }

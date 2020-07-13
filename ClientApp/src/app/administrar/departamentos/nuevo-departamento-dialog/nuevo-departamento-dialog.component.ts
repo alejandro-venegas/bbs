@@ -1,21 +1,21 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ColaboradoresService } from '../../../shared/services/colaboradores.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DepartamentosService } from '../departamentos.service';
-import { Colaborador } from '../../../shared/models/colaborador.model';
+import { Component, Inject, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { ColaboradoresService } from "../../../shared/services/colaboradores.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { DepartamentosService } from "../departamentos.service";
+import { Colaborador } from "../../../shared/models/colaborador.model";
 
 @Component({
-  selector: 'app-nuevo-departamento-dialog',
-  templateUrl: './nuevo-departamento-dialog.component.html',
-  styleUrls: ['./nuevo-departamento-dialog.component.css'],
+  selector: "app-nuevo-departamento-dialog",
+  templateUrl: "./nuevo-departamento-dialog.component.html",
+  styleUrls: ["./nuevo-departamento-dialog.component.css"],
 })
 export class NuevoDepartamentoDialogComponent implements OnInit {
   isEdit = false;
   colaboradores: Colaborador[] = [];
   departamentoForm = this.fb.group({
-    nombre: ['', [Validators.required, Validators.maxLength(35)]],
-    gerenteId: ['', Validators.required],
+    nombre: ["", [Validators.required, Validators.maxLength(35)]],
+    gerenteId: ["", Validators.required],
   });
   constructor(
     private fb: FormBuilder,
@@ -39,10 +39,10 @@ export class NuevoDepartamentoDialogComponent implements OnInit {
   }
 
   get nombre() {
-    return this.departamentoForm.get('nombre');
+    return this.departamentoForm.get("nombre");
   }
   get gerenteId() {
-    return this.departamentoForm.get('gerenteId');
+    return this.departamentoForm.get("gerenteId");
   }
 
   getColaboradores() {

@@ -8,6 +8,7 @@ import { RolesService } from "./roles.service";
 import { Rol } from "../../shared/models/rol.model";
 import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/eliminar-dialog.component";
 import { AuthService } from "../../shared/services/auth.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-roles",
@@ -16,16 +17,21 @@ import { AuthService } from "../../shared/services/auth.service";
   animations: [rowAnimation],
 })
 export class RolesComponent implements OnInit {
+  editable: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Rol>();
   displayedColumns: string[] = ["nombre", "accion"];
   constructor(
     private dialog: MatDialog,
     private rolesService: RolesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.data.subscribe((data) => {
+      this.editable = data.permission;
+    });
     this.getRoles();
   }
 

@@ -18,10 +18,12 @@
           <div>
             <img
               (click)="onEditRol(element)"
+              *ngIf="editable"
               src="assets/images/icons/editar.svg"
               class="icon"
             />
             <img
+              *ngIf="editable"
               (click)="onDeleteRol(element)"
               src="assets/images/icons/eliminar.svg"
               class="icon"
@@ -44,7 +46,12 @@
     ></mat-paginator>
   </div>
   <div class="button-group">
-    <button (click)="onNewRole()" type="button" class="save-button">
+    <button
+      *ngIf="editable"
+      (click)="onNewRole()"
+      type="button"
+      class="save-button"
+    >
       NUEVO ROL
     </button>
   </div>

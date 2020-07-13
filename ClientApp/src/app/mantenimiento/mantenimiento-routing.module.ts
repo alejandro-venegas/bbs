@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { FormulariosComponent } from "./formularios/formularios.component";
 import { MantenimientoComponent } from "./mantenimiento.component";
 import { AuthGuard } from "../shared/guards/auth.guard";
+import { RoleResolver } from "../shared/resolvers/role-resolver.service";
 const routes: Routes = [
   {
     path: "mantenimiento",
@@ -13,6 +14,9 @@ const routes: Routes = [
         component: FormulariosComponent,
         data: { number: "sf" },
         canActivate: [AuthGuard],
+        resolve: {
+          permission: RoleResolver,
+        },
       },
     ],
     data: {

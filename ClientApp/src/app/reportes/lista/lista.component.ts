@@ -14,6 +14,7 @@ import { MatDialog } from "@angular/material/dialog";
   animations: [rowAnimation],
 })
 export class ListaComponent implements OnInit {
+  editable: boolean;
   reportes: any[] = [];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
@@ -32,6 +33,9 @@ export class ListaComponent implements OnInit {
     "accion",
   ];
   ngOnInit(): void {
+    this.route.data.subscribe((data) => {
+      this.editable = data.permission;
+    });
     this.dataSource.paginator = this.paginator;
     this.getReportes();
   }

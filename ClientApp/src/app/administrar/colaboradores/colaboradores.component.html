@@ -30,11 +30,13 @@
           <span class="mobile-label">Acción:</span>
           <div>
             <img
+              *ngIf="editable"
               (click)="onEditarColaborador(element)"
               src="assets/images/icons/editar.svg"
               class="icon"
             />
             <img
+              *ngIf="editable"
               (click)="onDeleteColaborador(element)"
               src="assets/images/icons/eliminar.svg"
               class="icon"
@@ -57,7 +59,12 @@
     ></mat-paginator>
   </div>
   <div class="button-group">
-    <button (click)="onNewColaborador()" type="button" class="save-button">
+    <button
+      *ngIf="editable"
+      (click)="onNewColaborador()"
+      type="button"
+      class="save-button"
+    >
       AGREGAR
     </button>
   </div>

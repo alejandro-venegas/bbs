@@ -9,6 +9,7 @@ import { SelectNode, TreeDataSource } from "./tree-datasource";
 import { FormulariosService } from "../../shared/services/formularios.service";
 import { MatDialog } from "@angular/material/dialog";
 import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/eliminar-dialog.component";
+import { ActivatedRoute } from "@angular/router";
 
 /**
  * @title Tree with nested nodes
@@ -20,6 +21,7 @@ import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/el
   animations: [rowAnimation, treeAnimation],
 })
 export class FormulariosComponent implements OnInit {
+  editable: boolean;
   isValid = true;
   TREE_DATA: SelectNode[] = [
     {
@@ -123,10 +125,14 @@ export class FormulariosComponent implements OnInit {
   dataSource = new TreeDataSource(this.treeControl, []);
   constructor(
     private formulariosService: FormulariosService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.route.data.subscribe((data) => {
+      this.editable = data.permission;
+    });
     this.initializeData();
   }
 

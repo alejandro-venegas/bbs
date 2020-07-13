@@ -34,6 +34,7 @@
               mat-icon-button
               (click)="onAgregarNewItem(itemInput.value, node)"
               class="done-button"
+              *ngIf="editable"
             >
               <mat-icon class="save-icon">done</mat-icon>
             </button>
@@ -62,6 +63,7 @@
 
             <button
               mat-icon-button
+              *ngIf="editable"
               (click)="onAgregarNewItem(itemInput.value, node)"
               class="done-button"
             >
@@ -80,7 +82,7 @@
         <div class="mat-tree-node">
           <button mat-icon-button disabled></button>
           <div (dblclick)="updateItem(node)">{{ node.nombre }}</div>
-          <button mat-icon-button (click)="remove(node)">
+          <button *ngIf="editable" mat-icon-button (click)="remove(node)">
             <mat-icon class="remove-icon">remove</mat-icon>
           </button>
         </div>
@@ -103,7 +105,11 @@
               </mat-icon>
             </button>
             {{ node.nombre }}
-            <button mat-icon-button (click)="addNewItem('', node)">
+            <button
+              *ngIf="editable"
+              mat-icon-button
+              (click)="addNewItem('', node)"
+            >
               <mat-icon>add</mat-icon>
             </button>
           </div>

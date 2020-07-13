@@ -16,6 +16,7 @@ import { DepartamentosComponent } from "./departamentos/departamentos.component"
 import { ColaboradoresComponent } from "./colaboradores/colaboradores.component";
 import { NuevoColaboradorDialogComponent } from "./colaboradores/nuevo-colaborador-dialog/nuevo-colaborador-dialog.component";
 import { NuevoDepartamentoDialogComponent } from "./departamentos/nuevo-departamento-dialog/nuevo-departamento-dialog.component";
+import { RoleResolver } from "../shared/resolvers/role-resolver.service";
 
 @NgModule({
   declarations: [
@@ -40,5 +41,6 @@ import { NuevoDepartamentoDialogComponent } from "./departamentos/nuevo-departam
     FormsModule,
   ],
   exports: [PerfilesComponent, RolesComponent],
+  providers: [RoleResolver],
 })
 export class AdministrarModule {}

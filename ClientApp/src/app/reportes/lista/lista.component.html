@@ -37,11 +37,13 @@
         <span class="mobile-label">Acción:</span>
         <div>
           <img
+            *ngIf="editable"
             (click)="onEditarReporte(element.id, element.tipo)"
             src="assets/images/icons/editar.svg"
             class="icon"
           />
           <img
+            *ngIf="editable"
             (click)="onDeleteReporte(element.id, element.tipo)"
             src="assets/images/icons/eliminar.svg"
             class="icon"
