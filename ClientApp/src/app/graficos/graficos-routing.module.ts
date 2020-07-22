@@ -4,6 +4,7 @@ import { GraficosComponent } from "./graficos.component";
 import { FiltrosComponent } from "./filtros/filtros.component";
 import { ResultadosComponent } from "./resultados/resultados.component";
 import { AuthGuard } from "../shared/guards/auth.guard";
+import { ResultadoResolver } from "./resultados/resultado-resolver.service";
 
 const routes: Routes = [
   {
@@ -15,6 +16,9 @@ const routes: Routes = [
       {
         path: "resultado",
         component: ResultadosComponent,
+        resolve: {
+          graphData: ResultadoResolver,
+        },
         data: { number: "sl" },
       },
     ],

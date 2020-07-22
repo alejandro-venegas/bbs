@@ -42,6 +42,11 @@ namespace bbs.Models
         [Required]
         [Column(TypeName = "varchar(100)")]
         public string Descripcion { get; set; }
+        
+        [NotMapped]
+        public string Label {get; set;}
+        [NotMapped]
+        public int Count {get; set;}
 
         public virtual Actividad Actividad { get; set; }
         public virtual Area Area { get; set; }

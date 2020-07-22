@@ -24,6 +24,10 @@ a {
   text-decoration: none;
   color: #fffff8;
 }
+a:hover{
+  color: unset;
+  transition: none;
+}
 
 .main-container {
   display: flex;
@@ -102,6 +106,9 @@ td.mat-footer-cell {
   color: var(--white);
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
+}
+.mat-checkbox-layout{
+  white-space: unset!important;
 }
 th.mat-header-cell {
   font-size: 1.3rem;
@@ -222,7 +229,7 @@ mat-dialog-container::-webkit-scrollbar-thumb {
 }
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 15rem);
+  grid-template-columns: repeat(auto-fill, 20rem);
   color: rgba(255, 255, 248, 0.5);
   column-gap: 3rem;
   row-gap: 2rem;
@@ -305,6 +312,7 @@ select {
   background-color: rgba(255, 255, 248, 0.3);
   border-radius: 1.3rem;
   border: none;
+  width: 100%;
 }
 select.dialog-select {
   background-color: var(--blue);
@@ -390,6 +398,11 @@ router-outlet + * {
     font-weight: bold;
     margin-right: 1rem;
   }
+  .form-grid {
+
+    grid-template-columns: repeat(auto-fill, 15rem);
+
+  }
 
   .mat-header-row {
     display: none;
@@ -440,3 +453,5 @@ router-outlet + * {
     grid-column: span 1;
   }
 }
+
+

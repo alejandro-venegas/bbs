@@ -16,7 +16,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { EliminarDialogComponent } from "./shared/dialogs/eliminar-dialog/eliminar-dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ForbiddenComponent } from "./forbidden/forbidden.component";
 
 @NgModule({
   declarations: [

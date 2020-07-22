@@ -1,13 +1,17 @@
-<form class="content-container">
+<form class="content-container" #form="ngForm" (ngSubmit)="submitForm(form)">
   <div class="grafico-radio-buttons">
     <label>Seleccione el grafico que desea ver</label>
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button [checked]="true" value="incidente"
-        >Incidente</mat-radio-button
-      >
-      <mat-radio-button value="Casi Incidente">Casi incidente</mat-radio-button>
-      <mat-radio-button value="BBS">BBS</mat-radio-button>
-      <mat-radio-button value="Condiciones Inseguras"
+    <mat-radio-group
+      #radioGroup="ngModel"
+      ngModel
+      required
+      name="tipoGrafica"
+      aria-label="Select an option"
+    >
+      <mat-radio-button value="incidente">Incidente</mat-radio-button>
+      <mat-radio-button value="casi-incidente">Casi incidente</mat-radio-button>
+      <mat-radio-button value="bbs">BBS</mat-radio-button>
+      <mat-radio-button value="condiciones-inseguras"
         >Condiciones inseguras</mat-radio-button
       >
     </mat-radio-group>
@@ -15,23 +19,135 @@
 
   <label>Seleccione las opciones que desea ver en el grafico:</label>
   <div class="form-grid">
-    <mat-checkbox>Proceso</mat-checkbox>
-    <mat-checkbox>Supervisor</mat-checkbox>
-    <mat-checkbox>Porcentaje de Jornada</mat-checkbox>
-    <mat-checkbox>Nivel de Riesgo</mat-checkbox>
-    <mat-checkbox>Dia</mat-checkbox>
-    <mat-checkbox>Mes</mat-checkbox>
-    <mat-checkbox>Semana</mat-checkbox>
-    <mat-checkbox>Area de Trabajo</mat-checkbox>
-    <mat-checkbox>Genero</mat-checkbox>
-    <mat-checkbox>Tipo de efecto</mat-checkbox>
-    <mat-checkbox>Clasificacion</mat-checkbox>
-    <mat-checkbox>Turno</mat-checkbox>
-    <mat-checkbox>Parte afectada</mat-checkbox>
-    <mat-checkbox>Causa basica</mat-checkbox>
-    <mat-checkbox>Causa inmediata</mat-checkbox>
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="Proceso"
+      >Proceso</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="area-de-trabajo"
+      >Área de Trabajo</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="Supervisor"
+      *ngIf="radioGroup.value !== 'bbs'"
+      >Supervisor</mat-checkbox
+    >
+
+    <mat-checkbox (change)="propiedadChange($event.source.value)" value="dia"
+      >Día</mat-checkbox
+    >
+    <mat-checkbox (change)="propiedadChange($event.source.value)" value="mes"
+      >Mes</mat-checkbox
+    >
+    <mat-checkbox (change)="propiedadChange($event.source.value)" value="semana"
+      >Semana</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="
+        radioGroup.value === 'incidente' ||
+        radioGroup.value === 'casi-incidente'
+      "
+      >Porcentaje de Jornada</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="nivel-de-riesgo"
+      *ngIf="
+        radioGroup.value === 'incidente' ||
+        radioGroup.value === 'casi-incidente'
+      "
+      >Nivel de Riesgo</mat-checkbox
+    >
+
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="genero"
+      *ngIf="
+        radioGroup.value === 'incidente' ||
+        radioGroup.value === 'casi-incidente'
+      "
+      >Género</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="tipo-de-efecto"
+      *ngIf="radioGroup.value === 'incidente'"
+      >Tipo de efecto</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="clasificacion"
+      *ngIf="radioGroup.value === 'incidente'"
+      >Clasificación</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      value="turno"
+      *ngIf="
+        radioGroup.value === 'incidente' ||
+        radioGroup.value === 'casi-incidente'
+      "
+      >Turno</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'incidente'"
+      value="parte-afectada"
+      >Parte afectada</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'incidente'"
+      value="causa-basica"
+      >Causa básica</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'bbs'"
+      value="comportamiento-detectado"
+      >Comportamiento detectado</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'bbs'"
+      value="tipo-observado"
+      >Tipo observado</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'bbs'"
+      value="comportamiento"
+      >Comportamiento</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'incidente'"
+      value="causa-inmediata"
+      >Causa inmediata</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'condiciones-inseguras'"
+      value="indicador-de-riesgo"
+      >Indicador de Riesgo</mat-checkbox
+    >
+    <mat-checkbox
+      (change)="propiedadChange($event.source.value)"
+      *ngIf="radioGroup.value === 'condiciones-inseguras'"
+      value="factor-de-riesgo"
+      >Factor de Riesgo</mat-checkbox
+    >
   </div>
   <div class="button-group">
-    <button class="save-button">VER GRAFICO</button>
+    <button
+      class="save-button"
+      [disabled]="form.invalid || propiedadesArray.length === 0"
+    >
+      VER GRÁFICO
+    </button>
   </div>
 </form>

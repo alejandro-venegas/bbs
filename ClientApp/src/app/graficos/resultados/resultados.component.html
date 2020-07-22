@@ -1,1 +1,14 @@
-<p>resultados works!</p>
+<div class="content-container">
+  <canvas
+    @rowAnimation
+    mdbChart
+    [chartType]="chartType"
+    [datasets]="chartDatasets"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [legend]="true"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+  >
+  </canvas>
+</div>

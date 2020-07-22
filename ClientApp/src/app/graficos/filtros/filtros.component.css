@@ -1,3 +1,6 @@
+form {
+  overflow: visible;
+}
 mat-radio-group {
   display: flex;
   margin-top: 1rem;
