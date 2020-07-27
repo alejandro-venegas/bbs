@@ -29,12 +29,6 @@
       value="area-de-trabajo"
       >Área de Trabajo</mat-checkbox
     >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
-      value="Supervisor"
-      *ngIf="radioGroup.value !== 'bbs'"
-      >Supervisor</mat-checkbox
-    >
 
     <mat-checkbox (change)="propiedadChange($event.source.value)" value="dia"
       >Día</mat-checkbox

@@ -47,7 +47,6 @@ namespace bbs.Controllers
                 condicionInseguraObj.AreaId = condicionInsegura.AreaId;
                 condicionInseguraObj.FactorRiesgoId = condicionInsegura.FactorRiesgoId;
                 condicionInseguraObj.IndicadorRiesgoId = condicionInsegura.IndicadorRiesgoId;
-                condicionInseguraObj.SupervisorId = condicionInsegura.SupervisorId;
                 _context.CondicionInseguras.Update(condicionInseguraObj);
                 await _context.SaveChangesAsync();
 

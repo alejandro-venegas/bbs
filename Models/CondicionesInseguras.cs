@@ -20,10 +20,10 @@ namespace bbs.Models
         [Required]
         public int IndicadorRiesgoId { get; set; }
         [Required]
-        public int SupervisorId { get; set; }
+
 
         public virtual Area Area { get; set; }
-        public virtual Colaborador Supervisor { get; set; }
+
         public virtual FactorRiesgo FactorRiesgo { get; set; }
         public virtual IndicadorRiesgo IndicadorRiesgo { get; set; }
         public virtual Proceso Proceso { get; set; }

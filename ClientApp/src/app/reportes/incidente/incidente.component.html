@@ -98,20 +98,6 @@
       >
     </div>
     <div class="input-group">
-      <label for="supervisor">Supervisor:</label>
-      <select id="supervisor" formControlName="supervisorId">
-        <option value="" disabled selected>Seleccione un supervisor</option>
-        <option [value]="gerente.id" *ngFor="let gerente of gerentes"
-          >{{ gerente.nombre }} {{ gerente.apellido }}</option
-        >
-      </select>
-      <span
-        class="invalid-message"
-        *ngIf="supervisorId.touched && supervisorId.invalid"
-        >Seleccione un supervisor</span
-      >
-    </div>
-    <div class="input-group">
       <label for="porcentajeDeJornada">Jornada:</label>
       <select id="porcentajeDeJornada" formControlName="jornadaId">
         <option value="" disabled selected>Jornada</option>

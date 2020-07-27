@@ -49,7 +49,6 @@ namespace bbs.Controllers
                 casiIncidenteObj.JornadaId = casiIncidente.JornadaId;
                 casiIncidenteObj.Observado = casiIncidente.Observado;
                 casiIncidenteObj.RiesgoId = casiIncidente.RiesgoId;
-                casiIncidenteObj.SupervisorId = casiIncidente.SupervisorId;
                 casiIncidenteObj.TurnoId = casiIncidente.TurnoId;
                 casiIncidenteObj.Descripcion = casiIncidente.Descripcion;
                 casiIncidenteObj.CasualidadId = casiIncidente.CasualidadId;

@@ -56,7 +56,7 @@ namespace bbs.Controllers
                 incidenteObj.Observado = incidente.Observado;
                 incidenteObj.ParteCuerpoId = incidente.ParteCuerpoId;
                 incidenteObj.RiesgoId = incidente.RiesgoId;
-                incidenteObj.SupervisorId = incidente.SupervisorId;
+
                 incidenteObj.TurnoId = incidente.TurnoId;
                 incidenteObj.Descripcion = incidente.Descripcion;
                 _context.Incidentes.Update(incidenteObj);

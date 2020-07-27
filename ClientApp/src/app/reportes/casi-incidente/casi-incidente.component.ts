@@ -27,7 +27,7 @@ export class CasiIncidenteComponent implements OnInit {
     jornadaId: ["", Validators.required],
     generoId: ["", Validators.required],
     descripcion: ["", [Validators.required, Validators.maxLength(100)]],
-    supervisorId: ["", Validators.required],
+
     riesgoId: ["", Validators.required],
   });
   constructor(
@@ -66,9 +66,7 @@ export class CasiIncidenteComponent implements OnInit {
   get descripcion() {
     return this.casiIncidenteForm.get("descripcion");
   }
-  get supervisorId() {
-    return this.casiIncidenteForm.get("supervisorId");
-  }
+
   get riesgoId() {
     return this.casiIncidenteForm.get("riesgoId");
   }

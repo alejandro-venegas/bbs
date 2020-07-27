@@ -31,8 +31,7 @@ namespace bbs.Models
         public int ActividadId { get; set; }
         [Required]
         public int RiesgoId { get; set; }
-        [Required]
-        public int SupervisorId { get; set; }
+
         [Required]
         public int CausaBasicaId { get; set; }
         [Required]
@@ -54,7 +53,6 @@ namespace bbs.Models
         public virtual CausaInmediata CausaInmediata { get; set; }
         public virtual ParteCuerpo ParteCuerpo { get; set; }
         public virtual Clasificacion Clasificacion { get; set; }
-        public virtual Colaborador Supervisor { get; set; }
         public virtual Riesgo Riesgo { get; set; }
         public virtual Efecto Efecto { get; set; }
         public virtual Genero Genero { get; set; }

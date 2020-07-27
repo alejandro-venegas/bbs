@@ -19,7 +19,6 @@ export class CondicionesInsegurasComponent implements OnInit {
   gerentes: Colaborador[] = [];
   condicionInseguraForm = this.fb.group({
     fecha: ["", Validators.required],
-    supervisorId: ["", Validators.required],
     procesoId: ["", Validators.required],
     areaId: ["", Validators.required],
     indicadorRiesgoId: ["", Validators.required],
@@ -36,9 +35,6 @@ export class CondicionesInsegurasComponent implements OnInit {
 
   get fecha() {
     return this.condicionInseguraForm.get("fecha");
-  }
-  get supervisorId() {
-    return this.condicionInseguraForm.get("supervisorId");
   }
   get procesoId() {
     return this.condicionInseguraForm.get("procesoId");

@@ -134,13 +134,7 @@ namespace bbs.Controllers
                                     .Select(g => new { Label = g.Key, Count = g.Count() })
                                     .ToListAsync();
                                     break;
-                                case "supervisor":
-                                    result = await _context.Incidentes
-                                    .Include(p => p.Supervisor)
-                                    .GroupBy(p => p.Supervisor.Nombre + " " + p.Supervisor.Apellido)
-                                    .Select(g => new { Label = g.Key, Count = g.Count() })
-                                    .ToListAsync();
-                                    break;
+                           
                                 case "area-de-trabajo":
                                     result = await _context.Incidentes
                                     .Include(p => p.Area)
@@ -292,13 +286,7 @@ namespace bbs.Controllers
                                     .Select(g => new { Label = g.Key, Count = g.Count() })
                                     .ToListAsync();
                                     break;
-                                case "supervisor":
-                                    result = await _context.CasiIncidentes
-                                    .Include(p => p.Supervisor)
-                                    .GroupBy(p => p.Supervisor.Nombre + " " + p.Supervisor.Apellido)
-                                    .Select(g => new { Label = g.Key, Count = g.Count() })
-                                    .ToListAsync();
-                                    break;
+                           
                                 case "area-de-trabajo":
                                     result = await _context.CasiIncidentes
                                     .Include(p => p.Area)
@@ -569,13 +557,7 @@ namespace bbs.Controllers
                                     .Select(g => new { Label = g.Key, Count = g.Count() })
                                     .ToListAsync();
                                     break;
-                                case "supervisor":
-                                    result = await _context.CondicionInseguras
-                                    .Include(p => p.Supervisor)
-                                    .GroupBy(p => p.Supervisor.Nombre)
-                                    .Select(g => new { Label = g.Key, Count = g.Count() })
-                                    .ToListAsync();
-                                    break;
+                           
                                 case "factor-de-riesgo":
                                     result = await _context.CondicionInseguras
                                     .Include(p => p.FactorRiesgo)

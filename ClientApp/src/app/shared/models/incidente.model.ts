@@ -1,4 +1,4 @@
-import { SelectNode } from '../../mantenimiento/formularios/tree-datasource';
+import { SelectNode } from "../../mantenimiento/formularios/tree-datasource";
 
 export class Incidente {
   public id: number;
@@ -13,7 +13,6 @@ export class Incidente {
   public clasificacionId: number;
   public actividadId: number;
   public riesgoId: number;
-  public supervisorId: number;
   public causaBasicaId: number;
   public causaInmediataId: number;
   public parteCuerpoId: number;
@@ -25,7 +24,6 @@ export class Incidente {
   public causaInmediata: SelectNode;
   public parteCuerpo: SelectNode;
   public clasificacion: SelectNode;
-  public supervisor: SelectNode;
   public riesgo: SelectNode;
   public efecto: SelectNode;
   public genero: SelectNode;
@@ -46,7 +44,6 @@ export class Incidente {
     clasificacionId: number,
     actividadId: number,
     riesgoId: number,
-    supervisorId: number,
     causaBasicaId: number,
     causaInmediataId: number,
     parteCuerpoId: number,
@@ -57,7 +54,7 @@ export class Incidente {
     causaInmediata?: SelectNode,
     parteCuerpo?: SelectNode,
     clasificacion?: SelectNode,
-    supervisor?: SelectNode,
+
     riesgo?: SelectNode,
     efecto?: SelectNode,
     genero?: SelectNode,
@@ -77,7 +74,6 @@ export class Incidente {
     this.clasificacionId = clasificacionId;
     this.actividadId = actividadId;
     this.riesgoId = riesgoId;
-    this.supervisorId = supervisorId;
     this.causaBasicaId = causaBasicaId;
     this.causaInmediataId = causaInmediataId;
     this.parteCuerpoId = parteCuerpoId;
@@ -88,7 +84,6 @@ export class Incidente {
     this.causaInmediata = causaInmediata;
     this.parteCuerpo = parteCuerpo;
     this.clasificacion = clasificacion;
-    this.supervisor = supervisor;
     this.riesgo = riesgo;
     this.efecto = efecto;
     this.genero = genero;

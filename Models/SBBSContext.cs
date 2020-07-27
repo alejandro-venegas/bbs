@@ -124,10 +124,6 @@ namespace bbs.Models
             .WithMany(a => a.Incidentes)
             .HasForeignKey(i => i.RiesgoId);
             modelBuilder.Entity<Incidente>()
-            .HasOne(i => i.Supervisor)
-            .WithMany(a => a.Incidentes)
-            .HasForeignKey(i => i.SupervisorId);
-            modelBuilder.Entity<Incidente>()
             .HasOne(i => i.Turno)
             .WithMany(a => a.Incidentes)
             .HasForeignKey(i => i.TurnoId);
@@ -153,10 +149,6 @@ namespace bbs.Models
             .HasOne(i => i.Riesgo)
             .WithMany(a => a.CasiIncidentes)
             .HasForeignKey(i => i.RiesgoId);
-            modelBuilder.Entity<CasiIncidente>()
-            .HasOne(i => i.Supervisor)
-            .WithMany(a => a.CasiIncidentes)
-            .HasForeignKey(i => i.SupervisorId);
             modelBuilder.Entity<CasiIncidente>()
             .HasOne(i => i.Turno)
             .WithMany(a => a.CasiIncidentes)
@@ -207,10 +199,6 @@ namespace bbs.Models
             .HasOne(c => c.IndicadorRiesgo)
             .WithMany(a => a.CondicionInseguras)
             .HasForeignKey(c => c.IndicadorRiesgoId);
-            modelBuilder.Entity<CondicionInsegura>()
-            .HasOne(c => c.Supervisor)
-            .WithMany(a => a.CondicionInseguras)
-            .HasForeignKey(c => c.SupervisorId);
 
             modelBuilder.Seed();
 
@@ -244,7 +232,9 @@ namespace bbs.Models
             );
 
             modelBuilder.Entity<Rol>().HasData(
-                new Rol { Id = 1, Nombre = "Superadministrador", Descripcion = "Administrador del Sistema" }
+                new Rol { Id = 1, Nombre = "Encargado", Descripcion = "Posee más permisos de edición en los formularios, puede gestionar gráficos y/o reportes de todos los departamentos"},
+                new Rol {Id = 2, Nombre = "Gerente", Descripcion = "Posee permisos de ingreso, gestión de gráficas y/o reportes, puede ceder al Trabajador el acceso al sistema para el ingreso de los formularios"},
+                new Rol {Id = 3, Nombre= "Trabajador", Descripcion= "Posee permisos para el ingreso de los formularios"}
             );
 
             modelBuilder.Entity<RolVista>().HasData(
@@ -258,7 +248,21 @@ namespace bbs.Models
                 new RolVista { RolId = 1, VistaId = 8, Escritura = true },
                 new RolVista { RolId = 1, VistaId = 9, Escritura = true },
                 new RolVista { RolId = 1, VistaId = 10, Escritura = true },
-                new RolVista { RolId = 1, VistaId = 11, Escritura = true }
+                new RolVista { RolId = 1, VistaId = 11, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 1, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 2, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 3, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 4, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 5, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 6, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 8, Escritura = true },
+                new RolVista { RolId = 2, VistaId = 9, Escritura = true },
+                new RolVista { RolId = 3, VistaId = 1, Escritura = true },
+                new RolVista { RolId = 3, VistaId = 2, Escritura = true },
+                new RolVista { RolId = 3, VistaId = 3, Escritura = true },
+                new RolVista { RolId = 3, VistaId = 4, Escritura = true },
+                new RolVista { RolId = 3, VistaId = 5, Escritura = true }
+                
             );
 
             modelBuilder.Entity<Actividad>().HasData(
@@ -519,6 +523,42 @@ namespace bbs.Models
                 new Turno { Id = 3, Nombre = "3" },
                 new Turno { Id = 4, Nombre = "Administrativo" },
                 new Turno { Id = 5, Nombre = "Jornadas especiales" }
+            );
+
+            modelBuilder.Entity<Departamento>().HasData(
+                new Departamento { Id = 1, Nombre = "Por Definir" }
+            );
+
+            modelBuilder.Entity<Colaborador>().HasData(
+                new Colaborador {Id=1, Nombre="Alberto", Apellido= "Céspedes", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=2, Nombre="Alejandro", Apellido= "Blanco", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=3, Nombre="Alejandro", Apellido= "Montero", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=4, Nombre="Carla", Apellido= "Calderón", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=5, Nombre="Carlos", Apellido= "Brenes", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=6, Nombre="Carlos", Apellido= "Durán", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=7, Nombre="Cristina", Apellido= "Astua", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=8, Nombre="Dennis", Apellido= "Acuña", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=9, Nombre="Diana", Apellido= "Chaves", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=10, Nombre="Ercik", Apellido= "Sánchez", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=11, Nombre="Esteban", Apellido= "Gould", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=12, Nombre="Fernando", Apellido= "Ramírez", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=13, Nombre="Fernando", Apellido= "Rivera", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=14, Nombre="Hector", Apellido= "Hernández", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=15, Nombre="Jimmy", Apellido= "Durán", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=16, Nombre="Jorge", Apellido= "Jiménez", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=17, Nombre="Jorge", Apellido= "Solano", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=18, Nombre="Juan", Apellido= "Robles", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=19, Nombre="Kenneth", Apellido= "Rodríguez", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=20, Nombre="M", Apellido= "Aguilar", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=21, Nombre="Marco", Apellido= "Arias", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=22, Nombre="Marco", Apellido= "Vega", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=23, Nombre="Max", Apellido= "Jiménez", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=24, Nombre="Randall", Apellido= "Calderón", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=25, Nombre="Ronald", Apellido= "Guerrero", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=26, Nombre="Tannia", Apellido= "Leiva", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=27, Nombre="Walter", Apellido= "Sequeira", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=28, Nombre="Nitzi", Apellido= "Alvarado", Puesto="Por Definir", DepartamentoId=1},
+                new Colaborador {Id=29, Nombre="Carlos", Apellido= "Koying", Puesto="Por Definir", DepartamentoId=1}
             );
 
 

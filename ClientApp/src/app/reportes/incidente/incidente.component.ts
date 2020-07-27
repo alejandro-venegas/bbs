@@ -32,7 +32,6 @@ export class IncidenteComponent implements OnInit {
     parteCuerpoId: ["", Validators.required],
     actividadId: ["", Validators.required],
     descripcion: ["", [Validators.required, Validators.maxLength(100)]],
-    supervisorId: ["", Validators.required],
     riesgoId: ["", Validators.required],
   });
   constructor(
@@ -85,9 +84,7 @@ export class IncidenteComponent implements OnInit {
   get descripcion() {
     return this.incidenteForm.get("descripcion");
   }
-  get supervisorId() {
-    return this.incidenteForm.get("supervisorId");
-  }
+
   get riesgoId() {
     return this.incidenteForm.get("riesgoId");
   }

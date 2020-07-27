@@ -25,15 +25,13 @@ namespace bbs.Models
         public int GeneroId{get;set;}
         [Required]
         public int RiesgoId { get; set; }
-        [Required]
-        public int SupervisorId { get; set; }
+    
         [Required]
         public int CasualidadId { get; set; }
         [Required]
         public string Descripcion { get; set; }
 
         public virtual Casualidad Casualidad { get; set; }
-        public virtual Colaborador Supervisor { get; set; }
         public virtual Area Area { get; set; }
         public virtual Genero Genero{get;set;}
         public virtual Proceso Proceso { get; set; }
