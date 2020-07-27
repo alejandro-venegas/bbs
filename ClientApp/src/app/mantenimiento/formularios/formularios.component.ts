@@ -141,14 +141,51 @@ export class FormulariosComponent implements OnInit {
   hasNoContent = (_: number, node: SelectNode) => !!!node.nombre;
   isUpdate = (_: number, node: SelectNode) => node.editMode;
 
-  addNewItem(nombre: string, parentNode: SelectNode) {
+  addNewItem(nombre: string, parentNode: SelectNode, optionId: string = null) {
     this.treeControl.expand(parentNode);
-    this.dataSource.add({ nombre, selectId: parentNode.selectId }, parentNode);
+    this.dataSource.add(
+      { nombre, optionId, selectId: parentNode.selectId },
+      parentNode
+    );
+  }
+
+  onUpdateItem(nombre: string, node: SelectNode) {
+    if (nombre) {
+      if (nombre.length <= 75) {
+        const parent = this.dataSource.data.find(
+          (parentNode) => parentNode.selectId == node.selectId
+        );
+
+        if (parent) {
+          this.formulariosService
+            .updateSelect({
+              nombre,
+              selectId: node.selectId,
+              optionId: node.optionId,
+            })
+            .subscribe((res) => {
+              if (res.status === 201) {
+                node.nombre = nombre;
+                this.dataSource.updateItem(node);
+              }
+
+              this.dataSource.updateItem(node);
+            });
+        }
+      } else {
+        this.isValid = false;
+      }
+    } else {
+      this.dataSource.updateItem(node);
+    }
   }
 
   updateItem(node: SelectNode) {
     console.log(node);
     this.dataSource.updateNode(node);
+  }
+  cancelUpdate(node: SelectNode) {
+    this.dataSource.updateItem(node);
   }
 
   remove(node: SelectNode) {
@@ -200,8 +237,8 @@ export class FormulariosComponent implements OnInit {
           this.formulariosService
             .insertSelect({ nombre, selectId: node.selectId })
             .subscribe((res) => {
-              if (res.status === 201) {
-                this.addNewItem(nombre, parent);
+              if (res.status === 200) {
+                this.addNewItem(res.body.nombre, parent, res.body.id);
               }
 
               this.remove(node);

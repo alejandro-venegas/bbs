@@ -57,14 +57,14 @@
               #itemInput
               [value]="node.nombre"
               appAutofocus
-              (focusOut)="remove(node)"
-              (keydown.enter)="onAgregarNewItem(itemInput.value, node)"
+              (focusOut)="cancelUpdate(node)"
+              (keydown.enter)="onUpdateItem(itemInput.value, node)"
             />
 
             <button
               mat-icon-button
               *ngIf="editable"
-              (click)="onAgregarNewItem(itemInput.value, node)"
+              (click)="onUpdateItem(itemInput.value, node)"
               class="done-button"
             >
               <mat-icon class="save-icon">done</mat-icon>

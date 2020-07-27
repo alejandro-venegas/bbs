@@ -8,27 +8,27 @@ namespace bbs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FormulariosController: Controller
+    public class FormulariosController : Controller
     {
-            // SelectId 1: Actividades
-            // SelectId 2: Areas
-            // SelectId 3: Casualidades
-            // SelectId 4: Causas Basicas
-            // SelectId 5: Causas inmediatas
-            // SelectId 6: Clasificaciones
-            // SelectId 7: Comportamientos
-            // SelectId 8: Efectos
-            // SelectId 9: Factor Riesgo
-            // SelectId 10: Generos
-            // SelectId 11: Indicador Riesgos
-            // SelectId 12: Jornadas
-            // SelectId 13: Observados
-            // SelectId 14: Parte Cuerpos   
-            // SelectId 15: Procesos
-            // SelectId 16: Riesgos
-            // SelectId 17: Tipo comportamiento
-            // SelectId 18: Tipo Observado
-            // SelectId 19: Turnos
+        // SelectId 1: Actividades
+        // SelectId 2: Areas
+        // SelectId 3: Casualidades
+        // SelectId 4: Causas Basicas
+        // SelectId 5: Causas inmediatas
+        // SelectId 6: Clasificaciones
+        // SelectId 7: Comportamientos
+        // SelectId 8: Efectos
+        // SelectId 9: Factor Riesgo
+        // SelectId 10: Generos
+        // SelectId 11: Indicador Riesgos
+        // SelectId 12: Jornadas
+        // SelectId 13: Observados
+        // SelectId 14: Parte Cuerpos   
+        // SelectId 15: Procesos
+        // SelectId 16: Riesgos
+        // SelectId 17: Tipo comportamiento
+        // SelectId 18: Tipo Observado
+        // SelectId 19: Turnos
         private readonly SBBSContext _context;
 
         public FormulariosController(SBBSContext context)
@@ -37,9 +37,10 @@ namespace bbs.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSelectOptions(){
-            
-      
+        public async Task<IActionResult> GetSelectOptions()
+        {
+
+
             List<SelectDto> selectDtos = new List<SelectDto>();
             var Actividades = await _context.Actividades.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Actividades, 1);
@@ -49,7 +50,7 @@ namespace bbs.Controllers
 
             var Casualidades = await _context.Casualidades.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Casualidades, 3);
-            
+
             var CausaBasicas = await _context.CausaBasicas.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, CausaBasicas, 4);
 
@@ -61,7 +62,7 @@ namespace bbs.Controllers
 
             var Comportamientos = await _context.Comportamientos.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Comportamientos, 7);
-            
+
             var Efectos = await _context.Efectos.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Efectos, 8);
 
@@ -77,7 +78,7 @@ namespace bbs.Controllers
 
             var Jornadas = await _context.Jornadas.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Jornadas, 12);
-            
+
             var Observados = await _context.Observados.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Observados, 13);
 
@@ -102,321 +103,530 @@ namespace bbs.Controllers
         }
 
         [HttpPost("new")]
-        public async Task<IActionResult> InsertSelectOption(SelectDto selectDto){
+        public async Task<IActionResult> InsertSelectOption(SelectDto selectDto)
+        {
             bool notFound = false;
+            dynamic selectObj = null;
             switch (selectDto.SelectId)
             {
                 case 1:
-                    Actividad actividad = new Actividad{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Actividad
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Actividades.AddAsync(actividad);
+                    await _context.Actividades.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 2:
-                    Area Area = new Area{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Area
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Areas.AddAsync(Area);
+                    await _context.Areas.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 3:
-                    Casualidad Casualidad = new Casualidad{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Casualidad
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Casualidades.AddAsync(Casualidad);
+                    await _context.Casualidades.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 4:
-                    CausaBasica CausaBasica = new CausaBasica{
-                        Nombre= selectDto.Nombre
+                    selectObj = new CausaBasica
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.CausaBasicas.AddAsync(CausaBasica);
+                    await _context.CausaBasicas.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 5:
-                    CausaInmediata CausaInmediata = new CausaInmediata{
-                        Nombre= selectDto.Nombre
+                    selectObj = new CausaInmediata
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.CausaInmediatas.AddAsync(CausaInmediata);
+                    await _context.CausaInmediatas.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 6:
-                    Clasificacion Clasificacion = new Clasificacion{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Clasificacion
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Clasificaciones.AddAsync(Clasificacion);
+                    await _context.Clasificaciones.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 7:
-                    Comportamiento Comportamiento = new Comportamiento{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Comportamiento
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Comportamientos.AddAsync(Comportamiento);
+                    await _context.Comportamientos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 8:
-                    Efecto Efecto = new Efecto{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Efecto
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Efectos.AddAsync(Efecto);
+                    await _context.Efectos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 9:
-                    FactorRiesgo FactorRiesgo = new FactorRiesgo{
-                        Nombre= selectDto.Nombre
+                    selectObj = new FactorRiesgo
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.FactorRiesgos.AddAsync(FactorRiesgo);
+                    await _context.FactorRiesgos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 10:
-                    Genero Genero = new Genero{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Genero
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Generos.AddAsync(Genero);
+                    await _context.Generos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 11:
-                    IndicadorRiesgo IndicadorRiesgo = new IndicadorRiesgo{
-                        Nombre= selectDto.Nombre
+                    selectObj = new IndicadorRiesgo
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.IndicadorRiesgos.AddAsync(IndicadorRiesgo);
+                    await _context.IndicadorRiesgos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 12:
-                    Jornada Jornada = new Jornada{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Jornada
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Jornadas.AddAsync(Jornada);
+                    await _context.Jornadas.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 13:
-                    Observado Observado = new Observado{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Observado
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Observados.AddAsync(Observado);
+                    await _context.Observados.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 14:
-                    ParteCuerpo ParteCuerpo = new ParteCuerpo{
-                        Nombre= selectDto.Nombre
+                    selectObj = new ParteCuerpo
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.ParteCuerpos.AddAsync(ParteCuerpo);
+                    await _context.ParteCuerpos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 15:
-                    Proceso Proceso = new Proceso{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Proceso
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Procesos.AddAsync(Proceso);
+                    await _context.Procesos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 16:
-                    Riesgo Riesgo = new Riesgo{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Riesgo
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Riesgos.AddAsync(Riesgo);
+                    await _context.Riesgos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 17:
-                    TipoComportamiento TipoComportamiento = new TipoComportamiento{
-                        Nombre= selectDto.Nombre
+                    selectObj = new TipoComportamiento
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.TipoComportamientos.AddAsync(TipoComportamiento);
+                    await _context.TipoComportamientos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 18:
-                    TipoObservado TipoObservado = new TipoObservado{
-                        Nombre= selectDto.Nombre
+                    selectObj = new TipoObservado
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.TipoObservados.AddAsync(TipoObservado);
+                    await _context.TipoObservados.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
                 case 19:
-                    Turno Turno = new Turno{
-                        Nombre= selectDto.Nombre
+                    selectObj = new Turno
+                    {
+                        Nombre = selectDto.Nombre
                     };
-                    await _context.Turnos.AddAsync(Turno);
+                    await _context.Turnos.AddAsync(selectObj);
                     await _context.SaveChangesAsync();
                     break;
 
-                
+
                 default:
                     notFound = true;
                     break;
             }
-            if(notFound){
+            if (notFound)
+            {
                 return StatusCode(400);
             }
+            return Ok(selectObj);
+
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateSelectOption(SelectDto selectDto)
+        {
+            bool notFound = false;
+            var selectId = selectDto.SelectId;
+            var optionId = selectDto.OptionId;
+            var nombre = selectDto.Nombre;
+            dynamic selectObj = null;
+            switch (selectId)
+            {
+                case 1:
+                    selectObj = await _context.Actividades.FirstOrDefaultAsync( selectDto => selectDto.Id == optionId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 2:
+                    selectObj = await _context.Areas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 3:
+                    selectObj = await _context.Casualidades.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 4:
+                    selectObj = await _context.CausaBasicas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 5:
+                    selectObj = await _context.CausaInmediatas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 6:
+                    selectObj = await _context.Clasificaciones.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 7:
+                    selectObj = await _context.Comportamientos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 8:
+                    selectObj = await _context.Efectos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 9:
+                    selectObj = await _context.FactorRiesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 10:
+                    selectObj = await _context.Generos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 11:
+                    selectObj = await _context.IndicadorRiesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 12:
+                    selectObj = await _context.Jornadas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 13:
+                    selectObj = await _context.Observados.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 14:
+                    selectObj = await _context.ParteCuerpos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 15:
+                    selectObj = await _context.Procesos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 16:
+                    selectObj = await _context.Riesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 17:
+                    selectObj = await _context.TipoComportamientos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 18:
+                    selectObj = await _context.TipoObservados.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+                case 19:
+                    selectObj = await _context.Turnos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
+                    if (selectObj != null){
+                        selectObj.Nombre = nombre;
+                        _context.Actividades.Update(selectObj);
+                    }
+                    break;
+
+
+                default:
+                    notFound = true;
+                    break;
+            }
+            if (notFound)
+            {
+                return StatusCode(400);
+            }
+            else
+            {
+                await _context.SaveChangesAsync();
                 return StatusCode(201);
-           
+
+            }
+
         }
 
         [HttpDelete]
 
-        public async Task<IActionResult> DeleteOption(int optionId, int selectId){
+        public async Task<IActionResult> DeleteOption(int optionId, int selectId)
+        {
             bool notFound = false;
             switch (selectId)
             {
                 case 1:
-                    Actividad actividad = new Actividad{
-                        Id= optionId
+                    Actividad actividad = new Actividad
+                    {
+                        Id = optionId
                     };
-                     _context.Actividades.Remove(actividad);
+                    _context.Actividades.Remove(actividad);
                     break;
                 case 2:
-                    Area Area = new Area{
-                    
-                        Id= optionId
+                    Area Area = new Area
+                    {
+
+                        Id = optionId
                     };
-                     _context.Areas.Remove(Area);
+                    _context.Areas.Remove(Area);
                     break;
                 case 3:
-                    Casualidad Casualidad = new Casualidad{
-                    
-                        Id= optionId
+                    Casualidad Casualidad = new Casualidad
+                    {
+
+                        Id = optionId
                     };
-                     _context.Casualidades.Remove(Casualidad);
+                    _context.Casualidades.Remove(Casualidad);
                     break;
                 case 4:
-                    CausaBasica CausaBasica = new CausaBasica{
-                    
-                        Id= optionId
+                    CausaBasica CausaBasica = new CausaBasica
+                    {
+
+                        Id = optionId
                     };
-                     _context.CausaBasicas.Remove(CausaBasica);
+                    _context.CausaBasicas.Remove(CausaBasica);
                     break;
                 case 5:
-                    CausaInmediata CausaInmediata = new CausaInmediata{
-                    
-                        Id= optionId
+                    CausaInmediata CausaInmediata = new CausaInmediata
+                    {
+
+                        Id = optionId
                     };
-                     _context.CausaInmediatas.Remove(CausaInmediata);
+                    _context.CausaInmediatas.Remove(CausaInmediata);
                     break;
                 case 6:
-                    Clasificacion Clasificacion = new Clasificacion{
-                    
-                        Id= optionId
+                    Clasificacion Clasificacion = new Clasificacion
+                    {
+
+                        Id = optionId
                     };
-                     _context.Clasificaciones.Remove(Clasificacion);
+                    _context.Clasificaciones.Remove(Clasificacion);
                     break;
                 case 7:
-                    Comportamiento Comportamiento = new Comportamiento{
-                    
-                        Id= optionId
+                    Comportamiento Comportamiento = new Comportamiento
+                    {
+
+                        Id = optionId
                     };
-                     _context.Comportamientos.Remove(Comportamiento);
+                    _context.Comportamientos.Remove(Comportamiento);
                     break;
                 case 8:
-                    Efecto Efecto = new Efecto{
-                    
-                        Id= optionId
+                    Efecto Efecto = new Efecto
+                    {
+
+                        Id = optionId
                     };
-                     _context.Efectos.Remove(Efecto);
+                    _context.Efectos.Remove(Efecto);
                     break;
                 case 9:
-                    FactorRiesgo FactorRiesgo = new FactorRiesgo{
-                    
-                        Id= optionId
+                    FactorRiesgo FactorRiesgo = new FactorRiesgo
+                    {
+
+                        Id = optionId
                     };
-                     _context.FactorRiesgos.Remove(FactorRiesgo);
+                    _context.FactorRiesgos.Remove(FactorRiesgo);
                     break;
                 case 10:
-                    Genero Genero = new Genero{
-                    
-                        Id= optionId
+                    Genero Genero = new Genero
+                    {
+
+                        Id = optionId
                     };
-                     _context.Generos.Remove(Genero);
+                    _context.Generos.Remove(Genero);
                     break;
                 case 11:
-                    IndicadorRiesgo IndicadorRiesgo = new IndicadorRiesgo{
-                    
-                        Id= optionId
+                    IndicadorRiesgo IndicadorRiesgo = new IndicadorRiesgo
+                    {
+
+                        Id = optionId
                     };
-                     _context.IndicadorRiesgos.Remove(IndicadorRiesgo);
+                    _context.IndicadorRiesgos.Remove(IndicadorRiesgo);
                     break;
                 case 12:
-                    Jornada Jornada = new Jornada{
-                    
-                        Id= optionId
+                    Jornada Jornada = new Jornada
+                    {
+
+                        Id = optionId
                     };
-                     _context.Jornadas.Remove(Jornada);
+                    _context.Jornadas.Remove(Jornada);
                     break;
                 case 13:
-                    Observado Observado = new Observado{
-                    
-                        Id= optionId
+                    Observado Observado = new Observado
+                    {
+
+                        Id = optionId
                     };
-                     _context.Observados.Remove(Observado);
+                    _context.Observados.Remove(Observado);
                     break;
                 case 14:
-                    ParteCuerpo ParteCuerpo = new ParteCuerpo{
-                    
-                        Id= optionId
+                    ParteCuerpo ParteCuerpo = new ParteCuerpo
+                    {
+
+                        Id = optionId
                     };
-                     _context.ParteCuerpos.Remove(ParteCuerpo);
+                    _context.ParteCuerpos.Remove(ParteCuerpo);
                     break;
                 case 15:
-                    Proceso Proceso = new Proceso{
-                    
-                        Id= optionId
+                    Proceso Proceso = new Proceso
+                    {
+
+                        Id = optionId
                     };
-                     _context.Procesos.Remove(Proceso);
+                    _context.Procesos.Remove(Proceso);
                     break;
                 case 16:
-                    Riesgo Riesgo = new Riesgo{
-                    
-                        Id= optionId
+                    Riesgo Riesgo = new Riesgo
+                    {
+
+                        Id = optionId
                     };
-                     _context.Riesgos.Remove(Riesgo);
+                    _context.Riesgos.Remove(Riesgo);
                     break;
                 case 17:
-                    TipoComportamiento TipoComportamiento = new TipoComportamiento{
-                    
-                        Id= optionId
+                    TipoComportamiento TipoComportamiento = new TipoComportamiento
+                    {
+
+                        Id = optionId
                     };
-                     _context.TipoComportamientos.Remove(TipoComportamiento);
+                    _context.TipoComportamientos.Remove(TipoComportamiento);
                     break;
                 case 18:
-                    TipoObservado TipoObservado = new TipoObservado{
-                    
-                        Id= optionId
+                    TipoObservado TipoObservado = new TipoObservado
+                    {
+
+                        Id = optionId
                     };
-                     _context.TipoObservados.Remove(TipoObservado);
+                    _context.TipoObservados.Remove(TipoObservado);
                     break;
                 case 19:
-                    Turno Turno = new Turno{
-                    
-                        Id= optionId
+                    Turno Turno = new Turno
+                    {
+
+                        Id = optionId
                     };
-                     _context.Turnos.Remove(Turno);
+                    _context.Turnos.Remove(Turno);
                     break;
 
-                
+
                 default:
                     notFound = true;
                     break;
             }
-            if(notFound){
+            if (notFound)
+            {
                 return StatusCode(400);
             }
-            else{
+            else
+            {
                 await _context.SaveChangesAsync();
                 return StatusCode(202);
-            
+
+            }
         }
     }
-    }
-    
 
-    public class FormulariosShared{
-        public static void addSelectToList(List<SelectDto> selectDtos, dynamic selects, int SelectId){
-            foreach(var select in selects){
-                SelectDto selectDto = new SelectDto{Nombre = select.Nombre, OptionId = select.Id, SelectId = SelectId};
+
+    public class FormulariosShared
+    {
+        public static void addSelectToList(List<SelectDto> selectDtos, dynamic selects, int SelectId)
+        {
+            foreach (var select in selects)
+            {
+                SelectDto selectDto = new SelectDto { Nombre = select.Nombre, OptionId = select.Id, SelectId = SelectId };
                 selectDtos.Add(selectDto);
             }
         }
 
-        
+
     }
-    
-    }
+
+}

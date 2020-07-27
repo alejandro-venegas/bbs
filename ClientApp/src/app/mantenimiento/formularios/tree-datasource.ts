@@ -41,6 +41,16 @@ export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
       selectId: "",
       children: this.data,
     };
+    this._updateNode(node, newTreeData);
+    this.data = newTreeData.children;
+  }
+
+  public updateItem(node: SelectNode) {
+    const newTreeData = {
+      nombre: "Dummy Root",
+      selectId: "",
+      children: this.data,
+    };
     this._updateItem(node, newTreeData);
     this.data = newTreeData.children;
   }
@@ -77,7 +87,7 @@ export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
     return this.update(tree, this._add.bind(this, newNode, parent));
   }
 
-  _updateItem(node: SelectNode, tree: SelectNode): boolean {
+  _updateNode(node: SelectNode, tree: SelectNode): boolean {
     if (!tree.children) {
       return false;
     }
@@ -90,6 +100,23 @@ export class TreeDataSource extends MatTreeNestedDataSource<SelectNode> {
         ...tree.children.slice(i + 1),
       ];
       console.log(`found ${node.nombre}, removing it from`, tree);
+      return true;
+    }
+    return this.update(tree, this._updateNode.bind(this, node));
+  }
+
+  _updateItem(node: SelectNode, tree: SelectNode): boolean {
+    if (!tree.children) {
+      return false;
+    }
+    const i = tree.children.indexOf(node);
+    node.editMode = false;
+    if (i > -1) {
+      tree.children = [
+        ...tree.children.slice(0, i),
+        node,
+        ...tree.children.slice(i + 1),
+      ];
       return true;
     }
     return this.update(tree, this._updateItem.bind(this, node));
