@@ -27,9 +27,17 @@ export class ResultadosComponent implements OnInit {
   public chartOptions: any = {
     responsive: true,
     maintainAspectRatio: true,
+    legend: {
+      labels: {
+        fontColor: "white",
+      },
+    },
     scales: {
       xAxes: [
         {
+          ticks: {
+            fontColor: "white",
+          },
           gridLines: {
             color: "rgba(255,255,255,0.5)",
           },
@@ -38,6 +46,7 @@ export class ResultadosComponent implements OnInit {
       yAxes: [
         {
           ticks: {
+            fontColor: "white",
             beginAtZero: true,
           },
           gridLines: {
@@ -53,10 +62,14 @@ export class ResultadosComponent implements OnInit {
 
   ngOnInit(): void {
     const data = this.route.snapshot.data.graphData;
+    const dataSetParam = this.route.snapshot.queryParams.tipoGrafica;
+    let dataSet = dataSetParam.split("-");
+    dataSet = dataSet.join(" ");
+    dataSet = dataSet[0].toUpperCase() + dataSet.slice(1);
     const labels = data.map((datum) => datum.label);
     const values = data.map((datum) => datum.count);
 
-    this.chartDatasets = [{ data: values, label: "Data Set" }];
+    this.chartDatasets = [{ data: values, label: dataSet }];
     this.chartLabels = labels;
   }
 }

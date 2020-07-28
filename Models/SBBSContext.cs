@@ -232,9 +232,9 @@ namespace bbs.Models
             );
 
             modelBuilder.Entity<Rol>().HasData(
-                new Rol { Id = 1, Nombre = "Encargado", Descripcion = "Posee más permisos de edición en los formularios, puede gestionar gráficos y/o reportes de todos los departamentos"},
-                new Rol {Id = 2, Nombre = "Gerente", Descripcion = "Posee permisos de ingreso, gestión de gráficas y/o reportes, puede ceder al Trabajador el acceso al sistema para el ingreso de los formularios"},
-                new Rol {Id = 3, Nombre= "Trabajador", Descripcion= "Posee permisos para el ingreso de los formularios"}
+                new Rol { Id = 1, Nombre = "Encargado", Descripcion = "Posee más permisos de edición en los formularios, puede gestionar gráficos y/o reportes de todos los departamentos" },
+                new Rol { Id = 2, Nombre = "Gerente", Descripcion = "Posee permisos de ingreso, gestión de gráficas y/o reportes, puede ceder al Trabajador el acceso al sistema para el ingreso de los formularios" },
+                new Rol { Id = 3, Nombre = "Trabajador", Descripcion = "Posee permisos para el ingreso de los formularios" }
             );
 
             modelBuilder.Entity<RolVista>().HasData(
@@ -262,7 +262,7 @@ namespace bbs.Models
                 new RolVista { RolId = 3, VistaId = 3, Escritura = true },
                 new RolVista { RolId = 3, VistaId = 4, Escritura = true },
                 new RolVista { RolId = 3, VistaId = 5, Escritura = true }
-                
+
             );
 
             modelBuilder.Entity<Actividad>().HasData(
@@ -417,13 +417,25 @@ namespace bbs.Models
             );
 
             modelBuilder.Entity<FactorRiesgo>().HasData(
-                new Efecto { Id = 1, Nombre = "Físicos" },
-                new Efecto { Id = 2, Nombre = "Químicos" },
-                new Efecto { Id = 3, Nombre = "Biológicos" },
-                new Efecto { Id = 4, Nombre = "Ergonómicos" },
-                new Efecto { Id = 5, Nombre = "Mecánicos" },
-                new Efecto { Id = 6, Nombre = "Infraestructura y Entorno" }
+                new FactorRiesgo { Id = 1, Nombre = "Físicos" },
+                new FactorRiesgo { Id = 2, Nombre = "Químicos" },
+                new FactorRiesgo { Id = 3, Nombre = "Biológicos" },
+                new FactorRiesgo { Id = 4, Nombre = "Ergonómicos" },
+                new FactorRiesgo { Id = 5, Nombre = "Mecánicos" },
+                new FactorRiesgo { Id = 6, Nombre = "Infraestructura y Entorno" }
             );
+
+
+            modelBuilder.Entity<IndicadorRiesgo>().HasData(
+                new IndicadorRiesgo { Id = 1, Nombre = "Físicos" },
+                new IndicadorRiesgo { Id = 2, Nombre = "Químicos" },
+                new IndicadorRiesgo { Id = 3, Nombre = "Biológicos" },
+                new IndicadorRiesgo { Id = 4, Nombre = "Ergonómicos" },
+                new IndicadorRiesgo { Id = 5, Nombre = "Mecánicos" },
+                new IndicadorRiesgo { Id = 6, Nombre = "Infraestructura y Entorno" }
+            );
+
+
 
             modelBuilder.Entity<Genero>().HasData(
                 new Genero { Id = 1, Nombre = "Masculino" },
@@ -530,35 +542,139 @@ namespace bbs.Models
             );
 
             modelBuilder.Entity<Colaborador>().HasData(
-                new Colaborador {Id=1, Nombre="Alberto", Apellido= "Céspedes", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=2, Nombre="Alejandro", Apellido= "Blanco", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=3, Nombre="Alejandro", Apellido= "Montero", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=4, Nombre="Carla", Apellido= "Calderón", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=5, Nombre="Carlos", Apellido= "Brenes", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=6, Nombre="Carlos", Apellido= "Durán", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=7, Nombre="Cristina", Apellido= "Astua", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=8, Nombre="Dennis", Apellido= "Acuña", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=9, Nombre="Diana", Apellido= "Chaves", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=10, Nombre="Ercik", Apellido= "Sánchez", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=11, Nombre="Esteban", Apellido= "Gould", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=12, Nombre="Fernando", Apellido= "Ramírez", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=13, Nombre="Fernando", Apellido= "Rivera", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=14, Nombre="Hector", Apellido= "Hernández", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=15, Nombre="Jimmy", Apellido= "Durán", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=16, Nombre="Jorge", Apellido= "Jiménez", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=17, Nombre="Jorge", Apellido= "Solano", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=18, Nombre="Juan", Apellido= "Robles", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=19, Nombre="Kenneth", Apellido= "Rodríguez", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=20, Nombre="M", Apellido= "Aguilar", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=21, Nombre="Marco", Apellido= "Arias", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=22, Nombre="Marco", Apellido= "Vega", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=23, Nombre="Max", Apellido= "Jiménez", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=24, Nombre="Randall", Apellido= "Calderón", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=25, Nombre="Ronald", Apellido= "Guerrero", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=26, Nombre="Tannia", Apellido= "Leiva", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=27, Nombre="Walter", Apellido= "Sequeira", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=28, Nombre="Nitzi", Apellido= "Alvarado", Puesto="Por Definir", DepartamentoId=1},
-                new Colaborador {Id=29, Nombre="Carlos", Apellido= "Koying", Puesto="Por Definir", DepartamentoId=1}
+                new Colaborador { Id = 1, Nombre = "Alberto", Apellido = "Céspedes", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 2, Nombre = "Alejandro", Apellido = "Blanco", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 3, Nombre = "Alejandro", Apellido = "Montero", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 4, Nombre = "Carla", Apellido = "Calderón", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 5, Nombre = "Carlos", Apellido = "Brenes", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 6, Nombre = "Carlos", Apellido = "Durán", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 7, Nombre = "Cristina", Apellido = "Astua", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 8, Nombre = "Dennis", Apellido = "Acuña", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 9, Nombre = "Diana", Apellido = "Chaves", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 10, Nombre = "Ercik", Apellido = "Sánchez", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 11, Nombre = "Esteban", Apellido = "Gould", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 12, Nombre = "Fernando", Apellido = "Ramírez", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 13, Nombre = "Fernando", Apellido = "Rivera", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 14, Nombre = "Hector", Apellido = "Hernández", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 15, Nombre = "Jimmy", Apellido = "Durán", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 16, Nombre = "Jorge", Apellido = "Jiménez", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 17, Nombre = "Jorge", Apellido = "Solano", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 18, Nombre = "Juan", Apellido = "Robles", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 19, Nombre = "Kenneth", Apellido = "Rodríguez", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 20, Nombre = "M", Apellido = "Aguilar", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 21, Nombre = "Marco", Apellido = "Arias", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 22, Nombre = "Marco", Apellido = "Vega", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 23, Nombre = "Max", Apellido = "Jiménez", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 24, Nombre = "Randall", Apellido = "Calderón", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 25, Nombre = "Ronald", Apellido = "Guerrero", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 26, Nombre = "Tannia", Apellido = "Leiva", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 27, Nombre = "Walter", Apellido = "Sequeira", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 28, Nombre = "Nitzi", Apellido = "Alvarado", Puesto = "Por Definir", DepartamentoId = 1 },
+                new Colaborador { Id = 29, Nombre = "Carlos", Apellido = "Koying", Puesto = "Por Definir", DepartamentoId = 1 }
+            );
+
+            modelBuilder.Entity<Bbs>().HasData(
+                new Bbs { Id = 1, Fecha = new DateTime(2020, 01, 07), ObservadorId = 11, AreaId = 35, ProcesoId = 15, ComportamientoId = 5, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 2, Fecha = new DateTime(2020, 01, 18), ObservadorId = 5, AreaId = 44, ProcesoId = 13, ComportamientoId = 26, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 3, Fecha = new DateTime(2020, 01, 23), ObservadorId = 5, AreaId = 3, ProcesoId = 10, ComportamientoId = 6, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 4, Fecha = new DateTime(2020, 02, 02), ObservadorId = 2, AreaId = 37, ProcesoId = 13, ComportamientoId = 24, TipoObservadoId = 2, TipoComportamientoId = 1 },
+                new Bbs { Id = 5, Fecha = new DateTime(2020, 02, 12), ObservadorId = 1, AreaId = 10, ProcesoId = 21, ComportamientoId = 21, TipoObservadoId = 2, TipoComportamientoId = 2 },
+                new Bbs { Id = 6, Fecha = new DateTime(2020, 02, 27), ObservadorId = 6, AreaId = 44, ProcesoId = 2, ComportamientoId = 29, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 7, Fecha = new DateTime(2020, 03, 05), ObservadorId = 3, AreaId = 22, ProcesoId = 15, ComportamientoId = 25, TipoObservadoId = 2, TipoComportamientoId = 2 },
+                new Bbs { Id = 8, Fecha = new DateTime(2020, 03, 06), ObservadorId = 7, AreaId = 48, ProcesoId = 1, ComportamientoId = 29, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 9, Fecha = new DateTime(2020, 03, 20), ObservadorId = 1, AreaId = 9, ProcesoId = 18, ComportamientoId = 19, TipoObservadoId = 2, TipoComportamientoId = 2 },
+                new Bbs { Id = 10, Fecha = new DateTime(2020, 03, 25), ObservadorId = 1, AreaId = 26, ProcesoId = 12, ComportamientoId = 11, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 11, Fecha = new DateTime(2020, 04, 02), ObservadorId = 9, AreaId = 13, ProcesoId = 9, ComportamientoId = 17, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 12, Fecha = new DateTime(2020, 04, 09), ObservadorId = 10, AreaId = 32, ProcesoId = 21, ComportamientoId = 1, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 13, Fecha = new DateTime(2020, 04, 16), ObservadorId = 5, AreaId = 22, ProcesoId = 22, ComportamientoId = 27, TipoObservadoId = 2, TipoComportamientoId = 2 },
+                new Bbs { Id = 14, Fecha = new DateTime(2020, 04, 21), ObservadorId = 4, AreaId = 36, ProcesoId = 9, ComportamientoId = 9, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 15, Fecha = new DateTime(2020, 04, 30), ObservadorId = 11, AreaId = 13, ProcesoId = 22, ComportamientoId = 26, TipoObservadoId = 4, TipoComportamientoId = 1 },
+                new Bbs { Id = 16, Fecha = new DateTime(2020, 05, 04), ObservadorId = 10, AreaId = 29, ProcesoId = 23, ComportamientoId = 22, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 17, Fecha = new DateTime(2020, 05, 17), ObservadorId = 2, AreaId = 19, ProcesoId = 2, ComportamientoId = 18, TipoObservadoId = 3, TipoComportamientoId = 1 },
+                new Bbs { Id = 18, Fecha = new DateTime(2020, 05, 19), ObservadorId = 2, AreaId = 46, ProcesoId = 7, ComportamientoId = 28, TipoObservadoId = 5, TipoComportamientoId = 2 },
+                new Bbs { Id = 19, Fecha = new DateTime(2020, 05, 31), ObservadorId = 5, AreaId = 25, ProcesoId = 6, ComportamientoId = 11, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 20, Fecha = new DateTime(2020, 06, 10), ObservadorId = 6, AreaId = 16, ProcesoId = 18, ComportamientoId = 9, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 21, Fecha = new DateTime(2020, 06, 25), ObservadorId = 6, AreaId = 35, ProcesoId = 8, ComportamientoId = 7, TipoObservadoId = 2, TipoComportamientoId = 1 },
+                new Bbs { Id = 22, Fecha = new DateTime(2020, 06, 29), ObservadorId = 4, AreaId = 46, ProcesoId = 5, ComportamientoId = 27, TipoObservadoId = 2, TipoComportamientoId = 1 },
+                new Bbs { Id = 23, Fecha = new DateTime(2020, 06, 30), ObservadorId = 9, AreaId = 1, ProcesoId = 5, ComportamientoId = 3, TipoObservadoId = 2, TipoComportamientoId = 2 },
+                new Bbs { Id = 24, Fecha = new DateTime(2020, 07, 03), ObservadorId = 7, AreaId = 44, ProcesoId = 17, ComportamientoId = 26, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 25, Fecha = new DateTime(2020, 07, 08), ObservadorId = 8, AreaId = 6, ProcesoId = 19, ComportamientoId = 9, TipoObservadoId = 1, TipoComportamientoId = 1 },
+                new Bbs { Id = 26, Fecha = new DateTime(2020, 07, 16), ObservadorId = 8, AreaId = 49, ProcesoId = 3, ComportamientoId = 21, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 27, Fecha = new DateTime(2020, 07, 24), ObservadorId = 1, AreaId = 37, ProcesoId = 1, ComportamientoId = 29, TipoObservadoId = 5, TipoComportamientoId = 2 },
+                new Bbs { Id = 28, Fecha = new DateTime(2020, 07, 25), ObservadorId = 8, AreaId = 22, ProcesoId = 4, ComportamientoId = 4, TipoObservadoId = 1, TipoComportamientoId = 2 },
+                new Bbs { Id = 29, Fecha = new DateTime(2020, 07, 27), ObservadorId = 1, AreaId = 2, ProcesoId = 21, ComportamientoId = 2, TipoObservadoId = 3, TipoComportamientoId = 2 },
+                new Bbs { Id = 30, Fecha = new DateTime(2020, 07, 28), ObservadorId = 9, AreaId = 9, ProcesoId = 23, ComportamientoId = 21, TipoObservadoId = 1, TipoComportamientoId = 1 }
+            );
+
+            modelBuilder.Entity<Incidente>().HasData(
+                new Incidente { Id = 1, Fecha = new DateTime(2020, 01, 17), AreaId = 1, ProcesoId = 23, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 2, JornadaId = 1, EfectoId = 2, ClasificacionId = 1, ActividadId = 1, RiesgoId = 1, CausaBasicaId = 2, CausaInmediataId = 2, ParteCuerpoId = 11, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 2, Fecha = new DateTime(2020, 01, 23), AreaId = 11, ProcesoId = 4, Observado = "Alejandro Venegas", GeneroId = 2, TurnoId = 1, JornadaId = 2, EfectoId = 2, ClasificacionId = 5, ActividadId = 2, RiesgoId = 2, CausaBasicaId = 1, CausaInmediataId = 2, ParteCuerpoId = 3, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 3, Fecha = new DateTime(2020, 02, 06), AreaId = 26, ProcesoId = 18, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 4, JornadaId = 2, EfectoId = 2, ClasificacionId = 3, ActividadId = 1, RiesgoId = 3, CausaBasicaId = 4, CausaInmediataId = 5, ParteCuerpoId = 3, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 4, Fecha = new DateTime(2020, 02, 27), AreaId = 36, ProcesoId = 22, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 4, JornadaId = 3, EfectoId = 2, ClasificacionId = 7, ActividadId = 1, RiesgoId = 2, CausaBasicaId = 3, CausaInmediataId = 6, ParteCuerpoId = 7, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 5, Fecha = new DateTime(2020, 03, 25), AreaId = 49, ProcesoId = 19, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 3, JornadaId = 2, EfectoId = 2, ClasificacionId = 3, ActividadId = 1, RiesgoId = 1, CausaBasicaId = 5, CausaInmediataId = 8, ParteCuerpoId = 4, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 6, Fecha = new DateTime(2020, 03, 28), AreaId = 21, ProcesoId = 20, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 3, JornadaId = 1, EfectoId = 2, ClasificacionId = 5, ActividadId = 1, RiesgoId = 2, CausaBasicaId = 1, CausaInmediataId = 15, ParteCuerpoId = 7, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 7, Fecha = new DateTime(2020, 04, 09), AreaId = 48, ProcesoId = 4, Observado = "Alejandro Venegas", GeneroId = 2, TurnoId = 5, JornadaId = 2, EfectoId = 2, ClasificacionId = 8, ActividadId = 1, RiesgoId = 3, CausaBasicaId = 2, CausaInmediataId = 6, ParteCuerpoId = 14, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 8, Fecha = new DateTime(2020, 04, 14), AreaId = 12, ProcesoId = 5, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 1, JornadaId = 2, EfectoId = 1, ClasificacionId = 9, ActividadId = 2, RiesgoId = 1, CausaBasicaId = 3, CausaInmediataId = 16, ParteCuerpoId = 35, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 9, Fecha = new DateTime(2020, 04, 21), AreaId = 50, ProcesoId = 1, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 2, JornadaId = 1, EfectoId = 2, ClasificacionId = 10, ActividadId = 1, RiesgoId = 2, CausaBasicaId = 5, CausaInmediataId = 4, ParteCuerpoId = 22, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 10, Fecha = new DateTime(2020, 05, 23), AreaId = 16, ProcesoId = 4, Observado = "Alejandro Venegas", GeneroId = 2, TurnoId = 4, JornadaId = 1, EfectoId = 2, ClasificacionId = 11, ActividadId = 1, RiesgoId = 3, CausaBasicaId = 2, CausaInmediataId = 12, ParteCuerpoId = 31, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 11, Fecha = new DateTime(2020, 05, 30), AreaId = 23, ProcesoId = 6, Observado = "Alejandro Venegas", GeneroId = 2, TurnoId = 2, JornadaId = 2, EfectoId = 1, ClasificacionId = 2, ActividadId = 2, RiesgoId = 2, CausaBasicaId = 3, CausaInmediataId = 22, ParteCuerpoId = 20, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 12, Fecha = new DateTime(2020, 06, 11), AreaId = 41, ProcesoId = 16, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 2, JornadaId = 3, EfectoId = 1, ClasificacionId = 4, ActividadId = 1, RiesgoId = 2, CausaBasicaId = 5, CausaInmediataId = 20, ParteCuerpoId = 19, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 13, Fecha = new DateTime(2020, 06, 26), AreaId = 33, ProcesoId = 19, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 4, JornadaId = 3, EfectoId = 2, ClasificacionId = 11, ActividadId = 1, RiesgoId = 1, CausaBasicaId = 3, CausaInmediataId = 15, ParteCuerpoId = 15, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 14, Fecha = new DateTime(2020, 07, 03), AreaId = 45, ProcesoId = 23, Observado = "Alejandro Venegas", GeneroId = 2, TurnoId = 4, JornadaId = 2, EfectoId = 2, ClasificacionId = 6, ActividadId = 1, RiesgoId = 2, CausaBasicaId = 2, CausaInmediataId = 21, ParteCuerpoId = 13, Descripcion = "Descripción del incidente" },
+                new Incidente { Id = 15, Fecha = new DateTime(2020, 07, 19), AreaId = 4, ProcesoId = 22, Observado = "Alejandro Venegas", GeneroId = 1, TurnoId = 2, JornadaId = 1, EfectoId = 1, ClasificacionId = 5, ActividadId = 2, RiesgoId = 3, CausaBasicaId = 1, CausaInmediataId = 20, ParteCuerpoId = 12, Descripcion = "Descripción del incidente" }
+            );
+
+            modelBuilder.Entity<CasiIncidente>().HasData(
+                new CasiIncidente { Id = 1, GeneroId = 2, Fecha = new DateTime(2020, 2, 14), AreaId = 3, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 3, RiesgoId = 2, CasualidadId = 2, Descripcion = "Incumplimiento de la distancia de carga pesada" },
+                new CasiIncidente { Id = 2, GeneroId = 1, Fecha = new DateTime(2020, 4, 21), AreaId = 5, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 2, RiesgoId = 2, CasualidadId = 6, Descripcion = "Posturas y manejo de cargas inadecuadas" },
+                new CasiIncidente { Id = 3, GeneroId = 2, Fecha = new DateTime(2020, 5, 2), AreaId = 35, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 1, RiesgoId = 1, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 4, GeneroId = 1, Fecha = new DateTime(2020, 1, 2), AreaId = 7, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 2, RiesgoId = 3, CasualidadId = 7, Descripcion = "Temblor sin afectaci�n" },
+                new CasiIncidente { Id = 5, GeneroId = 2, Fecha = new DateTime(2020, 7, 20), AreaId = 50, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 1, RiesgoId = 2, CasualidadId = 5, Descripcion = "Sin protecci�n" },
+                new CasiIncidente { Id = 6, GeneroId = 2, Fecha = new DateTime(2020, 5, 13), AreaId = 34, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 5, JornadaId = 3, RiesgoId = 2, CasualidadId = 4, Descripcion = "Mala praxis" },
+                new CasiIncidente { Id = 7, GeneroId = 2, Fecha = new DateTime(2020, 7, 11), AreaId = 6, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 2, RiesgoId = 1, CasualidadId = 2, Descripcion = "Expuesto a zonas inseguras" },
+                new CasiIncidente { Id = 8, GeneroId = 1, Fecha = new DateTime(2020, 2, 5), AreaId = 19, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 1, RiesgoId = 2, CasualidadId = 5, Descripcion = "Sin protecci�n" },
+                new CasiIncidente { Id = 9, GeneroId = 1, Fecha = new DateTime(2020, 1, 10), AreaId = 25, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 1, JornadaId = 2, RiesgoId = 2, CasualidadId = 7, Descripcion = "Temblor sin afectaci�n" },
+                new CasiIncidente { Id = 10, GeneroId = 2, Fecha = new DateTime(2020, 4, 22), AreaId = 40, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 5, JornadaId = 3, RiesgoId = 2, CasualidadId = 5, Descripcion = "Sin protecci�n" },
+                new CasiIncidente { Id = 11, GeneroId = 1, Fecha = new DateTime(2020, 7, 28), AreaId = 2, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 2, RiesgoId = 3, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 12, GeneroId = 2, Fecha = new DateTime(2020, 5, 8), AreaId = 1, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 3, RiesgoId = 1, CasualidadId = 1, Descripcion = "Acci�n sin preveer consecuencias" },
+                new CasiIncidente { Id = 13, GeneroId = 2, Fecha = new DateTime(2020, 2, 5), AreaId = 15, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 2, RiesgoId = 2, CasualidadId = 6, Descripcion = "Posturas y manejo de cargas inadecuadas" },
+                new CasiIncidente { Id = 14, GeneroId = 1, Fecha = new DateTime(2020, 3, 3), AreaId = 28, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 5, JornadaId = 2, RiesgoId = 2, CasualidadId = 4, Descripcion = "Mala praxis" },
+                new CasiIncidente { Id = 15, GeneroId = 1, Fecha = new DateTime(2020, 6, 28), AreaId = 12, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 1, RiesgoId = 1, CasualidadId = 6, Descripcion = "Posturas y manejo de cargas inadecuadas" },
+                new CasiIncidente { Id = 16, GeneroId = 2, Fecha = new DateTime(2020, 2, 23), AreaId = 4, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 2, RiesgoId = 1, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 17, GeneroId = 1, Fecha = new DateTime(2020, 6, 12), AreaId = 44, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 3, RiesgoId = 1, CasualidadId = 5, Descripcion = "Sin protecci�n" },
+                new CasiIncidente { Id = 18, GeneroId = 1, Fecha = new DateTime(2020, 7, 1), AreaId = 39, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 5, JornadaId = 2, RiesgoId = 2, CasualidadId = 2, Descripcion = "Expuesto a zonas inseguras" },
+                new CasiIncidente { Id = 19, GeneroId = 1, Fecha = new DateTime(2020, 7, 16), AreaId = 23, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 1, JornadaId = 3, RiesgoId = 1, CasualidadId = 2, Descripcion = "Expuesto a zonas inseguras" },
+                new CasiIncidente { Id = 20, GeneroId = 1, Fecha = new DateTime(2020, 7, 13), AreaId = 46, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 1, RiesgoId = 2, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 21, GeneroId = 2, Fecha = new DateTime(2020, 3, 10), AreaId = 9, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 2, RiesgoId = 3, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 22, GeneroId = 2, Fecha = new DateTime(2020, 3, 4), AreaId = 10, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 2, RiesgoId = 1, CasualidadId = 5, Descripcion = "Sin protecci�n" },
+                new CasiIncidente { Id = 23, GeneroId = 1, Fecha = new DateTime(2020, 2, 4), AreaId = 43, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 3, RiesgoId = 2, CasualidadId = 7, Descripcion = "Temblor sin afectaci�n" },
+                new CasiIncidente { Id = 24, GeneroId = 1, Fecha = new DateTime(2020, 5, 12), AreaId = 50, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 3, JornadaId = 2, RiesgoId = 2, CasualidadId = 4, Descripcion = "Mala praxis" },
+                new CasiIncidente { Id = 25, GeneroId = 1, Fecha = new DateTime(2020, 5, 14), AreaId = 34, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 1, JornadaId = 1, RiesgoId = 3, CasualidadId = 4, Descripcion = "Mala praxis" },
+                new CasiIncidente { Id = 26, GeneroId = 2, Fecha = new DateTime(2020, 5, 13), AreaId = 21, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 3, RiesgoId = 1, CasualidadId = 6, Descripcion = "Posturas y manejo de cargas inadecuadas" },
+                new CasiIncidente { Id = 27, GeneroId = 2, Fecha = new DateTime(2020, 6, 26), AreaId = 32, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 2, JornadaId = 2, RiesgoId = 2, CasualidadId = 1, Descripcion = "Acci�n sin preveer consecuencias" },
+                new CasiIncidente { Id = 28, GeneroId = 1, Fecha = new DateTime(2020, 5, 16), AreaId = 16, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 1, JornadaId = 1, RiesgoId = 2, CasualidadId = 3, Descripcion = "No apto para la zona qu�mica" },
+                new CasiIncidente { Id = 29, GeneroId = 2, Fecha = new DateTime(2020, 2, 7), AreaId = 24, ProcesoId = 2, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 3, RiesgoId = 1, CasualidadId = 4, Descripcion = "Mala praxis" },
+                new CasiIncidente { Id = 30, GeneroId = 2, Fecha = new DateTime(2020, 1, 17), AreaId = 48, ProcesoId = 1, Observado = "Alejandro Venegas", TurnoId = 4, JornadaId = 2, RiesgoId = 2, CasualidadId = 5, Descripcion = "Sin protecci�n" }
+
+            );
+
+            modelBuilder.Entity<CondicionInsegura>().HasData(
+                new CondicionInsegura { Id = 1, Fecha = new DateTime(2020, 04, 17), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
+                new CondicionInsegura { Id = 2, Fecha = new DateTime(2020, 04, 21), AreaId = 17, ProcesoId = 11, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 3, Fecha = new DateTime(2020, 04, 27), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
+                new CondicionInsegura { Id = 4, Fecha = new DateTime(2020, 04, 28), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 5, Fecha = new DateTime(2020, 04, 28), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
+                new CondicionInsegura { Id = 6, Fecha = new DateTime(2020, 05, 05), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 2, IndicadorRiesgoId = 6 },
+                new CondicionInsegura { Id = 7, Fecha = new DateTime(2020, 05, 15), AreaId = 11, ProcesoId = 20, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
+                new CondicionInsegura { Id = 8, Fecha = new DateTime(2020, 05, 18), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 1, IndicadorRiesgoId = 5 },
+                new CondicionInsegura { Id = 9, Fecha = new DateTime(2020, 05, 20), AreaId = 9, ProcesoId = 20, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 10, Fecha = new DateTime(2020, 06, 16), AreaId = 19, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 11, Fecha = new DateTime(2020, 06, 24), AreaId = 1, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
+                new CondicionInsegura { Id = 12, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 13, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 14, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
+                new CondicionInsegura { Id = 15, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
+                new CondicionInsegura { Id = 16, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 }
             );
 
 

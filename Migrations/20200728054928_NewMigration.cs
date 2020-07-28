@@ -756,9 +756,9 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
+                    { 17, "Posturas incómodas" },
                     { 18, "Pausas activas" },
                     { 19, "Caminar, saltar, correr" },
-                    { 20, "Respeto de las señalizaciones" },
                     { 21, "Uso de herramientas manuales" },
                     { 22, "Uso de herramientas eléctricas" },
                     { 23, "Uso de herramientas mecánicas" },
@@ -770,20 +770,20 @@ namespace bbs_project.Migrations
                     { 16, "Levantamiento de cargas" },
                     { 24, "Orden y limpieza" },
                     { 15, "Trabajos en energías peligrosas" },
-                    { 17, "Posturas incómodas" },
+                    { 20, "Respeto de las señalizaciones" },
                     { 13, "Trabajos en calientes" },
-                    { 1, "Uso del celular" },
                     { 2, "Uso de pasamanos" },
                     { 3, "Uso de EPP " },
                     { 4, "Manejo defensivo vehicular" },
+                    { 5, "Respeto de la velocidad máxima" },
                     { 6, "Uso racional del agua" },
                     { 7, "Uso racional de energía" },
-                    { 5, "Respeto de la velocidad máxima" },
+                    { 1, "Uso del celular" },
                     { 9, "Uso de químicos" },
+                    { 14, "Trabajos en espacios confinados (pd)" },
                     { 10, "Uso de montacargas" },
                     { 11, "Uso de hidrolavadora" },
                     { 12, "Trabajos de alturas" },
-                    { 14, "Trabajos en espacios confinados (pd)" },
                     { 8, "Separación de desechos" }
                 });
 
@@ -806,11 +806,11 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
+                    { 6, "Infraestructura y Entorno" },
                     { 5, "Mecánicos" },
                     { 4, "Ergonómicos" },
-                    { 6, "Infraestructura y Entorno" },
-                    { 2, "Químicos" },
                     { 1, "Físicos" },
+                    { 2, "Químicos" },
                     { 3, "Biológicos" }
                 });
 
@@ -821,6 +821,19 @@ namespace bbs_project.Migrations
                 {
                     { 1, "Masculino" },
                     { 2, "Femenino" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "IndicadorRiesgos",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 5, "Mecánicos" },
+                    { 6, "Infraestructura y Entorno" },
+                    { 4, "Ergonómicos" },
+                    { 1, "Físicos" },
+                    { 2, "Químicos" },
+                    { 3, "Biológicos" }
                 });
 
             migrationBuilder.InsertData(
@@ -845,17 +858,17 @@ namespace bbs_project.Migrations
                     { 24, "Cara" },
                     { 25, "Nariz" },
                     { 26, "Glúteo Derecho" },
-                    { 35, "Politraumatismo" },
-                    { 28, "Oreja Izquierda" },
                     { 29, "Oreja Derecha" },
+                    { 28, "Oreja Izquierda" },
+                    { 30, "Ceja Izquierda" },
                     { 31, "Ceja Derecha" },
                     { 32, "Tobillo Derecho" },
                     { 33, "Tobillo Izquierdo" },
                     { 34, "Dentadura" },
                     { 19, "Rodilla Izquierda" },
-                    { 27, "Glúteo Izquierdo" },
+                    { 35, "Politraumatismo" },
                     { 18, "Rodilla Derecha" },
-                    { 30, "Ceja Izquierda" },
+                    { 27, "Glúteo Izquierdo" },
                     { 16, "Pierna Izquierda" },
                     { 17, "Pierda Derecha" },
                     { 1, "Antebrazo Derecho" },
@@ -977,39 +990,121 @@ namespace bbs_project.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "CasiIncidentes",
+                columns: new[] { "Id", "AreaId", "CasualidadId", "ColaboradorId", "Descripcion", "Fecha", "GeneroId", "JornadaId", "Observado", "ProcesoId", "RiesgoId", "TurnoId" },
+                values: new object[,]
+                {
+                    { 21, 9, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 3, 2 },
+                    { 25, 34, 4, null, "Mala praxis", new DateTime(2020, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 3, 1 },
+                    { 28, 16, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 1, 2, 1 },
+                    { 1, 3, 2, null, "Incumplimiento de la distancia de carga pesada", new DateTime(2020, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 1, 2, 2 },
+                    { 4, 7, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 3, 2 },
+                    { 5, 50, 5, null, "Sin protecci�n", new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 2, 2, 2 },
+                    { 12, 1, 1, null, "Acci�n sin preveer consecuencias", new DateTime(2020, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 1, 2 },
+                    { 16, 4, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 1, 2 },
+                    { 23, 43, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 2, 2 },
+                    { 27, 32, 1, null, "Acci�n sin preveer consecuencias", new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 2, 2 },
+                    { 2, 5, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 3 },
+                    { 3, 35, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 2, 1, 3 },
+                    { 8, 19, 5, null, "Sin protecci�n", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
+                    { 13, 15, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 3 },
+                    { 15, 12, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 1, 1, 3 },
+                    { 20, 46, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
+                    { 22, 10, 5, null, "Sin protecci�n", new DateTime(2020, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 3 },
+                    { 24, 50, 4, null, "Mala praxis", new DateTime(2020, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 3 },
+                    { 7, 6, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 4 },
+                    { 11, 2, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 3, 4 },
+                    { 17, 44, 5, null, "Sin protecci�n", new DateTime(2020, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 4 },
+                    { 26, 21, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 1, 1, 4 },
+                    { 29, 24, 4, null, "Mala praxis", new DateTime(2020, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 1, 4 },
+                    { 30, 48, 5, null, "Sin protecci�n", new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 4 },
+                    { 6, 34, 4, null, "Mala praxis", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 2, 5 },
+                    { 10, 40, 5, null, "Sin protecci�n", new DateTime(2020, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 2, 5 },
+                    { 14, 28, 4, null, "Mala praxis", new DateTime(2020, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 5 },
+                    { 18, 39, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 5 },
+                    { 19, 23, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 1 },
+                    { 9, 25, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Colaboradores",
                 columns: new[] { "Id", "Apellido", "DepartamentoId", "Nombre", "Puesto" },
                 values: new object[,]
                 {
                     { 1, "Céspedes", 1, "Alberto", "Por Definir" },
-                    { 29, "Koying", 1, "Carlos", "Por Definir" },
-                    { 28, "Alvarado", 1, "Nitzi", "Por Definir" },
-                    { 26, "Leiva", 1, "Tannia", "Por Definir" },
-                    { 25, "Guerrero", 1, "Ronald", "Por Definir" },
-                    { 24, "Calderón", 1, "Randall", "Por Definir" },
-                    { 23, "Jiménez", 1, "Max", "Por Definir" },
                     { 22, "Vega", 1, "Marco", "Por Definir" },
-                    { 21, "Arias", 1, "Marco", "Por Definir" },
-                    { 20, "Aguilar", 1, "M", "Por Definir" },
-                    { 19, "Rodríguez", 1, "Kenneth", "Por Definir" },
-                    { 18, "Robles", 1, "Juan", "Por Definir" },
-                    { 17, "Solano", 1, "Jorge", "Por Definir" },
-                    { 16, "Jiménez", 1, "Jorge", "Por Definir" },
-                    { 27, "Sequeira", 1, "Walter", "Por Definir" },
-                    { 14, "Hernández", 1, "Hector", "Por Definir" },
-                    { 15, "Durán", 1, "Jimmy", "Por Definir" },
-                    { 2, "Blanco", 1, "Alejandro", "Por Definir" },
-                    { 4, "Calderón", 1, "Carla", "Por Definir" },
-                    { 5, "Brenes", 1, "Carlos", "Por Definir" },
-                    { 6, "Durán", 1, "Carlos", "Por Definir" },
                     { 7, "Astua", 1, "Cristina", "Por Definir" },
                     { 3, "Montero", 1, "Alejandro", "Por Definir" },
-                    { 9, "Chaves", 1, "Diana", "Por Definir" },
-                    { 10, "Sánchez", 1, "Ercik", "Por Definir" },
-                    { 11, "Gould", 1, "Esteban", "Por Definir" },
+                    { 21, "Arias", 1, "Marco", "Por Definir" },
+                    { 20, "Aguilar", 1, "M", "Por Definir" },
+                    { 4, "Calderón", 1, "Carla", "Por Definir" },
+                    { 5, "Brenes", 1, "Carlos", "Por Definir" },
+                    { 19, "Rodríguez", 1, "Kenneth", "Por Definir" },
+                    { 18, "Robles", 1, "Juan", "Por Definir" },
+                    { 23, "Jiménez", 1, "Max", "Por Definir" },
+                    { 17, "Solano", 1, "Jorge", "Por Definir" },
+                    { 15, "Durán", 1, "Jimmy", "Por Definir" },
+                    { 14, "Hernández", 1, "Hector", "Por Definir" },
+                    { 13, "Rivera", 1, "Fernando", "Por Definir" },
                     { 12, "Ramírez", 1, "Fernando", "Por Definir" },
+                    { 11, "Gould", 1, "Esteban", "Por Definir" },
+                    { 10, "Sánchez", 1, "Ercik", "Por Definir" },
+                    { 9, "Chaves", 1, "Diana", "Por Definir" },
                     { 8, "Acuña", 1, "Dennis", "Por Definir" },
-                    { 13, "Rivera", 1, "Fernando", "Por Definir" }
+                    { 16, "Jiménez", 1, "Jorge", "Por Definir" },
+                    { 24, "Calderón", 1, "Randall", "Por Definir" },
+                    { 6, "Durán", 1, "Carlos", "Por Definir" },
+                    { 26, "Leiva", 1, "Tannia", "Por Definir" },
+                    { 2, "Blanco", 1, "Alejandro", "Por Definir" },
+                    { 27, "Sequeira", 1, "Walter", "Por Definir" },
+                    { 28, "Alvarado", 1, "Nitzi", "Por Definir" },
+                    { 29, "Koying", 1, "Carlos", "Por Definir" },
+                    { 25, "Guerrero", 1, "Ronald", "Por Definir" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CondicionInseguras",
+                columns: new[] { "Id", "AreaId", "ColaboradorId", "FactorRiesgoId", "Fecha", "IndicadorRiesgoId", "ProcesoId" },
+                values: new object[,]
+                {
+                    { 6, 29, null, 2, new DateTime(2020, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 14 },
+                    { 10, 19, null, 6, new DateTime(2020, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
+                    { 11, 1, null, 6, new DateTime(2020, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 14 },
+                    { 12, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
+                    { 1, 29, null, 6, new DateTime(2020, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 14 },
+                    { 13, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
+                    { 14, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 14 },
+                    { 15, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
+                    { 16, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
+                    { 9, 9, null, 6, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 20 },
+                    { 3, 6, null, 6, new DateTime(2020, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 21 },
+                    { 4, 6, null, 6, new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 21 },
+                    { 8, 6, null, 1, new DateTime(2020, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 21 },
+                    { 2, 17, null, 6, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 11 },
+                    { 7, 11, null, 6, new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 20 },
+                    { 5, 29, null, 6, new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 14 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Incidentes",
+                columns: new[] { "Id", "ActividadId", "AreaId", "CausaBasicaId", "CausaInmediataId", "ClasificacionId", "ColaboradorId", "Descripcion", "EfectoId", "Fecha", "GeneroId", "JornadaId", "Observado", "ParteCuerpoId", "ProcesoId", "RiesgoId", "TurnoId" },
+                values: new object[,]
+                {
+                    { 10, 1, 16, 2, 12, 11, null, "Descripción del incidente", 2, new DateTime(2020, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 31, 4, 3, 4 },
+                    { 13, 1, 33, 3, 15, 11, null, "Descripción del incidente", 2, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 15, 19, 1, 4 },
+                    { 4, 1, 36, 3, 6, 7, null, "Descripción del incidente", 2, new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 7, 22, 2, 4 },
+                    { 14, 1, 45, 2, 21, 6, null, "Descripción del incidente", 2, new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 13, 23, 2, 4 },
+                    { 7, 1, 48, 2, 6, 8, null, "Descripción del incidente", 2, new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 14, 4, 3, 5 },
+                    { 5, 1, 49, 5, 8, 3, null, "Descripción del incidente", 2, new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 4, 19, 1, 3 },
+                    { 6, 1, 21, 1, 15, 5, null, "Descripción del incidente", 2, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 7, 20, 2, 3 },
+                    { 15, 2, 4, 1, 20, 5, null, "Descripción del incidente", 1, new DateTime(2020, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 12, 22, 3, 2 },
+                    { 12, 1, 41, 5, 20, 4, null, "Descripción del incidente", 1, new DateTime(2020, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 19, 16, 2, 2 },
+                    { 11, 2, 23, 3, 22, 2, null, "Descripción del incidente", 1, new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 20, 6, 2, 2 },
+                    { 9, 1, 50, 5, 4, 10, null, "Descripción del incidente", 2, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 22, 1, 2, 2 },
+                    { 1, 1, 1, 2, 2, 1, null, "Descripción del incidente", 2, new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 11, 23, 1, 2 },
+                    { 8, 2, 12, 3, 16, 9, null, "Descripción del incidente", 1, new DateTime(2020, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 35, 5, 1, 1 },
+                    { 2, 2, 11, 1, 2, 5, null, "Descripción del incidente", 2, new DateTime(2020, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 3, 4, 2, 1 },
+                    { 3, 1, 26, 4, 5, 3, null, "Descripción del incidente", 2, new DateTime(2020, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 3, 18, 3, 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -1021,19 +1116,19 @@ namespace bbs_project.Migrations
                     { 3, (byte)5, true },
                     { 1, (byte)6, true },
                     { 2, (byte)6, true },
+                    { 1, (byte)9, true },
                     { 1, (byte)8, true },
                     { 2, (byte)8, true },
-                    { 1, (byte)9, true },
                     { 1, (byte)5, true },
                     { 2, (byte)9, true },
                     { 1, (byte)7, true },
                     { 3, (byte)4, true },
-                    { 2, (byte)2, true },
+                    { 2, (byte)3, true },
                     { 1, (byte)4, true },
                     { 3, (byte)3, true },
-                    { 2, (byte)3, true },
                     { 1, (byte)3, true },
                     { 3, (byte)2, true },
+                    { 2, (byte)2, true },
                     { 1, (byte)2, true },
                     { 3, (byte)1, true },
                     { 2, (byte)1, true },
@@ -1041,6 +1136,43 @@ namespace bbs_project.Migrations
                     { 1, (byte)10, true },
                     { 2, (byte)4, true },
                     { 1, (byte)11, true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Bbss",
+                columns: new[] { "Id", "AreaId", "ComportamientoId", "Fecha", "ObservadorId", "ProcesoId", "TipoComportamientoId", "TipoObservadoId" },
+                values: new object[,]
+                {
+                    { 5, 10, 21, new DateTime(2020, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 21, 2, 2 },
+                    { 16, 29, 22, new DateTime(2020, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 23, 2, 1 },
+                    { 12, 32, 1, new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 10, 21, 1, 1 },
+                    { 30, 9, 21, new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 23, 1, 1 },
+                    { 23, 1, 3, new DateTime(2020, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 5, 2, 2 },
+                    { 11, 13, 17, new DateTime(2020, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 9, 9, 2, 1 },
+                    { 28, 22, 4, new DateTime(2020, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 4, 2, 1 },
+                    { 26, 49, 21, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 3, 2, 1 },
+                    { 25, 6, 9, new DateTime(2020, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 8, 19, 1, 1 },
+                    { 24, 44, 26, new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 17, 2, 1 },
+                    { 8, 48, 29, new DateTime(2020, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 7, 1, 1, 1 },
+                    { 21, 35, 7, new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 8, 1, 2 },
+                    { 20, 16, 9, new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 18, 2, 1 },
+                    { 6, 44, 29, new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 2, 2, 1 },
+                    { 19, 25, 11, new DateTime(2020, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 6, 1, 1 },
+                    { 13, 22, 27, new DateTime(2020, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 22, 2, 2 },
+                    { 3, 3, 6, new DateTime(2020, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 10, 2, 1 },
+                    { 2, 44, 26, new DateTime(2020, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 13, 2, 1 },
+                    { 22, 46, 27, new DateTime(2020, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 5, 1, 2 },
+                    { 14, 36, 9, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 9, 1, 1 },
+                    { 7, 22, 25, new DateTime(2020, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 15, 2, 2 },
+                    { 18, 46, 28, new DateTime(2020, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 7, 2, 5 },
+                    { 17, 19, 18, new DateTime(2020, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, 1, 3 },
+                    { 4, 37, 24, new DateTime(2020, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 13, 1, 2 },
+                    { 29, 2, 2, new DateTime(2020, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 21, 2, 3 },
+                    { 27, 37, 29, new DateTime(2020, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, 2, 5 },
+                    { 10, 26, 11, new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 12, 1, 1 },
+                    { 9, 9, 19, new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 18, 2, 2 },
+                    { 1, 35, 5, new DateTime(2020, 1, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 11, 15, 2, 1 },
+                    { 15, 13, 26, new DateTime(2020, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 11, 22, 1, 4 }
                 });
 
             migrationBuilder.CreateIndex(

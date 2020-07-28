@@ -358,6 +358,338 @@ namespace bbs_project.Migrations
                     b.HasIndex("TipoObservadoId");
 
                     b.ToTable("Bbss");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AreaId = 35,
+                            ComportamientoId = 5,
+                            Fecha = new DateTime(2020, 1, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 11,
+                            ProcesoId = 15,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AreaId = 44,
+                            ComportamientoId = 26,
+                            Fecha = new DateTime(2020, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 5,
+                            ProcesoId = 13,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AreaId = 3,
+                            ComportamientoId = 6,
+                            Fecha = new DateTime(2020, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 5,
+                            ProcesoId = 10,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AreaId = 37,
+                            ComportamientoId = 24,
+                            Fecha = new DateTime(2020, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 2,
+                            ProcesoId = 13,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AreaId = 10,
+                            ComportamientoId = 21,
+                            Fecha = new DateTime(2020, 2, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 1,
+                            ProcesoId = 21,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AreaId = 44,
+                            ComportamientoId = 29,
+                            Fecha = new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 6,
+                            ProcesoId = 2,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AreaId = 22,
+                            ComportamientoId = 25,
+                            Fecha = new DateTime(2020, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 3,
+                            ProcesoId = 15,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AreaId = 48,
+                            ComportamientoId = 29,
+                            Fecha = new DateTime(2020, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 7,
+                            ProcesoId = 1,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AreaId = 9,
+                            ComportamientoId = 19,
+                            Fecha = new DateTime(2020, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 1,
+                            ProcesoId = 18,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AreaId = 26,
+                            ComportamientoId = 11,
+                            Fecha = new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 1,
+                            ProcesoId = 12,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AreaId = 13,
+                            ComportamientoId = 17,
+                            Fecha = new DateTime(2020, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 9,
+                            ProcesoId = 9,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AreaId = 32,
+                            ComportamientoId = 1,
+                            Fecha = new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 10,
+                            ProcesoId = 21,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AreaId = 22,
+                            ComportamientoId = 27,
+                            Fecha = new DateTime(2020, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 5,
+                            ProcesoId = 22,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AreaId = 36,
+                            ComportamientoId = 9,
+                            Fecha = new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 4,
+                            ProcesoId = 9,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AreaId = 13,
+                            ComportamientoId = 26,
+                            Fecha = new DateTime(2020, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 11,
+                            ProcesoId = 22,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AreaId = 29,
+                            ComportamientoId = 22,
+                            Fecha = new DateTime(2020, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 10,
+                            ProcesoId = 23,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AreaId = 19,
+                            ComportamientoId = 18,
+                            Fecha = new DateTime(2020, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 2,
+                            ProcesoId = 2,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 3
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AreaId = 46,
+                            ComportamientoId = 28,
+                            Fecha = new DateTime(2020, 5, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 2,
+                            ProcesoId = 7,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AreaId = 25,
+                            ComportamientoId = 11,
+                            Fecha = new DateTime(2020, 5, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 5,
+                            ProcesoId = 6,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AreaId = 16,
+                            ComportamientoId = 9,
+                            Fecha = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 6,
+                            ProcesoId = 18,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            AreaId = 35,
+                            ComportamientoId = 7,
+                            Fecha = new DateTime(2020, 6, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 6,
+                            ProcesoId = 8,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            AreaId = 46,
+                            ComportamientoId = 27,
+                            Fecha = new DateTime(2020, 6, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 4,
+                            ProcesoId = 5,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            AreaId = 1,
+                            ComportamientoId = 3,
+                            Fecha = new DateTime(2020, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 9,
+                            ProcesoId = 5,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            AreaId = 44,
+                            ComportamientoId = 26,
+                            Fecha = new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 7,
+                            ProcesoId = 17,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            AreaId = 6,
+                            ComportamientoId = 9,
+                            Fecha = new DateTime(2020, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 8,
+                            ProcesoId = 19,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            AreaId = 49,
+                            ComportamientoId = 21,
+                            Fecha = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 8,
+                            ProcesoId = 3,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            AreaId = 37,
+                            ComportamientoId = 29,
+                            Fecha = new DateTime(2020, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 1,
+                            ProcesoId = 1,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 5
+                        },
+                        new
+                        {
+                            Id = 28,
+                            AreaId = 22,
+                            ComportamientoId = 4,
+                            Fecha = new DateTime(2020, 7, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 8,
+                            ProcesoId = 4,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            AreaId = 2,
+                            ComportamientoId = 2,
+                            Fecha = new DateTime(2020, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 1,
+                            ProcesoId = 21,
+                            TipoComportamientoId = 2,
+                            TipoObservadoId = 3
+                        },
+                        new
+                        {
+                            Id = 30,
+                            AreaId = 9,
+                            ComportamientoId = 21,
+                            Fecha = new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObservadorId = 9,
+                            ProcesoId = 23,
+                            TipoComportamientoId = 1,
+                            TipoObservadoId = 1
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>
@@ -421,6 +753,428 @@ namespace bbs_project.Migrations
                     b.HasIndex("TurnoId");
 
                     b.ToTable("CasiIncidentes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AreaId = 3,
+                            CasualidadId = 2,
+                            Descripcion = "Incumplimiento de la distancia de carga pesada",
+                            Fecha = new DateTime(2020, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AreaId = 5,
+                            CasualidadId = 6,
+                            Descripcion = "Posturas y manejo de cargas inadecuadas",
+                            Fecha = new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AreaId = 35,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 1,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AreaId = 7,
+                            CasualidadId = 7,
+                            Descripcion = "Temblor sin afectaci�n",
+                            Fecha = new DateTime(2020, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 3,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AreaId = 50,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AreaId = 34,
+                            CasualidadId = 4,
+                            Descripcion = "Mala praxis",
+                            Fecha = new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 5
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AreaId = 6,
+                            CasualidadId = 2,
+                            Descripcion = "Expuesto a zonas inseguras",
+                            Fecha = new DateTime(2020, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AreaId = 19,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AreaId = 25,
+                            CasualidadId = 7,
+                            Descripcion = "Temblor sin afectaci�n",
+                            Fecha = new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AreaId = 40,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 5
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AreaId = 2,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 3,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AreaId = 1,
+                            CasualidadId = 1,
+                            Descripcion = "Acci�n sin preveer consecuencias",
+                            Fecha = new DateTime(2020, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 1,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AreaId = 15,
+                            CasualidadId = 6,
+                            Descripcion = "Posturas y manejo de cargas inadecuadas",
+                            Fecha = new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AreaId = 28,
+                            CasualidadId = 4,
+                            Descripcion = "Mala praxis",
+                            Fecha = new DateTime(2020, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AreaId = 12,
+                            CasualidadId = 6,
+                            Descripcion = "Posturas y manejo de cargas inadecuadas",
+                            Fecha = new DateTime(2020, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AreaId = 4,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 1,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AreaId = 44,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AreaId = 39,
+                            CasualidadId = 2,
+                            Descripcion = "Expuesto a zonas inseguras",
+                            Fecha = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AreaId = 23,
+                            CasualidadId = 2,
+                            Descripcion = "Expuesto a zonas inseguras",
+                            Fecha = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            AreaId = 46,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 21,
+                            AreaId = 9,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 3,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            AreaId = 10,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 23,
+                            AreaId = 43,
+                            CasualidadId = 7,
+                            Descripcion = "Temblor sin afectaci�n",
+                            Fecha = new DateTime(2020, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            AreaId = 50,
+                            CasualidadId = 4,
+                            Descripcion = "Mala praxis",
+                            Fecha = new DateTime(2020, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 25,
+                            AreaId = 34,
+                            CasualidadId = 4,
+                            Descripcion = "Mala praxis",
+                            Fecha = new DateTime(2020, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 3,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            AreaId = 21,
+                            CasualidadId = 6,
+                            Descripcion = "Posturas y manejo de cargas inadecuadas",
+                            Fecha = new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 1,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 27,
+                            AreaId = 32,
+                            CasualidadId = 1,
+                            Descripcion = "Acci�n sin preveer consecuencias",
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 28,
+                            AreaId = 16,
+                            CasualidadId = 3,
+                            Descripcion = "No apto para la zona qu�mica",
+                            Fecha = new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            AreaId = 24,
+                            CasualidadId = 4,
+                            Descripcion = "Mala praxis",
+                            Fecha = new DateTime(2020, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 2,
+                            RiesgoId = 1,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 30,
+                            AreaId = 48,
+                            CasualidadId = 5,
+                            Descripcion = "Sin protecci�n",
+                            Fecha = new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 4
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.Casualidad", b =>
@@ -1184,6 +1938,152 @@ namespace bbs_project.Migrations
                     b.HasIndex("ProcesoId");
 
                     b.ToTable("CondicionInseguras");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AreaId = 29,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 1,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AreaId = 17,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 11
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AreaId = 6,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 1,
+                            ProcesoId = 21
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AreaId = 6,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 21
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AreaId = 29,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 2,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AreaId = 29,
+                            FactorRiesgoId = 2,
+                            Fecha = new DateTime(2020, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 6,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AreaId = 11,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 2,
+                            ProcesoId = 20
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AreaId = 6,
+                            FactorRiesgoId = 1,
+                            Fecha = new DateTime(2020, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 5,
+                            ProcesoId = 21
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AreaId = 9,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 20
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AreaId = 19,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AreaId = 1,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 1,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AreaId = 5,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AreaId = 5,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AreaId = 5,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 2,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AreaId = 5,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 14
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AreaId = 5,
+                            FactorRiesgoId = 6,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IndicadorRiesgoId = 3,
+                            ProcesoId = 14
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.Departamento", b =>
@@ -1404,6 +2304,293 @@ namespace bbs_project.Migrations
                     b.HasIndex("TurnoId");
 
                     b.ToTable("Incidentes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActividadId = 1,
+                            AreaId = 1,
+                            CausaBasicaId = 2,
+                            CausaInmediataId = 2,
+                            ClasificacionId = 1,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 11,
+                            ProcesoId = 23,
+                            RiesgoId = 1,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActividadId = 2,
+                            AreaId = 11,
+                            CausaBasicaId = 1,
+                            CausaInmediataId = 2,
+                            ClasificacionId = 5,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 3,
+                            ProcesoId = 4,
+                            RiesgoId = 2,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActividadId = 1,
+                            AreaId = 26,
+                            CausaBasicaId = 4,
+                            CausaInmediataId = 5,
+                            ClasificacionId = 3,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 3,
+                            ProcesoId = 18,
+                            RiesgoId = 3,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ActividadId = 1,
+                            AreaId = 36,
+                            CausaBasicaId = 3,
+                            CausaInmediataId = 6,
+                            ClasificacionId = 7,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 7,
+                            ProcesoId = 22,
+                            RiesgoId = 2,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ActividadId = 1,
+                            AreaId = 49,
+                            CausaBasicaId = 5,
+                            CausaInmediataId = 8,
+                            ClasificacionId = 3,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 4,
+                            ProcesoId = 19,
+                            RiesgoId = 1,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ActividadId = 1,
+                            AreaId = 21,
+                            CausaBasicaId = 1,
+                            CausaInmediataId = 15,
+                            ClasificacionId = 5,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 7,
+                            ProcesoId = 20,
+                            RiesgoId = 2,
+                            TurnoId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ActividadId = 1,
+                            AreaId = 48,
+                            CausaBasicaId = 2,
+                            CausaInmediataId = 6,
+                            ClasificacionId = 8,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 14,
+                            ProcesoId = 4,
+                            RiesgoId = 3,
+                            TurnoId = 5
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ActividadId = 2,
+                            AreaId = 12,
+                            CausaBasicaId = 3,
+                            CausaInmediataId = 16,
+                            ClasificacionId = 9,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 1,
+                            Fecha = new DateTime(2020, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 35,
+                            ProcesoId = 5,
+                            RiesgoId = 1,
+                            TurnoId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ActividadId = 1,
+                            AreaId = 50,
+                            CausaBasicaId = 5,
+                            CausaInmediataId = 4,
+                            ClasificacionId = 10,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 22,
+                            ProcesoId = 1,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ActividadId = 1,
+                            AreaId = 16,
+                            CausaBasicaId = 2,
+                            CausaInmediataId = 12,
+                            ClasificacionId = 11,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 31,
+                            ProcesoId = 4,
+                            RiesgoId = 3,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ActividadId = 2,
+                            AreaId = 23,
+                            CausaBasicaId = 3,
+                            CausaInmediataId = 22,
+                            ClasificacionId = 2,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 1,
+                            Fecha = new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 20,
+                            ProcesoId = 6,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ActividadId = 1,
+                            AreaId = 41,
+                            CausaBasicaId = 5,
+                            CausaInmediataId = 20,
+                            ClasificacionId = 4,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 1,
+                            Fecha = new DateTime(2020, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 19,
+                            ProcesoId = 16,
+                            RiesgoId = 2,
+                            TurnoId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ActividadId = 1,
+                            AreaId = 33,
+                            CausaBasicaId = 3,
+                            CausaInmediataId = 15,
+                            ClasificacionId = 11,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 3,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 15,
+                            ProcesoId = 19,
+                            RiesgoId = 1,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ActividadId = 1,
+                            AreaId = 45,
+                            CausaBasicaId = 2,
+                            CausaInmediataId = 21,
+                            ClasificacionId = 6,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 2,
+                            Fecha = new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 2,
+                            JornadaId = 2,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 13,
+                            ProcesoId = 23,
+                            RiesgoId = 2,
+                            TurnoId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ActividadId = 2,
+                            AreaId = 4,
+                            CausaBasicaId = 1,
+                            CausaInmediataId = 20,
+                            ClasificacionId = 5,
+                            Descripcion = "Descripción del incidente",
+                            EfectoId = 1,
+                            Fecha = new DateTime(2020, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            GeneroId = 1,
+                            JornadaId = 1,
+                            Observado = "Alejandro Venegas",
+                            ParteCuerpoId = 12,
+                            ProcesoId = 22,
+                            RiesgoId = 3,
+                            TurnoId = 2
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.IndicadorRiesgo", b =>
@@ -1420,6 +2607,38 @@ namespace bbs_project.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IndicadorRiesgos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Físicos"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Químicos"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Biológicos"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Ergonómicos"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nombre = "Mecánicos"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nombre = "Infraestructura y Entorno"
+                        });
                 });
 
             modelBuilder.Entity("bbs.Models.Jornada", b =>
