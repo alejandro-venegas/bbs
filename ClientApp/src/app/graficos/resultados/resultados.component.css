@@ -1,4 +1,6 @@
 canvas {
-  max-width: 70%;
   max-height: 100%;
+}
+.save-button {
+  margin-left: auto;
 }

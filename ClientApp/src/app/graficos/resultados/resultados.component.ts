@@ -1,7 +1,15 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { GraficosService } from "./graficos.service";
 import { ActivatedRoute } from "@angular/router";
 import { rowAnimation } from "../../animations";
+import * as jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 @Component({
   selector: "app-resultados",
   templateUrl: "./resultados.component.html",
@@ -14,6 +22,8 @@ export class ResultadosComponent implements OnInit {
   public chartDatasets: Array<any> = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: "My First dataset" },
   ];
+
+  @ViewChild("resultadoElement") resultadoElement: ElementRef;
 
   public chartLabels: Array<any> = [
     "Red",
@@ -32,10 +42,12 @@ export class ResultadosComponent implements OnInit {
         fontColor: "white",
       },
     },
+    scaleShowValues: true,
     scales: {
       xAxes: [
         {
           ticks: {
+            autoSkip: false,
             fontColor: "white",
           },
           gridLines: {
@@ -71,5 +83,17 @@ export class ResultadosComponent implements OnInit {
 
     this.chartDatasets = [{ data: values, label: dataSet }];
     this.chartLabels = labels;
+  }
+
+  public openPDF(): void {
+    const data = this.resultadoElement.nativeElement;
+    html2canvas(data).then((canvas) => {
+      // Few necessary setting options
+
+      const contentDataURL = canvas.toDataURL("image/png");
+      let pdf = new jsPDF("l", "mm", "a4"); // A4 size page of PDF
+      pdf.addImage(contentDataURL, "PNG", 15, 15);
+      window.open(pdf.output("bloburl")); // Generated PDF
+    });
   }
 }

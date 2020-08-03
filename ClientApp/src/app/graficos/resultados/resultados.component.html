@@ -1,5 +1,7 @@
 <div class="content-container">
   <canvas
+    style="background-color: var(--blue);"
+    #resultadoElement
     @rowAnimation
     mdbChart
     [chartType]="chartType"
@@ -11,4 +13,7 @@
     (chartClick)="chartClicked($event)"
   >
   </canvas>
+  <button class="save-button" type="button" (click)="openPDF()">
+    Descargar PDF
+  </button>
 </div>
