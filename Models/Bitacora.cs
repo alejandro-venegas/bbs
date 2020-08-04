@@ -5,7 +5,7 @@ namespace bbs.Models
 {
     public partial class Bitacora
     {
-        public int LogId { get; set; }
+        public int Id { get; set; }
         public DateTime FechaBitacora { get; set; }
         public int UsuarioId { get; set; }
         public string DescripcionBitacora { get; set; }

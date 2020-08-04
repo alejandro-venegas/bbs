@@ -296,126 +296,126 @@ namespace bbs.Controllers
                     selectObj = await _context.Areas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Areas.Update(selectObj);
                     }
                     break;
                 case 3:
                     selectObj = await _context.Casualidades.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Casualidades.Update(selectObj);
                     }
                     break;
                 case 4:
                     selectObj = await _context.CausaBasicas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.CausaBasicas.Update(selectObj);
                     }
                     break;
                 case 5:
                     selectObj = await _context.CausaInmediatas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.CausaInmediatas.Update(selectObj);
                     }
                     break;
                 case 6:
                     selectObj = await _context.Clasificaciones.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Clasificaciones.Update(selectObj);
                     }
                     break;
                 case 7:
                     selectObj = await _context.Comportamientos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Comportamientos.Update(selectObj);
                     }
                     break;
                 case 8:
                     selectObj = await _context.Efectos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Efectos.Update(selectObj);
                     }
                     break;
                 case 9:
                     selectObj = await _context.FactorRiesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.FactorRiesgos.Update(selectObj);
                     }
                     break;
                 case 10:
                     selectObj = await _context.Generos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Generos.Update(selectObj);
                     }
                     break;
                 case 11:
                     selectObj = await _context.IndicadorRiesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.IndicadorRiesgos.Update(selectObj);
                     }
                     break;
                 case 12:
                     selectObj = await _context.Jornadas.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Jornadas.Update(selectObj);
                     }
                     break;
                 case 13:
                     selectObj = await _context.Observados.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Observados.Update(selectObj);
                     }
                     break;
                 case 14:
                     selectObj = await _context.ParteCuerpos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.ParteCuerpos.Update(selectObj);
                     }
                     break;
                 case 15:
                     selectObj = await _context.Procesos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Procesos.Update(selectObj);
                     }
                     break;
                 case 16:
                     selectObj = await _context.Riesgos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Riesgos.Update(selectObj);
                     }
                     break;
                 case 17:
                     selectObj = await _context.TipoComportamientos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.TipoComportamientos.Update(selectObj);
                     }
                     break;
                 case 18:
                     selectObj = await _context.TipoObservados.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.TipoObservados.Update(selectObj);
                     }
                     break;
                 case 19:
                     selectObj = await _context.Turnos.FirstOrDefaultAsync( selectDto => selectDto.Id == selectId);
                     if (selectObj != null){
                         selectObj.Nombre = nombre;
-                        _context.Actividades.Update(selectObj);
+                        _context.Turnos.Update(selectObj);
                     }
                     break;
 
