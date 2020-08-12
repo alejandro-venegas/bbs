@@ -247,6 +247,12 @@ mat-dialog-container::-webkit-scrollbar-thumb {
 .form-grid select {
   color: var(--white);
 }
+.mat-date-range-input-end-wrapper {
+  flex-grow: 1;
+  max-width: unset!important;
+  width: 1rem;
+
+}
 .save-button {
   justify-self: center;
   align-self: center;

@@ -5,6 +5,36 @@
   flex-direction: row;
   max-width: none;
 }
+
+input {
+  background: transparent;
+  height: auto;
+  padding: unset;
+  width: 10rem;
+  flex: 1;
+}
+
+input.ng-touched.ng-invalid {
+  border: none;
+}
+
+.date-picker-container {
+  margin-bottom: 5rem;
+}
+
+::ng-deep mat-date-range-input {
+  background-color: rgba(255, 255, 248, 0.3) !important;
+  display: flex;
+  padding: 0.6rem 1rem;
+  border-radius: 1.5rem;
+
+  width: 15rem !important;
+}
+
+::ng-deep .mat-date-range-input-separator {
+  color: var(--white);
+}
+
 mat-checkbox {
   margin: 0 1rem;
 }

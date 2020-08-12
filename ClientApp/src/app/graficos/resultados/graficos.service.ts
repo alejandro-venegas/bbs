@@ -9,13 +9,22 @@ export class GraficosService {
   baseUrl = environment.base_url;
   constructor(private http: HttpClient) {}
 
-  getGraficas(tipoGraficas: string, propiedad: string) {
+  getGraficas(
+    tipoGraficas: string,
+    propiedad: string,
+    startDate: Date,
+    endDate: Date
+  ) {
     return this.http.get<any[]>(
       this.baseUrl +
         "graficas?tipoGraficas=" +
         tipoGraficas +
         "&propiedad=" +
-        propiedad
+        propiedad +
+        "&startDate=" +
+        startDate +
+        "&endDate=" +
+        endDate
     );
   }
 }

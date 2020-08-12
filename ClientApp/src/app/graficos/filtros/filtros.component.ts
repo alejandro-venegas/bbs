@@ -20,6 +20,8 @@ export class FiltrosComponent implements OnInit {
       queryParams: {
         tiposGraficas: this.dataSetArray.join(","),
         propiedades: this.propiedadesArray.join(","),
+        startDate: form.value.startDate.toUTCString(),
+        endDate: form.value.endDate.toUTCString(),
       },
     });
   }

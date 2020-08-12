@@ -11,6 +11,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ChartsModule, WavesModule } from "angular-bootstrap-md";
 import { FormsModule } from "@angular/forms";
 import { ResultadoResolver } from "./resultados/resultado-resolver.service";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [GraficosComponent, FiltrosComponent, ResultadosComponent],
@@ -24,6 +26,8 @@ import { ResultadoResolver } from "./resultados/resultado-resolver.service";
     ChartsModule,
     WavesModule,
     FormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
   ],
   exports: [GraficosComponent, FiltrosComponent, ResultadosComponent],
   providers: [ResultadoResolver],

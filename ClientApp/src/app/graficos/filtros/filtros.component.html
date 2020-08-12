@@ -1,8 +1,28 @@
 <form class="content-container" #form="ngForm" (ngSubmit)="submitForm(form)">
+  <div class="date-picker-container" (click)="picker.open()">
+    <label>Seleccione el rango de fechas de los datos que desea graficar</label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input
+        required
+        ngModel
+        name="startDate"
+        matStartDate
+        placeholder="Start date"
+      />
+      <input
+        required
+        ngModel
+        name="endDate"
+        matEndDate
+        placeholder="End date"
+      />
+    </mat-date-range-input>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </div>
   <div class="grafico-radio-buttons">
     <label>Seleccione el grafico que desea ver</label>
 
-    <div class="checkbox-dataset-container">
+    <div class="form-grid">
       <mat-checkbox
         (change)="dataSetChange($event.source.value)"
         value="incidente"
@@ -220,7 +240,11 @@
   <div class="button-group">
     <button
       class="save-button"
-      [disabled]="dataSetArray.length === 0 || propiedadesArray.length === 0"
+      [disabled]="
+        dataSetArray.length === 0 ||
+        propiedadesArray.length === 0 ||
+        form.invalid
+      "
     >
       VER GRÁFICO
     </button>

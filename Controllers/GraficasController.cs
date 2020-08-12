@@ -35,9 +35,11 @@ namespace bbs.Controllers
             return StatusCode(400);
         }
         [HttpGet]
-        public async Task<IActionResult> GetGraficas(string tipoGraficas, string propiedad)
+        public async Task<IActionResult> GetGraficas(string tipoGraficas, string propiedad, DateTime startDate, DateTime endDate)
     
         {
+            
+            
             List<string> tiposGraficas = tipoGraficas.Split(",").ToList();
             List<dynamic> resultArray = new List<dynamic>();
             try
@@ -125,6 +127,7 @@ namespace bbs.Controllers
 
 
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .GroupBy(p => p.Fecha.Month)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
                                         .ToListAsync();
@@ -132,6 +135,7 @@ namespace bbs.Controllers
                                         break;
                                     case "proceso":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate  )
                                         .Include(p => p.Proceso)
                                         .GroupBy(p => p.Proceso.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -139,6 +143,7 @@ namespace bbs.Controllers
                                         break;
                                     case "nivel-de-riesgo":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Riesgo)
                                         .GroupBy(p => p.Riesgo.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -147,6 +152,7 @@ namespace bbs.Controllers
 
                                     case "area-de-trabajo":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Area)
                                         .GroupBy(p => p.Area.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -154,6 +160,7 @@ namespace bbs.Controllers
                                         break;
                                     case "genero":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Genero)
                                         .GroupBy(p => p.Genero.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -161,6 +168,7 @@ namespace bbs.Controllers
                                         break;
                                     case "tipo-de-efecto":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Efecto)
                                         .GroupBy(p => p.Efecto.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -168,6 +176,7 @@ namespace bbs.Controllers
                                         break;
                                     case "clasificacion":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Clasificacion)
                                         .GroupBy(p => p.Clasificacion.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -175,6 +184,7 @@ namespace bbs.Controllers
                                         break;
                                     case "turno":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Turno)
                                         .GroupBy(p => p.Turno.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -182,6 +192,7 @@ namespace bbs.Controllers
                                         break;
                                     case "parte-afectada":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.ParteCuerpo)
                                         .GroupBy(p => p.ParteCuerpo.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -189,6 +200,7 @@ namespace bbs.Controllers
                                         break;
                                     case "causa-basica":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.CausaBasica)
                                         .GroupBy(p => p.CausaBasica.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -196,6 +208,7 @@ namespace bbs.Controllers
                                         break;
                                     case "causa-inmediata":
                                         result = await _context.Incidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.CausaInmediata)
                                         .GroupBy(p => p.CausaInmediata.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -277,6 +290,7 @@ namespace bbs.Controllers
 
 
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .GroupBy(p => p.Fecha.Month)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
                                         .ToListAsync();
@@ -284,6 +298,7 @@ namespace bbs.Controllers
                                         break;
                                     case "proceso":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Proceso)
                                         .GroupBy(p => p.Proceso.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -291,6 +306,7 @@ namespace bbs.Controllers
                                         break;
                                     case "nivel-de-riesgo":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Riesgo)
                                         .GroupBy(p => p.Riesgo.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -299,6 +315,7 @@ namespace bbs.Controllers
 
                                     case "area-de-trabajo":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Area)
                                         .GroupBy(p => p.Area.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -306,6 +323,7 @@ namespace bbs.Controllers
                                         break;
                                     case "genero":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Genero)
                                         .GroupBy(p => p.Genero.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -314,6 +332,7 @@ namespace bbs.Controllers
 
                                     case "turno":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Turno)
                                         .GroupBy(p => p.Turno.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -322,6 +341,7 @@ namespace bbs.Controllers
 
                                     case "casualidad":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Casualidad)
                                         .GroupBy(p => p.Casualidad.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -330,6 +350,7 @@ namespace bbs.Controllers
 
                                     case "jornada":
                                         result = await _context.CasiIncidentes
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Jornada)
                                         .GroupBy(p => p.Jornada.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -413,6 +434,7 @@ namespace bbs.Controllers
 
 
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .GroupBy(p => p.Fecha.Month)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
                                         .ToListAsync();
@@ -420,6 +442,7 @@ namespace bbs.Controllers
                                         break;
                                     case "proceso":
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Proceso)
                                         .GroupBy(p => p.Proceso.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -428,6 +451,7 @@ namespace bbs.Controllers
 
                                     case "area-de-trabajo":
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Area)
                                         .GroupBy(p => p.Area.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -435,6 +459,7 @@ namespace bbs.Controllers
                                         break;
                                     case "comportamiento-detectado":
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Comportamiento)
                                         .GroupBy(p => p.Comportamiento.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -442,6 +467,7 @@ namespace bbs.Controllers
                                         break;
                                     case "comportamiento":
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.TipoComportamiento)
                                         .GroupBy(p => p.TipoComportamiento.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -449,6 +475,7 @@ namespace bbs.Controllers
                                         break;
                                     case "tipo-observado":
                                         result = await _context.Bbss
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.TipoObservado)
                                         .GroupBy(p => p.TipoObservado.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -532,6 +559,7 @@ namespace bbs.Controllers
 
 
                                         result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .GroupBy(p => p.Fecha.Month)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
                                         .ToListAsync();
@@ -539,6 +567,7 @@ namespace bbs.Controllers
                                         break;
                                     case "proceso":
                                         result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Proceso)
                                         .GroupBy(p => p.Proceso.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -547,21 +576,17 @@ namespace bbs.Controllers
 
                                     case "area-de-trabajo":
                                         result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.Area)
                                         .GroupBy(p => p.Area.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
                                         .ToListAsync();
                                         break;
-                                    case "comportamiento-detectado":
-                                        result = await _context.Bbss
-                                        .Include(p => p.Comportamiento)
-                                        .GroupBy(p => p.Comportamiento.Nombre)
-                                        .Select(g => new { Label = g.Key, Count = g.Count() })
-                                        .ToListAsync();
-                                        break;
+                            
 
                                     case "indicador-de-riesgo":
                                         result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.IndicadorRiesgo)
                                         .GroupBy(p => p.IndicadorRiesgo.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
@@ -570,6 +595,7 @@ namespace bbs.Controllers
 
                                     case "factor-de-riesgo":
                                         result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
                                         .Include(p => p.FactorRiesgo)
                                         .GroupBy(p => p.FactorRiesgo.Nombre)
                                         .Select(g => new { Label = g.Key, Count = g.Count() })
