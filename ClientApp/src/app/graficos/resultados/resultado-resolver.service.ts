@@ -20,15 +20,17 @@ export class ResultadoResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    const tipoGrafica = route.queryParams.tipoGrafica;
+    const tiposGraficas = route.queryParams.tiposGraficas;
+    console.log(tiposGraficas);
     let propiedades = route.queryParams.propiedades;
     propiedades = propiedades && propiedades.split(",");
 
-    if (tipoGrafica && propiedades) {
+    if (tiposGraficas && propiedades) {
       return this.graficosService
-        .getGraficas(tipoGrafica, propiedades[0].toLowerCase())
+        .getGraficas(tiposGraficas, propiedades[0].toLowerCase())
         .pipe(
           map((res) => {
+            console.log(res);
             return res;
           })
         );

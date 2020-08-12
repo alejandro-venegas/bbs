@@ -1,9 +1,12 @@
-mat-radio-group {
+.checkbox-dataset-container {
   display: flex;
   margin-top: 1rem;
   flex-wrap: wrap;
   flex-direction: row;
   max-width: none;
+}
+mat-checkbox {
+  margin: 0 1rem;
 }
 mat-radio-group > * {
   flex: 1;

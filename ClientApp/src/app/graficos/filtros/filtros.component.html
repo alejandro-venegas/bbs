@@ -1,20 +1,30 @@
 <form class="content-container" #form="ngForm" (ngSubmit)="submitForm(form)">
   <div class="grafico-radio-buttons">
     <label>Seleccione el grafico que desea ver</label>
-    <mat-radio-group
-      #radioGroup="ngModel"
-      ngModel
-      required
-      name="tipoGrafica"
-      aria-label="Select an option"
-    >
-      <mat-radio-button value="incidente">Incidente</mat-radio-button>
-      <mat-radio-button value="casi-incidente">Casi incidente</mat-radio-button>
-      <mat-radio-button value="bbs">BBS</mat-radio-button>
-      <mat-radio-button value="condiciones-inseguras"
-        >Condiciones inseguras</mat-radio-button
-      >
-    </mat-radio-group>
+
+    <div class="checkbox-dataset-container">
+      <mat-checkbox
+        (change)="dataSetChange($event.source.value)"
+        value="incidente"
+        >Incidente
+      </mat-checkbox>
+
+      <mat-checkbox
+        (change)="dataSetChange($event.source.value)"
+        value="casi-incidente"
+        >Casi incidente
+      </mat-checkbox>
+
+      <mat-checkbox (change)="dataSetChange($event.source.value)" value="bbs"
+        >BBS
+      </mat-checkbox>
+
+      <mat-checkbox
+        (change)="dataSetChange($event.source.value)"
+        value="condiciones-inseguras"
+        >Condiciones inseguras
+      </mat-checkbox>
+    </div>
   </div>
 
   <label>Seleccione las opciones que desea ver en el grafico:</label>
@@ -40,19 +50,19 @@
       >Semana</mat-checkbox
     >
     <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
       *ngIf="
-        radioGroup.value === 'incidente' ||
-        radioGroup.value === 'casi-incidente'
+        (isSelected('incidente') || isSelected('casi-incidente')) &&
+        !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
+      (change)="propiedadChange($event.source.value)"
       >Porcentaje de Jornada</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
       value="nivel-de-riesgo"
       *ngIf="
-        radioGroup.value === 'incidente' ||
-        radioGroup.value === 'casi-incidente'
+        (isSelected('incidente') || isSelected('casi-incidente')) &&
+        !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
       >Nivel de Riesgo</mat-checkbox
     >
@@ -61,77 +71,148 @@
       (change)="propiedadChange($event.source.value)"
       value="genero"
       *ngIf="
-        radioGroup.value === 'incidente' ||
-        radioGroup.value === 'casi-incidente'
+        (isSelected('incidente') || isSelected('casi-incidente')) &&
+        !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
       >Género</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
       value="tipo-de-efecto"
-      *ngIf="radioGroup.value === 'incidente'"
+      *ngIf="
+        isSelected('incidente') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       >Tipo de efecto</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
       value="clasificacion"
-      *ngIf="radioGroup.value === 'incidente'"
+      *ngIf="
+        isSelected('incidente') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       >Clasificación</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
       value="turno"
       *ngIf="
-        radioGroup.value === 'incidente' ||
-        radioGroup.value === 'casi-incidente'
+        (isSelected('incidente') || isSelected('casi-incidente')) &&
+        !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
       >Turno</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'incidente'"
+      *ngIf="
+        isSelected('incidente') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="parte-afectada"
       >Parte afectada</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'incidente'"
+      *ngIf="
+        isSelected('incidente') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="causa-basica"
       >Causa básica</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'bbs'"
+      *ngIf="
+        isSelected('bbs') &&
+        !(
+          isSelected('incidente') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="comportamiento-detectado"
       >Comportamiento detectado</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'bbs'"
+      *ngIf="
+        isSelected('bbs') &&
+        !(
+          isSelected('incidente') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="tipo-observado"
       >Tipo observado</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'bbs'"
+      *ngIf="
+        isSelected('bbs') &&
+        !(
+          isSelected('incidente') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="comportamiento"
       >Comportamiento</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'incidente'"
+      *ngIf="
+        isSelected('incidente') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('condiciones-inseguras') ||
+          isSelected('casi-incidente')
+        )
+      "
+      k
       value="causa-inmediata"
       >Causa inmediata</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'condiciones-inseguras'"
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="indicador-de-riesgo"
       >Indicador de Riesgo</mat-checkbox
     >
     <mat-checkbox
       (change)="propiedadChange($event.source.value)"
-      *ngIf="radioGroup.value === 'condiciones-inseguras'"
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
       value="factor-de-riesgo"
       >Factor de Riesgo</mat-checkbox
     >
@@ -139,7 +220,7 @@
   <div class="button-group">
     <button
       class="save-button"
-      [disabled]="form.invalid || propiedadesArray.length === 0"
+      [disabled]="dataSetArray.length === 0 || propiedadesArray.length === 0"
     >
       VER GRÁFICO
     </button>

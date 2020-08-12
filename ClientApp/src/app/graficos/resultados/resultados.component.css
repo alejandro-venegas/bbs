@@ -1,5 +1,5 @@
-canvas {
-  max-height: 100%;
+.canvas-container {
+  width: 80%;
 }
 .save-button {
   margin-left: auto;

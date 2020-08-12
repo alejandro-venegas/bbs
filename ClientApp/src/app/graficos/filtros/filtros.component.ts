@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class FiltrosComponent implements OnInit {
   propiedadesArray = [];
+  dataSetArray = [];
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
@@ -17,7 +18,7 @@ export class FiltrosComponent implements OnInit {
 
     this.router.navigate(["graficos/resultado"], {
       queryParams: {
-        tipoGrafica: form.form.value.tipoGrafica,
+        tiposGraficas: this.dataSetArray.join(","),
         propiedades: this.propiedadesArray.join(","),
       },
     });
@@ -32,5 +33,20 @@ export class FiltrosComponent implements OnInit {
       this.propiedadesArray.push(propiedadValue);
     }
     console.log(this.propiedadesArray);
+  }
+
+  dataSetChange(dataSetValue: string) {
+    if (this.dataSetArray.includes(dataSetValue)) {
+      this.dataSetArray = this.dataSetArray.filter((propiedad) => {
+        return propiedad !== dataSetValue;
+      });
+    } else {
+      this.dataSetArray.push(dataSetValue);
+    }
+    console.log(this.dataSetArray);
+  }
+
+  isSelected(dataSetName: string): boolean {
+    return this.dataSetArray.includes(dataSetName);
   }
 }

@@ -19,24 +19,13 @@ import html2canvas from "html2canvas";
 export class ResultadosComponent implements OnInit {
   public chartType: string = "bar";
 
-  public chartDatasets: Array<any> = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: "My First dataset" },
-  ];
+  public chartDatasets: Array<any> = [];
 
   @ViewChild("resultadoElement") resultadoElement: ElementRef;
 
-  public chartLabels: Array<any> = [
-    "Red",
-    "Blue",
-    "Yellow",
-    "Green",
-    "Purple",
-    "Orange",
-  ];
+  public chartLabels: Array<any> = [];
 
   public chartOptions: any = {
-    responsive: true,
-    maintainAspectRatio: true,
     legend: {
       labels: {
         fontColor: "white",
@@ -73,16 +62,31 @@ export class ResultadosComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const data = this.route.snapshot.data.graphData;
-    const dataSetParam = this.route.snapshot.queryParams.tipoGrafica;
-    let dataSet = dataSetParam.split("-");
-    dataSet = dataSet.join(" ");
-    dataSet = dataSet[0].toUpperCase() + dataSet.slice(1);
-    const labels = data.map((datum) => datum.label);
-    const values = data.map((datum) => datum.count);
+    const dataSets = this.route.snapshot.data.graphData;
 
-    this.chartDatasets = [{ data: values, label: dataSet }];
-    this.chartLabels = labels;
+    for (let dataSet of dataSets) {
+      let dataSetName = dataSet.dataSet.split("-");
+      dataSetName = dataSetName.join(" ");
+      dataSetName = dataSetName[0].toUpperCase() + dataSetName.slice(1);
+
+      const values = [];
+
+      for (const datum of dataSet.data) {
+        const labelExists = this.chartLabels.includes(datum.label);
+        if (!labelExists) {
+          this.chartLabels.push(datum.label);
+        }
+
+        this.chartLabels.forEach((value, index) => {
+          if (value === datum.label) {
+            values[index] = datum.count;
+          } else if (typeof values[index] !== "number") {
+            values[index] = 0;
+          }
+        });
+      }
+      this.chartDatasets.push({ data: values, label: dataSetName });
+    }
   }
 
   public openPDF(): void {
@@ -91,8 +95,9 @@ export class ResultadosComponent implements OnInit {
       // Few necessary setting options
 
       const contentDataURL = canvas.toDataURL("image/png");
+
       let pdf = new jsPDF("l", "mm", "a4"); // A4 size page of PDF
-      pdf.addImage(contentDataURL, "PNG", 15, 15);
+      pdf.addImage(contentDataURL, "PNG", 15, 15, 260, 130);
       window.open(pdf.output("bloburl")); // Generated PDF
     });
   }
