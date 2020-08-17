@@ -38,7 +38,8 @@ export class RolesComponent implements OnInit {
   onNewRole() {
     this.dialog
       .open(NuevoRolDialogComponent, {
-        minWidth: "35vw",
+        width: "35vw",
+        maxWidth: "30rem",
       })
       .afterClosed()
       .subscribe((response) => {
@@ -51,7 +52,8 @@ export class RolesComponent implements OnInit {
   onEditRol(rol: Rol) {
     this.dialog
       .open(NuevoRolDialogComponent, {
-        minWidth: "35vw",
+        width: "35vw",
+        maxWidth: "30rem",
         data: { rol },
       })
       .afterClosed()

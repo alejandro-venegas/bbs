@@ -19,7 +19,7 @@ export class FiltrosComponent implements OnInit {
     this.router.navigate(["graficos/resultado"], {
       queryParams: {
         tiposGraficas: this.dataSetArray.join(","),
-        propiedades: this.propiedadesArray.join(","),
+        propiedades: form.value.propiedad,
         startDate: form.value.startDate.toUTCString(),
         endDate: form.value.endDate.toUTCString(),
       },

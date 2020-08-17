@@ -10,7 +10,6 @@ input {
   background: transparent;
   height: auto;
   padding: unset;
-  width: 10rem;
   flex: 1;
 }
 
@@ -31,12 +30,19 @@ input.ng-touched.ng-invalid {
   width: 15rem !important;
 }
 
+.form-grid input::placeholder {
+  color: rgba(255, 255, 248, 1);
+}
+
 ::ng-deep .mat-date-range-input-separator {
   color: var(--white);
 }
 
 mat-checkbox {
   margin: 0 1rem;
+}
+mat-radio-group {
+  max-width: unset;
 }
 mat-radio-group > * {
   flex: 1;

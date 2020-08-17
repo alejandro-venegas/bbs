@@ -16,6 +16,7 @@ label {
   margin: 0.5rem 0;
 }
 select {
+  max-width: 7rem;
   color: var(--white);
   margin-left: auto;
 }

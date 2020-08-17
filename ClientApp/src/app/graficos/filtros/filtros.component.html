@@ -48,56 +48,40 @@
   </div>
 
   <label>Seleccione las opciones que desea ver en el grafico:</label>
-  <div class="form-grid">
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
-      value="Proceso"
-      >Proceso</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
-      value="area-de-trabajo"
-      >Área de Trabajo</mat-checkbox
-    >
+  <mat-radio-group ngModel name="propiedad" required>
+    <mat-radio-button value="Proceso">Proceso </mat-radio-button>
+    <mat-radio-button value="area-de-trabajo"
+      >Área de Trabajo
+    </mat-radio-button>
 
-    <mat-checkbox (change)="propiedadChange($event.source.value)" value="dia"
-      >Día</mat-checkbox
-    >
-    <mat-checkbox (change)="propiedadChange($event.source.value)" value="mes"
-      >Mes</mat-checkbox
-    >
-    <mat-checkbox (change)="propiedadChange($event.source.value)" value="semana"
-      >Semana</mat-checkbox
-    >
-    <mat-checkbox
+    <mat-radio-button value="dia">Día </mat-radio-button>
+    <mat-radio-button value="mes">Mes </mat-radio-button>
+    <mat-radio-button value="semana">Semana </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         (isSelected('incidente') || isSelected('casi-incidente')) &&
         !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
-      (change)="propiedadChange($event.source.value)"
-      >Porcentaje de Jornada</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Porcentaje de Jornada
+    </mat-radio-button>
+    <mat-radio-button
       value="nivel-de-riesgo"
       *ngIf="
         (isSelected('incidente') || isSelected('casi-incidente')) &&
         !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
-      >Nivel de Riesgo</mat-checkbox
-    >
+      >Nivel de Riesgo
+    </mat-radio-button>
 
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+    <mat-radio-button
       value="genero"
       *ngIf="
         (isSelected('incidente') || isSelected('casi-incidente')) &&
         !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
-      >Género</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Género
+    </mat-radio-button>
+    <mat-radio-button
       value="tipo-de-efecto"
       *ngIf="
         isSelected('incidente') &&
@@ -107,10 +91,9 @@
           isSelected('casi-incidente')
         )
       "
-      >Tipo de efecto</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Tipo de efecto
+    </mat-radio-button>
+    <mat-radio-button
       value="clasificacion"
       *ngIf="
         isSelected('incidente') &&
@@ -120,19 +103,17 @@
           isSelected('casi-incidente')
         )
       "
-      >Clasificación</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Clasificación
+    </mat-radio-button>
+    <mat-radio-button
       value="turno"
       *ngIf="
         (isSelected('incidente') || isSelected('casi-incidente')) &&
         !(isSelected('bbs') || isSelected('condiciones-inseguras'))
       "
-      >Turno</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Turno
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('incidente') &&
         !(
@@ -142,10 +123,9 @@
         )
       "
       value="parte-afectada"
-      >Parte afectada</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Parte afectada
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('incidente') &&
         !(
@@ -155,10 +135,9 @@
         )
       "
       value="causa-basica"
-      >Causa básica</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Causa básica
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('bbs') &&
         !(
@@ -168,10 +147,9 @@
         )
       "
       value="comportamiento-detectado"
-      >Comportamiento detectado</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Comportamiento detectado
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('bbs') &&
         !(
@@ -181,10 +159,9 @@
         )
       "
       value="tipo-observado"
-      >Tipo observado</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Tipo observado
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('bbs') &&
         !(
@@ -194,10 +171,9 @@
         )
       "
       value="comportamiento"
-      >Comportamiento</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Comportamiento
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('incidente') &&
         !(
@@ -208,10 +184,9 @@
       "
       k
       value="causa-inmediata"
-      >Causa inmediata</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Causa inmediata
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('condiciones-inseguras') &&
         !(
@@ -221,10 +196,9 @@
         )
       "
       value="indicador-de-riesgo"
-      >Indicador de Riesgo</mat-checkbox
-    >
-    <mat-checkbox
-      (change)="propiedadChange($event.source.value)"
+      >Indicador de Riesgo
+    </mat-radio-button>
+    <mat-radio-button
       *ngIf="
         isSelected('condiciones-inseguras') &&
         !(
@@ -234,17 +208,13 @@
         )
       "
       value="factor-de-riesgo"
-      >Factor de Riesgo</mat-checkbox
-    >
-  </div>
+      >Factor de Riesgo
+    </mat-radio-button>
+  </mat-radio-group>
   <div class="button-group">
     <button
       class="save-button"
-      [disabled]="
-        dataSetArray.length === 0 ||
-        propiedadesArray.length === 0 ||
-        form.invalid
-      "
+      [disabled]="dataSetArray.length === 0 || form.invalid"
     >
       VER GRÁFICO
     </button>
