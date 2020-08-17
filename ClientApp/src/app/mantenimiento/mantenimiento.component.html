@@ -2,13 +2,14 @@
   <nav mat-tab-nav-bar class="sub-nav-menu">
     <a
       mat-tab-link
-      [routerLink]="['formularios']"
+      [routerLink]="[view.url]"
       routerLinkActive
       disableRipple
+      *ngFor="let view of permittedViews"
       #rla="routerLinkActive"
       [active]="rla.isActive"
     >
-      FORMULARIOS
+      {{ view.nombre | uppercase }}
     </a>
   </nav>
 

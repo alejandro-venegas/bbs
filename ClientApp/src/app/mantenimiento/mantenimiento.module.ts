@@ -13,12 +13,14 @@ import { MatIconModule } from "@angular/material/icon";
 import { AutofocusDirective } from "../shared/directives/autofocus.directive";
 import { CdkScrollableModule } from "@angular/cdk/scrolling";
 import { RoleResolver } from "../shared/resolvers/role-resolver.service";
+import { BitacoraComponent } from './bitacora/bitacora.component';
 
 @NgModule({
   declarations: [
     MantenimientoComponent,
     FormulariosComponent,
     AutofocusDirective,
+    BitacoraComponent,
   ],
   imports: [
     CommonModule,

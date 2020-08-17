@@ -19,7 +19,6 @@ namespace bbs.Models
         public int FactorRiesgoId { get; set; }
         [Required]
         public int IndicadorRiesgoId { get; set; }
-        [Required]
 
 
         public virtual Area Area { get; set; }

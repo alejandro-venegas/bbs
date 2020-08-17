@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
+using System;
+
 namespace bbs.Controllers
 {
     [Route("api/[controller]")]
@@ -19,6 +21,7 @@ namespace bbs.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCondicionInsegura(int id){
+           
             var condicionInsegura = await _context.CondicionInseguras.SingleOrDefaultAsync( condicionInsegura => condicionInsegura.Id == id);
             if(condicionInsegura != null){
                 return Ok(condicionInsegura);
@@ -28,14 +31,27 @@ namespace bbs.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetCondicionInseguras(){
+             Console.Write("Hola");
             var condicionInseguras = await _context.CondicionInseguras.Include(c => c.Area).ToListAsync();
             return Ok(condicionInseguras);
         }
 
         [HttpPost("new")]
         public async Task<IActionResult> InsertCondicionInsegura(CondicionInsegura condicionInsegura){
+             Console.Write("Hola1");
             await _context.CondicionInseguras.AddAsync(condicionInsegura);
+           
             await _context.SaveChangesAsync();
+             Console.Write("Hola2");
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = "Insertó nueva Condicion Insegura con ID " + condicionInsegura.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
+            await _context.SaveChangesAsync();
+             Console.Write("Hola3");
             return StatusCode(201);
         }
         [HttpPost("update")]
@@ -48,6 +64,14 @@ namespace bbs.Controllers
                 condicionInseguraObj.FactorRiesgoId = condicionInsegura.FactorRiesgoId;
                 condicionInseguraObj.IndicadorRiesgoId = condicionInsegura.IndicadorRiesgoId;
                 _context.CondicionInseguras.Update(condicionInseguraObj);
+
+                Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = "Actualizó Condicion Insegura con ID " + condicionInsegura.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
                 await _context.SaveChangesAsync();
 
                 return StatusCode(202);
@@ -59,6 +83,14 @@ namespace bbs.Controllers
             CondicionInsegura condicionInsegura = new CondicionInsegura();
             condicionInsegura.Id = id;
             _context.CondicionInseguras.Remove(condicionInsegura);
+
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = "Eliminó Condicion Insegura con ID " + condicionInsegura.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(202);
         }

@@ -44,7 +44,7 @@ namespace bbs.Models
         public virtual DbSet<Incidente> Incidentes { get; set; }
         public virtual DbSet<CasiIncidente> CasiIncidentes { get; set; }
         public virtual DbSet<Bbs> Bbss { get; set; }
-
+        public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<CondicionInsegura> CondicionInseguras { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -227,7 +227,8 @@ namespace bbs.Models
                 new Vista { Id = 8, Nombre = "Perfiles", Url = "/administrar/perfiles" },
                 new Vista { Id = 9, Nombre = "Colaboradores", Url = "/administrar/colaboradores" },
                 new Vista { Id = 10, Nombre = "Departamentos", Url = "/administrar/departamentos" },
-                new Vista { Id = 11, Nombre = "Formularios", Url = "/mantenimiento/formularios" }
+                new Vista { Id = 11, Nombre = "Formularios", Url = "/mantenimiento/formularios" },
+                new Vista { Id = 12, Nombre = "Bitácora", Url = "/mantenimiento/bitacora" }
 
             );
 
@@ -249,6 +250,7 @@ namespace bbs.Models
                 new RolVista { RolId = 1, VistaId = 9, Escritura = true },
                 new RolVista { RolId = 1, VistaId = 10, Escritura = true },
                 new RolVista { RolId = 1, VistaId = 11, Escritura = true },
+                new RolVista { RolId = 1, VistaId = 12, Escritura = true },
                 new RolVista { RolId = 2, VistaId = 1, Escritura = true },
                 new RolVista { RolId = 2, VistaId = 2, Escritura = true },
                 new RolVista { RolId = 2, VistaId = 3, Escritura = true },

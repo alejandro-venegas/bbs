@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
+using System;
+
 namespace bbs.Controllers
 {
     [Route("api/[controller]")]
@@ -18,30 +20,48 @@ namespace bbs.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCasiIncidente(int id){
-            var casoIncidente = await _context.CasiIncidentes.SingleOrDefaultAsync( incidente => incidente.Id == id);
-            if(casoIncidente != null){
+        public async Task<IActionResult> GetCasiIncidente(int id)
+        {
+            var casoIncidente = await _context.CasiIncidentes.SingleOrDefaultAsync(incidente => incidente.Id == id);
+            if (casoIncidente != null)
+            {
                 return Ok(casoIncidente);
             }
             return StatusCode(400);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetIncidentes(){
+        public async Task<IActionResult> GetIncidentes()
+        {
+            
             var casiIncidentes = await _context.CasiIncidentes.Include(c => c.Area).ToListAsync();
             return Ok(casiIncidentes);
         }
 
         [HttpPost("new")]
-        public async Task<IActionResult> InsertIncidente(CasiIncidente casiIncidente){
+        public async Task<IActionResult> InsertIncidente(CasiIncidente casiIncidente)
+        {
+  
             await _context.CasiIncidentes.AddAsync(casiIncidente);
+           
+            
+            await _context.SaveChangesAsync();
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = "Insertó nuevo Casi Incidente con ID " + casiIncidente.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(201);
         }
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateCasiIncidente(CasiIncidente casiIncidente){
+        public async Task<IActionResult> UpdateCasiIncidente(CasiIncidente casiIncidente)
+        {
             var casiIncidenteObj = await _context.CasiIncidentes.SingleOrDefaultAsync(b => b.Id == casiIncidente.Id);
-            if( casiIncidenteObj != null){
+            if (casiIncidenteObj != null)
+            {
                 casiIncidenteObj.ProcesoId = casiIncidente.ProcesoId;
                 casiIncidenteObj.AreaId = casiIncidente.AreaId;
                 casiIncidenteObj.Fecha = casiIncidente.Fecha;
@@ -53,6 +73,13 @@ namespace bbs.Controllers
                 casiIncidenteObj.Descripcion = casiIncidente.Descripcion;
                 casiIncidenteObj.CasualidadId = casiIncidente.CasualidadId;
                 _context.CasiIncidentes.Update(casiIncidenteObj);
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = "Usuario",
+                    DescripcionBitacora = "Actualizó Casi Incidente con ID " + casiIncidente.Id
+                };
+                await _context.Bitacora.AddAsync(bitacora);
                 await _context.SaveChangesAsync();
 
                 return StatusCode(202);
@@ -60,10 +87,19 @@ namespace bbs.Controllers
             return StatusCode(400);
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteCasiIncidente(int id){
+        public async Task<IActionResult> DeleteCasiIncidente(int id)
+        {
             CasiIncidente casiIncidente = new CasiIncidente();
             casiIncidente.Id = id;
+
             _context.CasiIncidentes.Remove(casiIncidente);
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = "Eliminó Casi Incidente con ID " + casiIncidente.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(202);
         }

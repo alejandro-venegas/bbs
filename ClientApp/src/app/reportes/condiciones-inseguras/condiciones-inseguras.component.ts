@@ -81,6 +81,7 @@ export class CondicionesInsegurasComponent implements OnInit {
           }
         });
       } else {
+        console.log(value);
         this.reportesService
           .guardarCondicionInsegura(value)
           .subscribe((res) => {

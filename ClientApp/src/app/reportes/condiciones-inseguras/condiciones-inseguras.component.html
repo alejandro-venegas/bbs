@@ -26,7 +26,7 @@
       <select id="proceso" formControlName="procesoId">
         <option value="" disabled selected>Seleccione un proceso</option>
         <option
-          [value]="opcion.optionId"
+          [value]="+opcion.optionId"
           *ngFor="let opcion of opciones?.procesos"
           >{{ opcion.nombre }}</option
         >
@@ -43,7 +43,7 @@
       <select id="areaDeTrabajo" formControlName="areaId">
         <option value="" disabled selected>Área de trabajo</option>
         <option
-          [value]="opcion.optionId"
+          [value]="+opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
           >{{ opcion.nombre }}</option
         >
@@ -58,7 +58,7 @@
       <select id="nivelDeRiesgo" formControlName="indicadorRiesgoId">
         <option value="" disabled selected>Seleccione un Indicador</option>
         <option
-          [value]="opcion.optionId"
+          [value]="+opcion.optionId"
           *ngFor="let opcion of opciones?.indicadorRiesgos"
           >{{ opcion.nombre }}</option
         >
@@ -76,7 +76,7 @@
           >Seleccione un indicador de riesgo</option
         >
         <option
-          [value]="opcion.optionId"
+          [value]="+opcion.optionId"
           *ngFor="let opcion of opciones?.factorRiesgos"
           >{{ opcion.nombre }}</option
         >

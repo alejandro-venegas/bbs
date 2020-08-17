@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
+using System;
+
 namespace bbs.Controllers
 {
     [Route("api/[controller]")]
@@ -44,6 +46,13 @@ namespace bbs.Controllers
                 await _context.RolVistas.AddAsync(rolVista);
             }
             await _context.Roles.AddAsync(rol);
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = $"Creó nuevo rol {rol.Nombre} ID {rol.Id}"
+            };
+            await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(201);
         }
@@ -56,6 +65,13 @@ namespace bbs.Controllers
             rol.Id = id;
             
             _context.Roles.Remove(rol);
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                Usuario = "Usuario",
+                DescripcionBitacora = $"Eliminó rol {rol.Nombre} ID {rol.Id}"
+            };
+            await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(202);
         }
@@ -84,6 +100,13 @@ namespace bbs.Controllers
                  _context.RolVistas.RemoveRange(result.RolVistas);
                 _context.RolVistas.AddRange(newRolVistas);
                 _context.Roles.Update(result);
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = "Usuario",
+                    DescripcionBitacora = $"Actualizó rol {result.Nombre} ID {result.Id}"
+                };
+                await _context.Bitacora.AddAsync(bitacora);
                 await _context.SaveChangesAsync();
                 return StatusCode(202);
             }

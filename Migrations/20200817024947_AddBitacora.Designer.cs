@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bbs.Models;
 
 namespace bbs_project.Migrations
 {
     [DbContext(typeof(SBBSContext))]
-    partial class SBBSContextModelSnapshot : ModelSnapshot
+    [Migration("20200817024947_AddBitacora")]
+    partial class AddBitacora
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

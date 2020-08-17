@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
+using System;
+
 namespace bbs.Controllers
 {
     [Route("api/[controller]")]
@@ -271,6 +273,13 @@ namespace bbs.Controllers
             {
                 return StatusCode(400);
             }
+            Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = "Usuario",
+                    DescripcionBitacora = $"Creó nueva opción de formulario {selectObj.Nombre}"
+                };
+                await _context.Bitacora.AddAsync(bitacora);
             return Ok(selectObj);
 
         }
@@ -430,6 +439,13 @@ namespace bbs.Controllers
             }
             else
             {
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    Usuario = "Usuario",
+                    DescripcionBitacora = $"Actualizó opcion de formulario {selectObj.Nombre}"
+                };
+                await _context.Bitacora.AddAsync(bitacora);
                 await _context.SaveChangesAsync();
                 return StatusCode(201);
 
@@ -607,6 +623,7 @@ namespace bbs.Controllers
             }
             else
             {
+                
                 await _context.SaveChangesAsync();
                 return StatusCode(202);
 
