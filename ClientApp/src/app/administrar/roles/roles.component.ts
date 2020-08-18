@@ -71,6 +71,10 @@ export class RolesComponent implements OnInit {
     });
   }
 
+  imThisRole(id: number) {
+    return +localStorage.getItem("rolId") === id;
+  }
+
   setRol(id: number) {
     localStorage.setItem("rolId", `${id}`);
     this.authService.rolChangedSubject.next(true);

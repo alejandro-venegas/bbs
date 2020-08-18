@@ -18,12 +18,12 @@
           <div>
             <img
               (click)="onEditRol(element)"
-              *ngIf="editable"
+              *ngIf="editable && !imThisRole(element.id) && +element.id !== 1"
               src="assets/images/icons/editar.svg"
               class="icon"
             />
             <img
-              *ngIf="editable"
+              *ngIf="editable && !imThisRole(element.id) && +element.id !== 1"
               (click)="onDeleteRol(element)"
               src="assets/images/icons/eliminar.svg"
               class="icon"

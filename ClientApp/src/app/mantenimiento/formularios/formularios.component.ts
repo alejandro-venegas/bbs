@@ -194,8 +194,8 @@ export class FormulariosComponent implements OnInit {
         .open(EliminarDialogComponent, {
           minWidth: "35vw",
           data: {
-            title: "ELIMINAR COLABORADOR",
-            content: `¿Desea eliminar el colaborador ${node.nombre}?`,
+            title: "ELIMINAR OPCIÓN",
+            content: `¿Desea eliminar la opción ${node.nombre}? Esta acción eliminará todos los reportes que esten relacionados a ella.`,
           },
         })
         .afterClosed()
