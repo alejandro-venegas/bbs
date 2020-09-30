@@ -2,7 +2,11 @@ Guia para correr
 ===================
 Primer paso
 ------------
+Descargar Git de https://git-scm.com/downloads.
 Deben descargar NodeJS de https://nodejs.org, ya sea la version recomendada o la mas reciente.
+Descargar la version 3.1 de .NET https://dotnet.microsoft.com/download/dotnet-core. Una vez instalado utilicen el comando dotnet --info y asegurense que salga     .NET Core con la version que acaban de instalar. Correr dotnet tool install --global dotnet-ef
+Instalar SQL Server y poner string de conexion en la linea 25 del Startup.cs
+Correr dentro de la carpeta del proyecto el comando "dotnet ef migrations add NewInstallation01". Cuando termine correr "dotnet ef database update". Una vez hecho esto, verificar que la base de datos se haya creado en SQL server.
 
 Segundo Paso
 -------------
@@ -10,8 +14,10 @@ Despues de descargar e instalar Node, deben instalar las dependencias de Angular
 
 Tercer Paso
 ------------
+Dentro de la carpeta de "ClientApp" del proyecto correr en consola "npm install"
 
-Si les funciona bien Angular pueden intentar correr todo el proyecto desde Visual Studio
+Correr el comando
+Una vez instaladas las dependencias de NPM y si les funciona bien Angular pueden intentar correr todo el proyecto desde Visual Studio
 
 Cuarto Paso (en caso que no les funcione desde el Visual)
 ------------------------------------------------------
