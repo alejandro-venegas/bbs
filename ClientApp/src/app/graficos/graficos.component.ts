@@ -18,7 +18,7 @@ export class GraficosComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.navigate(['filtros'], { relativeTo: this.route });
-    this.headerService.titleSubject.next('Graficos');
+    this.headerService.titleSubject.next('Gráficos');
   }
   prepareRoute(outlet: RouterOutlet) {
     return (

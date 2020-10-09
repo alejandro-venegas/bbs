@@ -1,6 +1,13 @@
 <div class="content-container">
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="indice">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <span class="mobile-label"># </span>
+          {{ i + 1 }}
+        </td>
+      </ng-container>
       <!-- Position Column -->
       <ng-container matColumnDef="fecha">
         <th mat-header-cell *matHeaderCellDef>Fecha</th>

@@ -7,20 +7,20 @@
         ngModel
         name="startDate"
         matStartDate
-        placeholder="Start date"
+        placeholder="Fecha Inicial"
       />
       <input
         required
         ngModel
         name="endDate"
         matEndDate
-        placeholder="End date"
+        placeholder="Fecha Final"
       />
     </mat-date-range-input>
     <mat-date-range-picker #picker></mat-date-range-picker>
   </div>
   <div class="grafico-radio-buttons">
-    <label>Seleccione el grafico que desea ver</label>
+    <label>Seleccione el gráfico que desea observar</label>
 
     <div class="form-grid">
       <mat-checkbox
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <label>Seleccione las opciones que desea ver en el grafico:</label>
+  <label>Seleccione las variables que desea observar en el gráfico:</label>
   <mat-radio-group ngModel name="propiedad" required>
     <mat-radio-button value="Proceso">Proceso </mat-radio-button>
     <mat-radio-button value="area-de-trabajo"

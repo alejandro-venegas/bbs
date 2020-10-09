@@ -21,7 +21,7 @@ export class PerfilesComponent implements OnInit {
     },
   ]);
   constructor(private route: ActivatedRoute) {}
-  displayedColumns: string[] = ["nombre", "departamento", "rol", "accion"];
+  displayedColumns: string[] = ["indice","nombre", "departamento", "rol", "accion"];
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
       this.editable = data.permission;

@@ -75,7 +75,9 @@ a:hover{
 .mat-tab-header {
   border-bottom: 2px solid rgba(255, 255, 248, 0.3);
 }
-
+.mat-date-range-input-inner::placeholder{
+  color: var(--white);
+}
 .mat-calendar-body-selected {
   background-color: var(--yellow);
   color: #fff;
@@ -214,6 +216,11 @@ mat-radio-group {
   display: flex;
   flex-direction: column;
 }
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
 .content-container::-webkit-scrollbar {
   background-color: transparent;
   width: 0.5rem;

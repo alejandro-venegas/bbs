@@ -4,3 +4,12 @@
 .save-button {
   margin-left: auto;
 }
+.fab-button{
+  position: fixed;
+  bottom: 7rem;
+  right: 8rem;
+}
+
+.content-container{
+  position: relative;
+}

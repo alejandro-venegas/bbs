@@ -21,7 +21,7 @@ export class ColaboradoresComponent implements OnInit {
   editable: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ["nombre", "departamento", "puesto", "accion"];
+  displayedColumns: string[] = ["indice","nombre", "departamento", "puesto", "accion"];
   colaboradores: Colaborador[] = [];
   constructor(
     private dialog: MatDialog,

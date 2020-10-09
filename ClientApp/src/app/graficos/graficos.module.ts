@@ -13,22 +13,26 @@ import { FormsModule } from "@angular/forms";
 import { ResultadoResolver } from "./resultados/resultado-resolver.service";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [GraficosComponent, FiltrosComponent, ResultadosComponent],
-  imports: [
-    CommonModule,
-    GraficosRoutingModule,
-    MatRadioModule,
-    MatTabsModule,
-    BrowserAnimationsModule,
-    MatCheckboxModule,
-    ChartsModule,
-    WavesModule,
-    FormsModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-  ],
+    imports: [
+        CommonModule,
+        GraficosRoutingModule,
+        MatRadioModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
+        MatCheckboxModule,
+        ChartsModule,
+        WavesModule,
+        FormsModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatButtonModule,
+    ],
   exports: [GraficosComponent, FiltrosComponent, ResultadosComponent],
   providers: [ResultadoResolver],
 })

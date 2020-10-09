@@ -1,6 +1,13 @@
 <div class="content-container">
   <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
+    <ng-container matColumnDef="indice">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <span class="mobile-label"># </span>
+      {{ i + 1 }}
+    </td>
+  </ng-container>
 
     <ng-container matColumnDef="fecha">
       <th mat-header-cell *matHeaderCellDef>Fecha</th>
@@ -17,9 +24,9 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="areaDeTrabajo">
-      <th mat-header-cell *matHeaderCellDef>Area de Trabajo</th>
+      <th mat-header-cell *matHeaderCellDef>Área de Trabajo</th>
       <td mat-cell *matCellDef="let element">
-        <span class="mobile-label">Area de Trabajo:</span>
+        <span class="mobile-label">Área de Trabajo:</span>
         {{ element.area?.nombre || "N/A" }}
       </td>
     </ng-container>

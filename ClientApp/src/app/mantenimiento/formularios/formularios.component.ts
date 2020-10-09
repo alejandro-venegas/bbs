@@ -30,7 +30,7 @@ export class FormulariosComponent implements OnInit {
       children: [],
     },
     {
-      nombre: "Areas",
+      nombre: "Áreas",
       selectId: "2",
       children: [],
     },
@@ -40,7 +40,7 @@ export class FormulariosComponent implements OnInit {
       children: [],
     },
     {
-      nombre: "Causas Basicas",
+      nombre: "Causas Básicas",
       selectId: "4",
       children: [],
     },
@@ -70,7 +70,7 @@ export class FormulariosComponent implements OnInit {
       children: [],
     },
     {
-      nombre: "Generos",
+      nombre: "Géneros",
       selectId: "10",
       children: [],
     },

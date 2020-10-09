@@ -22,7 +22,7 @@ export class DepartamentosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
   departamentos: Departamento[];
-  displayedColumns: string[] = ["nombre", "gerente", "accion"];
+  displayedColumns: string[] = ["indice","nombre", "gerente", "accion"];
   constructor(
     private departamentosService: DepartamentosService,
     private dialog: MatDialog,

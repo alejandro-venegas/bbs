@@ -26,6 +26,7 @@ export class ListaComponent implements OnInit {
     private dialog: MatDialog
   ) {}
   displayedColumns: string[] = [
+      "indice",
     "fecha",
     "tipo",
     "observado",

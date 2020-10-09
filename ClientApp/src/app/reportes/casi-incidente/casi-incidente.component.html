@@ -40,7 +40,7 @@
       >
     </div>
     <div class="input-group">
-      <label>Genero:</label>
+      <label>Género:</label>
       <mat-radio-group aria-label="Select an option" formControlName="generoId">
         <mat-radio-button
           *ngFor="let opcion of opciones?.generos; let i = index"
@@ -49,7 +49,7 @@
         >
       </mat-radio-group>
       <span class="invalid-message" *ngIf="generoId.touched && generoId.invalid"
-        >Seleccione un genero</span
+        >Seleccione un género</span
       >
     </div>
     <div class="input-group">
@@ -83,9 +83,9 @@
       >
     </div>
     <div class="input-group">
-      <label for="areaDeTrabajo">Area de trabajo:</label>
+      <label for="areaDeTrabajo">Área de trabajo:</label>
       <select id="areaDeTrabajo" formControlName="areaId">
-        <option value="" disabled selected>Area de trabajo</option>
+        <option value="" disabled selected>Área de trabajo</option>
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
@@ -93,7 +93,7 @@
         >
       </select>
       <span class="invalid-message" *ngIf="areaId.touched && areaId.invalid"
-        >Seleccione un area de trabajo</span
+        >Seleccione un área de trabajo</span
       >
     </div>
     <div class="input-group">
@@ -144,7 +144,7 @@
     </div>
 
     <div class="input-group text-area">
-      <label for="descripcion">Descripcion de lo sucedido</label>
+      <label for="descripcion">Descripción de lo sucedido</label>
       <textarea
         name=""
         id="descripcion"

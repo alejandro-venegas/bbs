@@ -13,7 +13,7 @@ import { MatPaginator } from "@angular/material/paginator";
 })
 export class BitacoraComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
-  displayedColumns: string[] = ["fecha", "usuario", "descripcion"];
+  displayedColumns: string[] = ["indice","fecha", "usuario", "descripcion"];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private bitacoraService: BitacoraService) {}
 
