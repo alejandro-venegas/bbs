@@ -19,6 +19,11 @@ import html2canvas from "html2canvas";
 export class ResultadosComponent implements OnInit {
   public chartType: string = "bar";
 
+  public tipoGraficas: string;
+  public startDate: Date;
+  public endDate: Date;
+
+
   public chartDatasets: Array<any> = [];
 
   @ViewChild("resultadoElement") resultadoElement: ElementRef;
@@ -57,12 +62,27 @@ export class ResultadosComponent implements OnInit {
       ],
     },
   };
+  public propiedades: any;
   public chartClicked(e: any): void {}
   public chartHovered(e: any): void {}
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+
     const dataSets = this.route.snapshot.data.graphData;
+
+    this.tipoGraficas = this.textParser(this.route.snapshot.queryParams.tiposGraficas, ',').map((value) =>
+      this.textParser(value, '-').join(' ')
+    ).map((value, index, array) => {
+      if(index === array.length - 2){
+        return this.capitalizeWord(value) + ' y';
+      }
+      return this.capitalizeWord(value) + ',';
+    }).join(' ');
+    this.propiedades = this.capitalizeWord(this.textParser(this.route.snapshot.queryParams.propiedades, '-').join( ' '));
+
+    this.startDate = new Date(this.route.snapshot.queryParams.startDate);
+    this.endDate = new Date(this.route.snapshot.queryParams.endDate);
 
     for (let dataSet of dataSets) {
       let dataSetName = dataSet.dataSet.split("-");
@@ -89,6 +109,15 @@ export class ResultadosComponent implements OnInit {
     }
   }
 
+  textParser(str: string, splitString: string){
+    let resultString = '';
+    const strArray = str.split(splitString);
+    return strArray;
+  }
+  capitalizeWord(word: string){
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
   public openPDF(): void {
     const data = this.resultadoElement.nativeElement;
     html2canvas(data).then((canvas) => {
@@ -97,7 +126,9 @@ export class ResultadosComponent implements OnInit {
       const contentDataURL = canvas.toDataURL("image/png");
 
       let pdf = new jsPDF("l", "mm", "a4"); // A4 size page of PDF
-      pdf.addImage(contentDataURL, "PNG", 15, 15, 260, 130);
+      pdf.text(`Gráfico de ${this.tipoGraficas} Vs. ${this.propiedades}`, pdf.internal.pageSize.width / 2, 15, null, null, 'center');
+      pdf.text(`${this.startDate.toLocaleDateString('en-GB')} - ${this.endDate.toLocaleDateString('en-GB')}`, pdf.internal.pageSize.width / 2, 30, null, null, 'center');
+      pdf.addImage(contentDataURL, "PNG", 15, 45, 260, 130);
       window.open(pdf.output("bloburl")); // Generated PDF
     });
   }

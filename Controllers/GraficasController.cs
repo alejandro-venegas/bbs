@@ -24,7 +24,7 @@ namespace bbs.Controllers
 
             builder.DataSource = "localhost";
             builder.UserID = "sa";
-            builder.Password = "Ale7894561230";
+            builder.Password = "Ale140796";
             builder.InitialCatalog = "SBBS";
         }
 

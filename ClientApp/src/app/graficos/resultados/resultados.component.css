@@ -10,6 +10,14 @@
   right: 8rem;
 }
 
+.graph-title{
+  justify-self: center;
+}
+.graph-title > h3, h4{
+  width: 80%;
+  text-align: center;
+}
+
 .content-container{
   position: relative;
 }

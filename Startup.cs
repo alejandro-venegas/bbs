@@ -22,7 +22,7 @@ namespace bbs_project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SBBSContext>(options =>
-                 options.UseSqlServer("Server=localhost;Database=SBBS;User Id=sa;Password=Ale7894561230;"));
+                 options.UseSqlServer("Server=localhost;Database=SBBS;User Id=sa;Password=Ale140796"));
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
