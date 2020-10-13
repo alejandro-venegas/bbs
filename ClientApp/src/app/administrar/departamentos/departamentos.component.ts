@@ -22,7 +22,7 @@ export class DepartamentosComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
   departamentos: Departamento[];
-  displayedColumns: string[] = ["indice","nombre", "gerente", "accion"];
+  displayedColumns: string[] = ["indice", "nombre", "gerente", "accion"];
   constructor(
     private departamentosService: DepartamentosService,
     private dialog: MatDialog,
@@ -34,6 +34,19 @@ export class DepartamentosComponent implements OnInit {
       this.editable = data.permission;
     });
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data, filter) => {
+      filter = filter.toLowerCase();
+
+      return (
+        data.nombre.toLowerCase().includes(filter) ||
+        (
+          (data.gerente && data.gerente.nombre + " " + data.gerente.apellido) ||
+          ""
+        )
+          .toLowerCase()
+          .includes(filter)
+      );
+    };
     this.getDepartamentos();
   }
 
@@ -89,5 +102,9 @@ export class DepartamentosComponent implements OnInit {
             });
         }
       });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

@@ -21,7 +21,13 @@ export class ColaboradoresComponent implements OnInit {
   editable: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource([]);
-  displayedColumns: string[] = ["indice","nombre", "departamento", "puesto", "accion"];
+  displayedColumns: string[] = [
+    "indice",
+    "nombre",
+    "departamento",
+    "puesto",
+    "accion",
+  ];
   colaboradores: Colaborador[] = [];
   constructor(
     private dialog: MatDialog,
@@ -34,6 +40,17 @@ export class ColaboradoresComponent implements OnInit {
       this.editable = data.permission;
     });
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data, filter) => {
+      filter = filter.toLowerCase();
+
+      return (
+        (data.nombre + " " + data.apellido).toLowerCase().includes(filter) ||
+        ((data.departamento && data.departamento.nombre) || "")
+          .toLowerCase()
+          .includes(filter) ||
+        data.puesto.toLowerCase().includes(filter)
+      );
+    };
     this.getColaboradores();
   }
   onNewColaborador() {
@@ -94,5 +111,9 @@ export class ColaboradoresComponent implements OnInit {
             });
         }
       });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

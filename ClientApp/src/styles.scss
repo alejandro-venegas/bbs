@@ -248,7 +248,12 @@ mat-dialog-container::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
 }
-.form-grid input::placeholder {
+.table-filter{
+  margin-bottom: 1rem;
+  width: 30%;
+  min-width: 20rem ;
+}
+input::placeholder {
   color: rgba(255, 255, 248, 0.5);
 }
 .form-grid select {

@@ -20,7 +20,7 @@ export class RolesComponent implements OnInit {
   editable: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Rol>();
-  displayedColumns: string[] = [ "indice","nombre", "accion"];
+  displayedColumns: string[] = ["indice", "nombre", "accion"];
   constructor(
     private dialog: MatDialog,
     private rolesService: RolesService,
@@ -62,6 +62,10 @@ export class RolesComponent implements OnInit {
           this.getRoles();
         }
       });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   getRoles() {

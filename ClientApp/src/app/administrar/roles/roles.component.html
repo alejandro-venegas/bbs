@@ -1,5 +1,11 @@
 <div class="content-container">
   <div class="mat-elevation-z8">
+    <input
+      type="text"
+      class="table-filter"
+      placeholder="Filtro"
+      (keyup)="applyFilter($event)"
+    />
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="indice">
         <th mat-header-cell *matHeaderCellDef>#</th>

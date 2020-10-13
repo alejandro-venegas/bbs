@@ -13,7 +13,7 @@ import { MatPaginator } from "@angular/material/paginator";
 })
 export class BitacoraComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
-  displayedColumns: string[] = ["indice","fecha", "usuario", "descripcion"];
+  displayedColumns: string[] = ["indice", "fecha", "usuario", "descripcion"];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private bitacoraService: BitacoraService) {}
 
@@ -27,5 +27,9 @@ export class BitacoraComponent implements OnInit {
       this.dataSource.data = res;
       console.log(res);
     });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

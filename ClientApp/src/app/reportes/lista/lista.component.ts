@@ -26,7 +26,7 @@ export class ListaComponent implements OnInit {
     private dialog: MatDialog
   ) {}
   displayedColumns: string[] = [
-      "indice",
+    "indice",
     "fecha",
     "tipo",
     "observado",
@@ -38,6 +38,15 @@ export class ListaComponent implements OnInit {
       this.editable = data.permission;
     });
     this.dataSource.paginator = this.paginator;
+    this.dataSource.filterPredicate = (data, filter) => {
+      filter = filter.toLowerCase();
+
+      return (
+        data.tipo.toLowerCase().includes(filter) ||
+        (data.observado || "").toLowerCase().includes(filter) ||
+        data.area.nombre.toLowerCase().includes(filter)
+      );
+    };
     this.getReportes();
   }
 
@@ -144,5 +153,9 @@ export class ListaComponent implements OnInit {
           }
         }
       });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

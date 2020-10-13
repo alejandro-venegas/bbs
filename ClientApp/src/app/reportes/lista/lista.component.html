@@ -1,13 +1,19 @@
 <div class="content-container">
+  <input
+    type="text"
+    class="table-filter"
+    placeholder="Filtro"
+    (keyup)="applyFilter($event)"
+  />
   <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container matColumnDef="indice">
-    <th mat-header-cell *matHeaderCellDef>#</th>
-    <td mat-cell *matCellDef="let element; let i = index">
-      <span class="mobile-label"># </span>
-      {{ i + 1 }}
-    </td>
-  </ng-container>
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <span class="mobile-label"># </span>
+        {{ i + 1 }}
+      </td>
+    </ng-container>
 
     <ng-container matColumnDef="fecha">
       <th mat-header-cell *matHeaderCellDef>Fecha</th>
