@@ -22,10 +22,8 @@ namespace bbs.Controllers
             _context = context;
             builder = new SqlConnectionStringBuilder();
 
-            builder.DataSource = "localhost";
-            builder.UserID = "sa";
-            builder.Password = "Ale140796";
-            builder.InitialCatalog = "SBBS";
+            
+            builder.ConnectionString = "Server=DESKTOP-8PDO96H;Database=SBBS;Trusted_Connection=True;";
         }
 
         [HttpGet("{id}")]

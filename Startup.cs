@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +22,13 @@ namespace bbs_project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<IISServerOptions>(options =>
+                {
+                    options.AutomaticAuthentication = true;
+                });
+
             services.AddDbContext<SBBSContext>(options =>
-                 options.UseSqlServer("Server=localhost;Database=SBBS;User Id=sa;Password=Ale140796"));
+                 options.UseSqlServer("Server=DESKTOP-8PDO96H;Database=SBBS;Trusted_Connection=True;"));
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -59,6 +65,8 @@ namespace bbs_project
             app.UseRouting();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

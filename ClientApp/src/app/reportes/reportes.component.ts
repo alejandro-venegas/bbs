@@ -1,13 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
-import { HeaderService } from "../header/header.service";
-import { slider } from "../animations";
-import { AuthService } from "../shared/services/auth.service";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
+import { HeaderService } from '../header/header.service';
+import { slider } from '../animations';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
-  selector: "app-reportes",
-  templateUrl: "./reportes.component.html",
-  styleUrls: ["./reportes.component.css"],
+  selector: 'app-reportes',
+  templateUrl: './reportes.component.html',
+  styleUrls: ['./reportes.component.css'],
   animations: [slider],
 })
 export class ReportesComponent implements OnInit {
@@ -20,12 +25,12 @@ export class ReportesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.headerService.titleSubject.next("Nuevo Reporte");
+    this.headerService.titleSubject.next('Nuevo Reporte');
     this.getUserViews();
   }
   prepareRoute(outlet: RouterOutlet) {
     return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData["number"]
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData['number']
     );
   }
   getUserViews() {
@@ -33,7 +38,7 @@ export class ReportesComponent implements OnInit {
       if (res) {
         this.permittedViews = res.rolVistas
           .map((rolVista) => rolVista.vista)
-          .filter((vista) => vista.url.split("/")[1] === "reportes");
+          .filter((vista) => vista.url.split('/')[1] === 'reportes');
 
         this.router.navigate([this.permittedViews[0].url], {
           relativeTo: this.route,
@@ -41,5 +46,4 @@ export class ReportesComponent implements OnInit {
       }
     });
   }
-
 }
