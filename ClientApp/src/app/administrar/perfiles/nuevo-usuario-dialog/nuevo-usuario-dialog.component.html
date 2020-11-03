@@ -1,0 +1,66 @@
+<div class="dialog-content">
+  <div class="dialog-header">
+    <h1 class="dialog-title">AGREGAR NUEVO USUARIO</h1>
+    <div mat-dialog-close class="close-icon">X</div>
+  </div>
+  <form [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
+    <div class="dialog-main">
+      <div class="input-group">
+        <label for="colaborador">Colaborador:</label>
+        <select
+          class="dialog-select"
+          id="colaborador"
+          formControlName="colaboradorId"
+        >
+          <option value="" disabled selected>Escoja un Colaborador</option>
+          <option
+            [value]="colaborador.id"
+            *ngFor="let colaborador of colaboradores"
+          >
+            {{ colaborador.nombre }} {{ colaborador.apellido }}
+          </option>
+        </select>
+        <span
+          *ngIf="colaboradorId.touched && colaboradorId.invalid"
+          class="invalid-message"
+        >
+          <div *ngIf="colaboradorId.errors.required">Ingrese un nombre</div>
+        </span>
+      </div>
+      <div class="input-group">
+        <label for="usuario">Usuario:</label>
+        <input
+          formControlName="username"
+          type="text"
+          id="usuario"
+          placeholder="Ingrese un nombre de usuario"
+        />
+        <span
+          *ngIf="username.touched && username.invalid"
+          class="invalid-message"
+        >
+          <div *ngIf="username.errors.required">
+            Ingrese un nombre de usuario
+          </div>
+        </span>
+      </div>
+      <div class="input-group">
+        <label for="rolId">Rol:</label>
+        <select class="dialog-select" id="rolId" formControlName="rolId">
+          <option value="" disabled selected>Escoja un Rol</option>
+          <option [value]="rol.id" *ngFor="let rol of roles">
+            {{ rol.nombre }}
+          </option>
+        </select>
+      </div>
+      <br />
+      <br />
+
+      <div class="button-group">
+        <button class="save-button save-button--green">
+          {{ 'AGREGAR' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -4,6 +4,7 @@ export class Colaborador {
   apellido: string;
   departamentoId?: number;
   departamento?: any;
+  usuario?: any;
 
   constructor(
     nombre: string,

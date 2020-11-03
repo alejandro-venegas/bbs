@@ -17,6 +17,7 @@ import { ColaboradoresComponent } from './colaboradores/colaboradores.component'
 import { NuevoColaboradorDialogComponent } from './colaboradores/nuevo-colaborador-dialog/nuevo-colaborador-dialog.component';
 import { NuevoDepartamentoDialogComponent } from './departamentos/nuevo-departamento-dialog/nuevo-departamento-dialog.component';
 import { RoleResolver } from '../shared/resolvers/role-resolver.service';
+import { NuevoUsuarioDialogComponent } from './perfiles/nuevo-usuario-dialog/nuevo-usuario-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RoleResolver } from '../shared/resolvers/role-resolver.service';
     ColaboradoresComponent,
     NuevoColaboradorDialogComponent,
     NuevoDepartamentoDialogComponent,
+    NuevoUsuarioDialogComponent,
   ],
   imports: [
     CommonModule,

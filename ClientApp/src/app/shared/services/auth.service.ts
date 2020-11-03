@@ -32,4 +32,14 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+
+  getUsers() {
+    return this.http.get<any>(this.base_url + '/usuarios');
+  }
+
+  createNewUser(usuario: any) {
+    return this.http.post(this.base_url + '/new', usuario, {
+      observe: 'response',
+    });
+  }
 }

@@ -20,10 +20,26 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'reportes', loadChildren: () => ReportesModule },
-      { path: 'graficos', loadChildren: () => GraficosModule },
-      { path: 'administrar', loadChildren: () => AdministrarModule },
-      { path: 'mantenimiento', loadChildren: () => MantenimientoModule },
+      {
+        path: 'reportes',
+        loadChildren: () => ReportesModule,
+        data: { module: 'f' },
+      },
+      {
+        path: 'graficos',
+        loadChildren: () => GraficosModule,
+        data: { module: '2' },
+      },
+      {
+        path: 'administrar',
+        loadChildren: () => AdministrarModule,
+        data: { module: '3' },
+      },
+      {
+        path: 'mantenimiento',
+        loadChildren: () => MantenimientoModule,
+        data: { module: 'l' },
+      },
       { path: 'forbidden', component: ForbiddenComponent },
     ],
   },

@@ -26,10 +26,8 @@ export class AuthGuard implements CanActivate {
     return this.authService.getCurrentUser().pipe(
       map((res) => {
         if (res) {
-          console.log(res);
           const permittedViews = res.rol.rolVistas.map((value) => value.vista);
           this.authService.rolChangedSubject.next(res.rol);
-          console.log(res.rol);
 
           if (
             permittedViews.find(

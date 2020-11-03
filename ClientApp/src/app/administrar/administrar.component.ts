@@ -8,7 +8,7 @@ import { AuthService } from '../shared/services/auth.service';
   selector: 'app-roles-perfiles',
   templateUrl: './administrar.component.html',
   styleUrls: ['./administrar.component.css'],
-  animations: [slider, verticalSlider],
+  animations: [slider],
 })
 export class AdministrarComponent implements OnInit {
   permittedViews = [];
@@ -37,16 +37,21 @@ export class AdministrarComponent implements OnInit {
     );
   }
   getUserViews() {
-    this.authService.getCurrentUser().subscribe((res) => {
-      if (res) {
-        this.permittedViews = res.rol.rolVistas
-          .map((rolVista) => rolVista.vista)
-          .filter((vista) => vista.url.split('/')[1] === 'administrar');
+    this.authService.getCurrentUser().subscribe(
+      (res) => {
+        if (res) {
+          this.permittedViews = res.rol.rolVistas
+            .map((rolVista) => rolVista.vista)
+            .filter((vista) => vista.url.split('/')[1] === 'administrar');
 
-        this.router.navigate([this.permittedViews[0].url], {
-          relativeTo: this.route,
-        });
+          this.router.navigate([this.permittedViews[0].url], {
+            relativeTo: this.route,
+          });
+        }
+      },
+      (error) => {
+        this.router.navigate(['login']);
       }
-    });
+    );
   }
 }

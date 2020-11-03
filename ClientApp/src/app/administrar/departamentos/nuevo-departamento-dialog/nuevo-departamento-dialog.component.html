@@ -1,6 +1,6 @@
 <div class="dialog-content">
   <div class="dialog-header">
-    <h1 class="dialog-title">AGREGAR NUEVO ROL</h1>
+    <h1 class="dialog-title">AGREGAR NUEVO DEPARTAMENTO</h1>
     <div mat-dialog-close class="close-icon">X</div>
   </div>
   <form [formGroup]="departamentoForm" (ngSubmit)="submitForm()">
@@ -27,8 +27,9 @@
           <option
             [value]="colaborador.id"
             *ngFor="let colaborador of colaboradores"
-            >{{ colaborador.nombre }} {{ colaborador.apellido }}</option
           >
+            {{ colaborador.nombre }} {{ colaborador.apellido }}
+          </option>
         </select>
         <span
           *ngIf="gerenteId.touched && gerenteId.invalid"

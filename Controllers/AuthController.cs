@@ -25,6 +25,27 @@ namespace bbs.Controllers
             _config = config;    
             _context = context;
         }    
+
+
+        [Authorize]
+         [HttpPost("new")]    
+        public async Task<IActionResult> signUp(Usuario newUser)    
+        {    
+
+            newUser.Password = "test";
+            await _context.Usuarios.AddAsync(newUser);
+            await _context.SaveChangesAsync();
+            // Bitacora bitacora = new Bitacora
+            // {
+            //     Fecha = DateTime.Now,
+            //     Usuario = "Usuario",
+            //     DescripcionBitacora = "Creó nuevo colaborador " + colaborador.Nombre + " " + colaborador.Apellido + " ID " + colaborador.Id
+            // };
+            // await _context.Bitacora.AddAsync(bitacora);
+            // await _context.SaveChangesAsync();
+            return StatusCode(201);  
+        }    
+
         [AllowAnonymous]    
         [HttpPost]    
         public async Task<IActionResult> Login(Usuario login)    
@@ -41,6 +62,19 @@ namespace bbs.Controllers
             return response;    
         }    
 
+
+        [HttpGet("usuarios")]
+         [Authorize]
+        public async Task<IActionResult> GetUsers()    
+        {    
+            var usuarios = await _context.Usuarios
+            .Include(u => u.Colaborador).ThenInclude(c => c.Departamento)
+            .Include(u => u.Rol)
+            .ToListAsync();
+    
+            return Ok(usuarios);    
+        }  
+
          [HttpGet]
          [Authorize]
         public async Task<IActionResult> GetCurrentUser()    
@@ -56,6 +90,8 @@ namespace bbs.Controllers
     
             return Unauthorized();    
         }  
+
+        
     
         private string GenerateJSONWebToken(Usuario userInfo)    
         {    

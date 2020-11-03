@@ -36,16 +36,21 @@ export class MantenimientoComponent implements OnInit {
     );
   }
   getUserViews() {
-    this.authService.getCurrentUser().subscribe((res) => {
-      if (res) {
-        this.permittedViews = res.rol.rolVistas
-          .map((rolVista) => rolVista.vista)
-          .filter((vista) => vista.url.split('/')[1] === 'mantenimiento');
+    this.authService.getCurrentUser().subscribe(
+      (res) => {
+        if (res) {
+          this.permittedViews = res.rol.rolVistas
+            .map((rolVista) => rolVista.vista)
+            .filter((vista) => vista.url.split('/')[1] === 'mantenimiento');
 
-        this.router.navigate([this.permittedViews[0].url], {
-          relativeTo: this.route,
-        });
+          this.router.navigate([this.permittedViews[0].url], {
+            relativeTo: this.route,
+          });
+        }
+      },
+      (error) => {
+        this.router.navigate(['login']);
       }
-    });
+    );
   }
 }

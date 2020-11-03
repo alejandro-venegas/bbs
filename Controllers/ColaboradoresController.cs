@@ -22,7 +22,7 @@ namespace bbs.Controllers
         [HttpGet]
         public async Task<IActionResult> GetColaboradores()
         {
-            var colaboradores = await _context.Colaboradores.Include(c => c.Departamento).ToListAsync();
+            var colaboradores = await _context.Colaboradores.Include(c => c.Departamento).Include(c => c.Usuario).ToListAsync();
             return Ok(colaboradores);
         }
 
