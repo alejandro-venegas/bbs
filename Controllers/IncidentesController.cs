@@ -5,9 +5,11 @@ using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bbs.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class IncidentesController : Controller

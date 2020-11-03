@@ -1,50 +1,50 @@
-import { NgModule } from "@angular/core";
-import { AdministrarComponent } from "./administrar.component";
-import { RolesComponent } from "./roles/roles.component";
-import { PerfilesComponent } from "./perfiles/perfiles.component";
-import { RouterModule, Routes } from "@angular/router";
-import { ColaboradoresComponent } from "./colaboradores/colaboradores.component";
-import { DepartamentosComponent } from "./departamentos/departamentos.component";
-import { AuthGuard } from "../shared/guards/auth.guard";
-import { RoleResolver } from "../shared/resolvers/role-resolver.service";
+import { NgModule } from '@angular/core';
+import { AdministrarComponent } from './administrar.component';
+import { RolesComponent } from './roles/roles.component';
+import { PerfilesComponent } from './perfiles/perfiles.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
+import { DepartamentosComponent } from './departamentos/departamentos.component';
+import { AuthGuard } from '../shared/guards/auth.guard';
+import { RoleResolver } from '../shared/resolvers/role-resolver.service';
 const routes: Routes = [
   {
-    path: "administrar",
+    path: '',
     component: AdministrarComponent,
 
     children: [
       {
-        path: "roles",
+        path: 'roles',
         component: RolesComponent,
         canActivate: [AuthGuard],
-        data: { number: "sf" },
+        data: { number: 'sf' },
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "perfiles",
+        path: 'perfiles',
         component: PerfilesComponent,
         canActivate: [AuthGuard],
-        data: { number: "s2" },
+        data: { number: 's2' },
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "colaboradores",
+        path: 'colaboradores',
         component: ColaboradoresComponent,
         canActivate: [AuthGuard],
-        data: { number: "s3" },
+        data: { number: 's3' },
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "departamentos",
+        path: 'departamentos',
         component: DepartamentosComponent,
         canActivate: [AuthGuard],
-        data: { number: "sl" },
+        data: { number: 'sl' },
         resolve: {
           permission: RoleResolver,
         },

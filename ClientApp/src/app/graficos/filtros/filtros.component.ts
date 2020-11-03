@@ -1,29 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { NgForm, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-filtros",
-  templateUrl: "./filtros.component.html",
-  styleUrls: ["./filtros.component.css"],
+  selector: 'app-filtros',
+  templateUrl: './filtros.component.html',
+  styleUrls: ['./filtros.component.css'],
 })
 export class FiltrosComponent implements OnInit {
   propiedadesArray = [];
   dataSetArray = [];
+  errorMessage = '';
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
   submitForm(form: NgForm) {
-    console.log(form);
-
-    this.router.navigate(["graficos/resultado"], {
-      queryParams: {
-        tiposGraficas: this.dataSetArray.join(","),
-        propiedades: form.value.propiedad,
-        startDate: form.value.startDate.toUTCString(),
-        endDate: form.value.endDate.toUTCString(),
-      },
-    });
+    if (!(this.dataSetArray.length === 0 || form.invalid)) {
+      this.router.navigate(['graficos/resultado'], {
+        queryParams: {
+          tiposGraficas: this.dataSetArray.join(','),
+          propiedades: form.value.propiedad,
+          startDate: form.value.startDate.toUTCString(),
+          endDate: form.value.endDate.toUTCString(),
+        },
+      });
+    } else {
+      this.errorMessage = 'Por favor, seleccione todos los campos';
+    }
   }
 
   propiedadChange(propiedadValue: string) {

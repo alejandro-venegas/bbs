@@ -27,6 +27,13 @@ export class ReportesComponent implements OnInit {
   ngOnInit(): void {
     this.headerService.titleSubject.next('Nuevo Reporte');
     this.getUserViews();
+    this.authService.rolChangedSubject.subscribe((res) => {
+      if (res) {
+        this.permittedViews = res.rolVistas
+          .map((rolVista) => rolVista.vista)
+          .filter((vista) => vista.url.split('/')[1] === 'reportes');
+      }
+    });
   }
   prepareRoute(outlet: RouterOutlet) {
     return (
@@ -34,9 +41,9 @@ export class ReportesComponent implements OnInit {
     );
   }
   getUserViews() {
-    this.authService.getCurrentUserRol().subscribe((res) => {
+    this.authService.getCurrentUser().subscribe((res) => {
       if (res) {
-        this.permittedViews = res.rolVistas
+        this.permittedViews = res.rol.rolVistas
           .map((rolVista) => rolVista.vista)
           .filter((vista) => vista.url.split('/')[1] === 'reportes');
 

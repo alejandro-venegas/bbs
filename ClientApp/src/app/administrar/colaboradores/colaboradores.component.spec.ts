@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ColaboradoresComponent } from './colaboradores.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('ColaboradoresComponent', () => {
   let component: ColaboradoresComponent;
@@ -8,9 +12,9 @@ describe('ColaboradoresComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColaboradoresComponent ]
-    })
-    .compileComponents();
+      declarations: [ColaboradoresComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

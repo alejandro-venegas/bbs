@@ -1,67 +1,66 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { ReportesComponent } from "./reportes.component";
-import { IncidenteComponent } from "./incidente/incidente.component";
-import { CasiIncidenteComponent } from "./casi-incidente/casi-incidente.component";
-import { BbsComponent } from "./bbs/bbs.component";
-import { CondicionesInsegurasComponent } from "./condiciones-inseguras/condiciones-inseguras.component";
-import { ListaComponent } from "./lista/lista.component";
-import { AuthGuard } from "../shared/guards/auth.guard";
-import { RoleResolver } from "../shared/resolvers/role-resolver.service";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ReportesComponent } from './reportes.component';
+import { IncidenteComponent } from './incidente/incidente.component';
+import { CasiIncidenteComponent } from './casi-incidente/casi-incidente.component';
+import { BbsComponent } from './bbs/bbs.component';
+import { CondicionesInsegurasComponent } from './condiciones-inseguras/condiciones-inseguras.component';
+import { ListaComponent } from './lista/lista.component';
+import { AuthGuard } from '../shared/guards/auth.guard';
+import { RoleResolver } from '../shared/resolvers/role-resolver.service';
 
 const routes: Routes = [
   {
-    path: "reportes",
+    path: '',
     component: ReportesComponent,
-
     children: [
       {
-        path: "lista",
+        path: 'lista',
         component: ListaComponent,
-        data: { number: "sf" },
+        data: { number: 'sf' },
         canActivate: [AuthGuard],
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "incidente",
+        path: 'incidente',
         component: IncidenteComponent,
-        data: { number: "s2" },
+        data: { number: 's2' },
         canActivate: [AuthGuard],
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "casi-incidente",
+        path: 'casi-incidente',
         component: CasiIncidenteComponent,
-        data: { number: "s3" },
+        data: { number: 's3' },
         canActivate: [AuthGuard],
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "bbs",
+        path: 'bbs',
         component: BbsComponent,
-        data: { number: "s4" },
+        data: { number: 's4' },
         canActivate: [AuthGuard],
         resolve: {
           permission: RoleResolver,
         },
       },
       {
-        path: "condiciones-inseguras",
+        path: 'condiciones-inseguras',
         component: CondicionesInsegurasComponent,
-        data: { number: "sl" },
+        data: { number: 'sl' },
         canActivate: [AuthGuard],
         resolve: {
           permission: RoleResolver,
         },
       },
     ],
-    data: { module: "f" },
+    data: { module: 'f' },
   },
 ];
 @NgModule({

@@ -1,26 +1,26 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatTableDataSource } from "@angular/material/table";
-import { rowAnimation } from "../../animations";
-import { MatDialog } from "@angular/material/dialog";
-import { NuevoRolDialogComponent } from "./nuevo-rol-dialog/nuevo-rol-dialog.component";
-import { RolesService } from "./roles.service";
-import { Rol } from "../../shared/models/rol.model";
-import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/eliminar-dialog.component";
-import { AuthService } from "../../shared/services/auth.service";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { rowAnimation } from '../../animations';
+import { MatDialog } from '@angular/material/dialog';
+import { NuevoRolDialogComponent } from './nuevo-rol-dialog/nuevo-rol-dialog.component';
+import { RolesService } from './roles.service';
+import { Rol } from '../../shared/models/rol.model';
+import { EliminarDialogComponent } from '../../shared/dialogs/eliminar-dialog/eliminar-dialog.component';
+import { AuthService } from '../../shared/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-roles",
-  templateUrl: "./roles.component.html",
-  styleUrls: ["./roles.component.css"],
+  selector: 'app-roles',
+  templateUrl: './roles.component.html',
+  styleUrls: ['./roles.component.css'],
   animations: [rowAnimation],
 })
 export class RolesComponent implements OnInit {
   editable: boolean;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dataSource = new MatTableDataSource<Rol>();
-  displayedColumns: string[] = ["indice", "nombre", "accion"];
+  displayedColumns: string[] = ['indice', 'nombre', 'accion'];
   constructor(
     private dialog: MatDialog,
     private rolesService: RolesService,
@@ -38,8 +38,8 @@ export class RolesComponent implements OnInit {
   onNewRole() {
     this.dialog
       .open(NuevoRolDialogComponent, {
-        width: "35vw",
-        maxWidth: "30rem",
+        width: '35vw',
+        maxWidth: '30rem',
       })
       .afterClosed()
       .subscribe((response) => {
@@ -52,8 +52,8 @@ export class RolesComponent implements OnInit {
   onEditRol(rol: Rol) {
     this.dialog
       .open(NuevoRolDialogComponent, {
-        width: "35vw",
-        maxWidth: "30rem",
+        width: '35vw',
+        maxWidth: '30rem',
         data: { rol },
       })
       .afterClosed()
@@ -76,20 +76,19 @@ export class RolesComponent implements OnInit {
   }
 
   imThisRole(id: number) {
-    return +localStorage.getItem("rolId") === id;
+    return +localStorage.getItem('rolId') === id;
   }
 
   setRol(id: number) {
-    localStorage.setItem("rolId", `${id}`);
-    this.authService.rolChangedSubject.next(true);
+    localStorage.setItem('rolId', `${id}`);
   }
 
   onDeleteRol(rol: Rol) {
     this.dialog
       .open(EliminarDialogComponent, {
-        minWidth: "35vw",
+        minWidth: '35vw',
         data: {
-          title: "ELIMINAR ROL",
+          title: 'ELIMINAR ROL',
           content: `Desea eliminar el rol ${rol.nombre}?`,
         },
       })

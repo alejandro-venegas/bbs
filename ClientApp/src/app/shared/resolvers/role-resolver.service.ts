@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Resolve,
   RouterStateSnapshot,
-} from "@angular/router";
-import { Observable } from "rxjs";
-import { AuthService } from "../services/auth.service";
-import { map } from "rxjs/operators";
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class RoleResolver implements Resolve<any> {
@@ -16,10 +16,10 @@ export class RoleResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this.authService.getCurrentUserRol().pipe(
+    return this.authService.getCurrentUser().pipe(
       map((res) => {
         if (res) {
-          const thisView = res.rolVistas.find(
+          const thisView = res.rol.rolVistas.find(
             (view) =>
               view.vista.url === state.url.substr(0, view.vista.url.length)
           );

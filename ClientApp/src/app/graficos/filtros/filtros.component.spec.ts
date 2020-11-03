@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FiltrosComponent } from './filtros.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('FiltrosComponent', () => {
   let component: FiltrosComponent;
@@ -8,9 +12,9 @@ describe('FiltrosComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FiltrosComponent ]
-    })
-    .compileComponents();
+      declarations: [FiltrosComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

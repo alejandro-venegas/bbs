@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CondicionesInsegurasComponent } from './condiciones-inseguras.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('CondicionesInsegurasComponent', () => {
   let component: CondicionesInsegurasComponent;
@@ -8,9 +12,9 @@ describe('CondicionesInsegurasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CondicionesInsegurasComponent ]
-    })
-    .compileComponents();
+      declarations: [CondicionesInsegurasComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

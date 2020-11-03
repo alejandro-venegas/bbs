@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListaComponent } from './lista.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('ListaComponent', () => {
   let component: ListaComponent;
@@ -8,9 +12,9 @@ describe('ListaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListaComponent ]
-    })
-    .compileComponents();
+      declarations: [ListaComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

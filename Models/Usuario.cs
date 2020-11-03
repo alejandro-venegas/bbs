@@ -7,15 +7,15 @@ namespace bbs.Models
     {
         public Usuario()
         {
-            Bitacora = new HashSet<Bitacora>();
         }
 
-        public int UsuarioId { get; set; }
+        public int Id { get; set; }
+        public String Username {get; set;}
+        public String Password {get;set;}
         public int RolId { get; set; }
         public int ColaboradorId { get; set; }
 
         public virtual Colaborador Colaborador { get; set; }
         public virtual Rol Rol { get; set; }
-        public virtual ICollection<Bitacora> Bitacora { get; set; }
     }
 }

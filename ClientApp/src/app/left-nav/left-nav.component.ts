@@ -1,11 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { AuthService } from "../shared/services/auth.service";
-import { ScreenService } from "../shared/services/screen.service";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
+import { ScreenService } from '../shared/services/screen.service';
 
 @Component({
-  selector: "app-left-nav",
-  templateUrl: "./left-nav.component.html",
-  styleUrls: ["./left-nav.component.css"],
+  selector: 'app-left-nav',
+  templateUrl: './left-nav.component.html',
+  styleUrls: ['./left-nav.component.css'],
 })
 export class LeftNavComponent implements OnInit {
   @Output() toggleNav = new EventEmitter();
@@ -18,7 +18,6 @@ export class LeftNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserViews();
-    this.authService.rolChangedSubject.subscribe((res) => this.getUserViews());
     this.subscribeScreenWidthSubject();
   }
 
@@ -28,15 +27,15 @@ export class LeftNavComponent implements OnInit {
 
   subscribeScreenWidthSubject() {
     this.screenService.screenWidthSubject.subscribe((res) => {
-      this.isMobileScreen = res && res.breakpoints["(max-width: 600px)"];
+      this.isMobileScreen = res && res.breakpoints['(max-width: 600px)'];
     });
   }
 
   getUserViews() {
-    this.authService.getCurrentUserRol().subscribe((res) => {
+    this.authService.rolChangedSubject.subscribe((res) => {
       if (res) {
         this.permittedViews = res.rolVistas.map(
-          (rolVista) => rolVista.vista.url.split("/")[1]
+          (rolVista) => rolVista.vista.url.split('/')[1]
         );
       }
     });
@@ -44,5 +43,9 @@ export class LeftNavComponent implements OnInit {
 
   isPermitted(nombre: string) {
     return this.permittedViews.find((value) => value === nombre);
+  }
+
+  onLogOut() {
+    this.authService.logOut();
   }
 }

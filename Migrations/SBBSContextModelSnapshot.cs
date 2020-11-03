@@ -3400,6 +3400,35 @@ namespace bbs_project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("bbs.Models.Usuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ColaboradorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColaboradorId")
+                        .IsUnique();
+
+                    b.HasIndex("RolId");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("bbs.Models.Value", b =>
                 {
                     b.Property<int>("Id")
@@ -3732,6 +3761,21 @@ namespace bbs_project.Migrations
                     b.HasOne("bbs.Models.Vista", "Vista")
                         .WithMany("RolVistas")
                         .HasForeignKey("VistaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("bbs.Models.Usuario", b =>
+                {
+                    b.HasOne("bbs.Models.Colaborador", "Colaborador")
+                        .WithOne("Usuario")
+                        .HasForeignKey("bbs.Models.Usuario", "ColaboradorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Rol", "Rol")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

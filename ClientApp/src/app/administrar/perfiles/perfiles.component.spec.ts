@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PerfilesComponent } from './perfiles.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('PerfilesComponent', () => {
   let component: PerfilesComponent;
@@ -8,9 +12,9 @@ describe('PerfilesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerfilesComponent ]
-    })
-    .compileComponents();
+      declarations: [PerfilesComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

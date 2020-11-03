@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="input-container">
+    <img src="assets/images/logo.png" class="logo" />
+    <input type="text" #username placeholder="Usuario" />
+    <input type="password" #password placeholder="Contraseña" />
+    <span class="invalid-message">{{ error }}</span>
+    <button
+      type="button"
+      class="save-button"
+      (click)="onIngresar(username.value, password.value)"
+    >
+      Ingresar
+    </button>
+  </div>
+</div>

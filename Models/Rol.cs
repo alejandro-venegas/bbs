@@ -17,5 +17,6 @@ namespace bbs.Models
         [Column(TypeName = "varchar(255)")]
         public string Descripcion{ get; set; }
         public virtual ICollection<RolVista> RolVistas {get; set;}
+        public virtual ICollection<Usuario> Usuarios{get;set;}
     }
 }

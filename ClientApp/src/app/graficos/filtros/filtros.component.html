@@ -208,15 +208,12 @@
         )
       "
       value="factor-de-riesgo"
+      s
       >Factor de Riesgo
     </mat-radio-button>
   </mat-radio-group>
   <div class="button-group">
-    <button
-      class="save-button"
-      [disabled]="dataSetArray.length === 0 || form.invalid"
-    >
-      VER GRÁFICO
-    </button>
+    <span class="invalid-message">{{ errorMessage }}</span>
+    <button class="save-button">VER GRÁFICO</button>
   </div>
 </form>

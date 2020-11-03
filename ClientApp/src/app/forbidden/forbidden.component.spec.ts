@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForbiddenComponent } from './forbidden.component';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 
 describe('ForbiddenComponent', () => {
   let component: ForbiddenComponent;
@@ -8,9 +12,9 @@ describe('ForbiddenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForbiddenComponent ]
-    })
-    .compileComponents();
+      declarations: [ForbiddenComponent],
+      imports: [BrowserAnimationsModule, NoopAnimationsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

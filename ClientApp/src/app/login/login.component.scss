@@ -1,0 +1,23 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .input-container {
+    background-color: var(--blue);
+    padding: 3rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.6);
+    input {
+      margin: 0.5rem 0;
+    }
+    .logo {
+      margin-bottom: 2.5rem;
+      width: 12rem;
+    }
+  }
+}

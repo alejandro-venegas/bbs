@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace bbs.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BbsController : Controller

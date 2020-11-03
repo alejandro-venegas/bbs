@@ -55,3 +55,16 @@ mat-radio-group > * {
 .grafico-radio-buttons {
   margin-bottom: 5rem;
 }
+.button-group {
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.save-button {
+  align-self: auto;
+}
+
+.invalid-message {
+  font-size: 1rem;
+}

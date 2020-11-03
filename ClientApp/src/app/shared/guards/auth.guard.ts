@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
   Router,
-} from "@angular/router";
-import { Observable } from "rxjs";
-import { AuthService } from "../services/auth.service";
-import { map, tap } from "rxjs/operators";
+} from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
@@ -23,10 +23,13 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.getCurrentUserRol().pipe(
+    return this.authService.getCurrentUser().pipe(
       map((res) => {
         if (res) {
-          const permittedViews = res.rolVistas.map((value) => value.vista);
+          console.log(res);
+          const permittedViews = res.rol.rolVistas.map((value) => value.vista);
+          this.authService.rolChangedSubject.next(res.rol);
+          console.log(res.rol);
 
           if (
             permittedViews.find(
@@ -36,7 +39,13 @@ export class AuthGuard implements CanActivate {
             return true;
           }
         }
-        return this.router.parseUrl("forbidden");
+        this.router.navigate(['forbidden']);
+        return false;
+      }),
+      catchError((err) => {
+        console.log(err);
+        this.router.navigate(['login']);
+        return of(false);
       })
     );
   }

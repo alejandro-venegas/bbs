@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 :root {
   --yellow: #f9a11b;
   --blue: #0a1e38;
@@ -16,15 +16,15 @@ body {
 }
 
 * {
-  font-family: "Montserrat", sans-serif;
-  outline: none!important;
+  font-family: 'Montserrat', sans-serif;
+  outline: none !important;
   box-sizing: border-box;
 }
 a {
   text-decoration: none;
   color: #fffff8;
 }
-a:hover{
+a:hover {
   color: unset;
   transition: none;
 }
@@ -58,7 +58,7 @@ a:hover{
 .mat-tab-link {
   color: var(--white);
   opacity: 1 !important;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
   overflow: unset !important;
 }
@@ -75,7 +75,7 @@ a:hover{
 .mat-tab-header {
   border-bottom: 2px solid rgba(255, 255, 248, 0.3);
 }
-.mat-date-range-input-inner::placeholder{
+.mat-date-range-input-inner::placeholder {
   color: var(--white);
 }
 .mat-calendar-body-selected {
@@ -106,11 +106,11 @@ th.mat-header-cell,
 td.mat-cell,
 td.mat-footer-cell {
   color: var(--white);
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
 }
-.mat-checkbox-layout{
-  white-space: unset!important;
+.mat-checkbox-layout {
+  white-space: unset !important;
 }
 th.mat-header-cell {
   font-size: 1.3rem;
@@ -216,7 +216,10 @@ mat-radio-group {
   display: flex;
   flex-direction: column;
 }
-.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
   background-color: var(--yellow);
   color: var(--white);
 }
@@ -248,10 +251,10 @@ mat-dialog-container::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
 }
-.table-filter{
+.table-filter {
   margin-bottom: 1rem;
   width: 30%;
-  min-width: 20rem ;
+  min-width: 20rem;
 }
 input::placeholder {
   color: rgba(255, 255, 248, 0.5);
@@ -261,9 +264,8 @@ input::placeholder {
 }
 .mat-date-range-input-end-wrapper {
   flex-grow: 1;
-  max-width: unset!important;
+  max-width: unset !important;
   width: 1rem;
-
 }
 .save-button {
   justify-self: center;
@@ -303,7 +305,7 @@ span.invalid-message {
 .flex-fill-available {
   flex: 1;
 }
-input:not([type="radio"]) {
+input:not([type='radio']) {
   height: 2.3rem;
   border-radius: 1.3rem;
   border: none;
@@ -357,7 +359,13 @@ router-outlet + * {
   width: 100%;
   flex-direction: column;
 }
-
+.logo {
+  width: 90%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+}
 .button-group {
   display: flex;
   justify-content: flex-end;
@@ -421,9 +429,7 @@ router-outlet + * {
     margin-right: 1rem;
   }
   .form-grid {
-
     grid-template-columns: repeat(auto-fill, 15rem);
-
   }
 
   .mat-header-row {
@@ -475,5 +481,3 @@ router-outlet + * {
     grid-column: span 1;
   }
 }
-
-

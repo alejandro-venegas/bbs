@@ -46,6 +46,8 @@ namespace bbs.Models
         public virtual DbSet<Bbs> Bbss { get; set; }
         public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<CondicionInsegura> CondicionInseguras { get; set; }
+
+        public virtual DbSet<Usuario> Usuarios {get;set;}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -199,6 +201,16 @@ namespace bbs.Models
             .HasOne(c => c.IndicadorRiesgo)
             .WithMany(a => a.CondicionInseguras)
             .HasForeignKey(c => c.IndicadorRiesgoId);
+
+
+            modelBuilder.Entity<Usuario>()
+            .HasOne(c => c.Colaborador)
+            .WithOne(u => u.Usuario)
+            .HasForeignKey<Usuario>(c => c.ColaboradorId);
+            modelBuilder.Entity<Usuario>()
+            .HasOne(c => c.Rol)
+            .WithMany(u => u.Usuarios)
+            .HasForeignKey(c => c.RolId);
 
             modelBuilder.Seed();
 
