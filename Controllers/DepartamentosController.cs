@@ -5,6 +5,7 @@ using bbs.Models;
 using bbs.DTOs;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace bbs.Controllers
 {
@@ -29,83 +30,104 @@ namespace bbs.Controllers
         [HttpPost("new")]
         public async Task<IActionResult> InsertDepartamento(Departamento departamento)
         {
-            var colaboradorResult = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
-            if (colaboradorResult != null)
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-
-                var gerenteDe = await _context.Departamentos.FirstOrDefaultAsync(d => d.GerenteId == colaboradorResult.Id);
-                if (gerenteDe != null)
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                var colaboradorResult = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
+                if (colaboradorResult != null)
                 {
-                    return StatusCode(409);
+
+                    var gerenteDe = await _context.Departamentos.FirstOrDefaultAsync(d => d.GerenteId == colaboradorResult.Id);
+                    if (gerenteDe != null)
+                    {
+                        return StatusCode(409);
+                    }
+
+                    await _context.Departamentos.AddAsync(departamento);
+                    await _context.SaveChangesAsync();
+                    colaboradorResult.DepartamentoId = departamento.Id;
+                    _context.Colaboradores.Update(colaboradorResult);
+
+                    await _context.SaveChangesAsync();
+                    Bitacora bitacora = new Bitacora
+                    {
+                        Fecha = DateTime.Now,
+                        UsuarioId = user.Id,
+                        DescripcionBitacora = $"Creó nuevo Departamento {departamento.Nombre} ID {departamento.Id}"
+                    };
+                    await _context.Bitacora.AddAsync(bitacora);
+                    await _context.SaveChangesAsync();
+                    return StatusCode(201);
                 }
 
-                await _context.Departamentos.AddAsync(departamento);
-                await _context.SaveChangesAsync();
-                colaboradorResult.DepartamentoId = departamento.Id;
-                _context.Colaboradores.Update(colaboradorResult);
-
-                await _context.SaveChangesAsync();
-                Bitacora bitacora = new Bitacora
-                {
-                    Fecha = DateTime.Now,
-                    Usuario = "Usuario",
-                    DescripcionBitacora = $"Creó nuevo Departamento {departamento.Nombre} ID {departamento.Id}"
-                };
-                await _context.Bitacora.AddAsync(bitacora);
-                await _context.SaveChangesAsync();
-                return StatusCode(201);
+                return StatusCode(400);
             }
-
-            return StatusCode(400);
+            return Unauthorized();
         }
 
         [HttpPost("update")]
         public async Task<IActionResult> UpdateDepartamento(Departamento departamento)
         {
-            var departamentoResult = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == departamento.Id);
-            var gerenteNuevo = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
-            if (departamentoResult != null)
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                departamentoResult.Nombre = departamento.Nombre;
-                if (gerenteNuevo != null && (departamentoResult.GerenteId != gerenteNuevo.Id))
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                var departamentoResult = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == departamento.Id);
+                var gerenteNuevo = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
+                if (departamentoResult != null)
                 {
-                    var gerenteDe = await _context.Departamentos.FirstOrDefaultAsync(d => d.GerenteId == gerenteNuevo.Id);
-                    if (gerenteDe != null)
+                    departamentoResult.Nombre = departamento.Nombre;
+                    if (gerenteNuevo != null && (departamentoResult.GerenteId != gerenteNuevo.Id))
                     {
-                        return StatusCode(409);
+                        var gerenteDe = await _context.Departamentos.FirstOrDefaultAsync(d => d.GerenteId == gerenteNuevo.Id);
+                        if (gerenteDe != null)
+                        {
+                            return StatusCode(409);
+                        }
+                        gerenteNuevo.DepartamentoId = departamento.Id;
+                        departamentoResult.GerenteId = gerenteNuevo.Id;
+                        _context.Colaboradores.Update(gerenteNuevo);
+                        await _context.SaveChangesAsync();
                     }
-                    gerenteNuevo.DepartamentoId = departamento.Id;
-                    departamentoResult.GerenteId = gerenteNuevo.Id;
-                    _context.Colaboradores.Update(gerenteNuevo);
+                    _context.Departamentos.Update(departamentoResult);
+                    Bitacora bitacora = new Bitacora
+                    {
+                        Fecha = DateTime.Now,
+                        UsuarioId = user.Id,
+                        DescripcionBitacora = $"Actualizó Departamento {departamento.Nombre} ID {departamento.Id}"
+                    };
+                    await _context.Bitacora.AddAsync(bitacora);
                     await _context.SaveChangesAsync();
+                    return StatusCode(202);
                 }
-                _context.Departamentos.Update(departamentoResult);
+                return StatusCode(400);
+            }
+            return Unauthorized();
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteDepartamento(int id)
+        {
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
+            {
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                Departamento departamento = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == id);
+                _context.Departamentos.Remove(departamento);
                 Bitacora bitacora = new Bitacora
                 {
                     Fecha = DateTime.Now,
-                    Usuario = "Usuario",
-                    DescripcionBitacora = $"Actualizó Departamento {departamento.Nombre} ID {departamento.Id}"
+                    UsuarioId = user.Id,
+                    DescripcionBitacora = $"Eliminó Departamento {departamento.Nombre} ID {departamento.Id}"
                 };
                 await _context.Bitacora.AddAsync(bitacora);
                 await _context.SaveChangesAsync();
                 return StatusCode(202);
             }
-            return StatusCode(400);
-        }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteDepartamento(int id)
-        {
-            Departamento departamento = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == id);
-            _context.Departamentos.Remove(departamento);
-            Bitacora bitacora = new Bitacora
-            {
-                Fecha = DateTime.Now,
-                Usuario = "Usuario",
-                DescripcionBitacora = $"Eliminó Departamento {departamento.Nombre} ID {departamento.Id}"
-            };
-            await _context.Bitacora.AddAsync(bitacora);
-            await _context.SaveChangesAsync();
-            return StatusCode(202);
+            return Unauthorized();
         }
 
         [HttpGet("gerentes")]

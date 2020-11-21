@@ -6,6 +6,7 @@ using bbs.DTOs;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace bbs.Controllers
 {
@@ -41,62 +42,88 @@ namespace bbs.Controllers
         [HttpPost("new")]
         public async Task<IActionResult> InsertBbs(Bbs bbs)
         {
-            await _context.Bbss.AddAsync(bbs);
-            await _context.SaveChangesAsync();
-            Bitacora bitacora = new Bitacora
+
+            var currentUser = HttpContext.User;
+
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                Fecha = DateTime.Now,
-                Usuario = "Usuario",
-                DescripcionBitacora = "Insertó nuevo BBS con ID " + bbs.Id
-            };
-            await _context.Bitacora.AddAsync(bitacora);
-            await _context.SaveChangesAsync();
-            return StatusCode(201);
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                await _context.Bbss.AddAsync(bbs);
+                await _context.SaveChangesAsync();
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    UsuarioId = user.Id,
+                    DescripcionBitacora = "Insertó nuevo BBS con ID " + bbs.Id
+                };
+                await _context.Bitacora.AddAsync(bitacora);
+                await _context.SaveChangesAsync();
+                return StatusCode(201);
+
+            }
+            return Unauthorized();
+
         }
 
         [HttpPost("update")]
         public async Task<IActionResult> UpdateBbs(Bbs bbs)
         {
-            var bbsObj = await _context.Bbss.SingleOrDefaultAsync(b => b.Id == bbs.Id);
-            if (bbsObj != null)
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                bbsObj.ObservadorId = bbs.ObservadorId;
-                bbsObj.ProcesoId = bbs.ProcesoId;
-                bbsObj.TipoComportamientoId = bbs.TipoComportamientoId;
-                bbsObj.AreaId = bbs.AreaId;
-                bbsObj.ComportamientoId = bbs.ComportamientoId;
-                bbsObj.Fecha = bbs.Fecha;
-                bbsObj.TipoObservadoId = bbs.TipoObservadoId;
-                _context.Bbss.Update(bbsObj);
-                
-                await _context.SaveChangesAsync();
-                Bitacora bitacora = new Bitacora
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                var bbsObj = await _context.Bbss.SingleOrDefaultAsync(b => b.Id == bbs.Id);
+                if (bbsObj != null)
                 {
-                    Fecha = DateTime.Now,
-                    Usuario = "Usuario",
-                    DescripcionBitacora = "Actualizó BBS con ID " + bbs.Id
-                };
-                await _context.Bitacora.AddAsync(bitacora);
-                await _context.SaveChangesAsync();
-                return StatusCode(202);
+                    bbsObj.ObservadorId = bbs.ObservadorId;
+                    bbsObj.ProcesoId = bbs.ProcesoId;
+                    bbsObj.TipoComportamientoId = bbs.TipoComportamientoId;
+                    bbsObj.AreaId = bbs.AreaId;
+                    bbsObj.ComportamientoId = bbs.ComportamientoId;
+                    bbsObj.Fecha = bbs.Fecha;
+                    bbsObj.TipoObservadoId = bbs.TipoObservadoId;
+                    _context.Bbss.Update(bbsObj);
+
+                    await _context.SaveChangesAsync();
+                    Bitacora bitacora = new Bitacora
+                    {
+                        Fecha = DateTime.Now,
+                        UsuarioId = user.Id,
+                        DescripcionBitacora = "Actualizó BBS con ID " + bbs.Id
+                    };
+                    await _context.Bitacora.AddAsync(bitacora);
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+                return StatusCode(400);
             }
-            return StatusCode(400);
+            return Unauthorized();
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteBbs(int id)
         {
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
+            {
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+            
             Bbs bbs = new Bbs();
             bbs.Id = id;
             _context.Bbss.Remove(bbs);
             Bitacora bitacora = new Bitacora
             {
                 Fecha = DateTime.Now,
-                Usuario = "Usuario",
+                UsuarioId = user.Id,
                 DescripcionBitacora = "Eliminó BBS con ID " + bbs.Id
             };
             await _context.Bitacora.AddAsync(bitacora);
             await _context.SaveChangesAsync();
             return StatusCode(202);
+            }
+            return Unauthorized();
         }
 
     }

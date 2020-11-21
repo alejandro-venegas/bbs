@@ -6,6 +6,7 @@ using bbs.DTOs;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace bbs.Controllers
 {
@@ -35,7 +36,7 @@ namespace bbs.Controllers
         [HttpGet]
         public async Task<IActionResult> GetIncidentes()
         {
-            
+
             var casiIncidentes = await _context.CasiIncidentes.Include(c => c.Area).ToListAsync();
             return Ok(casiIncidentes);
         }
@@ -43,67 +44,88 @@ namespace bbs.Controllers
         [HttpPost("new")]
         public async Task<IActionResult> InsertIncidente(CasiIncidente casiIncidente)
         {
-  
-            await _context.CasiIncidentes.AddAsync(casiIncidente);
-           
-            
-            await _context.SaveChangesAsync();
-            Bitacora bitacora = new Bitacora
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                Fecha = DateTime.Now,
-                Usuario = "Usuario",
-                DescripcionBitacora = "Insertó nuevo Casi Incidente con ID " + casiIncidente.Id
-            };
-            await _context.Bitacora.AddAsync(bitacora);
-            await _context.SaveChangesAsync();
-            return StatusCode(201);
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+
+                await _context.CasiIncidentes.AddAsync(casiIncidente);
+
+
+                await _context.SaveChangesAsync();
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    UsuarioId = user.Id,
+                    DescripcionBitacora = "Insertó nuevo Casi Incidente con ID " + casiIncidente.Id
+                };
+                await _context.Bitacora.AddAsync(bitacora);
+                await _context.SaveChangesAsync();
+                return StatusCode(201);
+            }
+            return Unauthorized();
         }
         [HttpPost("update")]
         public async Task<IActionResult> UpdateCasiIncidente(CasiIncidente casiIncidente)
         {
-            var casiIncidenteObj = await _context.CasiIncidentes.SingleOrDefaultAsync(b => b.Id == casiIncidente.Id);
-            if (casiIncidenteObj != null)
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                casiIncidenteObj.ProcesoId = casiIncidente.ProcesoId;
-                casiIncidenteObj.AreaId = casiIncidente.AreaId;
-                casiIncidenteObj.Fecha = casiIncidente.Fecha;
-                casiIncidenteObj.GeneroId = casiIncidente.GeneroId;
-                casiIncidenteObj.JornadaId = casiIncidente.JornadaId;
-                casiIncidenteObj.Observado = casiIncidente.Observado;
-                casiIncidenteObj.RiesgoId = casiIncidente.RiesgoId;
-                casiIncidenteObj.TurnoId = casiIncidente.TurnoId;
-                casiIncidenteObj.Descripcion = casiIncidente.Descripcion;
-                casiIncidenteObj.CasualidadId = casiIncidente.CasualidadId;
-                _context.CasiIncidentes.Update(casiIncidenteObj);
-                Bitacora bitacora = new Bitacora
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                var casiIncidenteObj = await _context.CasiIncidentes.SingleOrDefaultAsync(b => b.Id == casiIncidente.Id);
+                if (casiIncidenteObj != null)
                 {
-                    Fecha = DateTime.Now,
-                    Usuario = "Usuario",
-                    DescripcionBitacora = "Actualizó Casi Incidente con ID " + casiIncidente.Id
-                };
-                await _context.Bitacora.AddAsync(bitacora);
-                await _context.SaveChangesAsync();
+                    casiIncidenteObj.ProcesoId = casiIncidente.ProcesoId;
+                    casiIncidenteObj.AreaId = casiIncidente.AreaId;
+                    casiIncidenteObj.Fecha = casiIncidente.Fecha;
+                    casiIncidenteObj.GeneroId = casiIncidente.GeneroId;
+                    casiIncidenteObj.JornadaId = casiIncidente.JornadaId;
+                    casiIncidenteObj.Observado = casiIncidente.Observado;
+                    casiIncidenteObj.RiesgoId = casiIncidente.RiesgoId;
+                    casiIncidenteObj.TurnoId = casiIncidente.TurnoId;
+                    casiIncidenteObj.Descripcion = casiIncidente.Descripcion;
+                    casiIncidenteObj.CasualidadId = casiIncidente.CasualidadId;
+                    _context.CasiIncidentes.Update(casiIncidenteObj);
+                    Bitacora bitacora = new Bitacora
+                    {
+                        Fecha = DateTime.Now,
+                        UsuarioId = user.Id,
+                        DescripcionBitacora = "Actualizó Casi Incidente con ID " + casiIncidente.Id
+                    };
+                    await _context.Bitacora.AddAsync(bitacora);
+                    await _context.SaveChangesAsync();
 
-                return StatusCode(202);
+                    return StatusCode(202);
+                }
+                return StatusCode(400);
             }
-            return StatusCode(400);
+            return Unauthorized();
         }
         [HttpDelete]
         public async Task<IActionResult> DeleteCasiIncidente(int id)
         {
-            CasiIncidente casiIncidente = new CasiIncidente();
-            casiIncidente.Id = id;
-
-            _context.CasiIncidentes.Remove(casiIncidente);
-            Bitacora bitacora = new Bitacora
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(c => c.Type == "username"))
             {
-                Fecha = DateTime.Now,
-                Usuario = "Usuario",
-                DescripcionBitacora = "Eliminó Casi Incidente con ID " + casiIncidente.Id
-            };
-            await _context.Bitacora.AddAsync(bitacora);
-            await _context.SaveChangesAsync();
-            return StatusCode(202);
+                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                CasiIncidente casiIncidente = new CasiIncidente();
+                casiIncidente.Id = id;
+
+                _context.CasiIncidentes.Remove(casiIncidente);
+                Bitacora bitacora = new Bitacora
+                {
+                    Fecha = DateTime.Now,
+                    UsuarioId = user.Id,
+                    DescripcionBitacora = "Eliminó Casi Incidente con ID " + casiIncidente.Id
+                };
+                await _context.Bitacora.AddAsync(bitacora);
+                await _context.SaveChangesAsync();
+                return StatusCode(202);
+            }
+            return Unauthorized();
         }
     }
 }

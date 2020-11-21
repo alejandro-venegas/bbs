@@ -20,7 +20,7 @@ namespace bbs.Controllers
         [HttpGet]
         public async Task<IActionResult> GetBitacora()
         {
-            var bitacora = await _context.Bitacora.ToListAsync();
+            var bitacora = await _context.Bitacora.Include(b => b.Usuario).ToListAsync();
             return Ok(bitacora);
         }
     }

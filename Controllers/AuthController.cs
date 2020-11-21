@@ -28,7 +28,7 @@ namespace bbs.Controllers
 
 
         [Authorize]
-         [HttpPost("new")]    
+        [HttpPost("new")]    
         public async Task<IActionResult> signUp(Usuario newUser)    
         {    
 
@@ -38,7 +38,7 @@ namespace bbs.Controllers
             // Bitacora bitacora = new Bitacora
             // {
             //     Fecha = DateTime.Now,
-            //     Usuario = "Usuario",
+            //     UsuarioId = user.Id,
             //     DescripcionBitacora = "Creó nuevo colaborador " + colaborador.Nombre + " " + colaborador.Apellido + " ID " + colaborador.Id
             // };
             // await _context.Bitacora.AddAsync(bitacora);

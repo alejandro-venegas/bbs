@@ -10,10 +10,11 @@ namespace bbs.Models
         }
 
         public int Id { get; set; }
-        public String Username {get; set;}
-        public String Password {get;set;}
+        public String Username { get; set; }
+        public String Password { get; set; }
         public int RolId { get; set; }
         public int ColaboradorId { get; set; }
+        public ICollection<Bitacora> Bitacoras { get; set; }
 
         public virtual Colaborador Colaborador { get; set; }
         public virtual Rol Rol { get; set; }

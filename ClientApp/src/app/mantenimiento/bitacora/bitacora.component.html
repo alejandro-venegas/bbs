@@ -19,14 +19,14 @@
         <th mat-header-cell *matHeaderCellDef>Fecha</th>
         <td mat-cell *matCellDef="let element">
           <span class="mobile-label">Fecha:</span>
-          {{ element.fecha | date: "dd/MM/yy" }}
+          {{ element.fecha | date: 'dd/MM/yy' }}
         </td>
       </ng-container>
       <ng-container matColumnDef="usuario">
         <th mat-header-cell *matHeaderCellDef>Usuario</th>
         <td mat-cell *matCellDef="let element">
           <span class="mobile-label">Usuario:</span>
-          {{ element.usuario }}
+          {{ element.usuario.username }}
         </td>
       </ng-container>
 

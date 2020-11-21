@@ -212,6 +212,12 @@ namespace bbs.Models
             .WithMany(u => u.Usuarios)
             .HasForeignKey(c => c.RolId);
 
+            modelBuilder.Entity<Bitacora>()
+            .HasOne( b => b.Usuario)
+            .WithMany(u => u.Bitacoras)
+            .HasForeignKey(b => b.UsuarioId);
+
+
             modelBuilder.Seed();
 
         }
