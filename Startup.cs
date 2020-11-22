@@ -42,7 +42,7 @@ namespace bbs_project
                 });
 
             services.AddDbContext<SBBSContext>(options =>
-                 options.UseSqlServer("Server=DESKTOP-8PDO96H;Database=SBBS;Trusted_Connection=True;"));
+                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

@@ -8,6 +8,8 @@ using Microsoft.Data.SqlClient;
 using System.Text;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+
 namespace bbs.Controllers
 {
     [Route("api/[controller]")]
@@ -17,13 +19,13 @@ namespace bbs.Controllers
         private readonly SBBSContext _context;
         private SqlConnectionStringBuilder builder;
 
-        public GraficasController(SBBSContext context)
+        public GraficasController(SBBSContext context, IConfiguration Configuration)
         {
             _context = context;
             builder = new SqlConnectionStringBuilder();
 
             
-            builder.ConnectionString = "Server=DESKTOP-8PDO96H;Database=SBBS;Trusted_Connection=True;";
+            builder.ConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
         }
 
         [HttpGet("{id}")]

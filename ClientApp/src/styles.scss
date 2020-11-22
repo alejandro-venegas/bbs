@@ -415,6 +415,9 @@ router-outlet + * {
 .dialog-main select {
   background-color: var(--blue);
 }
+option {
+  color: var(--black);
+}
 .close-icon {
   margin-left: auto;
   cursor: pointer;
