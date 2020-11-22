@@ -319,7 +319,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 2:
-                        selectObj = await _context.Areas.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Areas.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -327,7 +327,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 3:
-                        selectObj = await _context.Casualidades.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Casualidades.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -335,7 +335,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 4:
-                        selectObj = await _context.CausaBasicas.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.CausaBasicas.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -343,7 +343,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 5:
-                        selectObj = await _context.CausaInmediatas.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.CausaInmediatas.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -351,7 +351,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 6:
-                        selectObj = await _context.Clasificaciones.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Clasificaciones.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -359,7 +359,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 7:
-                        selectObj = await _context.Comportamientos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Comportamientos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -367,7 +367,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 8:
-                        selectObj = await _context.Efectos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Efectos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -375,7 +375,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 9:
-                        selectObj = await _context.FactorRiesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.FactorRiesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -383,7 +383,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 10:
-                        selectObj = await _context.Generos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Generos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -391,7 +391,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 11:
-                        selectObj = await _context.IndicadorRiesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.IndicadorRiesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -399,7 +399,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 12:
-                        selectObj = await _context.Jornadas.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Jornadas.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -407,7 +407,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 13:
-                        selectObj = await _context.Observados.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Observados.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -415,7 +415,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 14:
-                        selectObj = await _context.ParteCuerpos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.ParteCuerpos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -423,7 +423,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 15:
-                        selectObj = await _context.Procesos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Procesos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -431,7 +431,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 16:
-                        selectObj = await _context.Riesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Riesgos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -439,7 +439,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 17:
-                        selectObj = await _context.TipoComportamientos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.TipoComportamientos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -447,7 +447,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 18:
-                        selectObj = await _context.TipoObservados.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.TipoObservados.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
@@ -455,7 +455,7 @@ namespace bbs.Controllers
                         }
                         break;
                     case 19:
-                        selectObj = await _context.Turnos.FirstOrDefaultAsync(selectDto => selectDto.Id == selectId);
+                        selectObj = await _context.Turnos.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
                         if (selectObj != null)
                         {
                             selectObj.Nombre = nombre;
