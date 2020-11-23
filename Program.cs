@@ -22,7 +22,9 @@ namespace bbs_project
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseIISIntegration()
+                    .UseKestrel();
                 });
 
 
