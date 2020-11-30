@@ -38,7 +38,7 @@ namespace bbs.Controllers
         public async Task<IActionResult> GetCondicionInseguras()
         {
             Console.Write("Hola");
-            var condicionInseguras = await _context.CondicionInseguras.ToListAsync();
+            var condicionInseguras = await _context.CondicionInseguras.Include(ci => ci.Area).ToListAsync();
             return Ok(condicionInseguras);
         }
 
@@ -78,11 +78,25 @@ namespace bbs.Controllers
                 var condicionInseguraObj = await _context.CondicionInseguras.SingleOrDefaultAsync(b => b.Id == condicionInsegura.Id);
                 if (condicionInseguraObj != null)
                 {
-                    // condicionInseguraObj.ProcesoId = condicionInsegura.ProcesoId;
+                    
+                    condicionInseguraObj.NivelRiesgo = condicionInsegura.NivelRiesgo;
+                    condicionInseguraObj.PrioridadAtencion = condicionInsegura.PrioridadAtencion;
+                    condicionInseguraObj.Probabilidad = condicionInsegura.Probabilidad;
+                    condicionInseguraObj.ResponsableId = condicionInsegura.ResponsableId;
+                    condicionInseguraObj.SubcategoriaId = condicionInsegura.SubcategoriaId;
+                    condicionInseguraObj.Accion = condicionInsegura.Accion;
+                    condicionInseguraObj.AreaId = condicionInsegura.AreaId;
+                    condicionInseguraObj.CategoriaId = condicionInsegura.CategoriaId;
+                    condicionInseguraObj.Consecuencia = condicionInsegura.Consecuencia;
+                    condicionInseguraObj.Descripcion = condicionInsegura.Descripcion;
+                    condicionInseguraObj.EstatusCierre = condicionInsegura.EstatusCierre;
+                    condicionInseguraObj.Exposicion = condicionInsegura.Exposicion;
                     condicionInseguraObj.Fecha = condicionInsegura.Fecha;
-                    // condicionInseguraObj.AreaId = condicionInsegura.AreaId;
-                    // condicionInseguraObj.FactorRiesgoId = condicionInsegura.FactorRiesgoId;
-                    // condicionInseguraObj.IndicadorRiesgoId = condicionInsegura.IndicadorRiesgoId;
+                    condicionInseguraObj.FechaCierre = condicionInsegura.FechaCierre;
+                    condicionInseguraObj.FechaCompromiso = condicionInsegura.FechaCompromiso;
+                    condicionInseguraObj.ValorRiesgo = condicionInsegura.ValorRiesgo;
+
+                
                     _context.CondicionInseguras.Update(condicionInseguraObj);
 
                     Bitacora bitacora = new Bitacora

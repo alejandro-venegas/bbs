@@ -18,11 +18,31 @@ namespace bbs.Models
         public int SubcategoriaId{get;set;}
         [Required]
         public int AreaId{get;set;}
+        [Required]
+        public int ResponsableId{get;set;}
+        [Required]
+        public int Exposicion{get;set;}
+        public int Consecuencia{get;set;}
+        public int Probabilidad{get;set;}
+        public int ValorRiesgo{get;set;}
+        public int NivelRiesgo{get;set;}
+        public String PrioridadAtencion{get;set;}
+        public String Accion{get;set;}
+        public String Descripcion{get;set;}
+        [Required]
+        [Column(TypeName = "datetime2")]
+        public DateTime FechaCompromiso{ get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? FechaCierre{ get; set; }
+        public String EstatusCierre{get;set;}
+
+
+
 
         public virtual Subcategoria Subcategoria{get;set;}
         public virtual Categoria Categoria{get;set;}
         public virtual Area Area{get;set;}
-        public virtual Colaborador Colaborador{get;set;}
+        public virtual Colaborador Responsable{get;set;}
         
         
     }

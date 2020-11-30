@@ -198,6 +198,11 @@ namespace bbs.Models
             .HasForeignKey(ci => ci.SubcategoriaId)
             .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<CondicionInsegura>()
+            .HasOne(ci => ci.Responsable)
+            .WithMany(c => c.CondicionInseguras)
+            .HasForeignKey(ci => ci.ResponsableId);
+
             modelBuilder.Entity<Subcategoria>()
             .HasOne(s => s.Categoria)
             .WithMany(c => c.Subcategorias)

@@ -43,6 +43,7 @@ mat-checkbox {
 }
 mat-radio-group {
   max-width: unset;
+  grid-template-columns: repeat(auto-fill, 10rem);
 }
 mat-radio-group > * {
   flex: 1;

@@ -22,20 +22,54 @@
     </div>
 
     <div class="input-group">
-      <label for="proceso">Proceso:</label>
-      <select id="proceso" formControlName="procesoId">
-        <option value="" disabled selected>Seleccione un proceso</option>
+      <label for="categoria">Categoria:</label>
+      <select
+        id="categoria"
+        (ngModelChange)="onCategoriaSelect($event)"
+        formControlName="categoriaId"
+      >
+        <option value="" disabled selected>Seleccione una categoría</option>
         <option
           [value]="+opcion.optionId"
-          *ngFor="let opcion of opciones?.procesos"
-          >{{ opcion.nombre }}</option
+          *ngFor="let opcion of opciones?.categorias"
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
-        *ngIf="procesoId.invalid && procesoId.touched"
-        >Seleccione un proceso</span
+        *ngIf="categoriaId.invalid && categoriaId.touched"
+        >Seleccione una categoría</span
       >
+    </div>
+    <div class="input-group">
+      <label for="subcategoria">Subcategoria:</label>
+      <select id="subcategoria" formControlName="subcategoriaId">
+        <option value="" disabled selected>Seleccione una subcategoría</option>
+        <option [value]="+opcion.id" *ngFor="let opcion of subcategorias">
+          {{ opcion.nombre }}
+        </option>
+      </select>
+      <span
+        class="invalid-message"
+        *ngIf="subcategoriaId.invalid && subcategoriaId.touched"
+        >Seleccione una subcategoría</span
+      >
+    </div>
+    <div class="input-group text-area">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+      <span
+        class="invalid-message"
+        *ngIf="descripcion.touched && descripcion.invalid"
+      >
+        <ng-template [ngIf]="descripcion.errors.maxlength"
+          >Solo se permite un máximo de 100 caracteres</ng-template
+        >
+        <ng-template [ngIf]="descripcion.errors.required"
+          >Ingrese una descripción</ng-template
+        >
+      </span>
     </div>
 
     <div class="input-group">
@@ -45,8 +79,9 @@
         <option
           [value]="+opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="areaId.invalid && areaId.touched"
         >Seleccione un área de trabajo</span
@@ -54,37 +89,183 @@
     </div>
 
     <div class="input-group">
-      <label for="nivelDeRiesgo">Indicador de riesgo:</label>
-      <select id="nivelDeRiesgo" formControlName="indicadorRiesgoId">
-        <option value="" disabled selected>Seleccione un Indicador</option>
-        <option
-          [value]="+opcion.optionId"
-          *ngFor="let opcion of opciones?.indicadorRiesgos"
-          >{{ opcion.nombre }}</option
-        >
-      </select>
+      <label for="exposicion">Exposición:</label>
+      <input
+        type="number"
+        id="exposicion"
+        placeholder="Exposición"
+        formControlName="exposicion"
+        (ngModelChange)="calculateValorRiesgo()"
+      />
       <span
         class="invalid-message"
-        *ngIf="indicadorRiesgoId.invalid && indicadorRiesgoId.touched"
-        >Seleccione un indicador de Riesgo</span
+        *ngIf="exposicion.touched && exposicion.invalid"
+      >
+        <ng-template [ngIf]="exposicion.errors.required">
+          Ingrese una exposición</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="consecuencia">Consecuencia:</label>
+      <input
+        type="number"
+        id="consecuencia"
+        placeholder="Consecuencia"
+        formControlName="consecuencia"
+        (ngModelChange)="calculateValorRiesgo()"
+      />
+      <span
+        class="invalid-message"
+        *ngIf="consecuencia.touched && consecuencia.invalid"
+      >
+        <ng-template [ngIf]="consecuencia.errors.required">
+          Ingrese una consecuencia</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="probabilidad">Probabilidad:</label>
+      <input
+        type="number"
+        placeholder="Probabilidad"
+        id="probabilidad"
+        formControlName="probabilidad"
+        (ngModelChange)="calculateValorRiesgo()"
+      />
+      <span
+        class="invalid-message"
+        *ngIf="probabilidad.touched && probabilidad.invalid"
+      >
+        <ng-template [ngIf]="probabilidad.errors.required">
+          Ingrese una probabilidad</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="valorRiesgo">Valor de Riesgo:</label>
+      <input
+        type="number"
+        id="valorRiesgo"
+        placeholder="Valor de Riesgo"
+        formControlName="valorRiesgo"
+      />
+      <span
+        class="invalid-message"
+        *ngIf="valorRiesgo.touched && valorRiesgo.invalid"
+      >
+        <ng-template [ngIf]="valorRiesgo.errors.required">
+          Ingrese un valor de riesgo</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="nivelRiesgo">Nivel de Riesgo:</label>
+      <input
+        id="nivelRiesgo"
+        placeholder="Nivel de Riesgo"
+        formControlName="nivelRiesgo"
+      />
+      <span
+        class="invalid-message"
+        *ngIf="nivelRiesgo.touched && nivelRiesgo.invalid"
+      >
+        <ng-template [ngIf]="nivelRiesgo.errors.required">
+          Ingrese un nivel de riesgo</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="prioridadAtencion">Prioridad de Atención:</label>
+      <input
+        id="prioridadAtencion"
+        placeholder="Prioridad de Atención"
+        formControlName="prioridadAtencion"
+      />
+      <span
+        class="invalid-message"
+        *ngIf="prioridadAtencion.touched && prioridadAtencion.invalid"
+      >
+        <ng-template [ngIf]="prioridadAtencion.errors.required">
+          Ingrese un nivel de riesgo</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group text-area">
+      <label for="accion">Acción</label>
+      <textarea id="accion" formControlName="accion"></textarea>
+      <span class="invalid-message" *ngIf="accion.touched && accion.invalid">
+        <ng-template [ngIf]="accion.errors.maxlength"
+          >Solo se permite un máximo de 100 caracteres</ng-template
+        >
+        <ng-template [ngIf]="accion.errors.required"
+          >Ingrese una acción</ng-template
+        >
+      </span>
+    </div>
+    <div class="input-group">
+      <label for="fechaCompromiso">Fecha de Compromiso:</label>
+      <input
+        id="fechaCompromiso"
+        readonly
+        placeholder="Fecha de Compromiso"
+        formControlName="fechaCompromiso"
+        [matDatepicker]="pickerCompromiso"
+        (click)="pickerCompromiso.open()"
+      />
+      <mat-datepicker #pickerCompromiso></mat-datepicker>
+      <span
+        class="invalid-message"
+        *ngIf="fechaCompromiso.invalid && fechaCompromiso.touched"
+        >Ingrese una fecha</span
       >
     </div>
     <div class="input-group">
-      <label for="indicadorDeRiesgo">Factor de riesgo:</label>
-      <select id="indicadorDeRiesgo" formControlName="factorRiesgoId">
-        <option value="" disabled selected
-          >Seleccione un indicador de riesgo</option
-        >
+      <label for="responsable">Responsable:</label>
+      <select id="responsable" formControlName="responsableId">
+        <option value="" disabled selected>Seleccione un responsable</option>
         <option
-          [value]="+opcion.optionId"
-          *ngFor="let opcion of opciones?.factorRiesgos"
-          >{{ opcion.nombre }}</option
+          [value]="responsable.id"
+          *ngFor="let responsable of colaboradores"
         >
+          {{ responsable.nombre }} {{ responsable.apellido }}
+        </option>
       </select>
       <span
         class="invalid-message"
-        *ngIf="factorRiesgoId.invalid && factorRiesgoId.touched"
-        >Seleccione un factor de riesgo</span
+        *ngIf="categoriaId.invalid && categoriaId.touched"
+        >Seleccione una categoría</span
+      >
+    </div>
+    <div class="input-group">
+      <label for="fechaCierre">Fecha de Cierre:</label>
+      <input
+        id="fechaCierre"
+        readonly
+        placeholder="Fecha de Cierre"
+        formControlName="fechaCierre"
+        [matDatepicker]="pickerCierre"
+        (click)="pickerCierre.open()"
+      />
+      <mat-datepicker #pickerCierre></mat-datepicker>
+      <span
+        class="invalid-message"
+        *ngIf="fechaCierre.invalid && fechaCierre.touched"
+        >Ingrese una fecha</span
+      >
+    </div>
+    <div class="input-group">
+      <label for="estatusCierre">Estatus de Cierre:</label>
+      <select id="estatusCierre" formControlName="estatusCierre">
+        <option value="" disabled selected>Estatus de Cierre</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Progreso">Progreso</option>
+        <option value="Listo">Listo</option>
+      </select>
+      <span
+        class="invalid-message"
+        *ngIf="estatusCierre.invalid && estatusCierre.touched"
+        >Seleccione un estatus de cierre</span
       >
     </div>
   </div>

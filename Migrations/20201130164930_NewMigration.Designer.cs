@@ -10,7 +10,7 @@ using bbs.Models;
 namespace bbs_project.Migrations
 {
     [DbContext(typeof(SBBSContext))]
-    [Migration("20201130021337_NewMigration")]
+    [Migration("20201130164930_NewMigration")]
     partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2010,19 +2010,52 @@ namespace bbs_project.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Accion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("AreaId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ColaboradorId")
+                    b.Property<int>("Consecuencia")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EstatusCierre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Exposicion")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("FechaCierre")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaCompromiso")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NivelRiesgo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PrioridadAtencion")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Probabilidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResponsableId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SubcategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ValorRiesgo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -2031,7 +2064,7 @@ namespace bbs_project.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("ColaboradorId");
+                    b.HasIndex("ResponsableId");
 
                     b.HasIndex("SubcategoriaId");
 
@@ -3933,9 +3966,11 @@ namespace bbs_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("bbs.Models.Colaborador", "Colaborador")
+                    b.HasOne("bbs.Models.Colaborador", "Responsable")
                         .WithMany("CondicionInseguras")
-                        .HasForeignKey("ColaboradorId");
+                        .HasForeignKey("ResponsableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("bbs.Models.Subcategoria", "Subcategoria")
                         .WithMany("CondicionInseguras")

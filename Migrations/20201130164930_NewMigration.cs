@@ -577,7 +577,18 @@ namespace bbs_project.Migrations
                     CategoriaId = table.Column<int>(nullable: false),
                     SubcategoriaId = table.Column<int>(nullable: false),
                     AreaId = table.Column<int>(nullable: false),
-                    ColaboradorId = table.Column<int>(nullable: true)
+                    ResponsableId = table.Column<int>(nullable: false),
+                    Exposicion = table.Column<int>(nullable: false),
+                    Consecuencia = table.Column<int>(nullable: false),
+                    Probabilidad = table.Column<int>(nullable: false),
+                    ValorRiesgo = table.Column<int>(nullable: false),
+                    NivelRiesgo = table.Column<string>(nullable: true),
+                    PrioridadAtencion = table.Column<int>(nullable: false),
+                    Accion = table.Column<string>(nullable: true),
+                    Descripcion = table.Column<string>(nullable: true),
+                    FechaCompromiso = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaCierre = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EstatusCierre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1400,9 +1411,9 @@ namespace bbs_project.Migrations
                 column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondicionInseguras_ColaboradorId",
+                name: "IX_CondicionInseguras_ResponsableId",
                 table: "CondicionInseguras",
-                column: "ColaboradorId");
+                column: "ResponsableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CondicionInseguras_SubcategoriaId",
@@ -1525,12 +1536,12 @@ namespace bbs_project.Migrations
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_CondicionInseguras_Colaboradores_ColaboradorId",
+                name: "FK_CondicionInseguras_Colaboradores_ResponsableId",
                 table: "CondicionInseguras",
-                column: "ColaboradorId",
+                column: "ResponsableId",
                 principalTable: "Colaboradores",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Departamentos_Colaboradores_GerenteId",

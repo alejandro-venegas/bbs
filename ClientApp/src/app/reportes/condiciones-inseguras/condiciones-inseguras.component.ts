@@ -1,32 +1,46 @@
-import { Component, OnInit } from "@angular/core";
-import { Colaborador } from "../../shared/models/colaborador.model";
-import { FormulariosService } from "../../shared/services/formularios.service";
-import { DepartamentosService } from "../../administrar/departamentos/departamentos.service";
-import { FormBuilder, Validators } from "@angular/forms";
-import { ReportesService } from "../reportes.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Colaborador } from '../../shared/models/colaborador.model';
+import { FormulariosService } from '../../shared/services/formularios.service';
+import { DepartamentosService } from '../../administrar/departamentos/departamentos.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ReportesService } from '../reportes.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ColaboradoresService } from '../../shared/services/colaboradores.service';
 
 @Component({
-  selector: "app-condiciones-inseguras",
-  templateUrl: "./condiciones-inseguras.component.html",
-  styleUrls: ["./condiciones-inseguras.component.css"],
+  selector: 'app-condiciones-inseguras',
+  templateUrl: './condiciones-inseguras.component.html',
+  styleUrls: ['./condiciones-inseguras.component.css'],
 })
 export class CondicionesInsegurasComponent implements OnInit {
   editable: boolean;
   maxDate: Date;
   id: number;
   opciones: any;
-  gerentes: Colaborador[] = [];
+  subcategorias: any[] = [];
   condicionInseguraForm = this.fb.group({
-    fecha: ["", Validators.required],
-    procesoId: ["", Validators.required],
-    areaId: ["", Validators.required],
-    indicadorRiesgoId: ["", Validators.required],
-    factorRiesgoId: ["", Validators.required],
+    fecha: ['', Validators.required],
+    areaId: ['', Validators.required],
+    categoriaId: ['', Validators.required],
+    subcategoriaId: ['', Validators.required],
+    exposicion: ['', Validators.required],
+    probabilidad: ['', Validators.required],
+    valorRiesgo: ['', Validators.required],
+    consecuencia: ['', Validators.required],
+    nivelRiesgo: ['', Validators.required],
+    prioridadAtencion: ['', [Validators.required]],
+    accion: ['', [Validators.required]],
+    descripcion: ['', [Validators.required]],
+    fechaCompromiso: ['', Validators.required],
+    responsableId: ['', Validators.required],
+    fechaCierre: [null],
+    estatusCierre: ['', Validators.required],
   });
+
+  colaboradores: Colaborador[] = [];
   constructor(
     private formulariosService: FormulariosService,
-    private departamentosService: DepartamentosService,
+    private colaboradoresService: ColaboradoresService,
     private fb: FormBuilder,
     private reportesService: ReportesService,
     private route: ActivatedRoute,
@@ -34,19 +48,49 @@ export class CondicionesInsegurasComponent implements OnInit {
   ) {}
 
   get fecha() {
-    return this.condicionInseguraForm.get("fecha");
-  }
-  get procesoId() {
-    return this.condicionInseguraForm.get("procesoId");
+    return this.condicionInseguraForm.get('fecha');
   }
   get areaId() {
-    return this.condicionInseguraForm.get("areaId");
+    return this.condicionInseguraForm.get('areaId');
   }
-  get indicadorRiesgoId() {
-    return this.condicionInseguraForm.get("indicadorRiesgoId");
+  get categoriaId() {
+    return this.condicionInseguraForm.get('categoriaId');
   }
-  get factorRiesgoId() {
-    return this.condicionInseguraForm.get("factorRiesgoId");
+  get subcategoriaId() {
+    return this.condicionInseguraForm.get('subcategoriaId');
+  }
+  get exposicion() {
+    return this.condicionInseguraForm.get('exposicion');
+  }
+  get probabilidad() {
+    return this.condicionInseguraForm.get('probabilidad');
+  }
+  get valorRiesgo() {
+    return this.condicionInseguraForm.get('valorRiesgo');
+  }
+  get nivelRiesgo() {
+    return this.condicionInseguraForm.get('nivelRiesgo');
+  }
+  get prioridadAtencion() {
+    return this.condicionInseguraForm.get('prioridadAtencion');
+  }
+  get accion() {
+    return this.condicionInseguraForm.get('accion');
+  }
+  get descripcion() {
+    return this.condicionInseguraForm.get('descripcion');
+  }
+  get fechaCompromiso() {
+    return this.condicionInseguraForm.get('fechaCompromiso');
+  }
+  get fechaCierre() {
+    return this.condicionInseguraForm.get('fechaCierre');
+  }
+  get estatusCierre() {
+    return this.condicionInseguraForm.get('estatusCierre');
+  }
+  get consecuencia() {
+    return this.condicionInseguraForm.get('consecuencia');
   }
 
   ngOnInit(): void {
@@ -60,14 +104,39 @@ export class CondicionesInsegurasComponent implements OnInit {
     if (this.id) {
       this.reportesService.getCondicionInsegura(this.id).subscribe((res) => {
         this.condicionInseguraForm.patchValue(res);
+        this.onCategoriaSelect(res.categoriaId);
       });
     }
   }
 
   getColaboradores() {
-    this.departamentosService
-      .getGerentes()
-      .subscribe((res) => (this.gerentes = res));
+    this.colaboradoresService
+      .getColaboradores()
+      .subscribe((res) => (this.colaboradores = res));
+  }
+
+  calculateValorRiesgo() {
+    if (
+      this.probabilidad.value &&
+      this.consecuencia.value &&
+      this.exposicion.value
+    ) {
+      const valorRiesgo =
+        +this.probabilidad.value *
+        +this.consecuencia.value *
+        +this.exposicion.value;
+      this.valorRiesgo.setValue(valorRiesgo);
+      if (valorRiesgo > 299) {
+        this.nivelRiesgo.setValue('ALTO');
+        this.prioridadAtencion.setValue(1);
+      } else if (valorRiesgo > 100) {
+        this.nivelRiesgo.setValue('MEDIO');
+        this.prioridadAtencion.setValue(2);
+      } else {
+        this.nivelRiesgo.setValue('BAJO');
+        this.prioridadAtencion.setValue(3);
+      }
+    }
   }
 
   submitForm() {
@@ -77,7 +146,7 @@ export class CondicionesInsegurasComponent implements OnInit {
         value.id = this.id;
         this.reportesService.updateCondicionInsegura(value).subscribe((res) => {
           if (res.status === 202) {
-            this.router.navigate(["../lista"], { relativeTo: this.route });
+            this.router.navigate(['../lista'], { relativeTo: this.route });
           }
         });
       } else {
@@ -86,13 +155,20 @@ export class CondicionesInsegurasComponent implements OnInit {
           .guardarCondicionInsegura(value)
           .subscribe((res) => {
             if (res.status === 201) {
-              this.router.navigate(["../lista"], { relativeTo: this.route });
+              this.router.navigate(['../lista'], { relativeTo: this.route });
             }
           });
       }
     } else {
       this.condicionInseguraForm.markAllAsTouched();
     }
+  }
+
+  onCategoriaSelect(id: string) {
+    const categoria =
+      this.opciones &&
+      this.opciones.categorias.find((cat) => cat.optionId == id);
+    this.subcategorias = categoria && categoria.childOptions;
   }
 
   getOpcionesSelect() {

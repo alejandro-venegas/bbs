@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../environments/environment";
-import { SelectNode } from "../../mantenimiento/formularios/tree-datasource";
-const baseUrl = environment.base_url + "formularios";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { SelectNode } from '../../mantenimiento/formularios/tree-datasource';
+const baseUrl = environment.base_url + 'formularios';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class FormulariosService {
   constructor(private http: HttpClient) {}
@@ -14,21 +14,21 @@ export class FormulariosService {
   }
 
   insertSelect(select: SelectNode) {
-    return this.http.post<any>(baseUrl + "/new", select, {
-      observe: "response",
+    return this.http.post<any>(baseUrl + '/new', select, {
+      observe: 'response',
     });
   }
   deleteSelect(select: SelectNode) {
     return this.http.delete<any>(
       baseUrl + `?optionId=${select.optionId}&selectId=${select.selectId}`,
       {
-        observe: "response",
+        observe: 'response',
       }
     );
   }
   updateSelect(select: SelectNode) {
-    return this.http.post<any>(baseUrl + "/update", select, {
-      observe: "response",
+    return this.http.post<any>(baseUrl + '/update', select, {
+      observe: 'response',
     });
   }
 
@@ -53,9 +53,10 @@ export class FormulariosService {
       tipoComportamientos: [],
       tipoObservados: [],
       turnos: [],
+      categorias: [],
     };
     for (const opcion of allOptions) {
-      switch (parseInt(opcion.selectId)) {
+      switch (+opcion.selectId) {
         case 1:
           optionsByGroup.actividades.push(opcion);
           break;
@@ -113,6 +114,8 @@ export class FormulariosService {
         case 19:
           optionsByGroup.turnos.push(opcion);
           break;
+        case 20:
+          optionsByGroup.categorias.push(opcion);
       }
     }
 

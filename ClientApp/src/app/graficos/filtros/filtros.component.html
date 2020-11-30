@@ -49,7 +49,6 @@
 
   <label>Seleccione las variables que desea observar en el gráfico:</label>
   <mat-radio-group ngModel name="propiedad" required>
-    <mat-radio-button value="Proceso">Proceso </mat-radio-button>
     <mat-radio-button value="area-de-trabajo"
       >Área de Trabajo
     </mat-radio-button>
@@ -64,6 +63,16 @@
     <!--      "-->
     <!--      >Porcentaje de Jornada-->
     <!--    </mat-radio-button>-->
+    <mat-radio-button
+      value="Proceso"
+      *ngIf="
+        (isSelected('incidente') ||
+          isSelected('casi-incidente') ||
+          isSelected('bbs')) &&
+        !isSelected('condiciones-inseguras')
+      "
+      >Proceso
+    </mat-radio-button>
     <mat-radio-button
       value="nivel-de-riesgo"
       *ngIf="
@@ -207,9 +216,116 @@
           isSelected('casi-incidente')
         )
       "
-      value="factor-de-riesgo"
-      s
-      >Factor de Riesgo
+      value="categoria"
+      >Categoria
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="subcategoria"
+      >Subcategoria
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="exposicion"
+      >Exposición
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="probabilidad"
+      >Probabilidad
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="valor-riesgo"
+      >Valor de Riesgo
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="consecuencia"
+      >Consecuencia
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="nivel-riesgo"
+      >Nivel de Riesgo
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="prioridad-atencion"
+      >Prioridad de Atención
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="estatus-cierre"
+      >Estatus de Cierre
+    </mat-radio-button>
+    <mat-radio-button
+      *ngIf="
+        isSelected('condiciones-inseguras') &&
+        !(
+          isSelected('bbs') ||
+          isSelected('incidente') ||
+          isSelected('casi-incidente')
+        )
+      "
+      value="responsable"
+      >Responsable
     </mat-radio-button>
   </mat-radio-group>
   <div class="button-group">

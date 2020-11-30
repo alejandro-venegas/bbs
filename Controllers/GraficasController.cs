@@ -28,12 +28,6 @@ namespace bbs.Controllers
             builder.ConnectionString = Configuration["ConnectionStrings:DefaultConnection"];
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetGrafica(int id)
-        {
-
-            return StatusCode(400);
-        }
         [HttpGet]
         public async Task<IActionResult> GetGraficas(string tipoGraficas, string propiedad, DateTime startDate, DateTime endDate)
     
@@ -565,6 +559,88 @@ namespace bbs.Controllers
                                         .ToListAsync();
 
                                         break;
+                                    case "area":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .Include(p => p.Area)
+                                        .GroupBy(p => p.Area.Nombre)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "categoria":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .Include(p => p.Categoria)
+                                        .GroupBy(p => p.Categoria.Nombre)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "subcategoria":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .Include(p => p.Subcategoria)
+                                        .GroupBy(p => p.Subcategoria.Nombre)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "exposicion":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.Exposicion)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "probabilidad":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.Probabilidad)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "valor-riesgo":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.ValorRiesgo)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "consecuencia":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.Consecuencia)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "nivel-riesgo":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.NivelRiesgo)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "prioridad-atencion":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.PrioridadAtencion)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "responsable":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .Include(p => p.Responsable)
+                                        .GroupBy(p => p.Responsable.Nombre + ' ' + p.Responsable.Apellido)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    case "estatus-cierre":
+                                        result = await _context.CondicionInseguras
+                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
+                                        .GroupBy(p => p.EstatusCierre)
+                                        .Select(g => new { Label = g.Key, Count = g.Count() })
+                                        .ToListAsync();
+                                        break;
+                                    
                                     
 
 
