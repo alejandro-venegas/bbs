@@ -100,7 +100,7 @@
             >
               <mat-icon class="mat-icon-rtl-mirror expand-icon">
                 {{
-                  treeControl.isExpanded(node) ? "expand_more" : "chevron_right"
+                  treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
                 }}
               </mat-icon>
             </button>
@@ -110,7 +110,7 @@
               mat-icon-button
               (click)="addNewItem('', node)"
             >
-              <mat-icon>add</mat-icon>
+              <mat-icon *ngIf="!node.isAncestor">add</mat-icon>
             </button>
           </div>
           <ul

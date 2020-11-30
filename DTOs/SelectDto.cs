@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace bbs.DTOs
 {
     public class SelectDto
@@ -21,8 +23,12 @@ namespace bbs.DTOs
             // SelectId 17: Tipo comportamiento
             // SelectId 18: Tipo Observado
             // SelectId 19: Turnos
+            // SelectId 20: Categorias
+            // SelectId 21: Subcategorias
         public int SelectId{get;set;}
         public int OptionId{get;set;}
         public string Nombre{get;set;}
+        public int? ParentOptionId{get;set;}
+        public List<dynamic> childOptions{get;set;}
     }
 }

@@ -38,7 +38,7 @@ namespace bbs.Controllers
         public async Task<IActionResult> GetCondicionInseguras()
         {
             Console.Write("Hola");
-            var condicionInseguras = await _context.CondicionInseguras.Include(c => c.Area).ToListAsync();
+            var condicionInseguras = await _context.CondicionInseguras.ToListAsync();
             return Ok(condicionInseguras);
         }
 
@@ -78,11 +78,11 @@ namespace bbs.Controllers
                 var condicionInseguraObj = await _context.CondicionInseguras.SingleOrDefaultAsync(b => b.Id == condicionInsegura.Id);
                 if (condicionInseguraObj != null)
                 {
-                    condicionInseguraObj.ProcesoId = condicionInsegura.ProcesoId;
+                    // condicionInseguraObj.ProcesoId = condicionInsegura.ProcesoId;
                     condicionInseguraObj.Fecha = condicionInsegura.Fecha;
-                    condicionInseguraObj.AreaId = condicionInsegura.AreaId;
-                    condicionInseguraObj.FactorRiesgoId = condicionInsegura.FactorRiesgoId;
-                    condicionInseguraObj.IndicadorRiesgoId = condicionInsegura.IndicadorRiesgoId;
+                    // condicionInseguraObj.AreaId = condicionInsegura.AreaId;
+                    // condicionInseguraObj.FactorRiesgoId = condicionInsegura.FactorRiesgoId;
+                    // condicionInseguraObj.IndicadorRiesgoId = condicionInsegura.IndicadorRiesgoId;
                     _context.CondicionInseguras.Update(condicionInseguraObj);
 
                     Bitacora bitacora = new Bitacora

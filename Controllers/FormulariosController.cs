@@ -34,6 +34,8 @@ namespace bbs.Controllers
         // SelectId 17: Tipo comportamiento
         // SelectId 18: Tipo Observado
         // SelectId 19: Turnos
+        // SelectId 20: Categorias
+        // SelectId 21: Subcategorias
         private readonly SBBSContext _context;
 
         public FormulariosController(SBBSContext context)
@@ -104,6 +106,9 @@ namespace bbs.Controllers
 
             var Turnos = await _context.Turnos.ToListAsync();
             FormulariosShared.addSelectToList(selectDtos, Turnos, 19);
+
+            var Categorias = await _context.Categorias.Include(c => c.Subcategorias).ToListAsync();
+            FormulariosShared.addSelectToList(selectDtos, Categorias, 20);
             return Ok(selectDtos);
         }
 
@@ -271,6 +276,31 @@ namespace bbs.Controllers
                         await _context.Turnos.AddAsync(selectObj);
                         await _context.SaveChangesAsync();
                         break;
+                    case 20:
+                        selectObj = new Categoria
+                        {
+                            Nombre = selectDto.Nombre
+                        };
+                        await _context.Categorias.AddAsync(selectObj);
+                        await _context.SaveChangesAsync();
+                        break;
+                    case 21:
+                        if (selectDto.ParentOptionId != null)
+                        {
+                            selectObj = new Subcategoria
+                            {
+                                Nombre = selectDto.Nombre,
+                                CategoriaId = selectDto.ParentOptionId ?? 0
+                            };
+                            await _context.Subcategorias.AddAsync(selectObj);
+                            await _context.SaveChangesAsync();
+                            break;
+                        }
+                        else
+                        {
+                            notFound = true;
+                            break;
+                        }
 
 
                     default:
@@ -289,6 +319,7 @@ namespace bbs.Controllers
                     DescripcionBitacora = $"Creó nueva opción de formulario {selectObj.Nombre}"
                 };
                 await _context.Bitacora.AddAsync(bitacora);
+                await _context.SaveChangesAsync();
                 return Ok(selectObj);
             }
             return Unauthorized();
@@ -460,6 +491,22 @@ namespace bbs.Controllers
                         {
                             selectObj.Nombre = nombre;
                             _context.Turnos.Update(selectObj);
+                        }
+                        break;
+                    case 20:
+                        selectObj = await _context.Categorias.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
+                        if (selectObj != null)
+                        {
+                            selectObj.Nombre = nombre;
+                            _context.Categorias.Update(selectObj);
+                        }
+                        break;
+                    case 21:
+                        selectObj = await _context.Subcategorias.FirstOrDefaultAsync(selectDto => selectDto.Id == optionId);
+                        if (selectObj != null)
+                        {
+                            selectObj.Nombre = nombre;
+                            _context.Subcategorias.Update(selectObj);
                         }
                         break;
 
@@ -648,9 +695,24 @@ namespace bbs.Controllers
                     };
                     _context.Turnos.Remove(Turno);
                     break;
+                case 20:
+                    Categoria Categoria = new Categoria
+                    {
+
+                        Id = optionId
+                    };
+                    _context.Categorias.Remove(Categoria);
+                    break;
+                case 21:
+                    Subcategoria Subcategoria = new Subcategoria
+                    {
+                        Id = optionId
+                    };
+                    _context.Subcategorias.Remove(Subcategoria);
+                    break;
 
 
-                default:
+                default:    
                     notFound = true;
                     break;
             }
@@ -676,6 +738,10 @@ namespace bbs.Controllers
             foreach (var select in selects)
             {
                 SelectDto selectDto = new SelectDto { Nombre = select.Nombre, OptionId = select.Id, SelectId = SelectId };
+                if (select.GetType().GetProperty("Subcategorias") != null)
+                {
+                    selectDto.childOptions = new List<dynamic>(select.Subcategorias);
+                }
                 selectDtos.Add(selectDto);
             }
         }

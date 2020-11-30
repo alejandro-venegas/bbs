@@ -47,6 +47,19 @@ namespace bbs_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "varchar(75)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CausaBasicas",
                 columns: table => new
                 {
@@ -296,6 +309,26 @@ namespace bbs_project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Subcategorias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoriaId = table.Column<int>(nullable: false),
+                    Nombre = table.Column<string>(type: "varchar(75)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subcategorias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Subcategorias_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RolVistas",
                 columns: table => new
                 {
@@ -541,10 +574,9 @@ namespace bbs_project.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CategoriaId = table.Column<int>(nullable: false),
+                    SubcategoriaId = table.Column<int>(nullable: false),
                     AreaId = table.Column<int>(nullable: false),
-                    ProcesoId = table.Column<int>(nullable: false),
-                    FactorRiesgoId = table.Column<int>(nullable: false),
-                    IndicadorRiesgoId = table.Column<int>(nullable: false),
                     ColaboradorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -557,23 +589,17 @@ namespace bbs_project.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CondicionInseguras_FactorRiesgos_FactorRiesgoId",
-                        column: x => x.FactorRiesgoId,
-                        principalTable: "FactorRiesgos",
+                        name: "FK_CondicionInseguras_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
+                        principalTable: "Categorias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CondicionInseguras_IndicadorRiesgos_IndicadorRiesgoId",
-                        column: x => x.IndicadorRiesgoId,
-                        principalTable: "IndicadorRiesgos",
+                        name: "FK_CondicionInseguras_Subcategorias_SubcategoriaId",
+                        column: x => x.SubcategoriaId,
+                        principalTable: "Subcategorias",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CondicionInseguras_Procesos_ProcesoId",
-                        column: x => x.ProcesoId,
-                        principalTable: "Procesos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -612,6 +638,55 @@ namespace bbs_project.Migrations
                         onDelete: ReferentialAction.SetNull);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    RolId = table.Column<int>(nullable: false),
+                    ColaboradorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Colaboradores_ColaboradorId",
+                        column: x => x.ColaboradorId,
+                        principalTable: "Colaboradores",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Roles_RolId",
+                        column: x => x.RolId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bitacora",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    UsuarioId = table.Column<int>(nullable: false),
+                    DescripcionBitacora = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bitacora", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bitacora_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Actividades",
                 columns: new[] { "Id", "Nombre" },
@@ -626,9 +701,9 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
+                    { 28, "Talleres contratistas" },
                     { 29, "Zonas Externas Varias" },
                     { 30, "PTAR" },
-                    { 31, "Tanque de Gas LP" },
                     { 32, "Drinks and Juices" },
                     { 33, "Planta Piloto" },
                     { 34, "Baader" },
@@ -648,22 +723,24 @@ namespace bbs_project.Migrations
                     { 49, "Agrícola" },
                     { 50, "Cámaras de refrigeración" },
                     { 51, "Pilas de patio de maniobras" },
-                    { 28, "Talleres contratistas" },
                     { 27, "Taller mecánico" },
                     { 26, "Taller eléctrico" },
-                    { 12, "Concentradores" },
+                    { 31, "Tanque de Gas LP" },
+                    { 24, "Refrigeración" },
+                    { 1, "Andén de Carga" },
+                    { 2, "Armado de cilindros" },
                     { 3, "Aséptico" },
                     { 4, "Banda Subterránea" },
                     { 5, "Banda de Pelado" },
                     { 6, "Bodega PT" },
-                    { 7, "Bodega Técnica" },
+                    { 25, "Servicio médicos" },
                     { 8, "Calderas" },
                     { 9, "Camerinos" },
                     { 10, "Centro de acopio" },
                     { 11, "Comedor" },
-                    { 25, "Servicio médicos" },
-                    { 2, "Armado de cilindros" },
-                    { 13, "Congelado" },
+                    { 12, "Concentradores" },
+                    { 7, "Bodega Técnica" },
+                    { 14, "Cuarto de Esencia" },
                     { 15, "Laboratorio Calidad Satélite" },
                     { 16, "Laboratorio de Microbiología" },
                     { 17, "Maduradora" },
@@ -673,9 +750,7 @@ namespace bbs_project.Migrations
                     { 21, "Presterilización" },
                     { 22, "Puesto 1" },
                     { 23, "Puesto 2" },
-                    { 24, "Refrigeración" },
-                    { 14, "Cuarto de Esencia" },
-                    { 1, "Andén de Carga" }
+                    { 13, "Congelado" }
                 });
 
             migrationBuilder.InsertData(
@@ -683,13 +758,32 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 6, "Posturas y manejo de cargas inadecuadas" },
                     { 7, "Incidente Ambiental" },
+                    { 6, "Posturas y manejo de cargas inadecuadas" },
                     { 5, "No uso de EPP" },
-                    { 4, "No seguimiento de procedimientos" },
+                    { 1, "Acto Inseguro" },
                     { 3, "Manipulación de sustancias químicas" },
                     { 2, "Condición Insegura" },
-                    { 1, "Acto Inseguro" }
+                    { 4, "No seguimiento de procedimientos" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categorias",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 8, "Infraestructura" },
+                    { 12, "Rotulación y señalizaciónn" },
+                    { 11, "Protecciones y resguardos de maquinaria" },
+                    { 10, "Productos químicos" },
+                    { 9, "Orden y limpieza" },
+                    { 7, "Herramientas manuales" },
+                    { 2, "Equipos de emergencia" },
+                    { 5, "Ergonomía" },
+                    { 4, "Equipos de protección personal" },
+                    { 6, "Herramientas eléctricas" },
+                    { 3, "Almacenamiento - disposicion de materiales" },
+                    { 1, "Agentes fisicos" }
                 });
 
             migrationBuilder.InsertData(
@@ -697,11 +791,11 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, "Acto Inseguro" },
-                    { 2, "Condición Insegura" },
-                    { 3, "Práctica ambiental subestándar" },
                     { 4, "Condición ambiental subestándar" },
-                    { 5, "Condición Insegura/ambiental subestándar" }
+                    { 3, "Práctica ambiental subestándar" },
+                    { 5, "Condición Insegura/ambiental subestándar" },
+                    { 1, "Acto Inseguro" },
+                    { 2, "Condición Insegura" }
                 });
 
             migrationBuilder.InsertData(
@@ -709,17 +803,17 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 14, "Agentes biólogicos" },
-                    { 15, "Factores humanos" },
-                    { 16, "Deficiencia o ausencia de mantenimiento de equipos/máquinas (falta)" },
-                    { 17, "Insuficiente sectorización de áreas de riesgo" },
-                    { 22, "Incorrecto manejo de desechos peligrosos" },
-                    { 19, "Consumo irracional de agua" },
-                    { 21, "Incorrecta separación de desechos" },
                     { 13, "Insuficiente nivel de iluminación" },
-                    { 18, "Contacto con sustancias químicas" },
-                    { 12, "Inconfort térmico" },
+                    { 21, "Incorrecta separación de desechos" },
                     { 20, "Consumo irracional de energía" },
+                    { 22, "Incorrecto manejo de desechos peligrosos" },
+                    { 18, "Contacto con sustancias químicas" },
+                    { 17, "Insuficiente sectorización de áreas de riesgo" },
+                    { 16, "Deficiencia o ausencia de mantenimiento de equipos/máquinas (falta)" },
+                    { 15, "Factores humanos" },
+                    { 14, "Agentes biólogicos" },
+                    { 12, "Inconfort térmico" },
+                    { 19, "Consumo irracional de agua" },
                     { 10, "Deficiencia o ausencia de elementos de protección de (falta)" },
                     { 9, "Deficiencia o ausencia de EPP" },
                     { 8, "Deficiencia o ausencia de señalización" },
@@ -756,9 +850,9 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 17, "Posturas incómodas" },
                     { 18, "Pausas activas" },
                     { 19, "Caminar, saltar, correr" },
+                    { 20, "Respeto de las señalizaciones" },
                     { 21, "Uso de herramientas manuales" },
                     { 22, "Uso de herramientas eléctricas" },
                     { 23, "Uso de herramientas mecánicas" },
@@ -767,24 +861,24 @@ namespace bbs_project.Migrations
                     { 27, "Aplicación de regla de 3 metros" },
                     { 28, "Código de vestimenta" },
                     { 29, "Sobre esfuerzos físicos" },
-                    { 16, "Levantamiento de cargas" },
+                    { 17, "Posturas incómodas" },
                     { 24, "Orden y limpieza" },
-                    { 15, "Trabajos en energías peligrosas" },
-                    { 20, "Respeto de las señalizaciones" },
-                    { 13, "Trabajos en calientes" },
+                    { 16, "Levantamiento de cargas" },
+                    { 14, "Trabajos en espacios confinados (pd)" },
+                    { 1, "Uso del celular" },
                     { 2, "Uso de pasamanos" },
                     { 3, "Uso de EPP " },
                     { 4, "Manejo defensivo vehicular" },
-                    { 5, "Respeto de la velocidad máxima" },
                     { 6, "Uso racional del agua" },
                     { 7, "Uso racional de energía" },
-                    { 1, "Uso del celular" },
+                    { 5, "Respeto de la velocidad máxima" },
                     { 9, "Uso de químicos" },
-                    { 14, "Trabajos en espacios confinados (pd)" },
                     { 10, "Uso de montacargas" },
                     { 11, "Uso de hidrolavadora" },
                     { 12, "Trabajos de alturas" },
-                    { 8, "Separación de desechos" }
+                    { 13, "Trabajos en calientes" },
+                    { 8, "Separación de desechos" },
+                    { 15, "Trabajos en energías peligrosas" }
                 });
 
             migrationBuilder.InsertData(
@@ -806,11 +900,11 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 6, "Infraestructura y Entorno" },
                     { 5, "Mecánicos" },
+                    { 6, "Infraestructura y Entorno" },
                     { 4, "Ergonómicos" },
-                    { 1, "Físicos" },
                     { 2, "Químicos" },
+                    { 1, "Físicos" },
                     { 3, "Biológicos" }
                 });
 
@@ -855,37 +949,37 @@ namespace bbs_project.Migrations
                     { 21, "Cabeza" },
                     { 22, "Ojo Derecho" },
                     { 23, "Ojo Izquierda" },
-                    { 24, "Cara" },
                     { 25, "Nariz" },
                     { 26, "Glúteo Derecho" },
-                    { 29, "Oreja Derecha" },
                     { 28, "Oreja Izquierda" },
+                    { 27, "Glúteo Izquierdo" },
                     { 30, "Ceja Izquierda" },
                     { 31, "Ceja Derecha" },
                     { 32, "Tobillo Derecho" },
                     { 33, "Tobillo Izquierdo" },
                     { 34, "Dentadura" },
-                    { 19, "Rodilla Izquierda" },
                     { 35, "Politraumatismo" },
+                    { 19, "Rodilla Izquierda" },
+                    { 29, "Oreja Derecha" },
                     { 18, "Rodilla Derecha" },
-                    { 27, "Glúteo Izquierdo" },
+                    { 24, "Cara" },
                     { 16, "Pierna Izquierda" },
                     { 17, "Pierda Derecha" },
                     { 1, "Antebrazo Derecho" },
                     { 2, "Antebrazo Izquierdo" },
-                    { 4, "Brazo Izquierdo" },
+                    { 3, "Brazo Derecho" },
                     { 5, "Codo Derecho" },
                     { 6, "Codo Izquierdo" },
                     { 7, "Dedos de la Mano Derecha" },
-                    { 3, "Brazo Derecho" },
-                    { 9, "Espalda" },
+                    { 8, "Dedos de la Mano Izquierda" },
+                    { 4, "Brazo Izquierdo" },
                     { 10, "Hombro Derecho" },
                     { 11, "Hombro Izquierdo" },
+                    { 15, "Pie Izquierdo" },
                     { 12, "Mano Derecha" },
                     { 13, "Mano Izquierda" },
                     { 14, "Pie Derecho" },
-                    { 8, "Dedos de la Mano Izquierda" },
-                    { 15, "Pie Izquierdo" }
+                    { 9, "Espalda" }
                 });
 
             migrationBuilder.InsertData(
@@ -894,28 +988,28 @@ namespace bbs_project.Migrations
                 values: new object[,]
                 {
                     { 14, "Producción" },
-                    { 15, "RRHH" },
                     { 16, "SHE" },
                     { 17, "SUPPLY" },
+                    { 18, "IT" },
                     { 21, "Bodega" },
                     { 20, "Operaciones" },
                     { 22, "Manufactura" },
-                    { 23, "PTAR" },
                     { 13, "Planning" },
+                    { 23, "PTAR" },
                     { 19, "Compras" },
                     { 12, "Ingeniería" },
-                    { 18, "IT" },
+                    { 15, "RRHH" },
                     { 10, "IP" },
-                    { 11, "Maduradora" },
-                    { 2, "Calidad" },
-                    { 3, "Comercial" },
-                    { 4, "Contratistas" },
-                    { 1, "Agrícola" },
-                    { 6, "Finanzas & Costos" },
-                    { 7, "Gerencia" },
-                    { 8, "GIS" },
                     { 9, "I&D" },
-                    { 5, "Exportaciones" }
+                    { 8, "GIS" },
+                    { 7, "Gerencia" },
+                    { 6, "Finanzas & Costos" },
+                    { 5, "Exportaciones" },
+                    { 4, "Contratistas" },
+                    { 3, "Comercial" },
+                    { 2, "Calidad" },
+                    { 1, "Agrícola" },
+                    { 11, "Maduradora" }
                 });
 
             migrationBuilder.InsertData(
@@ -933,9 +1027,9 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Descripcion", "Nombre" },
                 values: new object[,]
                 {
-                    { 1, "Posee más permisos de edición en los formularios, puede gestionar gráficos y/o reportes de todos los departamentos", "Encargado" },
                     { 2, "Posee permisos de ingreso, gestión de gráficas y/o reportes, puede ceder al Trabajador el acceso al sistema para el ingreso de los formularios", "Gerente" },
-                    { 3, "Posee permisos para el ingreso de los formularios", "Trabajador" }
+                    { 3, "Posee permisos para el ingreso de los formularios", "Trabajador" },
+                    { 1, "Posee más permisos de edición en los formularios, puede gestionar gráficos y/o reportes de todos los departamentos", "Encargado" }
                 });
 
             migrationBuilder.InsertData(
@@ -952,11 +1046,11 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
-                    { 5, "Tercerizado" },
-                    { 4, "Transportistas" },
                     { 1, "Paradise Ingredients" },
                     { 2, "Visitantes" },
-                    { 3, "Contratistas" }
+                    { 3, "Contratistas" },
+                    { 4, "Transportistas" },
+                    { 5, "Tercerizado" }
                 });
 
             migrationBuilder.InsertData(
@@ -976,17 +1070,18 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Nombre", "Url" },
                 values: new object[,]
                 {
-                    { (byte)9, "Colaboradores", "/administrar/colaboradores" },
                     { (byte)8, "Perfiles", "/administrar/perfiles" },
                     { (byte)7, "Roles", "/administrar/roles" },
+                    { (byte)10, "Departamentos", "/administrar/departamentos" },
+                    { (byte)9, "Colaboradores", "/administrar/colaboradores" },
                     { (byte)6, "Gráficos", "/graficos" },
-                    { (byte)2, "Incidente", "/reportes/incidente" },
+                    { (byte)11, "Formularios", "/mantenimiento/formularios" },
                     { (byte)4, "BBS", "/reportes/bbs" },
                     { (byte)3, "Casi Incidente", "/reportes/casi-incidente" },
+                    { (byte)2, "Incidente", "/reportes/incidente" },
                     { (byte)1, "Reportes", "/reportes/lista" },
-                    { (byte)10, "Departamentos", "/administrar/departamentos" },
                     { (byte)5, "Condiciones Inseguras", "/reportes/condiciones-inseguras" },
-                    { (byte)11, "Formularios", "/mantenimiento/formularios" }
+                    { (byte)12, "Bitácora", "/mantenimiento/bitacora" }
                 });
 
             migrationBuilder.InsertData(
@@ -994,7 +1089,23 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "AreaId", "CasualidadId", "ColaboradorId", "Descripcion", "Fecha", "GeneroId", "JornadaId", "Observado", "ProcesoId", "RiesgoId", "TurnoId" },
                 values: new object[,]
                 {
-                    { 21, 9, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 3, 2 },
+                    { 3, 35, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 2, 1, 3 },
+                    { 30, 48, 5, null, "Sin protecci�n", new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 4 },
+                    { 29, 24, 4, null, "Mala praxis", new DateTime(2020, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 1, 4 },
+                    { 26, 21, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 1, 1, 4 },
+                    { 17, 44, 5, null, "Sin protecci�n", new DateTime(2020, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 4 },
+                    { 11, 2, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 3, 4 },
+                    { 7, 6, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 4 },
+                    { 24, 50, 4, null, "Mala praxis", new DateTime(2020, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 3 },
+                    { 22, 10, 5, null, "Sin protecci�n", new DateTime(2020, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 3 },
+                    { 20, 46, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
+                    { 15, 12, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 1, 1, 3 },
+                    { 13, 15, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 3 },
+                    { 6, 34, 4, null, "Mala praxis", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 2, 5 },
+                    { 8, 19, 5, null, "Sin protecci�n", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
+                    { 2, 5, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 3 },
+                    { 9, 25, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 1 },
+                    { 19, 23, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 1 },
                     { 25, 34, 4, null, "Mala praxis", new DateTime(2020, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 3, 1 },
                     { 28, 16, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 1, 2, 1 },
                     { 1, 3, 2, null, "Incumplimiento de la distancia de carga pesada", new DateTime(2020, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 1, 2, 2 },
@@ -1002,28 +1113,12 @@ namespace bbs_project.Migrations
                     { 5, 50, 5, null, "Sin protecci�n", new DateTime(2020, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 2, 2, 2 },
                     { 12, 1, 1, null, "Acci�n sin preveer consecuencias", new DateTime(2020, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 1, 2 },
                     { 16, 4, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 1, 2 },
+                    { 21, 9, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 3, 2 },
                     { 23, 43, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 2, 2 },
-                    { 27, 32, 1, null, "Acci�n sin preveer consecuencias", new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 2, 2 },
-                    { 2, 5, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 3 },
-                    { 3, 35, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 2, 1, 3 },
-                    { 8, 19, 5, null, "Sin protecci�n", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
-                    { 13, 15, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 3 },
-                    { 15, 12, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 1, 1, 3 },
-                    { 20, 46, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 2, 2, 3 },
-                    { 22, 10, 5, null, "Sin protecci�n", new DateTime(2020, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 3 },
-                    { 24, 50, 4, null, "Mala praxis", new DateTime(2020, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 3 },
-                    { 7, 6, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 1, 4 },
-                    { 11, 2, 3, null, "No apto para la zona qu�mica", new DateTime(2020, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 3, 4 },
-                    { 17, 44, 5, null, "Sin protecci�n", new DateTime(2020, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 4 },
-                    { 26, 21, 6, null, "Posturas y manejo de cargas inadecuadas", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 1, 1, 4 },
-                    { 29, 24, 4, null, "Mala praxis", new DateTime(2020, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 1, 4 },
-                    { 30, 48, 5, null, "Sin protecci�n", new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 1, 2, 4 },
-                    { 6, 34, 4, null, "Mala praxis", new DateTime(2020, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 2, 5 },
                     { 10, 40, 5, null, "Sin protecci�n", new DateTime(2020, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, "Alejandro Venegas", 2, 2, 5 },
-                    { 14, 28, 4, null, "Mala praxis", new DateTime(2020, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 5 },
+                    { 27, 32, 1, null, "Acci�n sin preveer consecuencias", new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 2, 2, 2 },
                     { 18, 39, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 5 },
-                    { 19, 23, 2, null, "Expuesto a zonas inseguras", new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 1, 1, 1 },
-                    { 9, 25, 7, null, "Temblor sin afectaci�n", new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 1, 2, 1 }
+                    { 14, 28, 4, null, "Mala praxis", new DateTime(2020, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 2, 2, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -1031,58 +1126,35 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "Apellido", "DepartamentoId", "Nombre", "Puesto" },
                 values: new object[,]
                 {
-                    { 1, "Céspedes", 1, "Alberto", "Por Definir" },
-                    { 22, "Vega", 1, "Marco", "Por Definir" },
-                    { 7, "Astua", 1, "Cristina", "Por Definir" },
-                    { 3, "Montero", 1, "Alejandro", "Por Definir" },
-                    { 21, "Arias", 1, "Marco", "Por Definir" },
-                    { 20, "Aguilar", 1, "M", "Por Definir" },
-                    { 4, "Calderón", 1, "Carla", "Por Definir" },
                     { 5, "Brenes", 1, "Carlos", "Por Definir" },
-                    { 19, "Rodríguez", 1, "Kenneth", "Por Definir" },
-                    { 18, "Robles", 1, "Juan", "Por Definir" },
-                    { 23, "Jiménez", 1, "Max", "Por Definir" },
-                    { 17, "Solano", 1, "Jorge", "Por Definir" },
-                    { 15, "Durán", 1, "Jimmy", "Por Definir" },
-                    { 14, "Hernández", 1, "Hector", "Por Definir" },
-                    { 13, "Rivera", 1, "Fernando", "Por Definir" },
-                    { 12, "Ramírez", 1, "Fernando", "Por Definir" },
-                    { 11, "Gould", 1, "Esteban", "Por Definir" },
-                    { 10, "Sánchez", 1, "Ercik", "Por Definir" },
-                    { 9, "Chaves", 1, "Diana", "Por Definir" },
-                    { 8, "Acuña", 1, "Dennis", "Por Definir" },
-                    { 16, "Jiménez", 1, "Jorge", "Por Definir" },
-                    { 24, "Calderón", 1, "Randall", "Por Definir" },
                     { 6, "Durán", 1, "Carlos", "Por Definir" },
+                    { 7, "Astua", 1, "Cristina", "Por Definir" },
+                    { 8, "Acuña", 1, "Dennis", "Por Definir" },
+                    { 10, "Sánchez", 1, "Ercik", "Por Definir" },
+                    { 11, "Gould", 1, "Esteban", "Por Definir" },
+                    { 12, "Ramírez", 1, "Fernando", "Por Definir" },
+                    { 13, "Rivera", 1, "Fernando", "Por Definir" },
+                    { 14, "Hernández", 1, "Hector", "Por Definir" },
+                    { 15, "Durán", 1, "Jimmy", "Por Definir" },
+                    { 4, "Calderón", 1, "Carla", "Por Definir" },
+                    { 16, "Jiménez", 1, "Jorge", "Por Definir" },
+                    { 18, "Robles", 1, "Juan", "Por Definir" },
+                    { 19, "Rodríguez", 1, "Kenneth", "Por Definir" },
+                    { 20, "Aguilar", 1, "M", "Por Definir" },
+                    { 21, "Arias", 1, "Marco", "Por Definir" },
+                    { 22, "Vega", 1, "Marco", "Por Definir" },
+                    { 24, "Calderón", 1, "Randall", "Por Definir" },
+                    { 25, "Guerrero", 1, "Ronald", "Por Definir" },
                     { 26, "Leiva", 1, "Tannia", "Por Definir" },
-                    { 2, "Blanco", 1, "Alejandro", "Por Definir" },
                     { 27, "Sequeira", 1, "Walter", "Por Definir" },
                     { 28, "Alvarado", 1, "Nitzi", "Por Definir" },
                     { 29, "Koying", 1, "Carlos", "Por Definir" },
-                    { 25, "Guerrero", 1, "Ronald", "Por Definir" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "CondicionInseguras",
-                columns: new[] { "Id", "AreaId", "ColaboradorId", "FactorRiesgoId", "Fecha", "IndicadorRiesgoId", "ProcesoId" },
-                values: new object[,]
-                {
-                    { 6, 29, null, 2, new DateTime(2020, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 14 },
-                    { 10, 19, null, 6, new DateTime(2020, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
-                    { 11, 1, null, 6, new DateTime(2020, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 14 },
-                    { 12, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
-                    { 1, 29, null, 6, new DateTime(2020, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 14 },
-                    { 13, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
-                    { 14, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 14 },
-                    { 15, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
-                    { 16, 5, null, 6, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14 },
-                    { 9, 9, null, 6, new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 20 },
-                    { 3, 6, null, 6, new DateTime(2020, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 21 },
-                    { 4, 6, null, 6, new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 21 },
-                    { 8, 6, null, 1, new DateTime(2020, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 21 },
-                    { 2, 17, null, 6, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 11 },
-                    { 7, 11, null, 6, new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 20 },
-                    { 5, 29, null, 6, new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 14 }
+                    { 17, "Solano", 1, "Jorge", "Por Definir" },
+                    { 3, "Montero", 1, "Alejandro", "Por Definir" },
+                    { 9, "Chaves", 1, "Diana", "Por Definir" },
+                    { 1, "Céspedes", 1, "Alberto", "Por Definir" },
+                    { 2, "Blanco", 1, "Alejandro", "Por Definir" },
+                    { 23, "Jiménez", 1, "Max", "Por Definir" }
                 });
 
             migrationBuilder.InsertData(
@@ -1090,21 +1162,21 @@ namespace bbs_project.Migrations
                 columns: new[] { "Id", "ActividadId", "AreaId", "CausaBasicaId", "CausaInmediataId", "ClasificacionId", "ColaboradorId", "Descripcion", "EfectoId", "Fecha", "GeneroId", "JornadaId", "Observado", "ParteCuerpoId", "ProcesoId", "RiesgoId", "TurnoId" },
                 values: new object[,]
                 {
-                    { 10, 1, 16, 2, 12, 11, null, "Descripción del incidente", 2, new DateTime(2020, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 31, 4, 3, 4 },
-                    { 13, 1, 33, 3, 15, 11, null, "Descripción del incidente", 2, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 15, 19, 1, 4 },
-                    { 4, 1, 36, 3, 6, 7, null, "Descripción del incidente", 2, new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 7, 22, 2, 4 },
-                    { 14, 1, 45, 2, 21, 6, null, "Descripción del incidente", 2, new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 13, 23, 2, 4 },
-                    { 7, 1, 48, 2, 6, 8, null, "Descripción del incidente", 2, new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 14, 4, 3, 5 },
-                    { 5, 1, 49, 5, 8, 3, null, "Descripción del incidente", 2, new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 4, 19, 1, 3 },
-                    { 6, 1, 21, 1, 15, 5, null, "Descripción del incidente", 2, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 7, 20, 2, 3 },
-                    { 15, 2, 4, 1, 20, 5, null, "Descripción del incidente", 1, new DateTime(2020, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 12, 22, 3, 2 },
                     { 12, 1, 41, 5, 20, 4, null, "Descripción del incidente", 1, new DateTime(2020, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 19, 16, 2, 2 },
-                    { 11, 2, 23, 3, 22, 2, null, "Descripción del incidente", 1, new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 20, 6, 2, 2 },
-                    { 9, 1, 50, 5, 4, 10, null, "Descripción del incidente", 2, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 22, 1, 2, 2 },
-                    { 1, 1, 1, 2, 2, 1, null, "Descripción del incidente", 2, new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 11, 23, 1, 2 },
                     { 8, 2, 12, 3, 16, 9, null, "Descripción del incidente", 1, new DateTime(2020, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 35, 5, 1, 1 },
                     { 2, 2, 11, 1, 2, 5, null, "Descripción del incidente", 2, new DateTime(2020, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 3, 4, 2, 1 },
-                    { 3, 1, 26, 4, 5, 3, null, "Descripción del incidente", 2, new DateTime(2020, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 3, 18, 3, 4 }
+                    { 14, 1, 45, 2, 21, 6, null, "Descripción del incidente", 2, new DateTime(2020, 7, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 13, 23, 2, 4 },
+                    { 13, 1, 33, 3, 15, 11, null, "Descripción del incidente", 2, new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 15, 19, 1, 4 },
+                    { 10, 1, 16, 2, 12, 11, null, "Descripción del incidente", 2, new DateTime(2020, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, "Alejandro Venegas", 31, 4, 3, 4 },
+                    { 4, 1, 36, 3, 6, 7, null, "Descripción del incidente", 2, new DateTime(2020, 2, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3, "Alejandro Venegas", 7, 22, 2, 4 },
+                    { 3, 1, 26, 4, 5, 3, null, "Descripción del incidente", 2, new DateTime(2020, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 3, 18, 3, 4 },
+                    { 11, 2, 23, 3, 22, 2, null, "Descripción del incidente", 1, new DateTime(2020, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 20, 6, 2, 2 },
+                    { 9, 1, 50, 5, 4, 10, null, "Descripción del incidente", 2, new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 22, 1, 2, 2 },
+                    { 6, 1, 21, 1, 15, 5, null, "Descripción del incidente", 2, new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 7, 20, 2, 3 },
+                    { 7, 1, 48, 2, 6, 8, null, "Descripción del incidente", 2, new DateTime(2020, 4, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, "Alejandro Venegas", 14, 4, 3, 5 },
+                    { 1, 1, 1, 2, 2, 1, null, "Descripción del incidente", 2, new DateTime(2020, 1, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 11, 23, 1, 2 },
+                    { 15, 2, 4, 1, 20, 5, null, "Descripción del incidente", 1, new DateTime(2020, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, "Alejandro Venegas", 12, 22, 3, 2 },
+                    { 5, 1, 49, 5, 8, 3, null, "Descripción del incidente", 2, new DateTime(2020, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, "Alejandro Venegas", 4, 19, 1, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -1112,30 +1184,92 @@ namespace bbs_project.Migrations
                 columns: new[] { "RolId", "VistaId", "Escritura" },
                 values: new object[,]
                 {
-                    { 2, (byte)5, true },
-                    { 3, (byte)5, true },
-                    { 1, (byte)6, true },
-                    { 2, (byte)6, true },
-                    { 1, (byte)9, true },
-                    { 1, (byte)8, true },
-                    { 2, (byte)8, true },
-                    { 1, (byte)5, true },
+                    { 1, (byte)10, true },
                     { 2, (byte)9, true },
+                    { 1, (byte)9, true },
+                    { 2, (byte)8, true },
+                    { 1, (byte)8, true },
                     { 1, (byte)7, true },
-                    { 3, (byte)4, true },
-                    { 2, (byte)3, true },
+                    { 1, (byte)5, true },
+                    { 2, (byte)6, true },
+                    { 1, (byte)6, true },
+                    { 3, (byte)5, true },
+                    { 2, (byte)5, true },
+                    { 2, (byte)4, true },
                     { 1, (byte)4, true },
                     { 3, (byte)3, true },
+                    { 2, (byte)3, true },
                     { 1, (byte)3, true },
                     { 3, (byte)2, true },
-                    { 2, (byte)2, true },
-                    { 1, (byte)2, true },
-                    { 3, (byte)1, true },
-                    { 2, (byte)1, true },
                     { 1, (byte)1, true },
-                    { 1, (byte)10, true },
-                    { 2, (byte)4, true },
+                    { 2, (byte)1, true },
+                    { 3, (byte)1, true },
+                    { 1, (byte)2, true },
+                    { 3, (byte)4, true },
+                    { 2, (byte)2, true },
+                    { 1, (byte)12, true },
                     { 1, (byte)11, true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Subcategorias",
+                columns: new[] { "Id", "CategoriaId", "Nombre" },
+                values: new object[,]
+                {
+                    { 25, 5, "Movimientos repetitivos" },
+                    { 24, 5, "Posturas estáticas" },
+                    { 23, 5, "Estación de trabajo" },
+                    { 22, 5, "Manejo de cargas" },
+                    { 21, 4, "Protección de oido dañado o alterado" },
+                    { 20, 4, "Protección de manos dañado o alterado" },
+                    { 19, 4, "Equipo especial o alterado" },
+                    { 18, 4, "Calzado dañado o alterado" },
+                    { 17, 4, "Lentes dañado o alterado" },
+                    { 16, 4, "Casco dañado o alterado" },
+                    { 9, 2, "Estructura de almacenamiento deteriorada" },
+                    { 26, 6, "Herramienta no certificada CE, UL" },
+                    { 8, 2, "Muebles de almacenamiento mal ubicados" },
+                    { 6, 2, "Materiales mal apilados" },
+                    { 15, 3, "PIV con fallo" },
+                    { 14, 3, "Estaciones de mangueras con fallo" },
+                    { 13, 3, "Botiquines dañados" },
+                    { 12, 3, "Botiquines obstruidos" },
+                    { 11, 3, "Extintores descargados" },
+                    { 10, 3, "Extintores obstruidos" },
+                    { 5, 1, "Vapores orgánicos " },
+                    { 4, 1, "Material Particulado " },
+                    { 3, 1, "Iluminación " },
+                    { 2, 1, "Confort térmico " },
+                    { 7, 2, "Niveles de carga superados" },
+                    { 54, 12, "Rotulación deteriorada" },
+                    { 27, 6, "Herramienta con daño o alteraciones" },
+                    { 29, 8, "Fallo en tubería de facilidades" },
+                    { 53, 12, "Rotulación alterada" },
+                    { 52, 12, "Señalización horinzontal deteriorada" },
+                    { 51, 12, "Ausencia de rotulación" },
+                    { 50, 11, "Instalaciones eléctricas de máquina deficientes" },
+                    { 49, 11, "Diseño de resguardo con deficiencias" },
+                    { 48, 11, "Interlock alterados" },
+                    { 47, 11, "Resguardos en malas condiciones" },
+                    { 46, 11, "Ausencia de resguardos" },
+                    { 45, 10, "Ausencia de tarima de conteción" },
+                    { 44, 10, "Ausencia de kit de atención derrames" },
+                    { 43, 10, "Producto quimico sin etiqueta de riesgo" },
+                    { 28, 7, "Herramienta con daño o alteraciones" },
+                    { 42, 10, "Almacenamiento incompatible" },
+                    { 40, 9, "Pisos húmedos" },
+                    { 39, 9, "Obstrucción de zonas de emergencia" },
+                    { 38, 9, "Obstrucción de zonas de paso" },
+                    { 37, 9, "Pisos resbalosos" },
+                    { 36, 8, "Pisos resbalosos" },
+                    { 35, 8, "Puertas deterioradas" },
+                    { 34, 8, "Calles deteriorada" },
+                    { 33, 8, "Pisos dañados" },
+                    { 32, 8, "Instalaciones eléctricas deterioradas" },
+                    { 31, 8, "Techos deteriorados" },
+                    { 30, 8, "Paredes dañadas" },
+                    { 41, 9, "Almacenamiento inadecuado de herramientas de trabajo" },
+                    { 1, 1, "Ruido " }
                 });
 
             migrationBuilder.InsertData(
@@ -1206,6 +1340,11 @@ namespace bbs_project.Migrations
                 column: "TipoObservadoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bitacora_UsuarioId",
+                table: "Bitacora",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CasiIncidentes_AreaId",
                 table: "CasiIncidentes",
                 column: "AreaId");
@@ -1256,24 +1395,19 @@ namespace bbs_project.Migrations
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CondicionInseguras_CategoriaId",
+                table: "CondicionInseguras",
+                column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CondicionInseguras_ColaboradorId",
                 table: "CondicionInseguras",
                 column: "ColaboradorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondicionInseguras_FactorRiesgoId",
+                name: "IX_CondicionInseguras_SubcategoriaId",
                 table: "CondicionInseguras",
-                column: "FactorRiesgoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CondicionInseguras_IndicadorRiesgoId",
-                table: "CondicionInseguras",
-                column: "IndicadorRiesgoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CondicionInseguras_ProcesoId",
-                table: "CondicionInseguras",
-                column: "ProcesoId");
+                column: "SubcategoriaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departamentos_GerenteId",
@@ -1350,6 +1484,22 @@ namespace bbs_project.Migrations
                 table: "RolVistas",
                 column: "VistaId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Subcategorias_CategoriaId",
+                table: "Subcategorias",
+                column: "CategoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_ColaboradorId",
+                table: "Usuarios",
+                column: "ColaboradorId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_RolId",
+                table: "Usuarios",
+                column: "RolId");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Incidentes_Colaboradores_ColaboradorId",
                 table: "Incidentes",
@@ -1401,13 +1551,22 @@ namespace bbs_project.Migrations
                 name: "Bbss");
 
             migrationBuilder.DropTable(
+                name: "Bitacora");
+
+            migrationBuilder.DropTable(
                 name: "CasiIncidentes");
 
             migrationBuilder.DropTable(
                 name: "CondicionInseguras");
 
             migrationBuilder.DropTable(
+                name: "FactorRiesgos");
+
+            migrationBuilder.DropTable(
                 name: "Incidentes");
+
+            migrationBuilder.DropTable(
+                name: "IndicadorRiesgos");
 
             migrationBuilder.DropTable(
                 name: "Observados");
@@ -1428,13 +1587,13 @@ namespace bbs_project.Migrations
                 name: "TipoObservados");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "Casualidades");
 
             migrationBuilder.DropTable(
-                name: "FactorRiesgos");
-
-            migrationBuilder.DropTable(
-                name: "IndicadorRiesgos");
+                name: "Subcategorias");
 
             migrationBuilder.DropTable(
                 name: "Actividades");
@@ -1473,10 +1632,13 @@ namespace bbs_project.Migrations
                 name: "Turnos");
 
             migrationBuilder.DropTable(
+                name: "Vistas");
+
+            migrationBuilder.DropTable(
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Vistas");
+                name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "Colaboradores");

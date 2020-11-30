@@ -565,42 +565,7 @@ namespace bbs.Controllers
                                         .ToListAsync();
 
                                         break;
-                                    case "proceso":
-                                        result = await _context.CondicionInseguras
-                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
-                                        .Include(p => p.Proceso)
-                                        .GroupBy(p => p.Proceso.Nombre)
-                                        .Select(g => new { Label = g.Key, Count = g.Count() })
-                                        .ToListAsync();
-                                        break;
-
-                                    case "area-de-trabajo":
-                                        result = await _context.CondicionInseguras
-                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
-                                        .Include(p => p.Area)
-                                        .GroupBy(p => p.Area.Nombre)
-                                        .Select(g => new { Label = g.Key, Count = g.Count() })
-                                        .ToListAsync();
-                                        break;
-                            
-
-                                    case "indicador-de-riesgo":
-                                        result = await _context.CondicionInseguras
-                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
-                                        .Include(p => p.IndicadorRiesgo)
-                                        .GroupBy(p => p.IndicadorRiesgo.Nombre)
-                                        .Select(g => new { Label = g.Key, Count = g.Count() })
-                                        .ToListAsync();
-                                        break;
-
-                                    case "factor-de-riesgo":
-                                        result = await _context.CondicionInseguras
-                                        .Where( p => p.Fecha >= startDate && p.Fecha <= endDate )
-                                        .Include(p => p.FactorRiesgo)
-                                        .GroupBy(p => p.FactorRiesgo.Nombre)
-                                        .Select(g => new { Label = g.Key, Count = g.Count() })
-                                        .ToListAsync();
-                                        break;
+                                    
 
 
 

@@ -1,23 +1,23 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { rowAnimation, treeAnimation } from "../../animations";
+import { rowAnimation, treeAnimation } from '../../animations';
 
-import { NestedTreeControl } from "@angular/cdk/tree";
-import { MatTreeNestedDataSource } from "@angular/material/tree";
-import { BehaviorSubject } from "rxjs";
-import { SelectNode, TreeDataSource } from "./tree-datasource";
-import { FormulariosService } from "../../shared/services/formularios.service";
-import { MatDialog } from "@angular/material/dialog";
-import { EliminarDialogComponent } from "../../shared/dialogs/eliminar-dialog/eliminar-dialog.component";
-import { ActivatedRoute } from "@angular/router";
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { BehaviorSubject } from 'rxjs';
+import { SelectNode, TreeDataSource } from './tree-datasource';
+import { FormulariosService } from '../../shared/services/formularios.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EliminarDialogComponent } from '../../shared/dialogs/eliminar-dialog/eliminar-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * @title Tree with nested nodes
  */
 @Component({
-  selector: "app-formularios",
-  templateUrl: "./formularios.component.html",
-  styleUrls: ["./formularios.component.css"],
+  selector: 'app-formularios',
+  templateUrl: './formularios.component.html',
+  styleUrls: ['./formularios.component.css'],
   animations: [rowAnimation, treeAnimation],
 })
 export class FormulariosComponent implements OnInit {
@@ -25,99 +25,110 @@ export class FormulariosComponent implements OnInit {
   isValid = true;
   TREE_DATA: SelectNode[] = [
     {
-      nombre: "Actividades",
-      selectId: "1",
+      nombre: 'Actividades',
+      selectId: '1',
       children: [],
     },
     {
-      nombre: "Áreas",
-      selectId: "2",
+      nombre: 'Áreas',
+      selectId: '2',
       children: [],
     },
     {
-      nombre: "Casualidades",
-      selectId: "3",
+      nombre: 'Casualidades',
+      selectId: '3',
       children: [],
     },
     {
-      nombre: "Causas Básicas",
-      selectId: "4",
+      nombre: 'Causas Básicas',
+      selectId: '4',
       children: [],
     },
     {
-      nombre: "Causas Inmediatas",
-      selectId: "5",
+      nombre: 'Causas Inmediatas',
+      selectId: '5',
       children: [],
     },
     {
-      nombre: "Clasificaciones",
-      selectId: "6",
+      nombre: 'Clasificaciones',
+      selectId: '6',
       children: [],
     },
     {
-      nombre: "Comportamientos",
-      selectId: "7",
+      nombre: 'Comportamientos',
+      selectId: '7',
       children: [],
     },
     {
-      nombre: "Efectos",
-      selectId: "8",
+      nombre: 'Efectos',
+      selectId: '8',
       children: [],
     },
     {
-      nombre: "Factor Riesgo",
-      selectId: "9",
+      nombre: 'Factor Riesgo',
+      selectId: '9',
       children: [],
     },
     {
-      nombre: "Géneros",
-      selectId: "10",
+      nombre: 'Géneros',
+      selectId: '10',
       children: [],
     },
     {
-      nombre: "Indicadores de Riesgo",
-      selectId: "11",
+      nombre: 'Indicadores de Riesgo',
+      selectId: '11',
       children: [],
     },
     {
-      nombre: "Jornadas",
-      selectId: "12",
+      nombre: 'Jornadas',
+      selectId: '12',
       children: [],
     },
     {
-      nombre: "Observados",
-      selectId: "13",
+      nombre: 'Observados',
+      selectId: '13',
       children: [],
     },
     {
-      nombre: "Partes del cuerpo",
-      selectId: "14",
+      nombre: 'Partes del cuerpo',
+      selectId: '14',
       children: [],
     },
     {
-      nombre: "Procesos",
-      selectId: "15",
+      nombre: 'Procesos',
+      selectId: '15',
       children: [],
     },
     {
-      nombre: "Riesgos",
-      selectId: "16",
+      nombre: 'Riesgos',
+      selectId: '16',
       children: [],
     },
     {
-      nombre: "Tipos de Comportamiento",
-      selectId: "17",
+      nombre: 'Tipos de Comportamiento',
+      selectId: '17',
       children: [],
     },
     {
-      nombre: "Tipos de Observado",
-      selectId: "18",
+      nombre: 'Tipos de Observado',
+      selectId: '18',
       children: [],
     },
     {
-      nombre: "Turnos",
-      selectId: "19",
+      nombre: 'Turnos',
+      selectId: '19',
       children: [],
+    },
+    {
+      nombre: 'Categorías',
+      selectId: '20',
+      children: [],
+    },
+    {
+      nombre: 'Subcategorías',
+      selectId: '21',
+      children: [],
+      isAncestor: true,
     },
   ];
 
@@ -143,10 +154,15 @@ export class FormulariosComponent implements OnInit {
 
   addNewItem(nombre: string, parentNode: SelectNode, optionId: string = null) {
     this.treeControl.expand(parentNode);
-    this.dataSource.add(
-      { nombre, optionId, selectId: parentNode.selectId },
-      parentNode
-    );
+    const newNode: SelectNode = {
+      nombre,
+      optionId,
+      selectId: parentNode.selectId,
+    };
+    if (parentNode.optionId) {
+      newNode.parentOptionId = parentNode.optionId;
+    }
+    this.dataSource.add(newNode, parentNode);
   }
 
   onUpdateItem(nombre: string, node: SelectNode) {
@@ -192,9 +208,9 @@ export class FormulariosComponent implements OnInit {
     if (node.nombre && !node.editMode) {
       this.dialog
         .open(EliminarDialogComponent, {
-          minWidth: "35vw",
+          minWidth: '35vw',
           data: {
-            title: "ELIMINAR OPCIÓN",
+            title: 'ELIMINAR OPCIÓN',
             content: `¿Desea eliminar la opción ${node.nombre}? Esta acción eliminará todos los reportes que esten relacionados a ella.`,
           },
         })
@@ -218,9 +234,26 @@ export class FormulariosComponent implements OnInit {
     this.formulariosService.getSelectOptions().subscribe((res) => {
       const data = this.TREE_DATA;
       for (const option of res) {
-        let parentNode = data.find((node) => node.selectId == option.selectId);
+        const parentNode = data.find(
+          (node) => node.selectId == option.selectId
+        );
         if (parentNode) {
           parentNode.children.push(option);
+        }
+        if (option.childOptions) {
+          const optionAsParent = { ...option };
+          optionAsParent.selectId = +option.selectId + 1 + '';
+          const ancestorNode = data.find(
+            (node) => node.selectId == optionAsParent.selectId
+          );
+
+          for (const child of optionAsParent.childOptions) {
+            child.selectId = optionAsParent.selectId;
+            child.optionId = child.id;
+            child.parentOptionId = optionAsParent.optionId;
+          }
+          optionAsParent.children = optionAsParent.childOptions;
+          ancestorNode.children.push(optionAsParent);
         }
       }
       this.dataSource = new TreeDataSource(this.treeControl, data);
@@ -229,20 +262,26 @@ export class FormulariosComponent implements OnInit {
   onAgregarNewItem(nombre: string, node: SelectNode) {
     if (nombre) {
       if (nombre.length <= 75) {
-        const parent = this.dataSource.data.find(
+        let parent = this.dataSource.data.find(
           (parentNode) => parentNode.selectId == node.selectId
         );
 
         if (parent) {
-          this.formulariosService
-            .insertSelect({ nombre, selectId: node.selectId })
-            .subscribe((res) => {
-              if (res.status === 200) {
-                this.addNewItem(res.body.nombre, parent, res.body.id);
-              }
+          const data: any = { nombre, selectId: node.selectId };
+          if (node.parentOptionId) {
+            parent = parent.children.find(
+              (parentNode) => parentNode.optionId == node.parentOptionId
+            );
 
-              this.remove(node);
-            });
+            data.parentOptionId = node.parentOptionId;
+          }
+          this.formulariosService.insertSelect(data).subscribe((res) => {
+            if (res.status === 200) {
+              this.addNewItem(res.body.nombre, parent, res.body.id);
+            }
+
+            this.remove(node);
+          });
         }
       } else {
         this.isValid = false;

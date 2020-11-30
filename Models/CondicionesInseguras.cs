@@ -11,20 +11,19 @@ namespace bbs.Models
         [Required]
         [Column(TypeName = "datetime2")]
         public DateTime Fecha{ get; set; }
+         [Required]
+        public int CategoriaId{get;set;}
+  
         [Required]
-        public int AreaId { get; set; }
+        public int SubcategoriaId{get;set;}
         [Required]
-        public int ProcesoId { get; set; }
-        [Required]
-        public int FactorRiesgoId { get; set; }
-        [Required]
-        public int IndicadorRiesgoId { get; set; }
+        public int AreaId{get;set;}
 
-
-        public virtual Area Area { get; set; }
-
-        public virtual FactorRiesgo FactorRiesgo { get; set; }
-        public virtual IndicadorRiesgo IndicadorRiesgo { get; set; }
-        public virtual Proceso Proceso { get; set; }
+        public virtual Subcategoria Subcategoria{get;set;}
+        public virtual Categoria Categoria{get;set;}
+        public virtual Area Area{get;set;}
+        public virtual Colaborador Colaborador{get;set;}
+        
+        
     }
 }

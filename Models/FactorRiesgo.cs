@@ -9,7 +9,7 @@ namespace bbs.Models
     {
         public FactorRiesgo()
         {
-            CondicionInseguras = new HashSet<CondicionInsegura>();
+
         }
 
         public int Id { get; set; }
@@ -17,6 +17,5 @@ namespace bbs.Models
         [Required]
         public string Nombre { get; set; }
 
-        public virtual ICollection<CondicionInsegura> CondicionInseguras { get; set; }
     }
 }

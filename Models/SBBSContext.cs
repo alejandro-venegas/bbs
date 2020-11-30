@@ -46,8 +46,10 @@ namespace bbs.Models
         public virtual DbSet<Bbs> Bbss { get; set; }
         public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<CondicionInsegura> CondicionInseguras { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Subcategoria> Subcategorias { get; set; }
 
-        public virtual DbSet<Usuario> Usuarios {get;set;}
+        public virtual DbSet<Usuario> Usuarios { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -186,21 +188,20 @@ namespace bbs.Models
             .HasForeignKey(bbs => bbs.TipoComportamientoId);
 
             modelBuilder.Entity<CondicionInsegura>()
-            .HasOne(c => c.Area)
-            .WithMany(a => a.CondicionInseguras)
-            .HasForeignKey(c => c.AreaId);
+            .HasOne(ci => ci.Categoria)
+            .WithMany(c => c.CondicionInseguras)
+            .HasForeignKey(ci => ci.CategoriaId);
+
             modelBuilder.Entity<CondicionInsegura>()
-            .HasOne(c => c.Proceso)
-            .WithMany(a => a.CondicionInseguras)
-            .HasForeignKey(c => c.ProcesoId);
-            modelBuilder.Entity<CondicionInsegura>()
-            .HasOne(c => c.FactorRiesgo)
-            .WithMany(a => a.CondicionInseguras)
-            .HasForeignKey(c => c.FactorRiesgoId);
-            modelBuilder.Entity<CondicionInsegura>()
-            .HasOne(c => c.IndicadorRiesgo)
-            .WithMany(a => a.CondicionInseguras)
-            .HasForeignKey(c => c.IndicadorRiesgoId);
+            .HasOne(ci => ci.Subcategoria)
+            .WithMany(s => s.CondicionInseguras)
+            .HasForeignKey(ci => ci.SubcategoriaId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Subcategoria>()
+            .HasOne(s => s.Categoria)
+            .WithMany(c => c.Subcategorias)
+            .HasForeignKey(s => s.CategoriaId);
 
 
             modelBuilder.Entity<Usuario>()
@@ -213,7 +214,7 @@ namespace bbs.Models
             .HasForeignKey(c => c.RolId);
 
             modelBuilder.Entity<Bitacora>()
-            .HasOne( b => b.Usuario)
+            .HasOne(b => b.Usuario)
             .WithMany(u => u.Bitacoras)
             .HasForeignKey(b => b.UsuarioId);
 
@@ -678,24 +679,79 @@ namespace bbs.Models
 
             );
 
-            modelBuilder.Entity<CondicionInsegura>().HasData(
-                new CondicionInsegura { Id = 1, Fecha = new DateTime(2020, 04, 17), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
-                new CondicionInsegura { Id = 2, Fecha = new DateTime(2020, 04, 21), AreaId = 17, ProcesoId = 11, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 3, Fecha = new DateTime(2020, 04, 27), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
-                new CondicionInsegura { Id = 4, Fecha = new DateTime(2020, 04, 28), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 5, Fecha = new DateTime(2020, 04, 28), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
-                new CondicionInsegura { Id = 6, Fecha = new DateTime(2020, 05, 05), AreaId = 29, ProcesoId = 14, FactorRiesgoId = 2, IndicadorRiesgoId = 6 },
-                new CondicionInsegura { Id = 7, Fecha = new DateTime(2020, 05, 15), AreaId = 11, ProcesoId = 20, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
-                new CondicionInsegura { Id = 8, Fecha = new DateTime(2020, 05, 18), AreaId = 6, ProcesoId = 21, FactorRiesgoId = 1, IndicadorRiesgoId = 5 },
-                new CondicionInsegura { Id = 9, Fecha = new DateTime(2020, 05, 20), AreaId = 9, ProcesoId = 20, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 10, Fecha = new DateTime(2020, 06, 16), AreaId = 19, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 11, Fecha = new DateTime(2020, 06, 24), AreaId = 1, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 1 },
-                new CondicionInsegura { Id = 12, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 13, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 14, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 2 },
-                new CondicionInsegura { Id = 15, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 },
-                new CondicionInsegura { Id = 16, Fecha = new DateTime(2020, 06, 26), AreaId = 5, ProcesoId = 14, FactorRiesgoId = 6, IndicadorRiesgoId = 3 }
+            modelBuilder.Entity<Categoria>().HasData(
+                new Categoria { Id = 1, Nombre = "Agentes fisicos" },
+                new Categoria { Id = 3, Nombre = "Almacenamiento - disposicion de materiales" },
+                new Categoria { Id = 2, Nombre = "Equipos de emergencia" },
+                new Categoria { Id = 4, Nombre = "Equipos de protección personal" },
+                new Categoria { Id = 5, Nombre = "Ergonomía" },
+                new Categoria { Id = 6, Nombre = "Herramientas eléctricas" },
+                new Categoria { Id = 7, Nombre = "Herramientas manuales" },
+                new Categoria { Id = 8, Nombre = "Infraestructura" },
+                new Categoria { Id = 9, Nombre = "Orden y limpieza" },
+                new Categoria { Id = 10, Nombre = "Productos químicos" },
+                new Categoria { Id = 11, Nombre = "Protecciones y resguardos de maquinaria" },
+                new Categoria { Id = 12, Nombre = "Rotulación y señalizaciónn" }
             );
+
+            modelBuilder.Entity<Subcategoria>().HasData(
+                new Subcategoria { Id = 1, CategoriaId = 1, Nombre = "Ruido "},
+                new Subcategoria { Id = 2, CategoriaId = 1, Nombre = "Confort térmico "},
+                new Subcategoria { Id = 3, CategoriaId = 1, Nombre = "Iluminación "},
+                new Subcategoria { Id = 4, CategoriaId = 1, Nombre = "Material Particulado "},
+                new Subcategoria { Id = 5, CategoriaId = 1, Nombre = "Vapores orgánicos "},
+                new Subcategoria { Id = 6, CategoriaId = 2, Nombre = "Materiales mal apilados"},
+                new Subcategoria { Id = 7, CategoriaId = 2, Nombre = "Niveles de carga superados"},
+                new Subcategoria { Id = 8, CategoriaId = 2, Nombre = "Muebles de almacenamiento mal ubicados"},
+                new Subcategoria { Id = 9, CategoriaId = 2, Nombre = "Estructura de almacenamiento deteriorada"},
+                new Subcategoria { Id = 10, CategoriaId = 3, Nombre ="Extintores obstruidos"},
+                new Subcategoria { Id = 11, CategoriaId = 3, Nombre ="Extintores descargados"},
+                new Subcategoria { Id = 12, CategoriaId = 3, Nombre ="Botiquines obstruidos"},
+                new Subcategoria { Id = 13, CategoriaId = 3, Nombre ="Botiquines dañados"},
+                new Subcategoria { Id = 14, CategoriaId = 3, Nombre ="Estaciones de mangueras con fallo"},
+                new Subcategoria { Id = 15, CategoriaId = 3, Nombre ="PIV con fallo"},
+                new Subcategoria { Id = 16, CategoriaId = 4, Nombre ="Casco dañado o alterado"},
+                new Subcategoria { Id = 17, CategoriaId = 4, Nombre ="Lentes dañado o alterado"},
+                new Subcategoria { Id = 18, CategoriaId = 4, Nombre ="Calzado dañado o alterado"},
+                new Subcategoria { Id = 19, CategoriaId = 4, Nombre ="Equipo especial o alterado"},
+                new Subcategoria { Id = 20, CategoriaId = 4, Nombre ="Protección de manos dañado o alterado"},
+                new Subcategoria { Id = 21, CategoriaId = 4, Nombre ="Protección de oido dañado o alterado"},
+                new Subcategoria { Id = 22, CategoriaId = 5, Nombre ="Manejo de cargas"},
+                new Subcategoria { Id = 23, CategoriaId = 5, Nombre ="Estación de trabajo"},
+                new Subcategoria { Id = 24, CategoriaId = 5, Nombre ="Posturas estáticas"},
+                new Subcategoria { Id = 25, CategoriaId = 5, Nombre ="Movimientos repetitivos"},
+                new Subcategoria { Id = 26, CategoriaId = 6, Nombre ="Herramienta no certificada CE, UL"},
+                new Subcategoria { Id = 27, CategoriaId = 6, Nombre ="Herramienta con daño o alteraciones"},
+                new Subcategoria { Id = 28, CategoriaId = 7, Nombre ="Herramienta con daño o alteraciones"},
+                new Subcategoria { Id = 29, CategoriaId = 8, Nombre ="Fallo en tubería de facilidades"},
+                new Subcategoria { Id = 30, CategoriaId = 8, Nombre ="Paredes dañadas"},
+                new Subcategoria { Id = 31, CategoriaId = 8, Nombre ="Techos deteriorados"},
+                new Subcategoria { Id = 32, CategoriaId = 8, Nombre ="Instalaciones eléctricas deterioradas"},
+                new Subcategoria { Id = 33, CategoriaId = 8, Nombre ="Pisos dañados"},
+                new Subcategoria { Id = 34, CategoriaId = 8, Nombre ="Calles deteriorada"},
+                new Subcategoria { Id = 35, CategoriaId = 8, Nombre ="Puertas deterioradas"},
+                new Subcategoria { Id = 36, CategoriaId = 8, Nombre ="Pisos resbalosos"},
+                new Subcategoria { Id = 37, CategoriaId = 9, Nombre ="Pisos resbalosos"},
+                new Subcategoria { Id = 38, CategoriaId = 9, Nombre ="Obstrucción de zonas de paso"},
+                new Subcategoria { Id = 39, CategoriaId = 9, Nombre ="Obstrucción de zonas de emergencia"},
+                new Subcategoria { Id = 40, CategoriaId = 9, Nombre ="Pisos húmedos"},
+                new Subcategoria { Id = 41, CategoriaId = 9, Nombre ="Almacenamiento inadecuado de herramientas de trabajo"},
+                new Subcategoria { Id = 42, CategoriaId = 10, Nombre ="Almacenamiento incompatible"},
+                new Subcategoria { Id = 43, CategoriaId = 10, Nombre ="Producto quimico sin etiqueta de riesgo"},
+                new Subcategoria { Id = 44, CategoriaId = 10, Nombre ="Ausencia de kit de atención derrames"},
+                new Subcategoria { Id = 45, CategoriaId = 10, Nombre ="Ausencia de tarima de conteción"},
+                new Subcategoria { Id = 46, CategoriaId = 11, Nombre ="Ausencia de resguardos"},
+                new Subcategoria { Id = 47, CategoriaId = 11, Nombre ="Resguardos en malas condiciones"},
+                new Subcategoria { Id = 48, CategoriaId = 11, Nombre ="Interlock alterados"},
+                new Subcategoria { Id = 49, CategoriaId = 11, Nombre ="Diseño de resguardo con deficiencias"},
+                new Subcategoria { Id = 50, CategoriaId = 11, Nombre ="Instalaciones eléctricas de máquina deficientes"},
+                new Subcategoria { Id = 51, CategoriaId = 12, Nombre ="Ausencia de rotulación"},
+                new Subcategoria { Id = 52, CategoriaId = 12, Nombre ="Señalización horinzontal deteriorada"},
+                new Subcategoria { Id = 53, CategoriaId = 12, Nombre ="Rotulación alterada"},
+                new Subcategoria { Id = 54, CategoriaId = 12, Nombre ="Rotulación deteriorada"}
+            );
+
+
 
 
         }

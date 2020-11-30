@@ -10,8 +10,8 @@ using bbs.Models;
 namespace bbs_project.Migrations
 {
     [DbContext(typeof(SBBSContext))]
-    [Migration("20201102220215_AddUserTable2")]
-    partial class AddUserTable2
+    [Migration("20201130021337_NewMigration")]
+    partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -707,10 +707,12 @@ namespace bbs_project.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Usuario")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Bitacora");
                 });
@@ -1250,6 +1252,84 @@ namespace bbs_project.Migrations
                         {
                             Id = 7,
                             Nombre = "Incidente Ambiental"
+                        });
+                });
+
+            modelBuilder.Entity("bbs.Models.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categorias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Agentes fisicos"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Almacenamiento - disposicion de materiales"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Equipos de emergencia"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Equipos de protección personal"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nombre = "Ergonomía"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nombre = "Herramientas eléctricas"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Nombre = "Herramientas manuales"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Nombre = "Infraestructura"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Nombre = "Orden y limpieza"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Nombre = "Productos químicos"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Nombre = "Protecciones y resguardos de maquinaria"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Nombre = "Rotulación y señalizaciónn"
                         });
                 });
 
@@ -1933,180 +2013,29 @@ namespace bbs_project.Migrations
                     b.Property<int>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ColaboradorId")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FactorRiesgoId")
+                    b.Property<int?>("ColaboradorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IndicadorRiesgoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProcesoId")
+                    b.Property<int>("SubcategoriaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId");
 
+                    b.HasIndex("CategoriaId");
+
                     b.HasIndex("ColaboradorId");
 
-                    b.HasIndex("FactorRiesgoId");
-
-                    b.HasIndex("IndicadorRiesgoId");
-
-                    b.HasIndex("ProcesoId");
+                    b.HasIndex("SubcategoriaId");
 
                     b.ToTable("CondicionInseguras");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AreaId = 29,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 1,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AreaId = 17,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 11
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AreaId = 6,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 1,
-                            ProcesoId = 21
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AreaId = 6,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 21
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AreaId = 29,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 2,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AreaId = 29,
-                            FactorRiesgoId = 2,
-                            Fecha = new DateTime(2020, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 6,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AreaId = 11,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 2,
-                            ProcesoId = 20
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AreaId = 6,
-                            FactorRiesgoId = 1,
-                            Fecha = new DateTime(2020, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 5,
-                            ProcesoId = 21
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AreaId = 9,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 20
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AreaId = 19,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 11,
-                            AreaId = 1,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 1,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 12,
-                            AreaId = 5,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 13,
-                            AreaId = 5,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 14,
-                            AreaId = 5,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 2,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 15,
-                            AreaId = 5,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 14
-                        },
-                        new
-                        {
-                            Id = 16,
-                            AreaId = 5,
-                            FactorRiesgoId = 6,
-                            Fecha = new DateTime(2020, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IndicadorRiesgoId = 3,
-                            ProcesoId = 14
-                        });
                 });
 
             modelBuilder.Entity("bbs.Models.Departamento", b =>
@@ -3288,6 +3217,353 @@ namespace bbs_project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("bbs.Models.Subcategoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("varchar(75)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("Subcategorias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoriaId = 1,
+                            Nombre = "Ruido "
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoriaId = 1,
+                            Nombre = "Confort térmico "
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoriaId = 1,
+                            Nombre = "Iluminación "
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoriaId = 1,
+                            Nombre = "Material Particulado "
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoriaId = 1,
+                            Nombre = "Vapores orgánicos "
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoriaId = 2,
+                            Nombre = "Materiales mal apilados"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoriaId = 2,
+                            Nombre = "Niveles de carga superados"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoriaId = 2,
+                            Nombre = "Muebles de almacenamiento mal ubicados"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoriaId = 2,
+                            Nombre = "Estructura de almacenamiento deteriorada"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoriaId = 3,
+                            Nombre = "Extintores obstruidos"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoriaId = 3,
+                            Nombre = "Extintores descargados"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoriaId = 3,
+                            Nombre = "Botiquines obstruidos"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CategoriaId = 3,
+                            Nombre = "Botiquines dañados"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CategoriaId = 3,
+                            Nombre = "Estaciones de mangueras con fallo"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CategoriaId = 3,
+                            Nombre = "PIV con fallo"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CategoriaId = 4,
+                            Nombre = "Casco dañado o alterado"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CategoriaId = 4,
+                            Nombre = "Lentes dañado o alterado"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CategoriaId = 4,
+                            Nombre = "Calzado dañado o alterado"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CategoriaId = 4,
+                            Nombre = "Equipo especial o alterado"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CategoriaId = 4,
+                            Nombre = "Protección de manos dañado o alterado"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CategoriaId = 4,
+                            Nombre = "Protección de oido dañado o alterado"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CategoriaId = 5,
+                            Nombre = "Manejo de cargas"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CategoriaId = 5,
+                            Nombre = "Estación de trabajo"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CategoriaId = 5,
+                            Nombre = "Posturas estáticas"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CategoriaId = 5,
+                            Nombre = "Movimientos repetitivos"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CategoriaId = 6,
+                            Nombre = "Herramienta no certificada CE, UL"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CategoriaId = 6,
+                            Nombre = "Herramienta con daño o alteraciones"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CategoriaId = 7,
+                            Nombre = "Herramienta con daño o alteraciones"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CategoriaId = 8,
+                            Nombre = "Fallo en tubería de facilidades"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CategoriaId = 8,
+                            Nombre = "Paredes dañadas"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CategoriaId = 8,
+                            Nombre = "Techos deteriorados"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CategoriaId = 8,
+                            Nombre = "Instalaciones eléctricas deterioradas"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CategoriaId = 8,
+                            Nombre = "Pisos dañados"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CategoriaId = 8,
+                            Nombre = "Calles deteriorada"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CategoriaId = 8,
+                            Nombre = "Puertas deterioradas"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CategoriaId = 8,
+                            Nombre = "Pisos resbalosos"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CategoriaId = 9,
+                            Nombre = "Pisos resbalosos"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CategoriaId = 9,
+                            Nombre = "Obstrucción de zonas de paso"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CategoriaId = 9,
+                            Nombre = "Obstrucción de zonas de emergencia"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CategoriaId = 9,
+                            Nombre = "Pisos húmedos"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CategoriaId = 9,
+                            Nombre = "Almacenamiento inadecuado de herramientas de trabajo"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CategoriaId = 10,
+                            Nombre = "Almacenamiento incompatible"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CategoriaId = 10,
+                            Nombre = "Producto quimico sin etiqueta de riesgo"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CategoriaId = 10,
+                            Nombre = "Ausencia de kit de atención derrames"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CategoriaId = 10,
+                            Nombre = "Ausencia de tarima de conteción"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CategoriaId = 11,
+                            Nombre = "Ausencia de resguardos"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CategoriaId = 11,
+                            Nombre = "Resguardos en malas condiciones"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CategoriaId = 11,
+                            Nombre = "Interlock alterados"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CategoriaId = 11,
+                            Nombre = "Diseño de resguardo con deficiencias"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CategoriaId = 11,
+                            Nombre = "Instalaciones eléctricas de máquina deficientes"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CategoriaId = 12,
+                            Nombre = "Ausencia de rotulación"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            CategoriaId = 12,
+                            Nombre = "Señalización horinzontal deteriorada"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            CategoriaId = 12,
+                            Nombre = "Rotulación alterada"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            CategoriaId = 12,
+                            Nombre = "Rotulación deteriorada"
+                        });
+                });
+
             modelBuilder.Entity("bbs.Models.TipoComportamiento", b =>
                 {
                     b.Property<int>("Id")
@@ -3577,6 +3853,15 @@ namespace bbs_project.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("bbs.Models.Bitacora", b =>
+                {
+                    b.HasOne("bbs.Models.Usuario", "Usuario")
+                        .WithMany("Bitacoras")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("bbs.Models.CasiIncidente", b =>
                 {
                     b.HasOne("bbs.Models.Area", "Area")
@@ -3642,26 +3927,20 @@ namespace bbs_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("bbs.Models.Colaborador", null)
+                    b.HasOne("bbs.Models.Categoria", "Categoria")
+                        .WithMany("CondicionInseguras")
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("bbs.Models.Colaborador", "Colaborador")
                         .WithMany("CondicionInseguras")
                         .HasForeignKey("ColaboradorId");
 
-                    b.HasOne("bbs.Models.FactorRiesgo", "FactorRiesgo")
+                    b.HasOne("bbs.Models.Subcategoria", "Subcategoria")
                         .WithMany("CondicionInseguras")
-                        .HasForeignKey("FactorRiesgoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.IndicadorRiesgo", "IndicadorRiesgo")
-                        .WithMany("CondicionInseguras")
-                        .HasForeignKey("IndicadorRiesgoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bbs.Models.Proceso", "Proceso")
-                        .WithMany("CondicionInseguras")
-                        .HasForeignKey("ProcesoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("SubcategoriaId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -3763,6 +4042,15 @@ namespace bbs_project.Migrations
                     b.HasOne("bbs.Models.Vista", "Vista")
                         .WithMany("RolVistas")
                         .HasForeignKey("VistaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("bbs.Models.Subcategoria", b =>
+                {
+                    b.HasOne("bbs.Models.Categoria", "Categoria")
+                        .WithMany("Subcategorias")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
