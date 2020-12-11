@@ -7,7 +7,7 @@ import { RoleResolver } from '../shared/resolvers/role-resolver.service';
 import { BitacoraComponent } from './bitacora/bitacora.component';
 const routes: Routes = [
   {
-    path: '',
+    path: 'mantenimiento',
     component: MantenimientoComponent,
     children: [
       {

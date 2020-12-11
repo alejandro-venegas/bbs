@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace bbs.Controllers 
 {    
+    [Authorize]
     [Route("api/[controller]")]    
     [ApiController]    
     public class AuthController : Controller    
@@ -67,6 +68,7 @@ namespace bbs.Controllers
          [Authorize]
         public async Task<IActionResult> GetUsers()    
         {    
+
             var usuarios = await _context.Usuarios
             .Include(u => u.Colaborador).ThenInclude(c => c.Departamento)
             .Include(u => u.Rol)
@@ -75,15 +77,27 @@ namespace bbs.Controllers
             return Ok(usuarios);    
         }  
 
+        [HttpGet("test")]
+        [Authorize]
+        public async Task<IActionResult> TestUser()    
+        {    
+            var name = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
+    
+            return Ok(name);    
+        }  
+
+        
+
          [HttpGet]
          [Authorize]
         public async Task<IActionResult> GetCurrentUser()    
         {    
             var currentUser = HttpContext.User;   
+            
     
-            if (currentUser.HasClaim( c => c.Type == "username"))    
+            if (currentUser.HasClaim( c => c.Type == ClaimTypes.Name))    
             {    
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 var user = await _context.Usuarios.Include(u => u.Rol.RolVistas).ThenInclude(RolVista=> RolVista.Vista).FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 return Ok(user); 
             }    
@@ -119,6 +133,8 @@ namespace bbs.Controllers
              
             return null;    
         } 
+
+        
 
        
     }    

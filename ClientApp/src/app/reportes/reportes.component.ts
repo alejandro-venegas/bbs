@@ -55,7 +55,6 @@ export class ReportesComponent implements OnInit {
       },
 
       (error) => {
-        this.router.navigate(['login']);
       }
     );
   }

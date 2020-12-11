@@ -9,17 +9,38 @@ import { ScreenService } from './shared/services/screen.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [rowAnimation],
+  animations: [verticalSlider],
 })
 export class AppComponent implements OnInit {
-  title = 'ClientApp';
+  title = "SHE";
+  smallNav = false;
+  useSmallNav: boolean;
+  constructor(
+    private testService: TestServiceService,
+    private screenService: ScreenService
+  ) {}
+  ngOnInit() {
+    this.testService.getTestValues();
+    this.screenService.screenWidthSubject.subscribe((res) => {
+      this.useSmallNav = !(
+        res &&
+        res.breakpoints &&
+        res.breakpoints["(min-width: 1110px)"]
+      );
+      this.smallNav = this.useSmallNav;
+    });
+    this.screenService.initializeBreakPointsSubject();
+  }
 
-  constructor() {}
-
-  ngOnInit() {}
   prepareRoute(outlet: RouterOutlet) {
     return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData['module']
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData["module"]
     );
+  }
+
+  onNavToggledEvent() {
+    if (!this.useSmallNav) {
+      this.smallNav = !this.smallNav;
+    }
   }
 }

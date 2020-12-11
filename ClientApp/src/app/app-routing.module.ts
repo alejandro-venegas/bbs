@@ -13,36 +13,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: "", redirectTo: "reportes", pathMatch: "full" },
+  { path: "forbidden", component: ForbiddenComponent },
 
-  { path: '', redirectTo: 'reportes', pathMatch: 'full' },
-  {
-    path: '',
-    component: LayoutComponent,
-    children: [
-      {
-        path: 'reportes',
-        loadChildren: () => ReportesModule,
-        data: { module: 'f' },
-      },
-      {
-        path: 'graficos',
-        loadChildren: () => GraficosModule,
-        data: { module: '2' },
-      },
-      {
-        path: 'administrar',
-        loadChildren: () => AdministrarModule,
-        data: { module: '3' },
-      },
-      {
-        path: 'mantenimiento',
-        loadChildren: () => MantenimientoModule,
-        data: { module: 'l' },
-      },
-      { path: 'forbidden', component: ForbiddenComponent },
-    ],
-  },
 ];
 
 @NgModule({

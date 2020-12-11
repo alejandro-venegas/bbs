@@ -12,7 +12,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import {
   BrowserAnimationsModule,
-  NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListaComponent } from './lista/lista.component';
@@ -37,6 +36,7 @@ import { RoleResolver } from '../shared/resolvers/role-resolver.service';
     MatRadioModule,
     MatTabsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
   ],

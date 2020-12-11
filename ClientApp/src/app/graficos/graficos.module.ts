@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     MatFormFieldModule,
     MatIconModule,
+    BrowserAnimationsModule,
     MatButtonModule,
   ],
   exports: [GraficosComponent, FiltrosComponent, ResultadosComponent],

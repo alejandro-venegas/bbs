@@ -36,6 +36,7 @@ import { NuevoUsuarioDialogComponent } from './perfiles/nuevo-usuario-dialog/nue
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
+    BrowserAnimationsModule,
     MatDialogModule,
     MatCheckboxModule,
     ReactiveFormsModule,

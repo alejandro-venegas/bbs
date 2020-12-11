@@ -13,7 +13,6 @@ import { AdministrarComponent } from './administrar/administrar.component';
 import { AdministrarModule } from './administrar/administrar.module';
 import {
   BrowserAnimationsModule,
-  NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { EliminarDialogComponent } from './shared/dialogs/eliminar-dialog/eliminar-dialog.component';
@@ -44,13 +43,12 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     GraficosModule,
     AdministrarModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     MatTabsModule,
     MatDialogModule,
     MatIconModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   exports: [],

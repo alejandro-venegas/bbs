@@ -11,7 +11,7 @@ import { RoleResolver } from '../shared/resolvers/role-resolver.service';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'reportes',
     component: ReportesComponent,
     children: [
       {

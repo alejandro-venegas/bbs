@@ -50,7 +50,7 @@ export class AdministrarComponent implements OnInit {
         }
       },
       (error) => {
-        this.router.navigate(['login']);
+        
       }
     );
   }

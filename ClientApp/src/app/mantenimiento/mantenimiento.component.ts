@@ -49,7 +49,6 @@ export class MantenimientoComponent implements OnInit {
         }
       },
       (error) => {
-        this.router.navigate(['login']);
       }
     );
   }

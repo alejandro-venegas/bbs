@@ -5,6 +5,7 @@ import { FormulariosComponent } from "./formularios/formularios.component";
 import { MantenimientoRoutingModule } from "./mantenimiento-routing.module";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTableModule } from "@angular/material/table";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatTreeModule } from "@angular/material/tree";
@@ -27,6 +28,7 @@ import { BitacoraComponent } from './bitacora/bitacora.component';
     MantenimientoRoutingModule,
     MatTabsModule,
     MatTableModule,
+    BrowserAnimationsModule,
     MatPaginatorModule,
     MatCheckboxModule,
     MatTreeModule,

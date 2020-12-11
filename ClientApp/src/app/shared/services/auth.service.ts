@@ -30,7 +30,6 @@ export class AuthService {
 
   logOut() {
     localStorage.clear();
-    this.router.navigate(['login']);
   }
 
   getUsers() {
