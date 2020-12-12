@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace bbs.Controllers
 {
@@ -45,9 +46,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> InsertIncidente(Incidente incidente)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
 
                 await _context.Incidentes.AddAsync(incidente);
@@ -71,9 +72,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> UpdateIncidente(Incidente incidente)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 var incidenteObj = await _context.Incidentes.SingleOrDefaultAsync(b => b.Id == incidente.Id);
                 if (incidenteObj != null)
@@ -113,9 +114,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> DeleteIncidente(int id)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 Incidente incidente = new Incidente();
                 incidente.Id = id;

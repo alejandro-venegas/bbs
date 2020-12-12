@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace bbs.Controllers
 {
@@ -33,9 +34,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> InsertColaborador(Colaborador colaborador)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 await _context.Colaboradores.AddAsync(colaborador);
                 await _context.SaveChangesAsync();
@@ -56,9 +57,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> UpdateColaborador(Colaborador colaborador)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 var result = await _context.Colaboradores.Include(c => c.Departamento).FirstOrDefaultAsync(c => c.Id == colaborador.Id);
                 if (result != null)
@@ -97,9 +98,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> DeleteColaborador(int id)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 Colaborador colaborador = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == id);
                 _context.Colaboradores.Remove(colaborador);

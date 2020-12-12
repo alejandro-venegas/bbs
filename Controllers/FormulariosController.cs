@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace bbs.Controllers
 {
@@ -116,9 +117,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> InsertSelectOption(SelectDto selectDto)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+           if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 bool notFound = false;
                 dynamic selectObj = null;
@@ -330,9 +331,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> UpdateSelectOption(SelectDto selectDto)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 bool notFound = false;
                 var selectId = selectDto.SelectId;

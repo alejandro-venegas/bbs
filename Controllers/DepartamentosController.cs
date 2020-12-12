@@ -6,6 +6,7 @@ using bbs.DTOs;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using System.Security.Claims;
 
 namespace bbs.Controllers
 {
@@ -31,9 +32,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> InsertDepartamento(Departamento departamento)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 var colaboradorResult = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
                 if (colaboradorResult != null)
@@ -71,9 +72,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> UpdateDepartamento(Departamento departamento)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 var departamentoResult = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == departamento.Id);
                 var gerenteNuevo = await _context.Colaboradores.FirstOrDefaultAsync(c => c.Id == departamento.GerenteId);
@@ -111,9 +112,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> DeleteDepartamento(int id)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 Departamento departamento = await _context.Departamentos.FirstOrDefaultAsync(d => d.Id == id);
                 _context.Departamentos.Remove(departamento);

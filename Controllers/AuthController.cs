@@ -36,14 +36,17 @@ namespace bbs.Controllers
             newUser.Password = "test";
             await _context.Usuarios.AddAsync(newUser);
             await _context.SaveChangesAsync();
-            // Bitacora bitacora = new Bitacora
-            // {
-            //     Fecha = DateTime.Now,
-            //     UsuarioId = user.Id,
-            //     DescripcionBitacora = "Creó nuevo colaborador " + colaborador.Nombre + " " + colaborador.Apellido + " ID " + colaborador.Id
-            // };
-            // await _context.Bitacora.AddAsync(bitacora);
-            // await _context.SaveChangesAsync();
+            
+            var username = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
+            var user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+            Bitacora bitacora = new Bitacora
+            {
+                Fecha = DateTime.Now,
+                UsuarioId = user.Id,
+                DescripcionBitacora = "Creó nuevo colaborador " + newUser.Username + " ID " + newUser.Id
+            };
+            await _context.Bitacora.AddAsync(bitacora);
+            await _context.SaveChangesAsync();
             return StatusCode(201);  
         }    
 

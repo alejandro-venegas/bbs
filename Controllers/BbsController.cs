@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
+using System.Security.Claims;
 
 namespace bbs.Controllers
 {
@@ -45,9 +46,10 @@ namespace bbs.Controllers
 
             var currentUser = HttpContext.User;
 
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim( c => c.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+
+                var username = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 await _context.Bbss.AddAsync(bbs);
                 await _context.SaveChangesAsync();
@@ -70,9 +72,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> UpdateBbs(Bbs bbs)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                 var username = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
                 var bbsObj = await _context.Bbss.SingleOrDefaultAsync(b => b.Id == bbs.Id);
                 if (bbsObj != null)
@@ -105,9 +107,9 @@ namespace bbs.Controllers
         public async Task<IActionResult> DeleteBbs(int id)
         {
             var currentUser = HttpContext.User;
-            if (currentUser.HasClaim(c => c.Type == "username"))
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
             {
-                var username = currentUser.Claims.FirstOrDefault(c => c.Type == "username").Value;
+                var username = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
                 Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
             
             Bbs bbs = new Bbs();
