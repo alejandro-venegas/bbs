@@ -8,7 +8,7 @@ import { ResultadoResolver } from './resultados/resultado-resolver.service';
 
 const routes: Routes = [
   {
-    path: 'graficos',
+    path: '',
     component: GraficosComponent,
     canActivate: [AuthGuard],
     children: [

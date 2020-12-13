@@ -4,6 +4,7 @@ import { rowAnimation, verticalSlider } from './animations';
 import { TestServiceService } from './test-service.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ScreenService } from './shared/services/screen.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -12,20 +13,22 @@ import { ScreenService } from './shared/services/screen.service';
   animations: [verticalSlider],
 })
 export class AppComponent implements OnInit {
-  title = "SHE";
+  title = 'SHE';
   smallNav = false;
   useSmallNav: boolean;
   constructor(
     private testService: TestServiceService,
-    private screenService: ScreenService
+    private screenService: ScreenService,
+    private titleService: Title
   ) {}
   ngOnInit() {
+    this.titleService.setTitle(this.title);
     this.testService.getTestValues();
     this.screenService.screenWidthSubject.subscribe((res) => {
       this.useSmallNav = !(
         res &&
         res.breakpoints &&
-        res.breakpoints["(min-width: 1110px)"]
+        res.breakpoints['(min-width: 1110px)']
       );
       this.smallNav = this.useSmallNav;
     });
@@ -34,7 +37,7 @@ export class AppComponent implements OnInit {
 
   prepareRoute(outlet: RouterOutlet) {
     return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData["module"]
+      outlet && outlet.activatedRouteData && outlet.activatedRouteData['module']
     );
   }
 
