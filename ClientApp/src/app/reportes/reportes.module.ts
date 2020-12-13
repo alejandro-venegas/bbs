@@ -10,9 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
-import {
-  BrowserAnimationsModule,
-} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListaComponent } from './lista/lista.component';
 import { MatTableModule } from '@angular/material/table';
@@ -36,7 +34,6 @@ import { RoleResolver } from '../shared/resolvers/role-resolver.service';
     MatRadioModule,
     MatTabsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
   ],
