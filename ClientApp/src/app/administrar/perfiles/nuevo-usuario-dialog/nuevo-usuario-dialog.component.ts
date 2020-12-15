@@ -51,6 +51,7 @@ export class NuevoUsuarioDialogComponent implements OnInit {
       );
     this.rolesService.getRoles().subscribe((res) => (this.roles = res));
     if (this.data && this.data.perfil) {
+      console.log(this.data.perfil);
       this.isEdit = true;
       this.usuarioForm.patchValue(this.data.perfil);
     }
@@ -58,22 +59,22 @@ export class NuevoUsuarioDialogComponent implements OnInit {
 
   submitForm() {
     if (this.usuarioForm.valid) {
+      const value = this.usuarioForm.value;
       if (this.isEdit) {
-        this.authService.updateUser(this.usuarioForm.value).subscribe((res) => {
+        value.id = this.data.perfil.id;
+        this.authService.updateUser(value).subscribe((res) => {
           console.log(res);
           if (res.status === 201) {
             this.dialogRef.close(true);
           }
         });
       } else {
-        this.authService
-          .createNewUser(this.usuarioForm.value)
-          .subscribe((res) => {
-            console.log(res);
-            if (res.status === 201) {
-              this.dialogRef.close(true);
-            }
-          });
+        this.authService.createNewUser(value).subscribe((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            this.dialogRef.close(true);
+          }
+        });
       }
     }
   }
