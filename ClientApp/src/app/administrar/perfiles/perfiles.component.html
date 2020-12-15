@@ -39,13 +39,9 @@
           <span class="mobile-label">Acción:</span>
           <div>
             <img
+              (click)="onUpdatePerfil(element)"
               *ngIf="editable"
               src="assets/images/icons/editar.svg"
-              class="icon"
-            />
-            <img
-              *ngIf="editable"
-              src="assets/images/icons/eliminar.svg"
               class="icon"
             />
           </div>

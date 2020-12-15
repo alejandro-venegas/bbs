@@ -14,7 +14,7 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['./nuevo-usuario-dialog.component.scss'],
 })
 export class NuevoUsuarioDialogComponent implements OnInit {
-  // isEdit = false;
+  isEdit = false;
   colaboradores: Colaborador[] = [];
   roles: Rol[] = [];
   usuarioForm = this.fb.group({
@@ -50,18 +50,31 @@ export class NuevoUsuarioDialogComponent implements OnInit {
         (res) => (this.colaboradores = res.filter((value) => !value.usuario))
       );
     this.rolesService.getRoles().subscribe((res) => (this.roles = res));
+    if (this.data && this.data.perfil) {
+      this.isEdit = true;
+      this.usuarioForm.patchValue(this.data.perfil);
+    }
   }
 
   submitForm() {
     if (this.usuarioForm.valid) {
-      this.authService
-        .createNewUser(this.usuarioForm.value)
-        .subscribe((res) => {
+      if (this.isEdit) {
+        this.authService.updateUser(this.usuarioForm.value).subscribe((res) => {
           console.log(res);
           if (res.status === 201) {
             this.dialogRef.close(true);
           }
         });
+      } else {
+        this.authService
+          .createNewUser(this.usuarioForm.value)
+          .subscribe((res) => {
+            console.log(res);
+            if (res.status === 201) {
+              this.dialogRef.close(true);
+            }
+          });
+      }
     }
   }
 }

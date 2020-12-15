@@ -33,7 +33,6 @@ namespace bbs.Controllers
         public async Task<IActionResult> signUp(Usuario newUser)    
         {    
 
-            newUser.Password = "test";
             await _context.Usuarios.AddAsync(newUser);
             await _context.SaveChangesAsync();
             
@@ -50,22 +49,53 @@ namespace bbs.Controllers
             return StatusCode(201);  
         }    
 
-        [AllowAnonymous]    
-        [HttpPost]    
-        public async Task<IActionResult> Login(Usuario login)    
-        {    
-            IActionResult response = Unauthorized();    
-            var user = await AuthenticateUser(login);    
+        // [AllowAnonymous]    
+        // [HttpPost]    
+        // public async Task<IActionResult> Login(Usuario login)    
+        // {    
+        //     IActionResult response = Unauthorized();    
+        //     var user = await AuthenticateUser(login);    
     
-            if (user != null)    
-            {    
-                var tokenString = GenerateJSONWebToken(user);    
-                response = Ok(new { token = tokenString });    
-            }    
+        //     if (user != null)    
+        //     {    
+        //         var tokenString = GenerateJSONWebToken(user);    
+        //         response = Ok(new { token = tokenString });    
+        //     }    
     
-            return response;    
-        }    
+        //     return response;    
+        // }    
 
+
+        [HttpPost("update")]
+        [Authorize]
+        public async Task<IActionResult> UpdateUser(Usuario usuario)    
+        { 
+            var currentUser = HttpContext.User;
+            if (currentUser.HasClaim(p => p.Type == ClaimTypes.Name))
+            {
+                var username = currentUser.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name)?.Value;
+                Usuario user = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Username == username);
+                var result = await _context.Usuarios.FirstOrDefaultAsync<Usuario>(u => u.Id == usuario.Id);
+                if(result != null){
+                    result.RolId = usuario.RolId;
+                    result.Username = usuario.Username;
+                    result.ColaboradorId = usuario.ColaboradorId;
+                    _context.Update(result);
+                    Bitacora bitacora = new Bitacora
+                    {
+                        Fecha = DateTime.Now,
+                        UsuarioId = user.Id,
+                        DescripcionBitacora = "Actualizó usuario " + usuario.Username + " ID " + usuario.Id
+                    };
+                    await _context.Bitacora.AddAsync(bitacora);
+
+                    await _context.SaveChangesAsync();
+                    return StatusCode(202);
+                }
+                return StatusCode(400);
+            }
+            return Unauthorized();
+        }
 
         [HttpGet("usuarios")]
          [Authorize]
@@ -126,16 +156,16 @@ namespace bbs.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);    
         }    
     
-        private async Task<Usuario> AuthenticateUser(Usuario userCredentials)    
-        {    
-            var user = await _context.Usuarios.SingleOrDefaultAsync(usuario => usuario.Username == userCredentials.Username);
+        // private async Task<Usuario> AuthenticateUser(Usuario userCredentials)    
+        // {    
+        //     var user = await _context.Usuarios.SingleOrDefaultAsync(usuario => usuario.Username == userCredentials.Username);
 
-            if (user != null && user.Password == userCredentials.Password){
-                return user;
-            }
+        //     if (user != null && user.Password == userCredentials.Password){
+        //         return user;
+        //     }
              
-            return null;    
-        } 
+        //     return null;    
+        // } 
 
         
 

@@ -41,6 +41,7 @@ export class PerfilesComponent implements OnInit {
     this.authService.getUsers().subscribe((value) => {
       console.log(value);
       this.dataSource = new MatTableDataSource<any>(value);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -48,6 +49,19 @@ export class PerfilesComponent implements OnInit {
     this.dialog
       .open(NuevoUsuarioDialogComponent, {
         minWidth: '35vw',
+      })
+      .afterClosed()
+      .subscribe((response) => {
+        if (response) {
+          this.getUsers();
+        }
+      });
+  }
+  onUpdatePerfil(perfil: any) {
+    this.dialog
+      .open(NuevoUsuarioDialogComponent, {
+        minWidth: '35vw',
+        data: { perfil: { ...perfil } },
       })
       .afterClosed()
       .subscribe((response) => {

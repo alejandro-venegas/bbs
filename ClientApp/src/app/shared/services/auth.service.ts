@@ -37,7 +37,14 @@ export class AuthService {
   }
 
   createNewUser(usuario: any) {
+    usuario.username = 'PARADISEING\\' + usuario.username;
     return this.http.post(this.base_url + '/new', usuario, {
+      observe: 'response',
+    });
+  }
+
+  updateUser(usuario: any) {
+    return this.http.post(this.base_url + '/update', usuario, {
       observe: 'response',
     });
   }

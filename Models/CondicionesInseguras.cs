@@ -25,8 +25,8 @@ namespace bbs.Models
         public int Consecuencia{get;set;}
         public int Probabilidad{get;set;}
         public int ValorRiesgo{get;set;}
-        public int NivelRiesgo{get;set;}
-        public String PrioridadAtencion{get;set;}
+        public String NivelRiesgo{get;set;}
+        public int PrioridadAtencion{get;set;}
         public String Accion{get;set;}
         public String Descripcion{get;set;}
         [Required]
