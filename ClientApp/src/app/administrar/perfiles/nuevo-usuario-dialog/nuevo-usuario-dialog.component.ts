@@ -44,17 +44,20 @@ export class NuevoUsuarioDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.colaboradoresService
-      .getColaboradores()
-      .subscribe(
-        (res) => (this.colaboradores = res.filter((value) => !value.usuario))
-      );
-    this.rolesService.getRoles().subscribe((res) => (this.roles = res));
     if (this.data && this.data.perfil) {
       console.log(this.data.perfil);
       this.isEdit = true;
       this.usuarioForm.patchValue(this.data.perfil);
     }
+    this.colaboradoresService.getColaboradores().subscribe((res) => {
+      this.colaboradores = res;
+      if (!this.isEdit) {
+        this.colaboradores = this.colaboradores.filter(
+          (value) => !value.usuario
+        );
+      }
+    });
+    this.rolesService.getRoles().subscribe((res) => (this.roles = res));
   }
 
   submitForm() {
