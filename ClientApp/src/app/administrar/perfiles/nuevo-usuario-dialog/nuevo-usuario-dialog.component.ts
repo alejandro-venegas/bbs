@@ -64,7 +64,7 @@ export class NuevoUsuarioDialogComponent implements OnInit {
         value.id = this.data.perfil.id;
         this.authService.updateUser(value).subscribe((res) => {
           console.log(res);
-          if (res.status === 201) {
+          if (res.status === 202) {
             this.dialogRef.close(true);
           }
         });
