@@ -418,6 +418,12 @@ router-outlet + * {
 option {
   color: var(--black);
 }
+
+.dialog-content {
+  option {
+    background-color: white;
+  }
+}
 .close-icon {
   margin-left: auto;
   cursor: pointer;

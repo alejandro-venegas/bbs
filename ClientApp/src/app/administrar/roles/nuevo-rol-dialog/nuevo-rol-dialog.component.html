@@ -49,25 +49,28 @@
               <option
                 [value]="jsonStr({ id: vista.id, borrar: true })"
                 [selected]="isSelected({ id: vista.id, borrar: true })"
-                >Nada</option
               >
+                Nada
+              </option>
               <option
                 [value]="jsonStr({ id: vista.id, escritura: false })"
                 [selected]="isSelected({ id: vista.id, escritura: false })"
-                >Leer</option
               >
+                Leer
+              </option>
               <option
                 [value]="jsonStr({ id: vista.id, escritura: true })"
                 [selected]="isSelected({ id: vista.id, escritura: true })"
-                >Editar</option
               >
+                Editar
+              </option>
             </select>
           </div>
         </div>
       </div>
       <div class="button-group">
         <button class="save-button save-button--green">
-          {{ isEdit ? "GUARDAR" : "AGREGAR" }}
+          {{ isEdit ? 'GUARDAR' : 'AGREGAR' }}
         </button>
       </div>
     </div>
