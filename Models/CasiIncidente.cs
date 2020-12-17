@@ -16,7 +16,7 @@ namespace bbs.Models
         [Required]
         public int ProcesoId { get; set; }
         [Required]
-        public String Observado { get; set; }
+        public int? ObservadoId { get; set; }
         [Required]
         public int TurnoId { get; set; }
         [Required]
@@ -39,5 +39,6 @@ namespace bbs.Models
         public virtual Riesgo Riesgo { get; set; }
         public virtual Jornada Jornada { get; set; }
         public virtual Turno Turno { get; set; }
+        public virtual Colaborador Observado {get;set;}
     }
 }
