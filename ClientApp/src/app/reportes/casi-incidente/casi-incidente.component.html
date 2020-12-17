@@ -21,23 +21,20 @@
       >
     </div>
     <div class="input-group">
-      <label for="observado">Nombre:</label>
-      <input
-        type="text"
-        id="observado"
-        placeholder="Nombre"
-        formControlName="observado"
-      />
+      <label for="observado">Observado:</label>
+      <select id="observado" formControlName="observadoId">
+        <option value="" disabled selected>Seleccione un observado</option>
+        <option [value]="observado.id" *ngFor="let observado of colaboradores">
+          {{ observado.nombre }} {{ observado.apellido }}
+        </option>
+      </select>
       <span
         class="invalid-message"
         *ngIf="observado.touched && observado.invalid"
         ><ng-template [ngIf]="observado.errors.required"
-          >Ingrese un nombre</ng-template
+          >Ingrese un observado</ng-template
         >
-        <ng-template [ngIf]="observado.errors.maxlength"
-          >Solo se permiten 70 caracteres</ng-template
-        ></span
-      >
+      </span>
     </div>
     <div class="input-group">
       <label>Género:</label>
@@ -59,8 +56,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.procesos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -75,8 +73,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.turnos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="turnoId.touched && turnoId.invalid"
         >Seleccione un turno</span
@@ -89,8 +88,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="areaId.touched && areaId.invalid"
         >Seleccione un área de trabajo</span
@@ -103,8 +103,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.casualidades"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -119,8 +120,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.riesgos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="riesgoId.touched && riesgoId.invalid"
         >Seleccione un nivel de riesgo</span
@@ -133,8 +135,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.jornadas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"

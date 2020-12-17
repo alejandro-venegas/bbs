@@ -1,11 +1,11 @@
-import { SelectNode } from "../../mantenimiento/formularios/tree-datasource";
+import { SelectNode } from '../../mantenimiento/formularios/tree-datasource';
 
 export class Incidente {
   public id: number;
   public fecha: Date;
   public areaId: number;
   public procesoId: number;
-  public observado;
+  public observadoId: number;
   public generoId: number;
   public turnoId: number;
   public jornadaId: number;
@@ -30,13 +30,14 @@ export class Incidente {
   public jornada: SelectNode;
   public proceso: SelectNode;
   public turno: SelectNode;
+  public observado: any;
 
   constructor(
     id: number,
     fecha: Date,
     areaId: number,
     procesoId: number,
-    observado,
+    observadoId: number,
     generoId: number,
     turnoId: number,
     jornadaId: number,
@@ -66,7 +67,7 @@ export class Incidente {
     this.fecha = fecha;
     this.areaId = areaId;
     this.procesoId = procesoId;
-    this.observado = observado;
+    this.observadoId = observadoId;
     this.generoId = generoId;
     this.turnoId = turnoId;
     this.jornadaId = jornadaId;

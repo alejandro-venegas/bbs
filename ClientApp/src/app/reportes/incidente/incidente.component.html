@@ -21,22 +21,18 @@
       >
     </div>
     <div class="input-group">
-      <label for="observado">Nombre:</label>
-      <input
-        type="text"
-        id="observado"
-        placeholder="Nombre"
-        formControlName="observado"
-      />
+      <label for="observado">Observado:</label>
+      <select id="observado" formControlName="observadoId">
+        <option value="" disabled selected>Seleccione un observado</option>
+        <option [value]="observado.id" *ngFor="let observado of colaboradores">
+          {{ observado.nombre }} {{ observado.apellido }}
+        </option>
+      </select>
       <span
         class="invalid-message"
         *ngIf="observado.touched && observado.invalid"
-      >
-        <ng-template [ngIf]="observado.errors.required"
-          >Ingrese un nombre</ng-template
-        >
-        <ng-template [ngIf]="observado.errors.maxlength"
-          >Solo se permiten 70 caracteres</ng-template
+        ><ng-template [ngIf]="observado.errors.required"
+          >Ingrese un observado</ng-template
         >
       </span>
     </div>
@@ -60,8 +56,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.procesos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -76,8 +73,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.turnos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="turnoId.touched && turnoId.invalid"
         >Seleccione un turno</span
@@ -90,8 +88,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.areas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="areaId.touched && areaId.invalid"
         >Seleccione un area de trabajo</span
@@ -104,8 +103,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.jornadas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -120,8 +120,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.efectos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span class="invalid-message" *ngIf="efectoId.touched && efectoId.invalid"
         >Seleccione un tipo de efecto</span
@@ -134,8 +135,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.clasificaciones"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -168,8 +170,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.riesgos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
         <span
           class="invalid-message"
           *ngIf="riesgoId.touched && riesgoId.invalid"
@@ -184,8 +187,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.causaBasicas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -200,8 +204,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.causaInmediatas"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
       </select>
       <span
         class="invalid-message"
@@ -216,8 +221,9 @@
         <option
           [value]="opcion.optionId"
           *ngFor="let opcion of opciones?.parteCuerpos"
-          >{{ opcion.nombre }}</option
         >
+          {{ opcion.nombre }}
+        </option>
         >
       </select>
       <span
