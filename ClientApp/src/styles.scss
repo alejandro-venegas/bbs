@@ -421,8 +421,13 @@ option {
 
 .dialog-content {
   option {
-    background-color: white;
+    background-color: var(--white);
+    color: var(--black);
   }
+}
+option {
+  background-color: var(--white);
+  color: var(--black);
 }
 .close-icon {
   margin-left: auto;
